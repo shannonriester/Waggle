@@ -48,8 +48,8 @@ A social-media, location-based and dog-oriented app that allows you to search ne
 - components need to have `-component` in their name
   ```html
   <div classNme="app-component"></div>
-
   ```
+- Arrays, functions, and objects must have a trailing comma 
 
 ##Basic Features
 1. Search (dogs/users)
