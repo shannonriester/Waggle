@@ -45,6 +45,11 @@ A social-media, location-based and dog-oriented app that allows you to search ne
 ##StyleGuide
 - html elemtns (including react elements) names must be separated by `-`
 - JavaScript names must be camel-cased and start with a lower-case letter
+- components need to have `-component` in their name
+  ```html
+  <div classNme="app-component"></div>
+
+  ```
 
 ##Basic Features
 1. Search (dogs/users)
