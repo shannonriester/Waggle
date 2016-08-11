@@ -1,7 +1,50 @@
 #WAGGLE
 
+### MVP
+login/signup
+get user's current location
+list of nearby locations - foursquare search results (map is secondary)
+click to view an individual location
+  - waggle.com/locations?name=AuditoriumShoresDogPark&lat=30.22&long=-97.75
+  - mark themselves as there
+  - show people who said they were there within the last hour
+
+#### server-side collections
+- users
+- checkins - join between users and locations (which are on 4sqare)
+  - include user id, location id, time it was made
+
+#### Future features
+map to show locations
+list of popular times to checkin at this place
+mutual matching (double swipe right)
+show total number of checkins regardless of match status
+only showing names of checkins for matches
+showing user profiles of matches
+allow message of matches
+
 ##Elevator Pitch
-Welcome to Waggle! The very first social media dating app for you AND YOUR DOG! Waggle helps break the ice (or should we say 'bark' the ice!), it's essentially Tinder ('wag-left' or 'wag-right'?) but also incorporates our GPS system to help you and your new friends find a park that best suits you.  
+A social-media, location-based and dog-oriented app that allows you to search nearby dog places, discover cute dogs and their humans! Maybe you'll make a new friend taking your pup out on his very own dog date!
+
+
+
+##Building Tools & Libraries
+1. React
+2. React-router
+3. React-DOM
+4. React Transitions (animations)
+  - `npm install --save react-addons-css-transition-group`
+5. Babel Preset React
+6. Backbone
+7. Underscore
+8. Moment
+9. Normalize-scss
+10. jQuery  
+
+
+##StyleGuide
+- html elemtns (including react elements) names must be separated by `-`
+- JavaScript names must be camel-cased and start with a lower-case letter
 
 ##Basic Features
 1. Search (dogs/users)
