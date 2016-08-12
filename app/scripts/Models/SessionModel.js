@@ -5,6 +5,7 @@ const SessionModel = Backbone.Model.extend({
   urlRoot:`https://baas.kinvey.com/user/kid_SkBnla5Y/login`,
   defaults: {
     username: '',
+    location: [0,0],
   },
   parse: function(response) {
     if (response) {
