@@ -2,11 +2,7 @@ import React from 'react';
 import { browserHistory } from 'react-router';
 import Transition from 'react-addons-css-transition-group';
 
-const entryImages = [
-  '/../../assets/DogsAndFriendsBrunching.jpeg',
-  '/../../assets/GroupAtPark.jpeg',
-  '/../../TwoGirlsWithSmallDogs.jpeg',
-];
+import store from '../store';
 
 
 export default React.createClass({
@@ -15,14 +11,27 @@ export default React.createClass({
   },
   componentDidMount: function() {
     setInterval(() => {
-
-    }, 1000);
+      if (this.state.showing === store.entryImages.length - 1) {
+        this.setState({showing:0});
+      } else {
+        this.setState({showing: this.state.showing + 1});
+      }
+    }, 6000);
   },
   render: function() {
+    let image = (<img
+      key={this.state.showing}
+      src={store.entryImages[this.state.showing]}
+      className="current"/>);
+
     return (
       <div className="landing-component">
-        <Transition>
-          <h1>The Dog Days Aren't Over</h1>
+        <h1>The Dog Days Aren't Over</h1>
+        <Transition
+          transitionName="slide-left"
+          transitionEnterTimeout={2500}
+          transitionLeaveTimeout={2500}>
+          {image}
         </Transition>
       </div>
     );

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, browserHistory, Route } from 'react-router';
+import { Router, browserHistory, hashHistory, Route } from 'react-router';
 
 import App from './Pages/App';
 import LandingPage from './Pages/LandingPage';
