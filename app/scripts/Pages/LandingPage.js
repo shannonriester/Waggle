@@ -16,7 +16,7 @@ export default React.createClass({
       } else {
         this.setState({showing: this.state.showing + 1});
       }
-    }, 6000);
+    }, 5000);
   },
   render: function() {
     let image = (<img
@@ -25,12 +25,12 @@ export default React.createClass({
       className="current"/>);
 
     return (
-      <div className="landing-component">
+      <div className="landing-page-component">
         <h1>The Dog Days Aren't Over</h1>
         <Transition
           transitionName="slide-left"
-          transitionEnterTimeout={2500}
-          transitionLeaveTimeout={2500}>
+          transitionEnterTimeout={2000}
+          transitionLeaveTimeout={2000}>
           {image}
         </Transition>
       </div>
