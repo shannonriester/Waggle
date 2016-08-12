@@ -3,16 +3,40 @@
   margin: 0; }
   .landing-page-component .greeting-register {
     position: absolute;
-    top: 50vh;
+    top: 0vh;
     right: 0;
     bottom: 0;
     left: 0;
+    height: 100vh;
+    width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; }
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.2); }
     .landing-page-component .greeting-register h1 {
-      margin: 10% 0; }
+      margin-bottom: 5%;
+      color: #FDFDFC;
+      font-family: "Lato", sans-serif;
+      font-weight: 100;
+      font-size: 4em; }
+    .landing-page-component .greeting-register .register-btns {
+      display: flex;
+      align-items: center;
+      justify-content: center; }
+    .landing-page-component .greeting-register button {
+      width: 7em;
+      margin: 0 5%;
+      padding: 3% 1%;
+      background: transparent;
+      border: solid 2px #F8F1FF;
+      border-radius: 10px;
+      outline: none;
+      font-size: 2em;
+      color: #F8F1FF; }
+      .landing-page-component .greeting-register button:hover {
+        transition: background .5s;
+        background: rgba(248, 241, 255, 0.4); }
   .landing-page-component .current-image {
     position: absolute;
     z-index: -1;
@@ -34,6 +58,7 @@ body {
   margin: 0;
   font-family: sans-serif;
   font-weight: 100;
-  color: #555; }
+  color: #555;
+  font-family: "Lato", sans-serif; }
 
 /*# sourceMappingURL=main.css.map */
