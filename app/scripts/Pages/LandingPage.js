@@ -36,11 +36,13 @@ export default React.createClass({
 
     return (
       <div className="landing-page-component">
-        <section className="greeting-register">
+        <div className="greeting-register">
           <h1>Welcome to Waggle</h1>
-          <button className="register-btn" onClick={this.showModal}>Login</button>
-          <button className="register-btn" onClick={this.showModal}>Sign UP</button>
-        </section>
+          <section className="register-btns">
+            <button onClick={this.showModal}>Login</button>
+            <button onClick={this.showModal}>Sign Up</button>
+          </section>
+        </div>
         <Transition
           transitionName="slide-left"
           transitionEnterTimeout={2000}
