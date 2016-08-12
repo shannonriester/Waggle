@@ -5,7 +5,6 @@ const SessionModel = Backbone.Model.extend({
   urlRoot:`https://baas.kinvey.com/user/kid_SkBnla5Y/login`,
   defaults: {
     username: '',
-
   },
   parse: function(response) {
     if (response) {
@@ -25,7 +24,6 @@ const SessionModel = Backbone.Model.extend({
           localStorage.setItem('authtoken', response._kmd.authtoken);
           this.unset('password');
           this.trigger('change update');
-
       },
        error: function(model, response) {
          throw new Error('LOGIN FAILED');
@@ -42,7 +40,6 @@ const SessionModel = Backbone.Model.extend({
       success: (model, response) => {
         localStorage.removeItem('authtoken');
         console.log('USER SIGNED UP!', username);
-        // localStorage.authtoken = response._kmd.authtoken;
         localStorage.setItem('authtoken', response._kmd.authtoken);
         this.unset('password');
         this.trigger('change update');
@@ -57,11 +54,7 @@ const SessionModel = Backbone.Model.extend({
       { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/_logout`,
         success: (model, response) => {
           console.log('USER LOGGED OUT!');
-          // this.set('isLoggingIn', false);
-          // this.set('isSigningUp', false);
           localStorage.removeItem('authtoken');
-          // localStorage.authtoken = 'afe43b20-9499-48f1-a1f7-7ffa9d8b99d4.dDsyxSzL3cOFa0ctR35XC5yHVsCN2Sh5551M/a+SibQ=';
-          // sessionStorage.removeItem('searchTerm');
           this.clear();
           this.trigger('change update');
       },

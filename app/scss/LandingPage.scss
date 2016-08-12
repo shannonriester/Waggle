@@ -4,7 +4,7 @@
 
   .greeting-register {
     position: absolute;
-    top: 0vh;
+    top: 0;
     right: 0;
     bottom: 0;
     left: 0;
@@ -15,6 +15,7 @@
     align-items: center;
     justify-content: center;
     background: rgba(#000, .2);
+    z-index: -1;
 
     h1 {
       margin-bottom: 5%;
@@ -45,14 +46,13 @@
         transition: .5s;
         background: rgba($button-color, .4);
         color: $border;
-        // border: solid 2px $border;
       }
     }
   }
 
   .current-image {
     position: absolute;
-    z-index: -1;
+    z-index: -2;
     width: 100vw;
     height: 100vh;
     background-size: cover;

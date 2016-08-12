@@ -5,6 +5,8 @@ import Transition from 'react-addons-css-transition-group';
 import store from '../store';
 import Modal from '../Components/Modal';
 
+//ask jess about timing for animations...take note of lagging also
+
 
 export default React.createClass({
   getInitialState: function() {
@@ -44,7 +46,6 @@ export default React.createClass({
     if (this.state.modal === 'login') {
       modal = (<Modal modal='login' hideModal={this.hideModal}/>);
     } else if (this.state.modal === 'signup'){
-      console.log('something');
       modal = (<Modal modal='signup' hideModal={this.hideModal}/>);
     }
     return (
