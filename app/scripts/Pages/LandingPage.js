@@ -30,6 +30,9 @@ export default React.createClass({
       this.setState({modal: 'signup'});
     }
   },
+  hideModal: function() {
+    this.setState({modal: null});
+  },
   render: function() {
     let styles = {backgroundImage: `url(${store.entryImages[this.state.images]})`};
     let pageContent = (<div
@@ -39,10 +42,10 @@ export default React.createClass({
 
     let modal;
     if (this.state.modal === 'login') {
-      modal = (<Modal modal='login'/>);
+      modal = (<Modal modal='login' hideModal={this.hideModal}/>);
     } else if (this.state.modal === 'signup'){
       console.log('something');
-      modal = (<Modal modal='signup'/>);
+      modal = (<Modal modal='signup' hideModal={this.hideModal}/>);
     }
     return (
       <div className="landing-page-component">

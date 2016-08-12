@@ -37,8 +37,7 @@
       .landing-page-component .greeting-register button:hover {
         transition: .5s;
         background: rgba(248, 241, 255, 0.4);
-        color: #F55959;
-        border: solid 2px #F55959; }
+        color: #F55959; }
   .landing-page-component .current-image {
     position: absolute;
     z-index: -1;
@@ -55,6 +54,9 @@
     left: 0; }
   .landing-page-component .slide-left-leave.slide-left-leave-active {
     left: -100%; }
+
+label {
+  display: none; }
 
 body {
   margin: 0;
