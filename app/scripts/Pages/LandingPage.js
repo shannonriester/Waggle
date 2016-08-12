@@ -7,32 +7,47 @@ import store from '../store';
 
 export default React.createClass({
   getInitialState: function() {
-    return {showing: 0}
+    return {
+      images: 0,
+      modal: false,
+    }
   },
   componentDidMount: function() {
     setInterval(() => {
-      if (this.state.showing === store.entryImages.length - 1) {
-        this.setState({showing:0});
+      if (this.state.images === store.entryImages.length - 1) {
+        this.setState({images:0});
       } else {
-        this.setState({showing: this.state.showing + 1});
+        this.setState({images: this.state.images + 1});
       }
     }, 5000);
   },
+  showModal: function(e) {
+    console.log(e.target.innerText.toLowerCase());
+    if (e.target.innerText.toLowerCase() === 'login') {
+      this.setState({})
+    }
+  },
   render: function() {
-    let image = (<img
-      key={this.state.showing}
-      src={store.entryImages[this.state.showing]}
-      className="current"/>);
+    let styles = {backgroundImage: `url(${store.entryImages[this.state.images]})`};
+    let pageContent = (<div
+      className="current-image"
+      key={this.state.images}
+      style={styles}></div>);
 
     return (
       <div className="landing-page-component">
-        <h1>The Dog Days Aren't Over</h1>
+        <section className="greeting-register">
+          <h1>Welcome to Waggle</h1>
+          <button className="register-btn" onClick={this.showModal}>Login</button>
+          <button className="register-btn" onClick={this.showModal}>Sign UP</button>
+        </section>
         <Transition
           transitionName="slide-left"
           transitionEnterTimeout={2000}
           transitionLeaveTimeout={2000}>
-          {image}
+          {pageContent}
         </Transition>
+
       </div>
     );
   }
