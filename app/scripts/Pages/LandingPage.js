@@ -3,13 +3,14 @@ import { browserHistory } from 'react-router';
 import Transition from 'react-addons-css-transition-group';
 
 import store from '../store';
+import Modal from '../Components/Modal';
 
 
 export default React.createClass({
   getInitialState: function() {
     return {
       images: 0,
-      modal: false,
+      modal: null,
     }
   },
   componentDidMount: function() {
@@ -24,7 +25,9 @@ export default React.createClass({
   showModal: function(e) {
     console.log(e.target.innerText.toLowerCase());
     if (e.target.innerText.toLowerCase() === 'login') {
-      this.setState({})
+      this.setState({modal:'login'});
+    } else if (e.target.innerText.toLowerCase() === 'sign up') {
+      this.setState({modal: 'signup'});
     }
   },
   render: function() {
@@ -34,6 +37,13 @@ export default React.createClass({
       key={this.state.images}
       style={styles}></div>);
 
+    let modal;
+    if (this.state.modal === 'login') {
+      modal = (<Modal modal='login'/>);
+    } else if (this.state.modal === 'signup'){
+      console.log('something');
+      modal = (<Modal modal='signup'/>);
+    }
     return (
       <div className="landing-page-component">
         <div className="greeting-register">
@@ -49,7 +59,7 @@ export default React.createClass({
           transitionLeaveTimeout={2000}>
           {pageContent}
         </Transition>
-
+        {modal}
       </div>
     );
   }

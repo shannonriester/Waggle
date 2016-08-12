@@ -40,10 +40,12 @@
       outline: none;
       font-size: 2em;
       color: $button-color;
-      
+
       &:hover {
-        transition: background .5s;
+        transition: .5s;
         background: rgba($button-color, .4);
+        color: $border;
+        border: solid 2px $border;
       }
     }
   }

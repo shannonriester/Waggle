@@ -35,8 +35,10 @@
       font-size: 2em;
       color: #F8F1FF; }
       .landing-page-component .greeting-register button:hover {
-        transition: background .5s;
-        background: rgba(248, 241, 255, 0.4); }
+        transition: .5s;
+        background: rgba(248, 241, 255, 0.4);
+        color: #F55959;
+        border: solid 2px #F55959; }
   .landing-page-component .current-image {
     position: absolute;
     z-index: -1;
