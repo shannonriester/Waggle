@@ -49,7 +49,7 @@ A social-media, location-based and dog-oriented app that allows you to search ne
   ```html
   <div classNme="app-component"></div>
   ```
-- Arrays, functions, and objects must have a trailing comma 
+- Arrays, functions, and objects must have a trailing comma
 
 ##Basic Features
 1. Search (dogs/users)
@@ -136,3 +136,11 @@ A social-media, location-based and dog-oriented app that allows you to search ne
 4. Funny dog puns
   - "Bow-WOW! You matched!" -- after matching
   - "Throw me a bone, why don't ya?" --message preview
+
+
+
+## Credits
+1. Bone icon
+  - `<div>Icons made by <a href="http://www.flaticon.com/authors/metropolicons" title="Metropolicons">Metropolicons</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>`
+2. Foursquare
+  - API
