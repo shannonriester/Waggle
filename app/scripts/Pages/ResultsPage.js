@@ -1,4 +1,5 @@
 import React from 'react';
+import { browserHistory } from 'react-router';
 
 import store from '../store';
 import Header from '../Components/Header';
@@ -8,6 +9,10 @@ export default React.createClass({
     return {null}
   },
   componentWillMount: function() {
+    if (!localStorage.authtoken) {
+      browserHistory.push('/');
+    }
+
     store.session.on('change', this.updateState);
     store.session.getLocation().then((position) => {
       console.log(position);

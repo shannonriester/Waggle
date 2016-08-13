@@ -34,11 +34,7 @@ export default React.createClass({
   componentDidMount: function() {
     this.startInterval();
   },
-  componentWillUnmount: function() {
-
-  },
   render: function() {
-    console.log(browserHistory);
     let styles = {backgroundImage: `url(${store.entryImages[this.state.images]})`};
     let pageContent = (<div
       className="current-image"

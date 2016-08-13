@@ -1,5 +1,5 @@
 import React from 'react';
-import { browswerHistory } from 'react-router';
+// import { Router, browserHistory } from 'react-router';
 import _ from 'underscore';
 
 import store from '../store';
@@ -12,7 +12,7 @@ export default React.createClass({
 
     store.session.login(username, password)
     this.props.hideModal();
-    browswerHistory.push(`/search-results`);
+    browserHistory.push(`/search-results`);
   },
   signupModal: function(e) {
     e.preventDefault();
@@ -28,10 +28,9 @@ export default React.createClass({
       store.session.signup(username, password)
     }
     this.props.hideModal();
-    // browswerHistory.push(`/user/:username`);
+    // browserHistory.push(`/user/:username`);
   },
   hideModal: function(e) {
-    console.log(_.toArray(e.target));
     if (_.toArray(e.target.classList).indexOf('modal-component') !== -1 || _.toArray(e.target.classList).indexOf('cancel') !== -1 ) {
       this.props.hideModal();
     }
