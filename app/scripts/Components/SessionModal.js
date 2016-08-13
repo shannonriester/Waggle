@@ -12,8 +12,7 @@ export default React.createClass({
 
     store.session.login(username, password)
     this.props.hideModal();
-    // browswerHistory.push(`/search-results`);
-
+    browswerHistory.push(`/search-results`);
   },
   signupModal: function(e) {
     e.preventDefault();
@@ -32,9 +31,6 @@ export default React.createClass({
     // browswerHistory.push(`/user/:username`);
   },
   hideModal: function(e) {
-    // console.log('trying to hide modal');
-    // console.log(this);
-    // this.props.hideModal();
     console.log(_.toArray(e.target));
     if (_.toArray(e.target.classList).indexOf('modal-component') !== -1 || _.toArray(e.target.classList).indexOf('cancel') !== -1 ) {
       this.props.hideModal();

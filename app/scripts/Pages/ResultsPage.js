@@ -1,9 +1,14 @@
 import React from 'react';
 
+import store from '../store';
+
 export default React.createClass({
   render: function() {
+    console.log(store.placesCollection.getResults());
+
     return (
-      <div classname="results-page-component">On the Results page</div>
+      <div className="results-page-component">On the Results page
+      </div>
     );
   }
 });

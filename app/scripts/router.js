@@ -13,7 +13,7 @@ const router = (
       <Route path="login" component={SessionModal} />
       <Route path="signup" component={SessionModal} />
     </Route>
-    <Route path="/search-results" component={LandingPage} />
+    <Route path="/search-results" component={ResultsPage} />
   </Router>
 );
 

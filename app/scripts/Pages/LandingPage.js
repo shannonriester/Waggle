@@ -3,7 +3,6 @@ import { browserHistory } from 'react-router';
 import Transition from 'react-addons-css-transition-group';
 
 import store from '../store';
-// import SessionModal from '../Components/SessionModal';
 import Greeting from '../Components/Greeting';
 
 export default React.createClass({

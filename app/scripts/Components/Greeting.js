@@ -28,7 +28,6 @@ export default React.createClass({
     } else if (this.state.modal === 'signup') {
       modal = (<SessionModal modal='signup' hideModal={this.hideModal}/>);
     }
-
     return (
       <div className="greeting-register">
         <h1>Welcome to Waggle</h1>

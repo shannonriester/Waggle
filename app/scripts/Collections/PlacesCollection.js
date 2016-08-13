@@ -14,7 +14,7 @@ const PlacesCollection = Backbone.Collection.extend({
         client_id: 'H5L4YMYV2UTAUOA0YXXQM1WIXVLJGH45LGO0VM31PPAYMNHW',
         client_secret: 'DUB0OMKZF5VBINPV5YUZSVGXE1BI12GIHBVIUHYI4XON4DY0',
         v: '20130815',
-        near: 'Austin,TX',
+        near: 'New_York,NY',
         query: 'dog_run',
         similar: 'dog_friendly',
       },
