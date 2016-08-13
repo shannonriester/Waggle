@@ -16,12 +16,7 @@ export default ({
     clientSecret: 'DUB0OMKZF5VBINPV5YUZSVGXE1BI12GIHBVIUHYI4XON4DY0',
     pushSecret: '15Z3W5SJP3JTJ55C2FV5REQOBG4ORVIWROERZDDSNOWIIKWN',
   },
-  // yelp: {
-  //   consumerKey: 'VNBVIZYVwtO4IZKuRQ4Jeg',
-  //   consumerSecret: 'Ka94kOBVXrxnZqQHxUU-P5KASvM',
-  //   token: 'YCqorPURzfXqObYNjqFsWaOJPo2LMCAk',
-  //   tokenSecret: 'zxboccl1lN9tL7ZTd71kRxpK2Rk',
-  // },
+  
   entryImages: [
     '/assets/BeachFun.jpeg',
     '/assets/DogsAndFriendsBrunching.jpeg',

@@ -10,7 +10,7 @@ export default React.createClass({
     return {
       images: 0,
       interval: null,
-      authtoken: null,
+      // authtoken: localStorage.getItem('authtoken'),
     }
   },
   pauseSlider: function() {
@@ -27,20 +27,27 @@ export default React.createClass({
     this.setState({interval:interval});
   },
   updateState: function() {
-    this.setState({authtoken: store.session.get('authtoken'),});
+    // this.setState({authtoken: store.session.get('authtoken'),});
+
+    if (localStorage.authtoken) {
+      store.session.retrieve();
+      browserHistory.push('/search-results');
+    }
   },
   componentWillMount: function() {
     if (localStorage.authtoken) {
       store.session.retrieve();
       browserHistory.push('/search-results');
     }
+    // store.session.on('change update', this.updateState);
   },
   componentDidMount: function() {
     this.startInterval();
-    store.session.on('change update', this.updateState);
+    store.session.on('change', this.updateState);
+
   },
   componentWillUnmount: function() {
-    store.session.off('change update', this.updateState);
+    store.session.off('change', this.updateState);
   },
   render: function() {
     let styles = {backgroundImage: `url(${store.entryImages[this.state.images]})`};
@@ -50,7 +57,6 @@ export default React.createClass({
       style={styles}></div>);
 
     let greeting = (<Greeting showModal={this.showModal} hideModal={this.hideModal} />);
-    // let childrenWithProps = {React.cloneElement(this.props.children, {hideModal: this.hideModal, showModal: this.showModal})}
 
     return (
       <div className="landing-page-component">

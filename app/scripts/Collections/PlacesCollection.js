@@ -7,10 +7,10 @@ import PlaceModel from '../Models/PlaceModel';
 const PlacesCollection = Backbone.Collection.extend({
   model: PlaceModel,
   url: `https://api.foursquare.com/v2/venues/search/`,
-  getResults: function(){
-
+  getResults: function(latitude, longituge){
  //`https://api.foursquare.com/v2/venues/search/?near=Austin,TX&client_id=H5L4YMYV2UTAUOA0YXXQM1WIXVLJGH45LGO0VM31PPAYMNHW&client_secret=DUB0OMKZF5VBINPV5YUZSVGXE1BI12GIHBVIUHYI4XON4DY0&v=20130815`
     // categorySimilarIDs: {'hike and bike trails':'4bf58dd8d48988d159941735', 'dog runs':'4bf58dd8d48988d1e5941735', }
+    let ll = (latitude + ',' + longituge);
     $.ajax({
       type: 'GET',
       url: `https://api.foursquare.com/v2/venues/search/`,
@@ -18,12 +18,13 @@ const PlacesCollection = Backbone.Collection.extend({
         client_id: 'H5L4YMYV2UTAUOA0YXXQM1WIXVLJGH45LGO0VM31PPAYMNHW',
         client_secret: 'DUB0OMKZF5VBINPV5YUZSVGXE1BI12GIHBVIUHYI4XON4DY0',
         v: '20130815',
-        near: 'Austin,TX',
+        // near: 'Austin,TX',
+        ll: ll,
         query: 'dog_park',
         similar: '4bf58dd8d48988d1e5941735',
       },
       success: (categoryResults) => {
-        // console.log('first ajax: venues ', categoryResults.response.venues);
+        console.log('first ajax: venues ', categoryResults.response.venues);
         let venueResults = categoryResults.response.venues.forEach((venue, i, arr) => {
           let venueID = venue.id;
             $.ajax({
@@ -46,13 +47,20 @@ const PlacesCollection = Backbone.Collection.extend({
                     let suffix = item.suffix;
                     // console.log(prefix + 'original' + suffix);
                   });
-
                 }
               },
+              error: function(model, response) {
+                throw new Error('FAILED TO SEARCH FIND VENUE IMAGES');
+              },
+
           });
         });
 
       },
+      error: function(model, response) {
+        throw new Error('FAILED TO SEARCH VENUES');
+      },
+
     });
 
   },

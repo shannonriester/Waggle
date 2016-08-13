@@ -3,33 +3,39 @@ import { browserHistory } from 'react-router';
 
 import store from '../store';
 import Header from '../Components/Header';
+import Searchbar from '../Components/Searchbar';
 
 export default React.createClass({
   getInitialState: function() {
-    return {null}
+    return {
+      location: store.session.get('location'),
+    }
+  },
+  updateState: function() {
+    this.setState({location: store.session.get('location')});
+    if (!localStorage.authtoken) {
+      browserHistory.push('/');
+    }
+    console.log(store.session.get('location'));
   },
   componentWillMount: function() {
     if (!localStorage.authtoken) {
       browserHistory.push('/');
+    } else {
+      store.session.getLocation();
     }
-
-    store.session.on('change', this.updateState);
-    store.session.getLocation().then((position) => {
-      console.log(position);
-    });
   },
   componentDidMount: function () {
-
+    store.session.on('change update', this.updateState);
   },
   componentWillUnmount: function() {
     // store.placesCollection.get(this.props.venue._id).off('change', this.updateState);
+    store.session.off('change update', this.updateState);
   },
   render: function() {
-    // console.log(store.placesCollection.getResults());
     return (
       <div className="results-page-component">
-        <Header/>
-
+        <Header />
       </div>
     );
   }

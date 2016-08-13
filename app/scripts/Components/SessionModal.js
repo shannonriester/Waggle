@@ -36,7 +36,6 @@ export default React.createClass({
     }
   },
   render: function() {
-    console.log(this);
     let modalContent;
     if (this.props.modal === 'login') {
       modalContent = (
