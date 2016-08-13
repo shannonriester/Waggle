@@ -9,14 +9,16 @@ export default React.createClass({
   getInitialState: function() {
     return {
       location: store.session.get('location'),
+      places: store.placesCollection.getResults(store.session.get('location'),store.session.get('query')),
     }
   },
   updateState: function() {
-    this.setState({location: store.session.get('location')});
     if (!localStorage.authtoken) {
       browserHistory.push('/');
+    } else {
+      this.setState({location: store.session.get('location')});
+      store.placesCollection.getResults(store.session.get('location'),store.session.get('query'));
     }
-    console.log(store.session.get('location'));
   },
   componentWillMount: function() {
     if (!localStorage.authtoken) {

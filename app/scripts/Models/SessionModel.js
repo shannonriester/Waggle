@@ -6,7 +6,7 @@ const SessionModel = Backbone.Model.extend({
   defaults: {
     username: '',
     location: [0,0],
-    query: '',
+    query: 'dog_park',
   },
   getLocation: function() {
       var promise = new Promise((resolve, reject) => {
