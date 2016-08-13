@@ -69,11 +69,36 @@
       height: 300px;
       width: 300px; }
 
+.header-component .nav-component {
+  margin: 0; }
+  .header-component .nav-component ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+  .header-component .nav-component li {
+    list-style-type: none;
+    display: flex; }
+  .header-component .nav-component li:first-child {
+    align-items: center;
+    justify-content: flex-start;
+    flex: 50; }
+  .header-component .nav-component li:nth-child(2) {
+    align-items: center;
+    justify-content: flex-end;
+    flex: 50; }
+  .header-component .nav-component .nav-icon {
+    margin: 5%;
+    font-size: 2em;
+    color: #878787; }
+
 body {
   margin: 0;
   font-family: sans-serif;
   font-weight: 100;
   color: #555;
-  font-family: "Lato", sans-serif; }
+  font-family: "Lato", sans-serif;
+  background: #EDEFED; }
 
 /*# sourceMappingURL=main.css.map */
