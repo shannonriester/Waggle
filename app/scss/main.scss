@@ -1,6 +1,7 @@
 @import '_variables.scss';
 @import 'LandingPage.scss';
 @import 'Modal.scss';
+@import 'Header.scss';
 
 body {
   margin: 0;
@@ -8,4 +9,5 @@ body {
   font-weight: 100;
   color: $font-color;
   font-family: $font-family;
+  background: $background;
 }

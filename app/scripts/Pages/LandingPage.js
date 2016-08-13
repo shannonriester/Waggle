@@ -10,6 +10,7 @@ export default React.createClass({
     return {
       images: 0,
       interval: null,
+      authtoken: null,
     }
   },
   pauseSlider: function() {
@@ -25,6 +26,9 @@ export default React.createClass({
     }, 10000);
     this.setState({interval:interval});
   },
+  updateState: function() {
+    this.setState({authtoken: store.session.get('authtoken'),});
+  },
   componentWillMount: function() {
     if (localStorage.authtoken) {
       store.session.retrieve();
@@ -33,6 +37,10 @@ export default React.createClass({
   },
   componentDidMount: function() {
     this.startInterval();
+    store.session.on('change update', this.updateState);
+  },
+  componentWillUnmount: function() {
+    store.session.off('change update', this.updateState);
   },
   render: function() {
     let styles = {backgroundImage: `url(${store.entryImages[this.state.images]})`};

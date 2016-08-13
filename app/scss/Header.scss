@@ -1,0 +1,42 @@
+.header-component {
+
+
+  .nav-component {
+    margin: 0;
+    ul {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    li {
+      list-style-type: none;
+      display: flex;
+    }
+    li:first-child {
+      align-items: center;
+      justify-content: flex-start;;
+      flex: 50;
+    }
+    li:nth-child(2) {
+      align-items: center;
+      justify-content: flex-end;
+      flex: 50;
+    }
+    .nav-icon {
+      margin: 5%;
+      font-size: 2em;
+      color: $icon;
+    }
+    // .user-icon{
+    //   flex: 50;
+    // }
+    // .paw-icon{
+    //   flex: 50;
+    // }
+
+  }
+
+
+}

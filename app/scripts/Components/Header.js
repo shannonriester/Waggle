@@ -6,7 +6,7 @@ import Searchbar from './Searchbar';
 export default React.createClass({
   render: function() {
       return (
-        <header>
+        <header className="header-component">
           <Nav />
           <Searchbar />
         </header>

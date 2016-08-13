@@ -1,5 +1,5 @@
 import React from 'react';
-// import { Router, browserHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 import _ from 'underscore';
 
 import store from '../store';
