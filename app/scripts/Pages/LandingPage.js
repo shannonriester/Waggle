@@ -12,6 +12,19 @@ export default React.createClass({
       interval: null,
     }
   },
+  pauseSlider: function() {
+    clearInterval(this.state.interval);
+  },
+  startInterval: function() {
+    let interval = setInterval(() => {
+      if (this.state.images === store.entryImages.length - 1) {
+        this.setState({images:0});
+      } else {
+        this.setState({images: this.state.images + 1});
+      }
+    }, 10000);
+    this.setState({interval:interval});
+  },
   componentWillMount: function() {
     if (localStorage.authtoken) {
       store.session.retrieve();
@@ -19,29 +32,11 @@ export default React.createClass({
     }
   },
   componentDidMount: function() {
-    //set timeout for images[0] 8000 - 3000
-    // setTimeout(() => {
-    //   this.setState({this.state.images[0]});
-    //
-    //   let interval = setInterval(() => {
-    //     if (this.state.images === store.entryImages.length - 1) {
-    //       this.setState({images:1});
-    //     } else {
-    //       this.setState({images: this.state.images + 1});
-    //     }
-    //   }, 8000);
-    //
-    // }, 5000);
-      //call back to setState to the new image and then setInterval below for the next set
-
-
-    // interval.clear();
-      // clearInterval(interval)
-      //do this on unmount (interval has to be on the state to access)
-
-    //clear interval and then pass in interval number (from state) -- this will stop the the setInterval from happening and changing the image
+    this.startInterval();
   },
+  componentWillUnmount: function() {
 
+  },
   render: function() {
     console.log(browserHistory);
     let styles = {backgroundImage: `url(${store.entryImages[this.state.images]})`};
@@ -58,8 +53,8 @@ export default React.createClass({
         <Transition
           className="slider-wrapper"
           transitionName="slide-left"
-          transitionEnterTimeout={3000}
-          transitionLeaveTimeout={3000}>
+          transitionEnterTimeout={3500}
+          transitionLeaveTimeout={3500}>
           {pageContent}
         </Transition>
         {greeting}

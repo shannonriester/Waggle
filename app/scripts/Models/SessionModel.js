@@ -7,6 +7,18 @@ const SessionModel = Backbone.Model.extend({
     username: '',
     location: [0,0],
   },
+  getLocation: function() {
+      var promise = new Promise(function(resolve, reject) {
+        if ('geolocation' in navigator) {
+          window.navigator.geolocation.getCurrentPosition(function(position){
+            console.log('position ', position);
+          });
+        } else {
+          reject('This browser doesn\'t support geolocation...');
+        }
+      });
+      return promise;
+  },
   parse: function(response) {
     if (response) {
       return {
