@@ -1,20 +1,21 @@
 import React from 'react';
 import { browswerHistory } from 'react-router';
+import _ from 'underscore';
 
 import store from '../store';
 
 export default React.createClass({
-  login: function(e) {
+  loginModal: function(e) {
     e.preventDefault();
     let username = this.refs.username.value;
     let password = this.refs.password.value;
 
     store.session.login(username, password)
     this.props.hideModal();
-    // browswerHistory.push(`/`);
+    // browswerHistory.push(`/search-results`);
 
   },
-  signup: function(e) {
+  signupModal: function(e) {
     e.preventDefault();
     let username = this.refs.username.value;
     console.log(username);
@@ -28,26 +29,34 @@ export default React.createClass({
       store.session.signup(username, password)
     }
     this.props.hideModal();
+    // browswerHistory.push(`/user/:username`);
   },
-  hideModal: function() {
-    this.props.hideModal();
+  hideModal: function(e) {
+    // console.log('trying to hide modal');
+    // console.log(this);
+    // this.props.hideModal();
+    console.log(_.toArray(e.target));
+    if (_.toArray(e.target.classList).indexOf('modal-component') !== -1 || _.toArray(e.target.classList).indexOf('cancel') !== -1 ) {
+      this.props.hideModal();
+    }
   },
   render: function() {
+    console.log(this);
     let modalContent;
     if (this.props.modal === 'login') {
       modalContent = (
-        <form className="login-form" onSubmit={this.login}>
+        <form className="login-form" onSubmit={this.loginModal}>
           <label htmlFor="input-username"></label>
           <input type="text" placeholder="username" ref="username" role="button" tabIndex="1" />
           <label htmlFor="input-password"></label>
           <input type="password" placeholder="password" ref="password" role="button" tabIndex="2" />
           <input type="submit" value="submit" ref="submit" role="button" tabIndex="3" />
-          <input type="button" value="cancel" ref="cancel" role="button" tabIndex="4" onClick={this.hideModal}/>
+          <input className="cancel" type="button" value="cancel" role="button" tabIndex="4" onClick={this.hideModal}/>
         </form>
       );
     } else if (this.props.modal === 'signup') {
       modalContent = (
-        <form className="signup-form" onSubmit={this.signup}>
+        <form className="signup-form" onSubmit={this.signupModal}>
           <label htmlFor="input-username"></label>
           <input type="text" placeholder="username" ref="username" role="button" tabIndex="1" />
           <label htmlFor="input-password"></label>
@@ -55,14 +64,14 @@ export default React.createClass({
           <label htmlFor="input-confirm-password"></label>
           <input type="password" placeholder="password" ref="password2" tabIndex="3" />
           <input type="submit" value="submit" ref="submit" role="button" tabIndex="4" />
-          <input type="button" value="cancel" ref="cancel" role="button" tabIndex="5" onClick={this.hideModal}/>
+          <input className="cancel" type="button" value="cancel" ref="cancel" role="button" tabIndex="5" onClick={this.hideModal}/>
         </form>
       );
     }
     return (
-      <div className="modal-component">
-        <div className="modal-content">
-          {modalContent}
+      <div className="modal-component" onClick={this.hideModal}>
+          <div className="modal-content">
+            {modalContent}
         </div>
       </div>
     );

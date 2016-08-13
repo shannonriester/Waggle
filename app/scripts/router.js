@@ -3,15 +3,17 @@ import { Router, browserHistory, hashHistory, IndexRoute, Route } from 'react-ro
 
 import App from './Pages/App';
 import LandingPage from './Pages/LandingPage';
+import SessionModal from './Components/SessionModal';
 import ResultsPage from './Pages/ResultsPage';
 
 const router = (
   <Router history={browserHistory}>
-    <Route path="/" component={App}>
+    <Route path="/" component={LandingPage}>
       <IndexRoute component={LandingPage} />
-      <Route path="/search-results/:query" component={ResultsPage} />
-
+      <Route path="login" component={SessionModal} />
+      <Route path="signup" component={SessionModal} />
     </Route>
+    <Route path="/search-results" component={LandingPage} />
   </Router>
 );
 

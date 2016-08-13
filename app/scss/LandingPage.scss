@@ -1,21 +1,22 @@
 .landing-page-component {
   position: relative;
+  height: 100vh;
   margin: 0;
 
   .greeting-register {
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    height: 100vh;
-    width: 100vw;
+    // height: 100vh;
+    // width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background: rgba(#000, .2);
-    z-index: -1;
+    // z-index: 1;
 
     h1 {
       margin-bottom: 5%;
@@ -50,15 +51,23 @@
     }
   }
 
+  .slider-wrapper {
+    height: 100%;
+  }
+
   .current-image {
     position: absolute;
-    z-index: -2;
-    width: 100vw;
-    height: 100vh;
+    // z-index: -2;
+    left: 0;
+    top: 0;
+    // bottom: 0;
+    // right: 0;
+    width: 100%;
+    height: 100%;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    transition: left 2s;
+    transition: left 1900ms;
   }
 
   .slide-left-enter{
@@ -72,6 +81,21 @@
 
   .slide-left-leave.slide-left-leave-active {
      left: -100%;
+   }
+
+   .modal-component {
+     position: fixed;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+      background: transparent;
+      height: 100%;
+      width: 100%;
+    .modal-content{
+      background: black;
+      height: 300px;
+      width: 300px;
+    }
    }
 
 }

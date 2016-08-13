@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { browswerHistory } from 'react-router';
 import $ from 'jquery';
 
 import router from './router';
@@ -19,9 +20,6 @@ $(document).ajaxSend(function(e, xhrAjax, jqueryAjax) {
   }
 });
 
-if (localStorage.authtoken) {
-  store.session.retrieve();
-  // browswerHistory.push('/');
-}
+
 
 ReactDOM.render(router, document.getElementById('container'));
