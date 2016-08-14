@@ -15,7 +15,7 @@ const PlacesCollection = Backbone.Collection.extend({
     let longituge = location[1];
     let ll = (latitude + ',' + longituge);
     let q = query + ', dog_runs';
-    
+
     $.ajax({
       type: 'GET',
       url: `https://api.foursquare.com/v2/venues/search/`,
@@ -51,7 +51,7 @@ const PlacesCollection = Backbone.Collection.extend({
                     return image;
                   });
 
-                    console.log(categoryResults.response.venues[i]);
+                    // console.log(categoryResults.response.venues[i]);
                     let newVenue = categoryResults.response.venues[i];
                     this.add({
                       categoryID: newVenue.categories[0].id,
@@ -62,6 +62,7 @@ const PlacesCollection = Backbone.Collection.extend({
                       state: newVenue.location.state,
                       image: imageURL,
                     });
+                    this.trigger('update')
 
                 }
 
