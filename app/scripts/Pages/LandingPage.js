@@ -28,13 +28,15 @@ export default React.createClass({
   updateState: function() {
     if (localStorage.authtoken) {
       store.session.retrieve();
-      browserHistory.push('/search-results');
+      // browserHistory.push(`/search/${store.session.get('query')}`);
+      browserHistory.push(`/search`);
     }
   },
   componentWillMount: function() {
     if (localStorage.authtoken) {
       store.session.retrieve();
-      browserHistory.push('/search-results');
+      // browserHistory.push(`/search/${store.session.get('query')}`);
+      browserHistory.push(`/search`);
     }
   },
   componentDidMount: function() {
