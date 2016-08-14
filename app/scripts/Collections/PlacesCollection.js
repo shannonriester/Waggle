@@ -21,10 +21,10 @@ const PlacesCollection = Backbone.Collection.extend({
     let longituge = location[1];
     let cll = (latitude + ',' + longituge);
 
-    let terms = 'dogs allowed, bar';
-    // let category_filter = 'dog';
+    let terms = 'dogs allowed, ' + query;
     let near = 'Austin';
     let sort = 2;
+    // let radiusFilter = ;
 
     let accessor = {
         consumerSecret : auth.consumerSecret,
@@ -34,8 +34,8 @@ const PlacesCollection = Backbone.Collection.extend({
     let parameters = [];
     parameters.push(['term', terms]);
     parameters.push(['sort', sort]);
-    // parameters.push(['category_filter', category_filter]);
     parameters.push(['location', near]);
+    // parameters.push(['radius_filter', radiusFilter]);
     parameters.push(['callback', 'cb']);
     parameters.push(['oauth_consumer_key', auth.consumerKey]);
     parameters.push(['oauth_consumer_secret', auth.consumerSecret]);
@@ -58,17 +58,28 @@ const PlacesCollection = Backbone.Collection.extend({
         'data' : parameterMap,
         'dataType' : 'jsonp',
         'jsonpCallback' : 'cb',
-        'cache': true
+        'cache': true,
     })
-    .then(function(places) {
+    .then((places) => {
       console.log('YELP DATA: ', places);
-      let place = places.businesses.map((placeItem) => {
-          return placeItem;
+      places.businesses.forEach((place) => {
+          this.add({
+            name: place.name,
+            yelpRating: place.rating,
+            yelpRatingStars: place.rating_img_url,
+            yelpMobileUrl: place.mobile_url,
+            yelpID: place.id,
+            categories: place.categories,
+            imageUrl: place.image_url,
+            snippetImageUrl: place.snippet_image_url,
+            snippetText: place.snippet_text,
+            ll: place.location.coordinate,
+            address: place.location.display_address,
+            neighborhoods: place.location.neighborhoods,
+            isClosed: place.is_closed,
+            reviewCount: place.review_count,
+          });
       });
-
-      // this.add({
-      // });
-
 
     })
     .fail(function(e) {

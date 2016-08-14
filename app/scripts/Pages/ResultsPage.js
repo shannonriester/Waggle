@@ -42,9 +42,7 @@ export default React.createClass({
     store.session.off('change update', this.updateState);
   },
   render: function() {
-    // console.log(this.state.places);
     let resultsList = this.state.places.map((place, i, arr) => {
-      // console.log(place);
       return (<ResultsList key={i} place={place} />);
     });
     return (

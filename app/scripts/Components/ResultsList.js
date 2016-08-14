@@ -4,8 +4,10 @@ import Nav from './Nav';
 
 export default React.createClass({
     render: function() {
+      // console.log(this.props.place);
+      let styles = {backgroundImage: 'url(' + this.props.place.imageUrl + ')'};
+
       console.log(this.props.place);
-      let styles = {backgroundImage: 'url(' + this.props.place.image[0] + ')'};
       return (
         <li className="result-item-component">
           <div className="result-image" style={styles}></div>

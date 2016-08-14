@@ -6,9 +6,8 @@ export default React.createClass({
   searchHandler: function(e) {
     e.preventDefault();
     let query = this.refs.searchbar.value;
-    store.session.set('query', query);
+    store.session.get('query').concat(query);
     console.log(store.session.get('query'));
-    // store.placesCollection.getResults(query);
   },
   render: function() {
     return (
