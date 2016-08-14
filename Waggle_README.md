@@ -4,18 +4,22 @@
 A social-media dog-finding app that allows you to search cute dogs, find dog-friendly places, and maybe get to know your new dog-friend's human! All at locations near you!
 
 ### MVP
-login/signup
-get user's current location
-list of nearby locations - foursquare search results (map is secondary)
-click to view an individual location
-  - waggle.com/locations?name=AuditoriumShoresDogPark&lat=30.22&long=-97.75
-  - mark themselves as there
-  - show people who said they were there within the last hour
+1. Functional login/signup for (new) users
+2. Getting user's current location
+3. list of nearby locations - foursquare search results (map is secondary)
+4. click to view an individual location
+  - url ex: `waggle.com/locations?name=AuditoriumShoresDogPark&lat=30.22&long=-97.75`
+  - User can check-in (mark themselves as there)
+  - Show users who checked-in at location within the last hour
 
 #### Server-Side Collections
 - Users
 - Checkins - join between users and locations (which are on foursquare)
   - Include user id, location id, time it was made
+- PlacesCollection
+
+##Data Modeling
+  - Connecting session-user with other user IF MATCHED
 
 #### Future features
 map to show locations
@@ -38,55 +42,6 @@ allow message of matches
 8. Moment
 9. Normalize-SCSS
 10. jQuery  
-
-
-##StyleGuide
-  1. Code indentation (white-space)
-    - Use the tab, spaced at two-spaces
-    - Only use tab-spacing (at 2-space size)
-    - Math operators separated by a single-space around operators
-    - Must use a single-space after `,`s
-    - functions must not have space after declaration/before `()`s
-      ex:
-      ```js
-      function myFunction() {},
-      ```
-
-  2. Naming
-    - All names start with a lower-case letter
-    - JavaScript names must be camel-cased and start with a lower-case letter
-    - HTML elements (including React elements) must be separated with `-` if more than one word long
-    - components need to have `-component` in their name
-      ```html
-      <div classNme="app-component"></div>
-      ```
-    - Models & Collections:
-      - Begin with UpperCase letter
-      - Use CamelCasing
-      - Files and constructors end in `Model`
-        - ex: `SessionModel()`
-    3. Syntax
-      - Always end a simple-statement with a `;`
-      - Use trailing commas in object-properties{} and arrays[]
-        - ex:
-        ```js
-
-        export default React.createClass({
-          getInitialState: function() {
-            return {
-              modal: null,
-              places: store.placesCollection.toJSON(), //<-- here
-
-            }
-          }, // <-- here
-        });        
-        ```
-        - Put closing bracket of functions and objects on new line
-    4. Quotations
-      - HTML elements (including React elements)
-        - use `""`s
-      - JavaScript
-        - use `''`s
 
 ##Basic Features
 1. Search (places/users(and dogs))
@@ -127,8 +82,6 @@ allow message of matches
 7. [Facebook API](https://developers.facebook.com/)
 8. [Yelp](https://www.yelp.com/developers/manage_api_keys)
 
-##Data Modeling
-  - Connecting session-user with other user IF MATCHED
 
 ##Routes
 1. Home (must log in to view match potentials)
@@ -158,6 +111,54 @@ allow message of matches
 4. Funny dog puns
   - "Bow-WOW! You matched!" -- after matching
   - "Throw me a bone, why don't ya?" --message preview
+
+
+##StyleGuide
+  1. Code indentation (white-space)
+    - Use the tab, spaced at two-spaces
+    - Only use tab-spacing (at 2-space size)
+    - Math operators separated by a single-space around operators
+    - Must use a single-space after `,`s
+    - functions must not have space after declaration/before `()`s
+      ex:
+      ```js
+      function myFunction() {},
+      ```
+  2. Naming
+    - All names start with a lower-case letter
+    - JavaScript names must be camel-cased and start with a lower-case letter
+    - HTML elements (including React elements) must be separated with `-` if more than one word long
+    - components need to have `-component` in their name
+      ```html
+      <div classNme="app-component"></div>
+      ```
+    - Models & Collections:
+      - Begin with UpperCase letter
+      - Use CamelCasing
+      - Files and constructors end in `Model`
+        - ex: `SessionModel()`
+    3. Syntax
+      - Always end a simple-statement with a `;`
+      - Use trailing commas in object-properties{} and arrays[]
+        - ex:
+        ```js
+
+        export default React.createClass({
+          getInitialState: function() {
+            return {
+              modal: null,
+              places: store.placesCollection.toJSON(), //<-- here
+
+            }
+          }, // <-- here
+        });        
+        ```
+        - Put closing bracket of functions and objects on new line
+    4. Quotations
+      - HTML elements (including React elements)
+        - use `""`s
+      - JavaScript
+        - use `''`s
 
 ## Credits
 1. Bone icon
