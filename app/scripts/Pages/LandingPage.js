@@ -43,6 +43,8 @@ export default React.createClass({
   },
   componentWillUnmount: function() {
     store.session.off('change', this.updateState);
+    clearInterval(this.state.interval);
+    // this.setState({image: 0});
   },
   render: function() {
     let styles = {backgroundImage: `url(${store.entryImages[this.state.images]})`};

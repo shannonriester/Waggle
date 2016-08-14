@@ -15,6 +15,7 @@ const PlacesCollection = Backbone.Collection.extend({
     let longituge = location[1];
     let ll = (latitude + ',' + longituge);
     let q = query + ', dog_runs';
+    
     $.ajax({
       type: 'GET',
       url: `https://api.foursquare.com/v2/venues/search/`,
@@ -28,7 +29,6 @@ const PlacesCollection = Backbone.Collection.extend({
         similar: '4bf58dd8d48988d1e5941735',
       },
       success: (categoryResults) => {
-        console.log('first ajax: venues ', categoryResults.response.venues);
         let venueResults = categoryResults.response.venues.forEach((venue, i, arr) => {
           let venueID = venue.id;
             $.ajax({
@@ -42,16 +42,29 @@ const PlacesCollection = Backbone.Collection.extend({
                 query: 'dog_park',
                 similar: '4bf58dd8d48988d1e5941735',
               },
-              success: (venues) => {
-                // console.log('second ajax: venues ', venues);
-                if (venues.response.photos.items.length > 0) {
-                  // console.log('all photos ', venues.response.photos.items);
-                  venues.response.photos.items.forEach((item) => {
+              success: (venue) => {
+                if (venue.response.photos.items.length > 0) {
+                  let imageURL = venue.response.photos.items.map((item) => {
                     let prefix = item.prefix;
                     let suffix = item.suffix;
-                    // console.log(prefix + 'original' + suffix);
+                    let image = prefix + 'original' + suffix;
+                    return image;
                   });
+
+                    console.log(categoryResults.response.venues[i]);
+                    let newVenue = categoryResults.response.venues[i];
+                    this.add({
+                      categoryID: newVenue.categories[0].id,
+                      categoryName: newVenue.categories[0].name,
+                      venueID: newVenue.id,
+                      location: newVenue.location,
+                      zip: newVenue.location.postalCode,
+                      state: newVenue.location.state,
+                      image: imageURL,
+                    });
+
                 }
+
               },
               error: function(model, response) {
                 throw new Error('FAILED TO SEARCH FIND VENUE IMAGES');

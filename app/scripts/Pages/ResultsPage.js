@@ -4,12 +4,13 @@ import { browserHistory } from 'react-router';
 import store from '../store';
 import Header from '../Components/Header';
 import Searchbar from '../Components/Searchbar';
+import ResultItem from '../Components/ResultItem';
 
 export default React.createClass({
   getInitialState: function() {
     return {
       location: store.session.get('location'),
-      places: store.placesCollection.getResults(store.session.get('location'),store.session.get('query')),
+      places: store.placesCollection.toJSON(),
     }
   },
   updateState: function() {
@@ -17,7 +18,9 @@ export default React.createClass({
       browserHistory.push('/');
     } else {
       this.setState({location: store.session.get('location')});
-      store.placesCollection.getResults(store.session.get('location'),store.session.get('query'));
+      let newPlaces = store.placesCollection.getResults(store.session.get('location'),store.session.get('query'));
+      // this.setState({places: });
+      console.log(newPlaces);
     }
   },
   componentWillMount: function() {
@@ -31,10 +34,15 @@ export default React.createClass({
     store.session.on('change update', this.updateState);
   },
   componentWillUnmount: function() {
-    // store.placesCollection.get(this.props.venue._id).off('change', this.updateState);
+    store.placesCollection.off('update change', this.updateState);
     store.session.off('change update', this.updateState);
   },
   render: function() {
+    console.log(this.state);
+    // let searchResults = this.state.places.map((place, i, arr) => {
+      // console.log(place);
+      // return (<ResultItem place={place} />);
+    // });
     return (
       <div className="results-page-component">
         <Header />

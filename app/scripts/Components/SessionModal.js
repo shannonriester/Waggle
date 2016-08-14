@@ -8,6 +8,7 @@ export default React.createClass({
   loginModal: function(e) {
     e.preventDefault();
     let username = this.refs.username.value;
+    username.toLowerCase();
     let password = this.refs.password.value;
 
     store.session.login(username, password)
@@ -17,6 +18,7 @@ export default React.createClass({
   signupModal: function(e) {
     e.preventDefault();
     let username = this.refs.username.value;
+    username.toLowerCase();
     console.log(username);
     let password = this.refs.password.value;
     let password2 = this.refs.password2.value;
