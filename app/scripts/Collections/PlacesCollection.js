@@ -54,8 +54,8 @@ const PlacesCollection = Backbone.Collection.extend({
                     // console.log(categoryResults.response.venues[i]);
                     let newVenue = categoryResults.response.venues[i];
                     this.add({
-                      categoryID: newVenue.categories[0].id,
-                      categoryName: newVenue.categories[0].name,
+                      // categoryID: newVenue.id,
+                      venueName: newVenue.name,
                       venueID: newVenue.id,
                       location: newVenue.location,
                       zip: newVenue.location.postalCode,

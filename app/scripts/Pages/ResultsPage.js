@@ -43,14 +43,15 @@ export default React.createClass({
     store.session.off('change update', this.updateState);
   },
   render: function() {
-    console.log(this.state.places);
-    // let searchResults = this.state.places.map((place, i, arr) => {
-      // console.log(place);
-      // return (<ResultItem place={place} />);
-    // });
+    // console.log(this.state.places);
+    let resultItem = this.state.places.map((place, i, arr) => {
+      console.log(place);
+      return (<ResultItem key={i} place={place} />);
+    });
     return (
       <div className="results-page-component">
         <Header />
+        {resultItem}
       </div>
     );
   }
