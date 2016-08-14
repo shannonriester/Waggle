@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Nav from './Nav';
+import Nav from '../Components/Nav';
 
 export default React.createClass({
     render: function() {
-      console.log(this.props.place);
+      // console.log(this.props.place);
       let styles = {backgroundImage: 'url(' + this.props.place.image[0] + ')'};
       return (
         <div className="result-item-component">

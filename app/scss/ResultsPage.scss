@@ -1,0 +1,42 @@
+.results-list {
+  margin: 0;
+  padding: 0;
+  .result-item-component {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    margin: 0% 10% 0 0%;
+    list-style-type: none;
+  }
+
+  .result-image {
+    height: 8em;
+    width: 9em;
+    margin: 10px 1em 1em 1em;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+  }
+
+  .result-content-container {
+    border-bottom: solid 1px $border;
+    width: 85%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  h1 {
+    margin: 0 0 8% 0;
+    text-align: center;
+  }
+
+  .address-container {
+    margin: 0;
+    padding: 0;
+    .li-address {
+      list-style-type: none;
+    }
+
+  }
+
+}

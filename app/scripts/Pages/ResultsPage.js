@@ -4,7 +4,7 @@ import { browserHistory } from 'react-router';
 import store from '../store';
 import Header from '../Components/Header';
 import Searchbar from '../Components/Searchbar';
-import ResultItem from '../Components/ResultItem';
+import ResultsList from '../Components/ResultsList';
 
 export default React.createClass({
   getInitialState: function() {
@@ -17,7 +17,6 @@ export default React.createClass({
     if (!localStorage.authtoken) {
       browserHistory.push('/');
     } else {
-      console.log(store.placesCollection.toJSON());
       this.setState({location: store.session.get('location')});
       this.setState({places: store.placesCollection.toJSON()});
     }
@@ -44,14 +43,16 @@ export default React.createClass({
   },
   render: function() {
     // console.log(this.state.places);
-    let resultItem = this.state.places.map((place, i, arr) => {
-      console.log(place);
-      return (<ResultItem key={i} place={place} />);
+    let resultsList = this.state.places.map((place, i, arr) => {
+      // console.log(place);
+      return (<ResultsList key={i} place={place} />);
     });
     return (
       <div className="results-page-component">
         <Header />
-        {resultItem}
+        <ul className="results-list">
+          {resultsList}
+        </ul>
       </div>
     );
   }
