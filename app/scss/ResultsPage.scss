@@ -12,7 +12,7 @@
   .result-image {
     height: 8em;
     width: 9em;
-    margin: 10px 1em 1em 1em;
+    margin: 10px 1em 1em 0em;
     background-size: cover;
     background-repeat: no-repeat;
     border-radius: 50%;
@@ -20,7 +20,7 @@
 
   .result-content-container {
     border-bottom: solid 1px $border;
-    width: 85%;
+    width: 75%;
     display: flex;
     justify-content: space-between;
   }

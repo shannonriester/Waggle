@@ -20,8 +20,6 @@ export default React.createClass({
             </li>
             <li>
               <i className="nav-icon paw-icon fa fa-paw" aria-hidden="true"></i>
-            </li>
-            <li>
               <button onClick={this.logout}>logout</button>
             </li>
           </ul>
