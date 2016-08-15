@@ -7,12 +7,10 @@ export default React.createClass({
   searchHandler: function(e) {
     e.preventDefault();
     let query = this.refs.searchbar.value;
-    // query = ', ' + query;
-    // let newQuery = store.session.get('query').concat(query);
     store.session.set('query', query);
     console.log('query on searchbar ', store.session.get('query'));
-    store.placesCollection.getResults(store.session.get('location'),store.session.get('query'));
-    browserHistory.push(`/search/${query}`);
+    store.placesCollection.getResults(store.session.get('query'));
+    // browserHistory.push(`/search/${query}`);
     // sessionStorage.searchTerm = query;
     // console.log(store.session.get('query'));
   },

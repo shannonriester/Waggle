@@ -32,11 +32,7 @@ export default React.createClass({
       store.session.getLocation()
         .then(() => {
           console.log(this.state.location);
-          // if (sessionStorage.searchTerm) {
-          //   browserHistory.push(`search/${sessionStorage.searchTerm}`);
-          // }
-          store.placesCollection.getResults(store.session.get('location'), this.state.query);
-          browserHistory.push(`/search/${this.state.query}`);
+          store.placesCollection.getResults(this.state.location, this.state.query);
         });
     }
   },
@@ -55,7 +51,6 @@ export default React.createClass({
     return (
       <div className="results-page-component">
         <Header />
-        {this.props.children}
         <ul className="results-list">
           {resultsList}
         </ul>

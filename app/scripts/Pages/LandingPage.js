@@ -14,6 +14,7 @@ export default React.createClass({
       hero: true,
       modal: false,
       content: 'login',
+      location: store.session.get('location'),
     }
   },
   pauseSlider: function() {
@@ -21,6 +22,7 @@ export default React.createClass({
   },
   startInterval: function() {
     let interval = setInterval(() => {
+      console.log('in the interval');
       console.log(this.state.interval);
       if (this.state.images === store.entryImages.length - 1) {
         this.setState({images:0});
@@ -37,23 +39,24 @@ export default React.createClass({
   },
   updateState: function() {
     if (localStorage.authtoken) {
-      store.session.retrieve();
-      browserHistory.push(`/search/${store.session.get('query')}`);
+      store.session.set('location', this.state.location);
+      browserHistory.push({pathname:`search/`, query:{term: store.session.get('query')} });
     }
   },
   componentWillMount: function() {
+    console.log('mounting landingPage');
     if (localStorage.authtoken) {
       store.session.retrieve();
-      console.log('query on LandingPage', store.session.get('query'));
-      browserHistory.push(`/search/${store.session.get('query')}`);
+      store.session.set('location', this.state.location);
+      browserHistory.push({pathname:`search/`, query:{term: store.session.get('query')} });
     }
   },
   componentDidMount: function() {
     this.startInterval();
-    store.session.on('change', this.updateState);
+    store.session.on('change update', this.updateState);
   },
   componentWillUnmount: function() {
-    store.session.off('change', this.updateState);
+    store.session.off('change update', this.updateState);
     clearInterval(this.state.interval);
 
   },
@@ -75,8 +78,6 @@ export default React.createClass({
       } else if (this.state.modal === 'signup') {
         modal = (<SessionModal content={this.state.content} hideModal={this.heroModalToggle}/>);
       }
-
-      // console.log(this.state.hero);
 
     return (
       <div className="landing-page-component">

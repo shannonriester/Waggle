@@ -14,9 +14,9 @@ const router = (
       <Route path="login" component={SessionModal} />
       <Route path="signup" component={SessionModal} />
     </Route>
-    <Route path="/search/:results" component={ResultsPage}>
-      <Route path="/:placeID" component={ResultItemPage}/>
-    </Route>
+    <Route path="search" component={ResultsPage} />
+    <Route path="places/:placeId" component={ResultItemPage}/>
+
   </Router>
 );
 
