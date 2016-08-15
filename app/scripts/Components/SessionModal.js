@@ -11,7 +11,7 @@ export default React.createClass({
     username.toLowerCase();
     let password = this.refs.password.value;
 
-    store.session.login(username, password)
+    store.session.login(username, password);
     this.props.hideModal();
   },
   signup: function(e) {
@@ -26,7 +26,7 @@ export default React.createClass({
       //do not let them login
       console.log('passwords don\'t match!');
     } else {
-      store.session.signup(username, password)
+      store.session.signup(username, password);
     }
 
     this.props.hideModal();
