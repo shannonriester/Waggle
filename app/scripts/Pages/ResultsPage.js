@@ -10,6 +10,7 @@ export default React.createClass({
   getInitialState: function() {
     return {
       location: store.session.get('location'),
+      query: store.session.get('query'),
       places: store.placesCollection.toJSON(),
     }
   },
@@ -17,7 +18,9 @@ export default React.createClass({
     if (!localStorage.authtoken) {
       browserHistory.push('/');
     } else {
+      console.log('in the updateState');
       this.setState({location: store.session.get('location')});
+      this.setState({query: store.session.get('query')});
       this.setState({places: store.placesCollection.toJSON()});
     }
   },
@@ -34,12 +37,11 @@ export default React.createClass({
   },
   componentDidMount: function () {
     store.session.on('change update', this.updateState);
-
     store.placesCollection.on('change update', this.updateState);
   },
   componentWillUnmount: function() {
-    store.placesCollection.off('update change', this.updateState);
     store.session.off('change update', this.updateState);
+    store.placesCollection.off('update change', this.updateState);
   },
   render: function() {
     let resultsList = this.state.places.map((place, i, arr) => {

@@ -8,6 +8,7 @@ const PlacesCollection = Backbone.Collection.extend({
   model: PlaceModel,
   url: `https://api.foursquare.com/v2/venues/search/`,
   getResults: function(location, query){
+    this.reset();
     let auth = {
       consumerKey : "VNBVIZYVwtO4IZKuRQ4Jeg",
       consumerSecret : "Ka94kOBVXrxnZqQHxUU-P5KASvM",
