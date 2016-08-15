@@ -15,6 +15,7 @@ export default React.createClass({
 
     store.session.login(username, password)
     this.props.hideModal();
+    console.log('query on SessionModal', store.session.get('query'));
     browserHistory.push(`/search/${store.session.get('query')}`);
   },
   signup: function(e) {
@@ -33,6 +34,7 @@ export default React.createClass({
       store.session.signup(username, password)
     }
     this.props.hideModal();
+    browserHistory.push(`/search/${store.session.get('query')}`);
     // browserHistory.push(`/user/:username`);
   },
   hideModal: function(e) {

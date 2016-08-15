@@ -72,6 +72,7 @@ const SessionModel = Backbone.Model.extend({
         success: (model, response) => {
           console.log('USER LOGGED OUT!');
           localStorage.removeItem('authtoken');
+          sessionStorage.removeItem('searchTerm');
           this.clear();
           this.trigger('change update');
       },

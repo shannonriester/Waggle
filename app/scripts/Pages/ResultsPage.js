@@ -18,10 +18,11 @@ export default React.createClass({
     if (!localStorage.authtoken) {
       browserHistory.push('/');
     } else {
-      console.log('in the updateState');
       this.setState({location: store.session.get('location')});
       this.setState({query: store.session.get('query')});
       this.setState({places: store.placesCollection.toJSON()});
+      //don't put this in here or it creates an infinate loop
+        // store.placesCollection.getResults(store.session.get('location'), this.state.query);
     }
   },
   componentWillMount: function() {
@@ -31,7 +32,11 @@ export default React.createClass({
       store.session.getLocation()
         .then(() => {
           console.log(this.state.location);
-          store.placesCollection.getResults(store.session.get('location'),store.session.get('query'));
+          // if (sessionStorage.searchTerm) {
+          //   browserHistory.push(`search/${sessionStorage.searchTerm}`);
+          // }
+          store.placesCollection.getResults(store.session.get('location'), this.state.query);
+          browserHistory.push(`/search/${this.state.query}`);
         });
     }
   },
@@ -50,9 +55,11 @@ export default React.createClass({
     return (
       <div className="results-page-component">
         <Header />
+        {this.props.children}
         <ul className="results-list">
           {resultsList}
         </ul>
+
       </div>
     );
   }

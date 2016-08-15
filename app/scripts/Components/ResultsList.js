@@ -1,4 +1,5 @@
 import React from 'react';
+import { browserHistory } from 'react-router';
 
 import store from '../store';
 import Nav from './Nav';
@@ -8,7 +9,9 @@ export default React.createClass({
       // store.session.getDistance();
     },
     routeTo: function() {
-
+      let placeItem = store.placesCollection.where({yelpID: this.props.place.yelpID});
+      console.log(placeItem);
+      // browserHistory.push(`/${this.props.place.placeID}`);
     },
     render: function() {
       let backgroundImage = {backgroundImage: 'url(' + this.props.place.imageUrl + ')'};

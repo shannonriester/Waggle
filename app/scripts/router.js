@@ -5,6 +5,7 @@ import App from './Pages/App';
 import LandingPage from './Pages/LandingPage';
 import SessionModal from './Components/SessionModal';
 import ResultsPage from './Pages/ResultsPage';
+import ResultItemPage from './Pages/ResultItemPage';
 
 const router = (
   <Router history={browserHistory}>
@@ -14,7 +15,7 @@ const router = (
       <Route path="signup" component={SessionModal} />
     </Route>
     <Route path="/search/:results" component={ResultsPage}>
-      
+      <Route path="/:placeID" component={ResultItemPage}/>
     </Route>
   </Router>
 );

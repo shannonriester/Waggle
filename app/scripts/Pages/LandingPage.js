@@ -21,6 +21,7 @@ export default React.createClass({
   },
   startInterval: function() {
     let interval = setInterval(() => {
+      console.log(this.state.interval);
       if (this.state.images === store.entryImages.length - 1) {
         this.setState({images:0});
       } else {
@@ -33,31 +34,18 @@ export default React.createClass({
     this.setState({hero:!this.state.hero});
     this.setState({modal:!this.state.modal});
     this.setState({content:content})
-    console.log(this);
   },
-  // modalContent: function(e) {
-  //   if (e.target.innerText.toLowerCase() === 'login') {
-  //     this.setState({content:'login'});
-  //     browserHistory.push('/login');
-  //
-  //   } else if (e.target.innerText.toLowerCase() === 'sign up') {
-  //     this.setState({content: 'signup'});
-  //     browserHistory.push('/signup');
-  //   }
-  //   this.heroModalToggle();
-  // },
   updateState: function() {
     if (localStorage.authtoken) {
       store.session.retrieve();
       browserHistory.push(`/search/${store.session.get('query')}`);
-      // browserHistory.push(`/search`);
     }
   },
   componentWillMount: function() {
     if (localStorage.authtoken) {
       store.session.retrieve();
+      console.log('query on LandingPage', store.session.get('query'));
       browserHistory.push(`/search/${store.session.get('query')}`);
-      // browserHistory.push(`/search`);
     }
   },
   componentDidMount: function() {
