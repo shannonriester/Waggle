@@ -6,9 +6,9 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    margin: 0;
     height: 10vh;
-    // background: #FFF;
+    margin: 0;
+    padding: 2%;
     list-style-type: none;
   }
 
@@ -23,7 +23,6 @@
     background-size: cover;
     background-repeat: no-repeat;
     border-radius: 50%;
-    color: #FFF;
   }
 
   .result-content-container {
@@ -43,15 +42,36 @@
     width: 90%;
     h1 {
       margin: 0;
+      font-size: 3em;
+      width: 80%;
+      font-weight: 400;
     }
 
     .place-snippet {
-      width: 70%;
+      width: 80%;
       margin: 0;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      font-size: 17px;
+      font-weight: 300;
     }
+  }
+  .star-rating {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 80px;
+  }
+  .caption {
+    color: $accent;
+    text-align: center;
+    overflow:scroll;
+  }
+  .star-icon {
+    font-size: 5em;
+    border-radius: 10px;
+    background: $yelpIcon;
   }
 
 
