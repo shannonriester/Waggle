@@ -10,23 +10,23 @@
     left: 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     background: rgba(0, 0, 0, 0.2); }
     .landing-page-component .greeting-register h1 {
       margin-bottom: 5%;
       color: #FDFDFC;
       font-family: "Lato", sans-serif;
       font-weight: 100;
-      font-size: 4em; }
+      font-size: 3em;
+      text-align: center; }
     .landing-page-component .greeting-register .register-btns {
       display: flex;
-      align-items: center;
-      justify-content: center; }
+      flex-direction: column;
+      align-items: center; }
     .landing-page-component .greeting-register button {
       width: 7em;
-      margin: 0 5%;
-      padding: 3% 1%;
+      margin: 5% 0;
+      padding: 4% 1%;
       background: transparent;
       border: solid 2px #F8F1FF;
       border-radius: 10px;
@@ -66,32 +66,55 @@
   background: rgba(0, 0, 0, 0.3);
   height: 100%;
   width: 100%; }
-  .modal-component label {
-    display: none; }
   .modal-component .modal-content {
     display: flex;
-    align-items: center;
-    background: rgba(245, 89, 89, 0.9);
-    height: 50em;
-    width: 40em; }
-  .modal-component .user-info-input {
-    width: 100%;
-    height: 5em;
-    margin-bottom: 10%;
-    outline: none;
-    border: none;
-    font-size: 2em; }
-  .modal-component .button-section {
+    background: rgba(255, 255, 255, 0.9);
+    height: 75%;
+    width: 85%; }
+  .modal-component form {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center; }
+    .modal-component form label {
+      display: none; }
+  .modal-component .modal-header {
     display: flex;
     align-items: center;
-    justify-content: center; }
+    justify-content: space-around;
+    width: 100%;
+    height: calc(100%/3); }
+    .modal-component .modal-header h2 {
+      margin: 0;
+      font-size: 1.8em; }
+    .modal-component .modal-header .cancel-btn {
+      background: transparent; }
+  .modal-component .modal-body {
+    height: calc(100%/3); }
+    .modal-component .modal-body .user-info-input {
+      width: 100%;
+      margin-bottom: 10%;
+      outline: none;
+      border: none;
+      font-size: 1.5em;
+      padding-top: 10%;
+      background: transparent;
+      border-bottom: 1px solid #C4C4C4;
+      border-radius: none; }
+  .modal-component .modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: calc(100%/3); }
+    .modal-component .modal-footer .submit-btn {
+      background: transparent; }
   .modal-component .modal-btn {
-    height: 10em;
-    width: 40%;
     background: #FFF;
     outline: none;
     border: none;
-    color: #555; }
+    color: #F55959; }
     .modal-component .modal-btn:hover {
       background: #F8F1FF;
       color: #FFF; }
