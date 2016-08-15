@@ -1,19 +1,50 @@
-label {
-  display: none;
-}
-
 .modal-component {
   position: fixed;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: transparent;
+  background: rgba(0,0,0, .3);
   height: 100%;
   width: 100%;
+
+  label {
+    display: none;
+  }
+
  .modal-content{
-   background: rgba($accent, .8);
+   display: flex;
+   align-items: center;
+   background: rgba($accent, .9);
    height: 50em;
    width: 40em;
  }
+ .user-info-input {
+   width: 100%;
+   height: 5em;
+   margin-bottom: 10%;
+   outline: none;
+   border: none;
+   font-size: 2em;
+ }
+
+ .button-section {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+ }
+
+ .modal-btn {
+   height: 10em;
+   width: 40%;
+   background: #FFF;
+   outline: none;
+   border: none;
+   color: #555;
+   &:hover {
+     background: $button-color;
+     color: #FFF;
+   }
+ }
+
 }

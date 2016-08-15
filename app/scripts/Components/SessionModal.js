@@ -47,24 +47,28 @@ export default React.createClass({
       modalContent = (
         <form className="login-form" onSubmit={this.loginModal}>
           <label htmlFor="input-username"></label>
-          <input type="text" placeholder="username" ref="username" role="button" tabIndex="1" />
+          <input className="user-info-input" type="text" placeholder="username" ref="username" role="button" tabIndex="1" />
           <label htmlFor="input-password"></label>
-          <input type="password" placeholder="password" ref="password" role="button" tabIndex="2" />
-          <input type="submit" value="submit" ref="submit" role="button" tabIndex="3" />
-          <input className="cancel" type="button" value="cancel" role="button" tabIndex="4" onClick={this.hideModal}/>
+          <input className="user-info-input" type="password" placeholder="password" ref="password" role="button" tabIndex="2" />
+          <section className="button-section">
+            <input className="modal-btn" type="submit" value="submit" ref="submit" role="button" tabIndex="3" />
+            <input className="cancel modal-btn" type="button" value="cancel" role="button" tabIndex="4" onClick={this.hideModal}/>
+          </section>
         </form>
       );
     } else if (this.props.content === 'sign up') {
       modalContent = (
         <form className="signup-form" onSubmit={this.signupModal}>
           <label htmlFor="input-username"></label>
-          <input type="text" placeholder="username" ref="username" role="button" tabIndex="1" />
+          <input className="user-info-input" type="text" placeholder="username" ref="username" role="button" tabIndex="1" />
           <label htmlFor="input-password"></label>
-          <input type="password" placeholder="password" ref="password" tabIndex="2" />
+          <input className="user-info-input" type="password" placeholder="password" ref="password" tabIndex="2" />
           <label htmlFor="input-confirm-password"></label>
-          <input type="password" placeholder="password" ref="password2" tabIndex="3" />
-          <input type="submit" value="submit" ref="submit" role="button" tabIndex="4" />
-          <input className="cancel" type="button" value="cancel" ref="cancel" role="button" tabIndex="5" onClick={this.hideModal}/>
+          <input className="user-info-input" type="password" placeholder="password" ref="password2" tabIndex="3" />
+          <section className="button-section">
+            <input className="modal-btn" type="submit" value="submit" ref="submit" role="button" tabIndex="4" />
+            <input className="cancel modal-btn" type="button" value="cancel" ref="cancel" role="button" tabIndex="5" onClick={this.hideModal}/>
+          </section>
         </form>
       );
     }
