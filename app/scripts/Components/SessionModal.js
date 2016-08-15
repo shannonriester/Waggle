@@ -13,7 +13,7 @@ export default React.createClass({
 
     store.session.login(username, password)
     this.props.hideModal();
-    browserHistory.push(`/search`);
+    browserHistory.push(`/search/${store.session.get('query')}`);
   },
   signupModal: function(e) {
     e.preventDefault();

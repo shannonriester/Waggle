@@ -7,6 +7,9 @@ export default React.createClass({
     getDistance: function() {
       // store.session.getDistance();
     },
+    routeTo: function() {
+
+    },
     render: function() {
       let backgroundImage = {backgroundImage: 'url(' + this.props.place.imageUrl + ')'};
 
@@ -14,9 +17,8 @@ export default React.createClass({
       if (this.props.place.isClosed) {
         status = 'open now';
       }
-
       return (
-        <li className="result-item-component">
+        <li className="result-item-component" onClick={this.routeTo}>
           <figure className="result-image" style={backgroundImage}>
           </figure>
           <div className="result-content-container">

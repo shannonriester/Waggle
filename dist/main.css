@@ -40,7 +40,7 @@
   .landing-page-component .slider-wrapper {
     height: 100%; }
   .landing-page-component .current-image {
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
     width: 100%;
