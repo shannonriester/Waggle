@@ -15,13 +15,13 @@ export default React.createClass({
     return (
       <nav className="nav-component">
           <ul>
-            <li className="li-first">
-              <i className="nav-icon user-icon fa fa-user" aria-hidden="true"></i>
-            </li>
-
             <li className="li-third">
               <i className="nav-icon paw-icon fa fa-paw" aria-hidden="true"></i>
-              <button onClick={this.logout}>logout</button>
+            </li>
+
+
+            <li className="li-first">
+              <i className="nav-icon user-icon fa fa-user" aria-hidden="true" onClick={this.logout}></i>
             </li>
 
             <li className="li-second">

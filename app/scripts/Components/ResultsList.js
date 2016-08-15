@@ -33,7 +33,6 @@ export default React.createClass({
       //   </li>
       // </ul>
 
-      console.log(this.props.place);
       return (
         <li className="result-item-component">
           <figure className="result-image" style={backgroundImage}>

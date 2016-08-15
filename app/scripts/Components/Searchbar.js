@@ -13,7 +13,8 @@ export default React.createClass({
     return (
       <form className="searchbar-component" onSubmit={this.searchHandler}>
         <input className="searchbar" type="text" placeholder="dog parks" ref="searchbar" role="textbox" tabIndex="1"/>
-        <input className="search-btn" type="submit" value="search" role="button" tabIndex="2" />
+        <input className="search-submit" type="submit" value="search" role="button" tabIndex="2"/>
+        <i className="search-icon fa fa-search" aria-hidden="true"></i>
       </form>
       );
     }
