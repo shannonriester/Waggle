@@ -1,4 +1,10 @@
 .header-component {
+  height: 13vh;
+  border-bottom: solid 1px $border;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
   .nav-component {
     margin: 0;
     height: 5vh;
@@ -9,7 +15,6 @@
       margin: 0;
       padding: 0;
       height: 100%;
-      // display: none;
     }
     li {
       list-style-type: none;
@@ -37,13 +42,41 @@
     }
   }
 
+
+/* - - - - - - - - - -Searchbar Component Starts here - - - - - - - - - - - -  */
+
   .searchbar-component {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 50em;
+    height: 5em;
+    margin: 0 auto;
+    margin-bottom: 1em;
+
+    .searchbar {
+      width: 100%;
+      font-size: 2em;
+      padding-left: 1rem;
+      outline: none;
+      border: none;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+    }
 
     .search-submit {
       display: none;
+    }
+
+    .search-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 77px;
+      width: 77px;
+      background: $accent;
+      color: #FFF;
+      font-size: 3em;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
     }
 
   }

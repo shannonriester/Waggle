@@ -1,14 +1,15 @@
 .results-list {
   margin: 0;
   padding: 0;
+  background: #FFF;
   .result-item-component {
     display: flex;
     align-items: center;
-    // align-items: flex-end;
     justify-content: space-around;
     margin: 0;
-    list-style-type: none;
     height: 10vh;
+    // background: #FFF;
+    list-style-type: none;
   }
 
   .result-image {
@@ -22,15 +23,16 @@
     background-size: cover;
     background-repeat: no-repeat;
     border-radius: 50%;
+    color: #FFF;
   }
 
   .result-content-container {
     border-bottom: solid 1px $border;
     height: 100%;
-    width: 75%;
+    width: 80%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
   }
   .about-preview {
     display: flex;
