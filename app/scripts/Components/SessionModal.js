@@ -43,7 +43,7 @@ export default React.createClass({
   render: function() {
     let modalContent;
     console.log('this modal ', this);
-    if (this.props.modal === 'login') {
+    if (this.props.content === 'login') {
       modalContent = (
         <form className="login-form" onSubmit={this.loginModal}>
           <label htmlFor="input-username"></label>
@@ -54,7 +54,7 @@ export default React.createClass({
           <input className="cancel" type="button" value="cancel" role="button" tabIndex="4" onClick={this.hideModal}/>
         </form>
       );
-    } else if (this.props.modal === 'signup') {
+    } else if (this.props.content === 'sign up') {
       modalContent = (
         <form className="signup-form" onSubmit={this.signupModal}>
           <label htmlFor="input-username"></label>
