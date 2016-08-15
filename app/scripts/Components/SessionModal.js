@@ -7,6 +7,8 @@ import store from '../store';
 export default React.createClass({
   loginModal: function(e) {
     e.preventDefault();
+    this.props.heroToggle();
+
     let username = this.refs.username.value;
     username.toLowerCase();
     let password = this.refs.password.value;
@@ -17,6 +19,7 @@ export default React.createClass({
   },
   signupModal: function(e) {
     e.preventDefault();
+
     let username = this.refs.username.value;
     username.toLowerCase();
     console.log(username);
@@ -39,6 +42,7 @@ export default React.createClass({
   },
   render: function() {
     let modalContent;
+    console.log('this modal ', this);
     if (this.props.modal === 'login') {
       modalContent = (
         <form className="login-form" onSubmit={this.loginModal}>

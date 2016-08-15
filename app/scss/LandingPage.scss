@@ -57,16 +57,13 @@
 
   .current-image {
     position: fixed;
-    // z-index: -2;
     left: 0;
     top: 0;
-    // bottom: 0;
-    // right: 0;
     width: 100%;
     height: 100%;
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: center left;
     transition: left 1900ms;
   }
 
@@ -81,21 +78,6 @@
 
   .slide-left-leave.slide-left-leave-active {
      left: -100%;
-   }
-
-   .modal-component {
-     position: fixed;
-     display: flex;
-     align-items: center;
-     justify-content: center;
-      background: transparent;
-      height: 100%;
-      width: 100%;
-    .modal-content{
-      background: black;
-      height: 300px;
-      width: 300px;
-    }
    }
 
 }

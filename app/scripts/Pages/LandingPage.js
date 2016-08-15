@@ -4,12 +4,16 @@ import Transition from 'react-addons-css-transition-group';
 
 import store from '../store';
 import Greeting from '../Components/Greeting';
+import SessionModal from '../Components/SessionModal';
 
 export default React.createClass({
   getInitialState: function() {
     return {
       images: 0,
       interval: null,
+      hero: true,
+      modal: false,
+      content: 'login',
     }
   },
   pauseSlider: function() {
@@ -25,6 +29,23 @@ export default React.createClass({
     }, 10000);
     this.setState({interval:interval});
   },
+  heroModalToggle: function(content) {
+    this.setState({hero:!this.state.hero});
+    this.setState({modal:!this.state.modal});
+    this.setState({content:content})
+    console.log(this);
+  },
+  // modalContent: function(e) {
+  //   if (e.target.innerText.toLowerCase() === 'login') {
+  //     this.setState({content:'login'});
+  //     browserHistory.push('/login');
+  //
+  //   } else if (e.target.innerText.toLowerCase() === 'sign up') {
+  //     this.setState({content: 'signup'});
+  //     browserHistory.push('/signup');
+  //   }
+  //   this.heroModalToggle();
+  // },
   updateState: function() {
     if (localStorage.authtoken) {
       store.session.retrieve();
@@ -46,7 +67,7 @@ export default React.createClass({
   componentWillUnmount: function() {
     store.session.off('change', this.updateState);
     clearInterval(this.state.interval);
-    // this.setState({image: 0});
+
   },
   render: function() {
     let styles = {backgroundImage: `url(${store.entryImages[this.state.images]})`};
@@ -55,7 +76,19 @@ export default React.createClass({
       key={this.state.images}
       style={styles}></div>);
 
-    let greeting = (<Greeting showModal={this.showModal} hideModal={this.hideModal} />);
+      let greeting;
+      if (this.state.hero) {
+        greeting = (<Greeting showModal={this.showModal} hideModal={this.hideModal} heroModalToggle={this.heroModalToggle} />);
+      }
+
+      let modal;
+      if (this.state.modal) {
+        modal = (<SessionModal content={this.state.content} hideModal={this.heroModalToggle}/>);
+      } else if (this.state.modal === 'signup') {
+        modal = (<SessionModal content={this.state.content} hideModal={this.heroModalToggle}/>);
+      }
+
+      // console.log(this.state.hero);
 
     return (
       <div className="landing-page-component">
@@ -67,6 +100,7 @@ export default React.createClass({
           {pageContent}
         </Transition>
         {greeting}
+        {modal}
       </div>
     );
   }

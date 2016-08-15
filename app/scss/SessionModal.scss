@@ -1,0 +1,19 @@
+label {
+  display: none;
+}
+
+.modal-component {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  height: 100%;
+  width: 100%;
+ .modal-content{
+   background: rgba($accent, .8);
+   height: 50em;
+   width: 40em;
+ }
+}

@@ -47,7 +47,7 @@
     height: 100%;
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: center left;
     transition: left 1900ms; }
   .landing-page-component .slide-left-enter {
     left: 100%; }
@@ -56,18 +56,23 @@
     left: 0; }
   .landing-page-component .slide-left-leave.slide-left-leave-active {
     left: -100%; }
-  .landing-page-component .modal-component {
-    position: fixed;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: transparent;
-    height: 100%;
-    width: 100%; }
-    .landing-page-component .modal-component .modal-content {
-      background: black;
-      height: 300px;
-      width: 300px; }
+
+label {
+  display: none; }
+
+.modal-component {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  height: 100%;
+  width: 100%; }
+  .modal-component .modal-content {
+    background: rgba(245, 89, 89, 0.8);
+    height: 50em;
+    width: 40em; }
 
 .header-component {
   height: 13vh;
