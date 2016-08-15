@@ -57,22 +57,44 @@
   .landing-page-component .slide-left-leave.slide-left-leave-active {
     left: -100%; }
 
-label {
-  display: none; }
-
 .modal-component {
   position: fixed;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: transparent;
+  background: rgba(0, 0, 0, 0.3);
   height: 100%;
   width: 100%; }
+  .modal-component label {
+    display: none; }
   .modal-component .modal-content {
-    background: rgba(245, 89, 89, 0.8);
+    display: flex;
+    align-items: center;
+    background: rgba(245, 89, 89, 0.9);
     height: 50em;
     width: 40em; }
+  .modal-component .user-info-input {
+    width: 100%;
+    height: 5em;
+    margin-bottom: 10%;
+    outline: none;
+    border: none;
+    font-size: 2em; }
+  .modal-component .button-section {
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+  .modal-component .modal-btn {
+    height: 10em;
+    width: 40%;
+    background: #FFF;
+    outline: none;
+    border: none;
+    color: #555; }
+    .modal-component .modal-btn:hover {
+      background: #F8F1FF;
+      color: #FFF; }
 
 .header-component {
   height: 13vh;
