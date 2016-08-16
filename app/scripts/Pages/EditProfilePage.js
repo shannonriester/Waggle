@@ -3,28 +3,16 @@ import React from 'react';
 import store from '../store';
 import Nav from '../Components/Nav';
 
+
 export default React.createClass({
-  getInitialState: function() {
-      return {
-        session: store.session.get('username'),
-      }
-  },
-  updateState: function() {
-    this.setState({session: store.session.get('username')});
-  },
-  componentWillMount: function() {
-    store.session.get('username');
-    console.log(this.state.session);
-    store.session.on('change update', this.updateState)
-    console.log(store.session.apiGeoLocation());
-  },
   render: function() {
     let sessionNav;
-    if (store.session.get('username') === this.props.params.userId) {
+    console.log(this.props.params);
+    if (store.session.get('username') === store.userCollection.where('username')) {
       sessionNav = (
         <ul className="nav-session">
           <li>
-            <button className="edit-btn">edit <i className="fa fa-pencil" aria-hidden="true"></i></button>
+            <button className="edit-btn">done <i className="fa fa-pencil" aria-hidden="true"></i></button>
           </li>
           <li>
             <button className="settings-btn">settings <i className="fa fa-cog" aria-hidden="true"></i></button>
@@ -35,7 +23,6 @@ export default React.createClass({
     return (
       <div className="profile-component">
         <Nav />
-
         <header className="profile-header">
           <figure className="profile-pic"></figure>
           {sessionNav}

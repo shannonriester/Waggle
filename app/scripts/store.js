@@ -1,4 +1,5 @@
 import PlacesCollection from './Collections/PlacesCollection';
+import UserCollection from './Collections/UserCollection';
 import PlaceModel from './Models/PlaceModel';
 import SessionModel from './Models/SessionModel';
 
@@ -6,6 +7,7 @@ export default ({
   session: new SessionModel(),
   placeModel: new PlaceModel(),
   placesCollection: new PlacesCollection(),
+  userCollection: new UserCollection(),
   settings: {
       appKey: 'kid_SkBnla5Y',
       appSecret: 'e7a59b1546d74c5e824901fbab190092',

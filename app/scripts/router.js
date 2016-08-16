@@ -7,6 +7,7 @@ import SessionModal from './Components/SessionModal';
 import ResultsPage from './Pages/ResultsPage';
 import ResultItemPage from './Pages/ResultItemPage';
 import ProfilePage from './Pages/ProfilePage';
+import EditProfilePage from './Pages/ProfilePage';
 
 const router = (
   <Router history={browserHistory}>
@@ -17,7 +18,9 @@ const router = (
     </Route>
     <Route path="search" component={ResultsPage} />
     <Route path="places/:placeId" component={ResultItemPage}/>
-    <Route path="user/:userId" component={ProfilePage} />
+    <Route path="user/:userId" component={ProfilePage} >
+      <Route path="/edit" component={EditProfilePage} />
+    </Route>
   </Router>
 );
 

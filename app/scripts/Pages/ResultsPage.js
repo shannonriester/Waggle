@@ -9,7 +9,7 @@ import ResultsList from '../Components/ResultsList';
 export default React.createClass({
   getInitialState: function() {
     return {
-      location: store.session.get('location'),
+      location: store.session.get('coordinates'),
       query: store.session.get('query'),
       places: store.placesCollection.toJSON(),
     }
@@ -24,8 +24,10 @@ export default React.createClass({
       browserHistory.push('/');
     } else {
       store.session.getLocation()
+      // store.session.apiGeoLocation()
         .then(() => {
-          console.log(this.state.location);
+          console.log(store.session.get('location'));
+          // console.log(this.state.location);
           store.placesCollection.getResults(this.state.location, this.state.query);
         });
     }

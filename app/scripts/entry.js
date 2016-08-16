@@ -22,7 +22,7 @@ import store from './store';
 
 
 $(document).ajaxSend(function(e, xhrAjax, jqueryAjax) {
-  if (jqueryAjax.url.indexOf('foursquare') === -1) {
+  if (jqueryAjax.url.indexOf('freegeoip') === -1) {
     if (localStorage.getItem('authtoken')) {
       // console.log('kinvey auth');
       xhrAjax.setRequestHeader('Authorization', `Kinvey ${localStorage.authtoken}`);
@@ -35,7 +35,16 @@ $(document).ajaxSend(function(e, xhrAjax, jqueryAjax) {
 
 if (!localStorage.authtoken) {
   browserHistory.push('/');
+  // store.session.apiGeoLocation();
+  // console.log(store.session.apiGeoLocation());
+
+} else {
+  store.session.retrieve();
+  // store.session.apiGeoLocation();
+  // console.log(store.session.apiGeoLocation());
+
 }
+
 
 
 ReactDOM.render(router, document.getElementById('container'));
