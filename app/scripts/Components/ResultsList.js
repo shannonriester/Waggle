@@ -42,7 +42,6 @@ export default React.createClass({
             <div className="star-rating">
               <header className="caption">{category}</header>
               <i className="star-icon fa fa-star" aria-hidden="true"></i>
-              <footer className="caption">{status}</footer>
             </div>
           </div>
         </li>
