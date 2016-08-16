@@ -65,8 +65,9 @@ const PlacesCollection = Backbone.Collection.extend({
         'cache': true,
     })
     .then((places) => {
-      // console.log('YELP DATA: ', places);
+      console.log('YELP DATA: ', places);
       places.businesses.forEach((place) => {
+        // console.log(place);
           this.add({
             name: place.name,
             yelpRating: place.rating,
@@ -139,26 +140,6 @@ const PlacesCollection = Backbone.Collection.extend({
 
     let parameterMap = OAuth.getParameterMap(message.parameters);
 
-    let self = this;
-    // function cb(place) {
-    //   console.log("cb:" + JSON.stringify(place));
-    //   // self.add({
-    //   //   name: place.name,
-    //   //   yelpRating: place.rating,
-    //   //   yelpRatingStars: place.rating_img_url,
-    //   //   yelpMobileUrl: place.mobile_url,
-    //   //   yelpID: place.id,
-    //   //   categories: place.categories,
-    //   //   imageUrl: place.image_url,
-    //   //   snippetImageUrl: place.snippet_image_url,
-    //   //   snippetText: place.snippet_text,
-    //   //   ll: place.location.coordinate,
-    //   //   address: place.location.display_address,
-    //   //   neighborhoods: place.location.neighborhoods,
-    //   //   isClosed: place.is_closed,
-    //   //   reviewCount: place.review_count,
-    //   // });
-    // }
     $.ajax({
         'url' : message.action,
         'data' : parameterMap,

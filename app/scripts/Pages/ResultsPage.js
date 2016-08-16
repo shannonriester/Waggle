@@ -15,13 +15,9 @@ export default React.createClass({
     }
   },
   updateState: function() {
-    if (!localStorage.authtoken) {
-      browserHistory.push('/');
-    } else {
       this.setState({location: store.session.get('location')});
       this.setState({query: store.session.get('query')});
       this.setState({places: store.placesCollection.toJSON()});
-    }
   },
   componentWillMount: function() {
     if (!localStorage.authtoken) {

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { browswerHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 import $ from 'jquery';
 
 import router from './router';
@@ -33,6 +33,9 @@ $(document).ajaxSend(function(e, xhrAjax, jqueryAjax) {
   }
 });
 
+if (!localStorage.authtoken) {
+  browserHistory.push('/');
+}
 
 
 ReactDOM.render(router, document.getElementById('container'));
