@@ -7,7 +7,7 @@ export default React.createClass({
     getInitialState: function() {
       return {
         placeModel: store.placesCollection.where({name: this.props.params.place}),
-        // yelpID: 
+        yelpItem: store.placesCollection.getYelpResult(this.props.params.placeId),
       }
     },
     // componentDidMount: function() {
@@ -16,10 +16,19 @@ export default React.createClass({
     //   }
     // },
     render: function() {
-      let placeModel = store.placesCollection.where({name: this.props.params.place});
+      let placeItem;
+      if (this.state.placeModel) {
+        placeItem = this.state.placeModel;
+      } else {
+        paceItem = this.state.yelpItem;
+      }
+
+      console.log(placeItem);
+      // console.log(this.state.yelpItem);
+      // let placeModel = store.placesCollection.where({name: this.props.params.place});
       // let place = placeModel[0].attributes;
       //   console.log(place);
-      let styles;
+      // let styles;
       // styles = {backgroundImage: 'url(' + place.imageUrl + ')'};
 
       // <div className="result-image" style={styles}>
@@ -28,6 +37,7 @@ export default React.createClass({
       // </div>
       return (
         <div className="result-item-component">
+          <Nav />
 
         </div>
       );

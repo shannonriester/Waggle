@@ -21,8 +21,6 @@ export default React.createClass({
       this.setState({location: store.session.get('location')});
       this.setState({query: store.session.get('query')});
       this.setState({places: store.placesCollection.toJSON()});
-      //don't put this in here or it creates an infinate loop
-        // store.placesCollection.getResults(store.session.get('location'), this.state.query);
     }
   },
   componentWillMount: function() {

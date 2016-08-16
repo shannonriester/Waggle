@@ -38,7 +38,7 @@ export default React.createClass({
   updateState: function() {
     if (localStorage.authtoken) {
       store.session.set('location', this.state.location);
-      browserHistory.push({pathname:`search/`, query:{term: store.session.get('query')} });
+      browserHistory.push({pathname:`search/`, query:{category: store.session.get('query')} });
     }
   },
   componentWillMount: function() {
@@ -46,7 +46,7 @@ export default React.createClass({
     if (localStorage.authtoken) {
       store.session.retrieve();
       store.session.set('location', this.state.location);
-      browserHistory.push({pathname:`search/`, query:{term: store.session.get('query')} });
+      browserHistory.push({pathname:`search/`, query:{category: store.session.get('query')} });
     }
   },
   componentDidMount: function() {

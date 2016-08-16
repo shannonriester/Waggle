@@ -11,10 +11,9 @@ export default React.createClass({
     routeTo: function() {
       let placeID = store.placesCollection.where({yelpID: this.props.place.yelpID});
       console.log(placeID[0].attributes.yelpID);
-      store.placesCollection.getYelpResult(placeID[0].attributes.yelpID);
       // browserHistory.push(`/search/${store.session.get('query')}/${placeItem[0].attributes.name}`);
       // browserHistory.push('results/'+ store.session.get('query'));
-      // browserHistory.push(`/${placeItem[0].attributes.name}`);
+      browserHistory.push(`/places/${placeID[0].attributes.yelpID}`);
     },
     render: function() {
       let backgroundImage = {backgroundImage: 'url(' + this.props.place.imageUrl + ')'};
