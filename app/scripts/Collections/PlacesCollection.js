@@ -168,27 +168,23 @@ const PlacesCollection = Backbone.Collection.extend({
         'cache': true,
     })
     .then((place) => {
-      console.log('YELP DATA: ', place);
-      // var place = places//places.businesses.forEach((place) => {
-        // console.log('in the forEach');
-          this.add({
-            name: place.name,
-            yelpRating: place.rating,
-            yelpRatingStars: place.rating_img_url,
-            yelpMobileUrl: place.mobile_url,
-            yelpID: place.id,
-            categories: place.categories,
-            imageUrl: place.image_url,
-            snippetImageUrl: place.snippet_image_url,
-            snippetText: place.snippet_text,
-            ll: place.location.coordinate,
-            address: place.location.display_address,
-            neighborhoods: place.location.neighborhoods,
-            isClosed: place.is_closed,
-            reviewCount: place.review_count,
-          });
-      // });
-      console.log('this (collection): ', this);
+      // console.log('YELP DATA: ', place);
+        this.add({
+          name: place.name,
+          yelpRating: place.rating,
+          yelpRatingStars: place.rating_img_url,
+          yelpMobileUrl: place.mobile_url,
+          yelpID: place.id,
+          categories: place.categories,
+          imageUrl: place.image_url,
+          snippetImageUrl: place.snippet_image_url,
+          snippetText: place.snippet_text,
+          ll: place.location.coordinate,
+          address: place.location.display_address,
+          neighborhoods: place.location.neighborhoods,
+          isClosed: place.is_closed,
+          reviewCount: place.review_count,
+        });
 
     })
     .fail(function(e) {
