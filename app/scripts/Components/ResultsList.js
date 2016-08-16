@@ -9,10 +9,11 @@ export default React.createClass({
       // store.session.getDistance();
     },
     routeTo: function() {
-      let placeItem = store.placesCollection.where({yelpID: this.props.place.yelpID});
-      console.log(placeItem[0].attributes.name);
+      let placeID = store.placesCollection.where({yelpID: this.props.place.yelpID});
+      console.log(placeID[0].attributes.yelpID);
+      store.placesCollection.getYelpResult(placeID[0].attributes.yelpID);
       // browserHistory.push(`/search/${store.session.get('query')}/${placeItem[0].attributes.name}`);
-      browserHistory.push('results/'+ store.session.get('query'));
+      // browserHistory.push('results/'+ store.session.get('query'));
       // browserHistory.push(`/${placeItem[0].attributes.name}`);
     },
     render: function() {
@@ -23,14 +24,12 @@ export default React.createClass({
         status = 'open now';
       }
 
-
       let category;
       if (this.props.place.categories[0][0].indexOf('/') !== -1) {
         category = this.props.place.categories[0][0].split('/').join(' ');
       } else {
         category = this.props.place.categories[0][0];
       }
-
 
       return (
         <li className="result-item-component" onClick={this.routeTo}>
