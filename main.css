@@ -151,50 +151,53 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  /* - - - - - - - - - -Searchbar Component Starts here - - - - - - - - - - - -  */ }
-  .header-component .nav-component {
-    margin: 0;
-    background: rgba(236, 238, 236, 0.8); }
-    .header-component .nav-component ul {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin: 10px;
-      padding: 0; }
-    .header-component .nav-component li {
-      list-style-type: none;
-      width: calc(100/3); }
-    .header-component .nav-component .nav-icon {
-      font-size: 3.5em;
-      color: #BCBDC0; }
-  .header-component .searchbar-component {
+  margin: 0; }
+
+.nav-component {
+  margin: 0 0 10px 0;
+  background: rgba(236, 238, 236, 0.8); }
+  .nav-component ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 10px 10px 10px;
+    padding: 0; }
+  .nav-component li {
+    list-style-type: none;
+    width: calc(100/3); }
+  .nav-component .nav-icon {
+    font-size: 3.5em;
+    color: #BCBDC0; }
+
+/* - - - - - - - - - -Searchbar Component Starts here - - - - - - - - - - - -  */
+.searchbar-component {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 1em auto; }
+  .searchbar-component .searchbar {
+    height: 3em;
+    font-size: 1.5em;
+    outline: none;
+    border: none;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    width: 75%;
+    background: #ebebeb; }
+  .searchbar-component .search-submit {
+    display: none; }
+  .searchbar-component .search-icon {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    margin: 1em auto; }
-    .header-component .searchbar-component .searchbar {
-      height: 3em;
-      font-size: 1.5em;
-      outline: none;
-      border: none;
-      border-top-left-radius: 5px;
-      border-bottom-left-radius: 5px;
-      width: 75%;
-      background: #ebebeb; }
-    .header-component .searchbar-component .search-submit {
-      display: none; }
-    .header-component .searchbar-component .search-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 72px;
-      width: 70px;
-      background: #F55959;
-      color: #FFF;
-      font-size: 2.5em;
-      border-top-right-radius: 5px;
-      border-bottom-right-radius: 5px; }
+    height: 72px;
+    width: 70px;
+    background: #F55959;
+    color: #FFF;
+    font-size: 2.5em;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px; }
 
 .results-list {
   margin: 0;
