@@ -6,8 +6,6 @@ import SessionModal from './SessionModal';
 export default React.createClass({
   showModal: function(e) {
     this.props.heroModalToggle(e.target.innerText.toLowerCase());
-    console.log(e.target.innerText.toLowerCase());
-    // console.log(this)
   },
   render: function() {
     return (

@@ -9,10 +9,10 @@ export default React.createClass({
     e.preventDefault();
     let username = this.refs.username.value;
     username.toLowerCase();
-    console.log(username);
     let password = this.refs.password.value;
 
     store.session.login(username, password);
+    
     this.props.hideModal();
   },
   signup: function(e) {
@@ -20,13 +20,12 @@ export default React.createClass({
 
     let username = this.refs.username.value;
     username.toLowerCase();
-    console.log(username);
     let password = this.refs.password.value;
     let password2 = this.refs.password2.value;
 
     if (password !== password2 || username === '' || username === ' ' || password === '' || password === ' ') {
       //do not let them login
-      console.log('passwords don\'t match!');
+      console.log('passwords don\'t match or you didn\'t enter a username!');
     } else {
       store.session.signup(username, password);
     }
@@ -40,7 +39,6 @@ export default React.createClass({
   },
   render: function() {
     let modalContent;
-    console.log('this modal ', this);
     if (this.props.content === 'login') {
       modalContent = (
         <form className="login-form" onSubmit={this.login}>

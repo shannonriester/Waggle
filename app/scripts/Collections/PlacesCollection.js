@@ -4,6 +4,8 @@ import OAuth from '../OAuth';
 
 import PlaceModel from '../Models/PlaceModel';
 
+
+
 const PlacesCollection = Backbone.Collection.extend({
   model: PlaceModel,
   url: `https://api.foursquare.com/v2/venues/search/`,
@@ -63,7 +65,7 @@ const PlacesCollection = Backbone.Collection.extend({
         'cache': true,
     })
     .then((places) => {
-      console.log('YELP DATA: ', places);
+      // console.log('YELP DATA: ', places);
       places.businesses.forEach((place) => {
           this.add({
             name: place.name,
@@ -88,71 +90,6 @@ const PlacesCollection = Backbone.Collection.extend({
       console.error('FAILED TO GET YELP DATA: ', e)
     });
 
-    // $.ajax({
-    //   type: 'GET',
-    //   url: `https://api.foursquare.com/v2/venues/search/`,
-    //   data: {
-    //     client_id: 'H5L4YMYV2UTAUOA0YXXQM1WIXVLJGH45LGO0VM31PPAYMNHW',
-    //     client_secret: 'DUB0OMKZF5VBINPV5YUZSVGXE1BI12GIHBVIUHYI4XON4DY0',
-    //     v: '20130815',
-    //     // near: 'Austin,TX',
-    //     ll: ll,
-    //     query: q,
-    //     similar: '4bf58dd8d48988d1e5941735',
-    //   },
-    //   success: (categoryResults) => {
-    //     let venueResults = categoryResults.response.venues.forEach((venue, i, arr) => {
-    //       let venueID = venue.id;
-    //         $.ajax({
-    //           type: 'GET',
-    //           url: `https://api.foursquare.com/v2/venues/${venueID}/photos/`,
-    //           data: {
-    //             client_id: 'H5L4YMYV2UTAUOA0YXXQM1WIXVLJGH45LGO0VM31PPAYMNHW',
-    //             client_secret: 'DUB0OMKZF5VBINPV5YUZSVGXE1BI12GIHBVIUHYI4XON4DY0',
-    //             v: '20130815',
-    //             near: 'Austin,TX',
-    //             query: 'dog_park',
-    //             similar: '4bf58dd8d48988d1e5941735',
-    //           },
-    //           success: (venue) => {
-    //             if (venue.response.photos.items.length > 0) {
-    //               let imageURL = venue.response.photos.items.map((item) => {
-    //                 let prefix = item.prefix;
-    //                 let suffix = item.suffix;
-    //                 let image = prefix + 'original' + suffix;
-    //                 return image;
-    //               });
-    //
-    //                 // console.log(categoryResults.response.venues[i]);
-    //                 let newVenue = categoryResults.response.venues[i];
-    //                 this.add({
-    //                   // categoryID: newVenue.id,
-    //                   venueName: newVenue.name,
-    //                   venueID: newVenue.id,
-    //                   location: newVenue.location,
-    //                   zip: newVenue.location.postalCode,
-    //                   state: newVenue.location.state,
-    //                   image: imageURL,
-    //                 });
-    //                 this.trigger('update')
-    //
-    //             }
-    //
-    //           },
-    //           error: function(model, response) {
-    //             throw new Error('FAILED TO SEARCH FIND VENUE IMAGES');
-    //           },
-    //
-    //       });
-    //     });
-    //
-    //   },
-    //   error: function(model, response) {
-    //     throw new Error('FAILED TO SEARCH VENUES');
-    //   },
-    //
-    // });
-
   },
   getYelpResult: function(yelpID) {
     this.reset();
@@ -163,8 +100,17 @@ const PlacesCollection = Backbone.Collection.extend({
       accessTokenSecret : "Vh7sHRdk_xDjioNtwrPsNUPHnwA",
       serviceProvider : {
           signatureMethod : "HMAC-SHA1",
-      }
+      },
     };
+
+    let latitude = location[0];
+    let longituge = location[1];
+    let cll = (latitude + ',' + longituge);
+
+    // let terms = 'dogs allowed, ' + query;
+    let near = 'Austin';
+    // let sort = 2;
+    // let radiusFilter = ;
 
     let accessor = {
         consumerSecret : auth.consumerSecret,
@@ -174,7 +120,7 @@ const PlacesCollection = Backbone.Collection.extend({
     let parameters = [];
     // parameters.push(['term', terms]);
     // parameters.push(['sort', sort]);
-    // parameters.push(['location', near]);
+    parameters.push(['location', near]);
     // parameters.push(['radius_filter', radiusFilter]);
     parameters.push(['callback', 'cb']);
     parameters.push(['oauth_consumer_key', auth.consumerKey]);
@@ -193,16 +139,38 @@ const PlacesCollection = Backbone.Collection.extend({
 
     let parameterMap = OAuth.getParameterMap(message.parameters);
 
+    let self = this;
+    // function cb(place) {
+    //   console.log("cb:" + JSON.stringify(place));
+    //   // self.add({
+    //   //   name: place.name,
+    //   //   yelpRating: place.rating,
+    //   //   yelpRatingStars: place.rating_img_url,
+    //   //   yelpMobileUrl: place.mobile_url,
+    //   //   yelpID: place.id,
+    //   //   categories: place.categories,
+    //   //   imageUrl: place.image_url,
+    //   //   snippetImageUrl: place.snippet_image_url,
+    //   //   snippetText: place.snippet_text,
+    //   //   ll: place.location.coordinate,
+    //   //   address: place.location.display_address,
+    //   //   neighborhoods: place.location.neighborhoods,
+    //   //   isClosed: place.is_closed,
+    //   //   reviewCount: place.review_count,
+    //   // });
+    // }
     $.ajax({
         'url' : message.action,
         'data' : parameterMap,
         'dataType' : 'jsonp',
+        // 'jsonp': 'cb',
         'jsonpCallback' : 'cb',
         'cache': true,
     })
-    .then((places) => {
-      console.log('YELP DATA: ', places);
-      places.businesses.forEach((place) => {
+    .then((place) => {
+      console.log('YELP DATA: ', place);
+      // var place = places//places.businesses.forEach((place) => {
+        // console.log('in the forEach');
           this.add({
             name: place.name,
             yelpRating: place.rating,
@@ -219,7 +187,8 @@ const PlacesCollection = Backbone.Collection.extend({
             isClosed: place.is_closed,
             reviewCount: place.review_count,
           });
-      });
+      // });
+      console.log('hi');
 
     })
     .fail(function(e) {

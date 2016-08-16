@@ -74,7 +74,8 @@ const SessionModel = Backbone.Model.extend({
           localStorage.removeItem('authtoken');
           sessionStorage.removeItem('searchTerm');
           this.clear();
-          this.trigger('change update');
+          this.set('query', 'park');
+          // this.trigger('change update');
       },
        error: function(model, response) {
          throw new Error('LOGIN FAILED');

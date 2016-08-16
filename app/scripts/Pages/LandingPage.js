@@ -42,7 +42,6 @@ export default React.createClass({
     }
   },
   componentWillMount: function() {
-    console.log('mounting landingPage');
     if (localStorage.authtoken) {
       store.session.retrieve();
       store.session.set('location', this.state.location);
