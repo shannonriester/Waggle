@@ -39,6 +39,7 @@ const SessionModel = Backbone.Model.extend({
           console.log('USER SIGNED IN', username);
           // localStorage.removeItem('authtoken');
           localStorage.setItem('authtoken', response._kmd.authtoken);
+          this.set('username', username);
           this.unset('password');
           this.trigger('change update');
       },

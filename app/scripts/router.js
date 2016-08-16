@@ -6,6 +6,7 @@ import LandingPage from './Pages/LandingPage';
 import SessionModal from './Components/SessionModal';
 import ResultsPage from './Pages/ResultsPage';
 import ResultItemPage from './Pages/ResultItemPage';
+import ProfilePage from './Pages/ProfilePage';
 
 const router = (
   <Router history={browserHistory}>
@@ -16,7 +17,7 @@ const router = (
     </Route>
     <Route path="search" component={ResultsPage} />
     <Route path="places/:placeId" component={ResultItemPage}/>
-
+    <Route path="user/:userId" component={ProfilePage} />
   </Router>
 );
 
