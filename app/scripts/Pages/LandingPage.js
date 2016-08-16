@@ -22,8 +22,6 @@ export default React.createClass({
   },
   startInterval: function() {
     let interval = setInterval(() => {
-      console.log('in the interval');
-      console.log(this.state.interval);
       if (this.state.images === store.entryImages.length - 1) {
         this.setState({images:0});
       } else {

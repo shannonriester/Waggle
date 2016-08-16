@@ -22,6 +22,16 @@ export default React.createClass({
       if (!this.props.place.isClosed) {
         status = 'open now';
       }
+
+
+      let category;
+      if (this.props.place.categories[0][0].indexOf('/') !== -1) {
+        category = this.props.place.categories[0][0].split('/').join(' ');
+      } else {
+        category = this.props.place.categories[0][0];
+      }
+
+
       return (
         <li className="result-item-component" onClick={this.routeTo}>
           <figure className="result-image" style={backgroundImage}>
@@ -32,7 +42,7 @@ export default React.createClass({
               <p className="place-snippet">{this.props.place.snippetText}</p>
             </main>
             <div className="star-rating">
-              <header className="caption">{this.props.place.categories[0][0]}</header>
+              <header className="caption">{category}</header>
               <i className="star-icon fa fa-star" aria-hidden="true"></i>
               <footer className="caption">{status}</footer>
             </div>

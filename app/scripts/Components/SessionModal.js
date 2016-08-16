@@ -9,6 +9,7 @@ export default React.createClass({
     e.preventDefault();
     let username = this.refs.username.value;
     username.toLowerCase();
+    console.log(username);
     let password = this.refs.password.value;
 
     store.session.login(username, password);
@@ -19,10 +20,11 @@ export default React.createClass({
 
     let username = this.refs.username.value;
     username.toLowerCase();
+    console.log(username);
     let password = this.refs.password.value;
     let password2 = this.refs.password2.value;
 
-    if (password !== password2) {
+    if (password !== password2 || username === '' || username === ' ' || password === '' || password === ' ') {
       //do not let them login
       console.log('passwords don\'t match!');
     } else {
@@ -32,7 +34,7 @@ export default React.createClass({
     this.props.hideModal();
   },
   hideModal: function(e) {
-    if (_.toArray(e.target.classList).indexOf('modal-component') !== -1 || _.toArray(e.target.classList).indexOf('cancel') !== -1 ) {
+    if (_.toArray(e.target.classList).indexOf('modal-component') !== -1 || _.toArray(e.target.classList).indexOf('cancel-btn') !== -1 ) {
       this.props.hideModal();
     }
   },

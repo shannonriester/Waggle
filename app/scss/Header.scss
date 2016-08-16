@@ -1,5 +1,5 @@
 .header-component {
-  height: 13vh;
+  // height: 20vh;
   border-bottom: solid 1px $border;
   display: flex;
   flex-direction: column;
@@ -7,37 +7,20 @@
 
   .nav-component {
     margin: 0;
-    height: 5vh;
+    // height: 5vh;
     ul {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin: 0;
+      margin: 10px;
       padding: 0;
-      height: 100%;
     }
     li {
       list-style-type: none;
       width: calc(100/3);
     }
-    .li-first {
-      // width: 45%;
-      // display: flex;
-    }
-    .li-second {
-      // align-items: center;
-      // justify-content: flex-start;
-      // flex: 50;
-    }
-    .li-third {
-      // align-items: center;
-      // justify-content: flex-end;
-      // flex: 50;
-      // text-align: right;
-    }
     .nav-icon {
-      // margin: 5%;
-      font-size: 4em;
+      font-size: 3.5em;
       color: $icon;
     }
   }
@@ -47,19 +30,19 @@
 
   .searchbar-component {
     display: flex;
-    width: 50em;
-    height: 5em;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
     margin: 0 auto;
     margin-bottom: 1em;
 
     .searchbar {
-      width: 100%;
-      font-size: 2em;
-      padding-left: 1rem;
+      height: 3em;
+      font-size: 1.5em;
       outline: none;
       border: none;
-      border-top-left-radius: 5px;
-      border-bottom-left-radius: 5px;
+      // border-top-left-radius: 5px;
+      // border-bottom-left-radius: 5px;
     }
 
     .search-submit {
@@ -70,11 +53,11 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 77px;
-      width: 77px;
+      height: 72px;
+      width: 70px;
       background: $accent;
       color: #FFF;
-      font-size: 3em;
+      font-size: 2.5em;
       border-top-right-radius: 5px;
       border-bottom-right-radius: 5px;
     }

@@ -8,8 +8,14 @@
     right: 0;
     bottom: 0;
     left: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -ms-flex-pack: distribute;
     justify-content: space-around;
     background: rgba(0, 0, 0, 0.2); }
     .landing-page-component .greeting-register h1 {
@@ -20,20 +26,30 @@
       font-size: 3em;
       text-align: center; }
     .landing-page-component .greeting-register .register-btns {
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
       flex-direction: column;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      justify-content: center;
       align-items: center; }
     .landing-page-component .greeting-register button {
       width: 7em;
-      margin: 5% 0;
-      padding: 4% 1%;
-      background: transparent;
+      margin-bottom: 1em;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.7);
       border: solid 2px #F8F1FF;
       border-radius: 10px;
       outline: none;
       font-size: 2em;
-      color: #F8F1FF; }
+      color: #F55959; }
       .landing-page-component .greeting-register button:hover {
+        -webkit-transition: .5s;
         transition: .5s;
         background: rgba(248, 241, 255, 0.4);
         color: #C4C4C4; }
@@ -48,6 +64,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center left;
+    -webkit-transition: left 1900ms;
     transition: left 1900ms; }
   .landing-page-component .slide-left-enter {
     left: 100%; }
@@ -68,9 +85,11 @@
   width: 100%; }
   .modal-component .modal-content {
     display: flex;
-    background: rgba(255, 255, 255, 0.9);
-    height: 75%;
-    width: 85%; }
+    background: #FFF;
+    height: 100%;
+    width: 100%;
+    font-family: "Lato", sans-serif;
+    overflow: scroll; }
   .modal-component form {
     overflow: hidden;
     display: flex;
@@ -85,14 +104,16 @@
     align-items: center;
     justify-content: space-around;
     width: 100%;
-    height: calc(100%/3); }
+    height: 200px; }
     .modal-component .modal-header h2 {
       margin: 0;
       font-size: 1.8em; }
     .modal-component .modal-header .cancel-btn {
-      background: transparent; }
+      background: transparent;
+      padding: 2%;
+      width: 50px; }
   .modal-component .modal-body {
-    height: calc(100%/3); }
+    height: 200px; }
     .modal-component .modal-body .user-info-input {
       width: 100%;
       margin-bottom: 10%;
@@ -108,66 +129,66 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: calc(100%/3); }
+    height: 200px; }
     .modal-component .modal-footer .submit-btn {
-      background: transparent; }
+      background: #F55959;
+      color: #FFF;
+      padding: 2%;
+      width: 160px;
+      font-size: 1.5em; }
   .modal-component .modal-btn {
-    background: #FFF;
     outline: none;
     border: none;
-    color: #F55959; }
+    color: #F55959;
+    border-radius: 5px; }
     .modal-component .modal-btn:hover {
-      background: #F8F1FF;
+      transition: 1s;
+      background: #F55959;
       color: #FFF; }
 
 .header-component {
-  height: 13vh;
   border-bottom: solid 1px #C4C4C4;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   /* - - - - - - - - - -Searchbar Component Starts here - - - - - - - - - - - -  */ }
   .header-component .nav-component {
-    margin: 0;
-    height: 5vh; }
+    margin: 0; }
     .header-component .nav-component ul {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin: 0;
-      padding: 0;
-      height: 100%; }
+      margin: 10px;
+      padding: 0; }
     .header-component .nav-component li {
       list-style-type: none;
       width: calc(100/3); }
     .header-component .nav-component .nav-icon {
-      font-size: 4em;
+      font-size: 3.5em;
       color: #BCBDC0; }
   .header-component .searchbar-component {
     display: flex;
-    width: 50em;
-    height: 5em;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
     margin: 0 auto;
     margin-bottom: 1em; }
     .header-component .searchbar-component .searchbar {
-      width: 100%;
-      font-size: 2em;
-      padding-left: 1rem;
+      height: 3em;
+      font-size: 1.5em;
       outline: none;
-      border: none;
-      border-top-left-radius: 5px;
-      border-bottom-left-radius: 5px; }
+      border: none; }
     .header-component .searchbar-component .search-submit {
       display: none; }
     .header-component .searchbar-component .search-icon {
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 77px;
-      width: 77px;
+      height: 72px;
+      width: 70px;
       background: #F55959;
       color: #FFF;
-      font-size: 3em;
+      font-size: 2.5em;
       border-top-right-radius: 5px;
       border-bottom-right-radius: 5px; }
 
@@ -179,17 +200,16 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    height: 100%;
     margin: 0;
-    padding: 2%;
+    padding: 10px 8px;
     list-style-type: none; }
   .results-list .result-image {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
-    height: 10em;
-    width: 10em;
+    height: 7em;
+    width: 7em;
     margin: 0;
     background-size: cover;
     background-repeat: no-repeat;
@@ -197,7 +217,7 @@
   .results-list .result-content-container {
     border-bottom: solid 1px #C4C4C4;
     height: 100%;
-    width: 80%;
+    width: 75%;
     display: flex;
     align-items: center;
     justify-content: space-around; }
@@ -206,32 +226,31 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-around;
-    height: 100%;
-    width: 90%; }
+    width: 80%; }
     .results-list .about-preview h1 {
       margin: 0;
-      font-size: 3em;
-      width: 80%;
+      font-size: 1.4em;
       font-weight: 400; }
     .results-list .about-preview .place-snippet {
-      width: 80%;
+      width: 95%;
       margin: 0;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      font-size: 17px;
+      font-size: 13px;
+      text-align: center;
       font-weight: 300; }
   .results-list .star-rating {
     display: flex;
     align-items: center;
     flex-direction: column;
-    width: 80px; }
+    width: 20%; }
   .results-list .caption {
     color: #F55959;
     text-align: center;
     overflow: scroll; }
   .results-list .star-icon {
-    font-size: 5em;
+    font-size: 2.5em;
     border-radius: 10px;
     background: #1dbbcc; }
 

@@ -10,10 +10,11 @@
 
   .modal-content{
     display: flex;
-   //  align-items: center;
-    background: rgba(#FFF, .9);
-    height: 75%;
-    width: 85%;
+    background: #FFF;
+    height: 100%;
+    width: 100%;
+    font-family: $font-family;
+    overflow: scroll;
   }
 
   form {
@@ -27,7 +28,6 @@
     label {
       display: none;
     }
-
   }
 
  .modal-header {
@@ -35,7 +35,7 @@
    align-items: center;
    justify-content: space-around;
    width: 100%;
-   height: calc(100%/3);
+   height: 200px;
 
    h2 {
      margin: 0;
@@ -44,12 +44,14 @@
 
    .cancel-btn {
      background: transparent;
+     padding: 2%;
+     width: 50px;
    }
-
  }
 
  .modal-body{
-  height: calc(100%/3);
+  height: 200px;
+
    .user-info-input {
      width: 100%;
      margin-bottom: 10%;
@@ -68,23 +70,25 @@
    align-items: center;
    justify-content: center;
    width: 100%;
-   height: calc(100%/3);
+   height: 200px;
+
    .submit-btn {
-    background: transparent;
-
+     background: $accent;
+     color: #FFF;
+     padding: 2%;
+     width: 160px;
+     font-size: 1.5em;
    }
-
  }
 
  .modal-btn {
-  //  height: 10em;
-  //  width: 40%;
-   background: #FFF;
    outline: none;
    border: none;
    color: $accent;
+   border-radius: 5px;
    &:hover {
-     background: $button-color;
+     transition: 1s;
+     background: $accent;
      color: #FFF;
    }
  }
