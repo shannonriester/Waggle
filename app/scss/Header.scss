@@ -7,7 +7,7 @@
 
   .nav-component {
     margin: 0;
-    // height: 5vh;
+    background: $background;
     ul {
       display: flex;
       align-items: center;
@@ -33,16 +33,17 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    margin: 0 auto;
-    margin-bottom: 1em;
+    margin: 1em auto;
 
     .searchbar {
       height: 3em;
       font-size: 1.5em;
       outline: none;
       border: none;
-      // border-top-left-radius: 5px;
-      // border-bottom-left-radius: 5px;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+      width: 75%;
+      background: $border;
     }
 
     .search-submit {
