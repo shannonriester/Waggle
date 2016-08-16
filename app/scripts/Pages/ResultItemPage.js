@@ -6,15 +6,22 @@ import Nav from '../Components/Nav';
 export default React.createClass({
     getInitialState: function() {
       return {
-        // placeModel: store.placesCollection.where({name: this.props.params.place}),
+        placeModel: store.placesCollection.where({name: this.props.params.place}),
         // yelpItem: store.placesCollection.getYelpResult(this.props.params.placeId),
       }
     },
     updateState: function() {
-      this.setState({yelpItem: store.placesCollection.getYelpResult(this.props.params.placeId)});
+      console.log('change or update detected');
+      if (!this.state.placeModel) {
+        console.log('no place model found, fetching again');
+        this.setState({yelpItem: store.placesCollection.getYelpResult(this.props.params.placeId)});
+      }
+      this.setState({placeModel: store.placesCollection.findWhere({yelpID: this.props.params.placeId})});
     },
     componentDidMount: function() {
-      // console.log(this.props.params);
+
+      store.placesCollection.on('change update', this.updateState);
+      // this.state.placeModel.on('change update', this.updateState);
       console.log(store.placesCollection.getYelpResult(this.props.params.placeId));
       let placeItem;
       if (this.state.placeModel) {
@@ -22,16 +29,12 @@ export default React.createClass({
       } else {
         placeItem = this.state.yelpItem;
       }
-      // if () {
-        // this.setState({store.placesCollection.where({name: this.props.params.place})});
-      // }
     },
     render: function() {
-      console.log(this.props.params.placeId);
-      console.log(store.placesCollection.getYelpResult(this.props.params.placeId));
-      console.log(this.state.yelpItem);
-      console.log(this.state.placeModel);
+      console.log('state.placemodel:', this.state.placeModel);
       // console.log(this.state.yelpItem);
+
+
       // let placeModel = store.placesCollection.where({name: this.props.params.place});
       // let place = placeModel[0].attributes;
       //   console.log(place);

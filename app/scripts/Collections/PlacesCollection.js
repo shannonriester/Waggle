@@ -188,7 +188,7 @@ const PlacesCollection = Backbone.Collection.extend({
             reviewCount: place.review_count,
           });
       // });
-      console.log('hi');
+      console.log('this (collection): ', this);
 
     })
     .fail(function(e) {

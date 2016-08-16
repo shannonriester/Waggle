@@ -6,7 +6,6 @@ import store from '../store';
 export default React.createClass({
   logout: function() {
     store.session.logout();
-    
     //the logout button should EVENTUALLY be moved to the settings part on the user's profile (once you make it)
   },
   userProfile: function() {
