@@ -12,7 +12,7 @@ export default React.createClass({
       let styles = {backgroundImage: 'url(' + url + ')'};
       return (
         <div className="userpreview-container" key={i}>
-          <Link to={`user/${currItem.attributes.userCheckedin}`}><div className="checkedin-user-image" style={styles}></div></Link>
+          <Link to={`/user/${currItem.attributes.userCheckedin}`}><div className="checkedin-user-image" style={styles}></div></Link>
           <h3>{currItem.attributes.userCheckedin}</h3>
           <data>{currItem.attributes.shortTime}</data>
         </div>

@@ -26,10 +26,14 @@ export default React.createClass({
     if (!localStorage.authtoken) {
       browserHistory.push('/');
     } else {
-      store.session.apiGeoLocation()
-        .then(() => {
-          store.placesCollection.getResults(this.state.city, this.state.coordinates, this.state.query);
-        });
+      if (this.state.city) {
+        store.placesCollection.getResults(this.state.city, this.state.coordinates, this.state.query);
+      } else {
+        store.session.once('change:city', () => {
+            store.placesCollection.getResults(store.session.get('city'), store.session.get('coordinates'), this.state.query || store.session.get('query'));
+          });
+      }
+
     }
   },
   componentDidMount: function () {

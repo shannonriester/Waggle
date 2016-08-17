@@ -27,14 +27,13 @@ $(document).ajaxSend(function(e, xhrAjax, jqueryAjax) {
 
 if (!localStorage.authtoken) {
   browserHistory.push('/');
-  // store.session.apiGeoLocation();
   // console.log(store.session.apiGeoLocation());
 
 } else {
   store.session.retrieve();
-  // store.session.apiGeoLocation();
   // console.log(store.session.apiGeoLocation());
 }
+store.session.apiGeoLocation();
 
 
 
