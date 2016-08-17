@@ -8,7 +8,6 @@ const PlacesCollection = Backbone.Collection.extend({
   model: PlaceModel,
   url: `https://api.foursquare.com/v2/venues/search/`,
   getResults: function(city, coordinates, query){
-    console.log(city);
     this.reset();
     let auth = {
       consumerKey : "VNBVIZYVwtO4IZKuRQ4Jeg",
@@ -23,7 +22,6 @@ const PlacesCollection = Backbone.Collection.extend({
     // let latitude = location[0];
     // let longituge = location[1];
     // let cll = (latitude + ',' + longituge);
-
     let terms = 'dogs allowed, ' + query;
     let near = city;
     let sort = 2;
@@ -65,28 +63,26 @@ const PlacesCollection = Backbone.Collection.extend({
     })
     .then((places) => {
       console.log('YELP DATA: ', places);
-    let addedWhatevs =  places.businesses.forEach((place) => {
+      let placeList =  places.businesses.map((place) => {
         // console.log(place);
-        // return {}
-          this.add({
-            name: place.name,
-            yelpRating: place.rating,
-            yelpRatingStars: place.rating_img_url,
-            yelpMobileUrl: place.mobile_url,
-            yelpID: place.id,
-            categories: place.categories,
-            imageUrl: place.image_url,
-            snippetImageUrl: place.snippet_image_url,
-            snippetText: place.snippet_text,
-            ll: place.location.coordinate,
-            address: place.location.display_address,
-            neighborhoods: place.location.neighborhoods,
-            isClosed: place.is_closed,
-            reviewCount: place.review_count,
-          });
+        return {
+          name: place.name,
+          yelpRating: place.rating,
+          yelpRatingStars: place.rating_img_url,
+          yelpMobileUrl: place.mobile_url,
+          yelpID: place.id,
+          categories: place.categories,
+          imageUrl: place.image_url,
+          snippetImageUrl: place.snippet_image_url,
+          snippetText: place.snippet_text,
+          ll: place.location.coordinate,
+          address: place.location.display_address,
+          neighborhoods: place.location.neighborhoods,
+          isClosed: place.is_closed,
+          reviewCount: place.review_count,
+        }
       });
-
-      // this.add(addedWhatevs)
+      this.add(placeList)
 
     })
     .fail(function(e) {
