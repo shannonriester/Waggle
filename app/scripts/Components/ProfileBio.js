@@ -8,13 +8,17 @@ export default React.createClass({
       editing: store.session.get('isEditing'),
     }
   },
-  updateEdits: function(e) {
+  saveEdits: function(e) {
     e.preventDefault();
-    let userInfo = this.refs.userInfo.value
-    let dogInfo = this.refs.dogInfo.value
-    let locationInfo = this.refs.locationInfo.value
-    let aboutInfo = this.refs.aboutInfo.value
-    // store.session.updateEdits(userInfo, dogInfo, locationInfo, aboutInfo);
+    let newUserName = this.refs.userInfoName.value;
+    let newUserAge = this.refs.userInfoAge.value;
+    let newDogName = this.refs.dogInfoName.value;
+    let newDogAge = this.refs.dogInfoAge.value;
+    let newDogBreed = this.refs.dogInfoBreed.value;
+    // let newLocationInfo = this.refs.locationInfo.value;
+    let newAboutInfo = this.refs.aboutInfo.value;
+    store.session.updateProfile(newUserName, newUserAge, newDogName, newDogAge, newDogBreed, newAboutInfo);
+    store.session.set('isEditing', false);
   },
   updateState: function() {
     this.setState({editing: store.session.get('isEditing')});
@@ -26,41 +30,49 @@ export default React.createClass({
     store.session.on('change', this.updateState);
   },
   componentWillUnmount: function() {
-    this.props.state.off('change', this.updateState);
+    store.session.off('change', this.updateState);
   },
   render: function() {
-    console.log(this.state.editing);
+    // console.log(this.state.editing);
     let content;
     if (!this.state.editing) {
+      // console.log(store.session.get('usersName'));
+      console.log(this.props.user);
       content =(
         <div>
           <form className="profile-about-data">
             <ul className="ul-about-data">
-              <li>Shannon, 28</li>
-              <li>Auggie, 4</li>
+              <li>{this.props.user.profile.usersName} {this.props.user.profile.usersAge}</li>
+              <li>{this.props.user.dog.dogName} {this.props.user.dog.dogAge}</li>
               <li>Austin, 3 miles away</li>
             </ul>
+
+            <p className="about-bio">
+              {this.props.user.profile.bio}
+            </p>
           </form>
-          <p className="about-bio">
-            Hi I'm shannon and I like puppies and my dog is SO cute! His name is Auggie and he's a German-shepherd!
-          </p>
         </div>
       );
     } else if (this.state.editing) {
         content = (
           <div>
-            <form className="profile-about-data" onSubmit={this.updateEdits}>
+            <form className="profile-about-data" onSubmit={this.saveEdits}>
               <ul className="ul-about-data">
-                <li><label>Name, age</label><input type="text" value="Shannon, 28" tabIndex="1" role="textbox" ref="userInfo" /> </li>
-                <li><input type="text" value="Auggie, 4" tabIndex="2" role="textbox" ref="dogInfo" /></li>
-                <li><input type="text" value="Austin, 3 miles away" tabIndex="3" role="textbox" ref="locationInfo" /></li>
+                <li>
+                  <label>user's name</label><input type="text" defaultValue={this.props.user.profile.usersName} tabIndex="1" role="textbox" ref="userInfoName" />
+                  <label>user's age</label><input type="text" defaultValue={this.props.user.profile.usersAge} tabIndex="2" role="textbox" ref="userInfoAge" />
+                </li>
+                <li>
+                  <label>dog name</label><input type="text" defaultValue={this.props.user.dog.dogName} tabIndex="3" role="textbox" ref="dogInfoName" />
+                  <label>dog age</label><input type="text" defaultValue={this.props.user.dog.dogAge} tabIndex="4" role="textbox" ref="dogInfoAge" />
+                  <label>dog breed</label><input type="text" defaultValue={this.props.user.dog.dogBreed} tabIndex="5" role="textbox" ref="dogInfoBreed" />
+                </li>
               </ul>
-              <input type="submit" value="submit" role="button" onSubmit={this.updateEdits}/>
-              <button onClick={this.updateEdits}>done</button>
+              <textarea  className="about-bio" defaultValue={this.props.user.profile.bio} tabIndex="6" role="textbox" ref="aboutInfo" />
+
+              <input type="submit" value="submit" role="button" />
+              <button onClick={this.saveEdits} tabIndex="7">done</button>
             </form>
-            <p className="about-bio">
-              <input type="text" value="Hi I'm shannon and I like puppies and my dog is SO cute! His name is Auggie and he's a German-shepherd!" tabIndex="4" role="textbox" ref="aboutInfo"/>
-            </p>
           </div>
       );
 

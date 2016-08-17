@@ -23,17 +23,17 @@ export default React.createClass({
     this.setState({session: store.session.toJSON()});
   },
   componentWillMount: function() {
-    store.session.get('username');
-    console.log(this.state.session);
-    store.session.on('change update', this.updateState);
+    store.session.on('change', this.updateState);
     // console.log(store.session.apiGeoLocation());
   },
   componentWillUnmount: function() {
-    store.session.off('change update', this.updateState);
+    store.session.off('change', this.updateState);
   },
   render: function() {
+    // console.log(this.state.session);
+
     let sessionNav;
-    if (store.session.get('username') === this.props.params.userId) {
+    if (this.state.session.username === this.props.params.userId) {
       sessionNav = (
         <ul className="nav-session">
           <li>
@@ -48,9 +48,9 @@ export default React.createClass({
 
     let profileBio;
     if (this.state.editProfile) {
-      profileBio = <ProfileBio state="editing" />
+      profileBio = <ProfileBio user={this.state.session} state="editing" />
     } else {
-      profileBio = <ProfileBio state="viewing" />
+      profileBio = <ProfileBio user={this.state.session} state="viewing" />
     }
 
     return (

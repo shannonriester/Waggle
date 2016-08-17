@@ -8,11 +8,8 @@ import store from './store';
 
 //ask jess
 /*
-  1. Mobile views?
-    - why not working in mobile but working on "mobile" on web...?
-  2. Yelp me with yelp's location
-    - Have LL but the search doesn't work unless it's the city...
-  3. PlaceItemPage with toJSON()
+  1. Location before login
+  2. PUT request to users
 */
 
 

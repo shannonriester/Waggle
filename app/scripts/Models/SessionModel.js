@@ -8,16 +8,16 @@ const SessionModel = Backbone.Model.extend({
     username: '',
     isEditing: false,
     profile: {
-      name: '',
+      usersName: '',
       images: [],
-      age: 28,
+      usersAge: 0,
       bio: '',
       recentPlaces: [{},],
     },
     dog: {
-      name: '',
+      dogName: '',
       breed: '',
-      age: '',
+      dogAge: '',
     },
     query: 'park',
     location: {
@@ -30,6 +30,20 @@ const SessionModel = Backbone.Model.extend({
       ip: '',
       country: '',
     },
+  },
+  updateProfile: function(userName, userAge, dogName, dogAge, dogBreed, aboutInfo) {
+    // {dog:{dogName:dogName, breed:dogBreed, dogAge:dogAge}}
+    console.log(this);
+    this.save(
+      {profile: {usersName:userName, usersAge:userAge, bio:aboutInfo}},
+      { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/${this.get('_id')}`,
+        success: (model, response) => {
+        console.log('model ', model);
+        console.log('response ', response);
+      }, error: (e) => {
+          console.log('updateProfile ERROR: ', e);
+      }
+    });
   },
   getLocation: function() {
       var promise = new Promise((resolve, reject) => {
@@ -46,22 +60,30 @@ const SessionModel = Backbone.Model.extend({
     return promise;
   },
   apiGeoLocation: function() {
-    $.ajax({
+    return $.ajax({
       type: 'GET',
       url: `https://freegeoip.net/json/`,
       success: (response) => {
-        // console.log(response);
+        console.log(response);
         let coordinates = [response.latitude, response.longitude]
-        this.set('coordinates', coordinates);
-        this.set('city', response.city);
-        this.set('zipcode', response.zip_code);
-        this.set('regionCode', response.regionCode);
-        this.set('regionName', response.regionName);
-        this.set('country', response.country_name);
-        console.log(this);
+        this.set({
+          coordinates,
+          city: response.city,
+          zipcode: response.zip_code,
+          'regionCode': response.regionCode,
+          'regionName': response.regionName,
+          'country': response.country_name,
+        });
+        // 'coordinates', coordinates);
+        // this.set('city', response.city);
+        // this.set('zipcode', response.zip_code);
+        // this.set('regionCode', response.regionCode);
+        // this.set('regionName', response.regionName);
+        // this.set('country', response.country_name);
+        console.log('this in the sessionModel ',this);
       },
       error: (e) => {
-        console.log('error: ', e);
+        console.log('apiGeoLocation ERROR: ', e);
       }
     });
 
@@ -80,6 +102,8 @@ const SessionModel = Backbone.Model.extend({
     this.save(
       { username: newUsername, password: password},
       { success: (model, response) => {
+          this.set('_id', response._id)
+
           console.log('USER SIGNED IN', newUsername);
           // localStorage.removeItem('authtoken');
           localStorage.setItem('authtoken', response._kmd.authtoken);
@@ -109,6 +133,7 @@ const SessionModel = Backbone.Model.extend({
         localStorage.removeItem('authtoken');
         console.log('USER SIGNED UP!', newUsername);
         localStorage.setItem('authtoken', response._kmd.authtoken);
+        this.set('_id', response._id)
 
         this.getLocation().then(() => {
           console.log(location);
@@ -143,8 +168,9 @@ const SessionModel = Backbone.Model.extend({
   retrieve: function() {
     this.fetch({
       url: `https://baas.kinvey.com/user/kid_SkBnla5Y/_me`,
-      success: () => {
-          console.log('User Retrieved: ', this);
+      success: (model, response) => {
+          this.set('_id', response._id)
+          console.log('User Retrieved: ', this, response);
       },
       error: function(response) {
         throw new Error('COULD NOT FETCH USER!')

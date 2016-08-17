@@ -7,7 +7,8 @@ import PlaceModel from '../Models/PlaceModel';
 const PlacesCollection = Backbone.Collection.extend({
   model: PlaceModel,
   url: `https://api.foursquare.com/v2/venues/search/`,
-  getResults: function(location, query){
+  getResults: function(city, coordinates, query){
+    console.log(city);
     this.reset();
     let auth = {
       consumerKey : "VNBVIZYVwtO4IZKuRQ4Jeg",
@@ -19,12 +20,12 @@ const PlacesCollection = Backbone.Collection.extend({
       },
     };
 
-    let latitude = location[0];
-    let longituge = location[1];
-    let cll = (latitude + ',' + longituge);
+    // let latitude = location[0];
+    // let longituge = location[1];
+    // let cll = (latitude + ',' + longituge);
 
     let terms = 'dogs allowed, ' + query;
-    let near = 'Austin';
+    let near = city;
     let sort = 2;
     // let radiusFilter = ;
 
@@ -64,8 +65,9 @@ const PlacesCollection = Backbone.Collection.extend({
     })
     .then((places) => {
       console.log('YELP DATA: ', places);
-      places.businesses.forEach((place) => {
+    let addedWhatevs =  places.businesses.forEach((place) => {
         // console.log(place);
+        // return {}
           this.add({
             name: place.name,
             yelpRating: place.rating,
@@ -83,6 +85,8 @@ const PlacesCollection = Backbone.Collection.extend({
             reviewCount: place.review_count,
           });
       });
+
+      // this.add(addedWhatevs)
 
     })
     .fail(function(e) {

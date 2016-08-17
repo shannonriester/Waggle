@@ -4,7 +4,7 @@ const UserModel = Backbone.Model.extend({
   idAttribute: '_id',
   defaults: {
     username: '',
-    name: 'Shannon',
+    name: '',
     profilePic: '',
     dog: {
       name: '',
@@ -12,7 +12,7 @@ const UserModel = Backbone.Model.extend({
       age: '',
     },
     images: [],
-    age: 28,
+    age: 0,
     location: [0,0],
     bio: '',
     recentPlaces: [{},],

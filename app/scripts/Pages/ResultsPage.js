@@ -9,13 +9,16 @@ import ResultsList from '../Components/ResultsList';
 export default React.createClass({
   getInitialState: function() {
     return {
-      location: store.session.get('coordinates'),
+      coordinates: store.session.get('coordinates'),
+      city: store.session.get('city'),
       query: store.session.get('query'),
       places: store.placesCollection.toJSON(),
     }
   },
   updateState: function() {
-      this.setState({location: store.session.get('location')});
+      console.log(store.session.toJSON());
+      this.setState({city: store.session.get('city')});
+      this.setState({coordinates: store.session.get('coordinates')});
       this.setState({query: store.session.get('query')});
       this.setState({places: store.placesCollection.toJSON()});
   },
@@ -23,12 +26,12 @@ export default React.createClass({
     if (!localStorage.authtoken) {
       browserHistory.push('/');
     } else {
-      store.session.getLocation()
-      // store.session.apiGeoLocation()
+      // console.log(store.session.apiGeoLocation());
+      store.session.apiGeoLocation()
+      // store.session.getLocation()
         .then(() => {
-          console.log(store.session.get('location'));
           // console.log(this.state.location);
-          store.placesCollection.getResults(this.state.location, this.state.query);
+          store.placesCollection.getResults(this.state.city, this.state.coordinates, this.state.query);
         });
     }
   },
@@ -41,6 +44,8 @@ export default React.createClass({
     store.placesCollection.off('update change', this.updateState);
   },
   render: function() {
+    console.log(store.session.get('city'));
+
     let resultsList = this.state.places.map((place, i, arr) => {
       return (<ResultsList key={i} place={place} />);
     });
