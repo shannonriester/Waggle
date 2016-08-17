@@ -5,6 +5,7 @@ import store from '../store';
 export default React.createClass({
   getInitialState: function() {
     return {
+      session: store.session.toJSON(),
       editing: store.session.get('isEditing'),
     }
   },
@@ -21,12 +22,16 @@ export default React.createClass({
     store.session.set('isEditing', false);
   },
   updateState: function() {
+    console.log(store.session.toJSON());
+    this.setState({session: store.session.toJSON()});
     this.setState({editing: store.session.get('isEditing')});
-    console.log('updateState state', this.state.editing);
+    // console.log('updateState state', this.state.editing);
   },
   componentDidMount: function() {
-    console.log('componentDidMount state', this.state.editing);
+    // console.log('componentDidMount state', this.state.editing);
+    this.setState({session: store.session.toJSON()});
     this.setState({editing: store.session.get('isEditing')});
+
     store.session.on('change', this.updateState);
   },
   componentWillUnmount: function() {
@@ -37,12 +42,12 @@ export default React.createClass({
     let content;
     if (!this.state.editing) {
       // console.log(store.session.get('usersName'));
-      console.log(this.props.user);
+      console.log(this.state.session);
       content =(
         <div>
           <form className="profile-about-data">
             <ul className="ul-about-data">
-              <li>{this.props.user.profile.usersName} {this.props.user.profile.usersAge}</li>
+              <li>{this.state.session.profile.usersName} {this.props.user.profile.usersAge}</li>
               <li>{this.props.user.dog.dogName} {this.props.user.dog.dogAge}</li>
               <li>Austin, 3 miles away</li>
             </ul>

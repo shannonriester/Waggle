@@ -14,7 +14,10 @@ export default React.createClass({
   },
   editProfile: function() {
     store.session.set('isEditing', true);
-    console.log(store.session.get('isEditing'));
+    // console.log(store.session.get('isEditing'));
+  },
+  stopEditProfile: function() {
+    // store.session.set('editProfile', false);
   },
   gotToSettings: function() {
     // browserHistory.push('/settings')

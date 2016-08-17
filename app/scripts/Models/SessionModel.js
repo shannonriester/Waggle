@@ -32,14 +32,16 @@ const SessionModel = Backbone.Model.extend({
     },
   },
   updateProfile: function(userName, userAge, dogName, dogAge, dogBreed, aboutInfo) {
-    // {dog:{dogName:dogName, breed:dogBreed, dogAge:dogAge}}
-    console.log(this);
+    console.log('this in updateProfile', this);
+    // this.set('isEditing', false);
     this.save(
-      {profile: {usersName:userName, usersAge:userAge, bio:aboutInfo}},
-      { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/${this.get('_id')}`,
+      {profile: {usersName:userName, usersAge:userAge, bio:aboutInfo},
+      dog:{dogName:dogName, breed:dogBreed, dogAge:dogAge}},
+      { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/${this.get('userId')}`,
+        type: 'PUT',
         success: (model, response) => {
-        console.log('model ', model);
-        console.log('response ', response);
+        // console.log('model ', model);
+        // console.log('response ', response);
       }, error: (e) => {
           console.log('updateProfile ERROR: ', e);
       }
@@ -64,7 +66,7 @@ const SessionModel = Backbone.Model.extend({
       type: 'GET',
       url: `https://freegeoip.net/json/`,
       success: (response) => {
-        console.log(response);
+        console.log('response', response);
         let coordinates = [response.latitude, response.longitude]
         this.set({
           coordinates,
@@ -74,13 +76,7 @@ const SessionModel = Backbone.Model.extend({
           'regionName': response.regionName,
           'country': response.country_name,
         });
-        // 'coordinates', coordinates);
-        // this.set('city', response.city);
-        // this.set('zipcode', response.zip_code);
-        // this.set('regionCode', response.regionCode);
-        // this.set('regionName', response.regionName);
-        // this.set('country', response.country_name);
-        console.log('this in the sessionModel ',this);
+        console.log('this in the sessionModel ', this);
       },
       error: (e) => {
         console.log('apiGeoLocation ERROR: ', e);
@@ -92,8 +88,11 @@ const SessionModel = Backbone.Model.extend({
     if (response) {
       return {
         username: response.username,
-        response: response._Id,
-        authtoken: response._kmd.authtoken
+        userId: response._id,
+        authtoken: response._kmd.authtoken,
+        profile: response.profile,
+        dog: response.dog,
+        location: response.location,
       };
     }
   },
@@ -102,16 +101,9 @@ const SessionModel = Backbone.Model.extend({
     this.save(
       { username: newUsername, password: password},
       { success: (model, response) => {
-          this.set('_id', response._id)
-
+          // this.set('_id', response._id);
           console.log('USER SIGNED IN', newUsername);
-          // localStorage.removeItem('authtoken');
           localStorage.setItem('authtoken', response._kmd.authtoken);
-          this.apiGeoLocation();
-          // this.getLocation().then(() => {
-          //   console.log(location);
-          //   // this.set('location')
-          // });
 
           this.unset('password');
           this.trigger('change update');
@@ -133,12 +125,7 @@ const SessionModel = Backbone.Model.extend({
         localStorage.removeItem('authtoken');
         console.log('USER SIGNED UP!', newUsername);
         localStorage.setItem('authtoken', response._kmd.authtoken);
-        this.set('_id', response._id)
-
-        this.getLocation().then(() => {
-          console.log(location);
-          this.set('location', this)
-        });
+        // this.set('_id', response._id);
 
         this.unset('password');
         this.trigger('change update');
@@ -156,9 +143,9 @@ const SessionModel = Backbone.Model.extend({
           localStorage.removeItem('authtoken');
           sessionStorage.removeItem('searchTerm');
           model.clear();
+
           this.set('query', 'park');
           this.trigger('change update');
-          console.log(this);
       },
        error: function(model, response) {
          throw new Error('LOGIN FAILED');
@@ -169,11 +156,12 @@ const SessionModel = Backbone.Model.extend({
     this.fetch({
       url: `https://baas.kinvey.com/user/kid_SkBnla5Y/_me`,
       success: (model, response) => {
-          this.set('_id', response._id)
-          console.log('User Retrieved: ', this, response);
+          // this.set('_id', response._id);
+          // console.log('User Retrieved: this and response', this, response);
+          this.trigger('change');
       },
       error: function(response) {
-        throw new Error('COULD NOT FETCH USER!')
+        throw new Error('COULD NOT FETCH USER!');
       },
     });
   },

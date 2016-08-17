@@ -44,8 +44,6 @@ export default React.createClass({
     store.placesCollection.off('update change', this.updateState);
   },
   render: function() {
-    console.log(store.session.get('city'));
-
     let resultsList = this.state.places.map((place, i, arr) => {
       return (<ResultsList key={i} place={place} />);
     });
