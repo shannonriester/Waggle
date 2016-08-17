@@ -42,7 +42,6 @@ if (!localStorage.authtoken) {
   store.session.retrieve();
   // store.session.apiGeoLocation();
   // console.log(store.session.apiGeoLocation());
-
 }
 
 

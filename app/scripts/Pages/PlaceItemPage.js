@@ -8,11 +8,15 @@ export default React.createClass({
     getInitialState: function() {
       return {
         placeModel: {},
-        footer: false,
+        checkin: false,
+        checkinList: false,
       }
     },
-    toggleCheckedinList: function() {
+    checkin: function() {
 
+    },
+    toggleCheckinList: function() {
+      this.setState({checkinList: !this.state.checkinList});
     },
     updateState: function() {
       this.setState({placeModel: store.placesCollection.findWhere({yelpID: this.props.params.placeId}).toJSON()});
@@ -38,19 +42,27 @@ export default React.createClass({
         let styles = {backgroundImage: 'url(' + url + ')'};
 
         placeItem = this.state.placeModel;
+
+        let checkedinList;
+        if (this.state.checkinList) {
+          checkedinList = (
+            <ul className="ulist-users-checkedin">
+              <li>Shannon</li>
+              <li>Auggie</li>
+              <li>Max</li>
+            </ul>
+          );
+        }
+
         content = (
           <div className="result-item-container" style={styles}>
 
             <div className="content-container">
               <h1>{placeItem.name}</h1>
-              <button className="checkin-btn" onClick={this.toggleCheckedinList}>Check in here!</button>
+              <button className="checkin-btn">Check in here!</button>
               <footer className="footer-users-checkedin">
-                <ul className="ulist-users-checkedin">
-                  <li>Shannon</li>
-                  <li>Auggie</li>
-                  <li>Max</li>
-                </ul>
-                <button className="users-checkedin-btn">Who's here?</button>
+                <button className="users-checkedin-btn" onClick={this.toggleCheckinList}>Who's here?</button>
+                {checkedinList}
               </footer>
             </div>
 

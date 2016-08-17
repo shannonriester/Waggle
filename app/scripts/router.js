@@ -5,7 +5,7 @@ import App from './Pages/App';
 import LandingPage from './Pages/LandingPage';
 import SessionModal from './Components/SessionModal';
 import ResultsPage from './Pages/ResultsPage';
-import ResultItemPage from './Pages/ResultItemPage';
+import PlaceItemPage from './Pages/PlaceItemPage';
 import ProfilePage from './Pages/ProfilePage';
 import EditProfilePage from './Pages/ProfilePage';
 
@@ -17,7 +17,7 @@ const router = (
       <Route path="signup" component={SessionModal} />
     </Route>
     <Route path="search" component={ResultsPage} />
-    <Route path="places/:placeId" component={ResultItemPage}/>
+    <Route path="places/:placeId" component={PlaceItemPage}/>
     <Route path="user/:userId" component={ProfilePage} >
       <Route path="/edit" component={EditProfilePage} />
     </Route>
