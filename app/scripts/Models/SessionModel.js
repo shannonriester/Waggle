@@ -3,7 +3,7 @@ import $ from 'jquery';
 
 const SessionModel = Backbone.Model.extend({
   idAttribute: '_id',
-  urlRoot:`https://baas.kinvey.com/user/kid_SkBnla5Y/login`,
+  urlRoot:`https://baas.kinvey.com/user/kid_SkBnla5Y/`,
   defaults: {
     username: '',
     isEditing: false,
@@ -114,7 +114,8 @@ const SessionModel = Backbone.Model.extend({
     let newUsername = username.toLowerCase();
     this.save(
       { username: newUsername, password: password},
-      { success: (model, response) => {
+      { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/login`,
+        success: (model, response) => {
           localStorage.setItem('authtoken', response._kmd.authtoken);
           this.unset('password');
           this.trigger('change update');
@@ -138,6 +139,7 @@ const SessionModel = Backbone.Model.extend({
         localStorage.removeItem('authtoken');
         localStorage.setItem('authtoken', response._kmd.authtoken);
         this.unset('password');
+        // this.unset('auth');
         this.trigger('change update');
 
         console.log('USER SIGNED UP!', newUsername);

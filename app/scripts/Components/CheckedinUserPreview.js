@@ -1,12 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-export default React.createClass({
-  render: function() {
-    console.log('checkedinModels ', this.props.checkedinModels);
-    let styles;
+import store from '../store';
 
+export default React.createClass({
+  componentWillMount: function() {
+  },
+  componentDidMount: function() {
+
+  },
+  render: function() {
+    let styles;
+    // console.log(store.userCollection);
     let checkedinPreview = this.props.checkedinModels.map((currItem, i, arr) => {
+
+
+      let wagglrUsers = store.userCollection.findCheckedinUser(currItem.attributes.userCheckedin);
+      // console.log(wagglrUsers);
+      let wagglr;
+      wagglrUsers.forEach((wagglr) => {
+        console.log(wagglr);
+      });
+      // let url = currItem.attributes.
       let url = `/assets/default_dog_large.png`;
       // let url = `https://dl.dropboxusercontent.com/u/19411356/Wagglr/ShannonRiester.jpg`;
       let styles = {backgroundImage: 'url(' + url + ')'};
@@ -18,7 +33,7 @@ export default React.createClass({
         </div>
       );
     });
-    console.log(checkedinPreview);
+    // console.log(checkedinPreview);
     return (
       <li className="checkedin-user-preview-component">
           {checkedinPreview}

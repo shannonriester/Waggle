@@ -3,7 +3,7 @@ import { browserHistory } from 'react-router';
 
 import store from '../store';
 import Nav from '../Components/Nav';
-import ProfileBio from '../Components/ProfileBio';
+import ProfileInfo from '../Components/ProfileInfo';
 
 export default React.createClass({
   getInitialState: function() {
@@ -45,26 +45,26 @@ export default React.createClass({
       );
     }
 
-    let profileBio;
+    let profileInfo;
     if (this.state.editProfile) {
-      profileBio = <ProfileBio user={this.state.session} state="editing" />
+      profileInfo = <ProfileInfo user={this.state.session} state="editing" />
     } else {
-      profileBio = <ProfileBio user={this.state.session} state="viewing" />
+      profileInfo = <ProfileInfo user={this.state.session} state="viewing" />
     }
-
+    // console.log(this.state.session);
     return (
       <div className="profile-component">
         <Nav />
 
         <header className="profile-header">
-          <figure className="profile-pic"></figure>
           {sessionNav}
+
+          {profileInfo}
+
           <div className="like-user">
             <button className="like-btn"><i className="icon-heart fa fa-heart-o" aria-hidden="true"></i></button>
           </div>
         </header>
-
-        {profileBio}
 
         <form className="profile-footer">
           <ul className="ul-recent-places">
