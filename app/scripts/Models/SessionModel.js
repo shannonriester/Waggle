@@ -6,6 +6,7 @@ const SessionModel = Backbone.Model.extend({
   urlRoot:`https://baas.kinvey.com/user/kid_SkBnla5Y/login`,
   defaults: {
     username: '',
+    isEditing: false,
     profile: {
       name: '',
       images: [],
@@ -20,6 +21,7 @@ const SessionModel = Backbone.Model.extend({
     },
     query: 'park',
     location: {
+      checkedin: false,
       coordinates:[0,0],
       city: '',
       zipcode: 0,
@@ -28,7 +30,6 @@ const SessionModel = Backbone.Model.extend({
       ip: '',
       country: '',
     },
-
   },
   getLocation: function() {
       var promise = new Promise((resolve, reject) => {
@@ -129,7 +130,7 @@ const SessionModel = Backbone.Model.extend({
           console.log('USER LOGGED OUT!');
           localStorage.removeItem('authtoken');
           sessionStorage.removeItem('searchTerm');
-          model.reset();
+          model.clear();
           this.set('query', 'park');
           this.trigger('change update');
           console.log(this);

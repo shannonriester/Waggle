@@ -6,7 +6,7 @@ import store from '../store';
 export default React.createClass({
   getInitialState: function() {
     return {
-      username: '',
+      authtoken: localStorage.getItem('authtoken'),
     }
   },
   logout: function() {
@@ -20,13 +20,13 @@ export default React.createClass({
     browserHistory.push({pathname:`/search/`, query:{category: store.session.get('query')} });
   },
   updateState: function() {
-    // this.setState({username: store.session.get('username')});
+    this.setState({authtoken: store.session.get('authtoken')});
   },
   componentDidMount: function() {
-    // this.setState({session: store.session.get('username')});
+    store.session.on('change update', this.updateState);
   },
   componentWillUnmount: function() {
-    // store.session.off('change update', this.updateState);
+    store.session.off('change update', this.updateState);
   },
   render: function() {
     //potential icon <img className="nav-icon bone-icon" src="../../assets/bone.svg" alt="image of a cute dog-bone" role="button"/>

@@ -4,8 +4,6 @@ import OAuth from '../OAuth';
 
 import PlaceModel from '../Models/PlaceModel';
 
-
-
 const PlacesCollection = Backbone.Collection.extend({
   model: PlaceModel,
   url: `https://api.foursquare.com/v2/venues/search/`,

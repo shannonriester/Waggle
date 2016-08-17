@@ -12,10 +12,7 @@ import store from './store';
     - why not working in mobile but working on "mobile" on web...?
   2. Yelp me with yelp's location
     - Have LL but the search doesn't work unless it's the city...
-  3. search results and query on refresh or new search...
-    - see searchbar
-    - is it the relative/route path???
-  4. What is happening when I refresh and delete the entire path...nothing is rerendering?!?
+  3. PlaceItemPage with toJSON()
 */
 
 

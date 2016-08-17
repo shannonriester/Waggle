@@ -12,7 +12,7 @@ export default React.createClass({
     let password = this.refs.password.value;
 
     store.session.login(username, password);
-    
+
     this.props.hideModal();
   },
   signup: function(e) {
@@ -43,7 +43,7 @@ export default React.createClass({
       modalContent = (
         <form className="login-form" onSubmit={this.login}>
           <header className="modal-header">
-            <input className="cancel-btn modal-btn" type="button" value="cancel" role="button" tabIndex="4" onClick={this.hideModal}/>
+            <input className="cancel-btn modal-btn" type="button" value="cancel" role="button" tabIndex="0" onClick={this.hideModal}/>
             <h2>Log in to Waggle</h2>
           </header>
           <main className="modal-body">
@@ -62,7 +62,7 @@ export default React.createClass({
         <form className="signup-form" onSubmit={this.signup}>
           <header className="modal-header">
             <h2>Hi. Sign Up!</h2>
-            <input className="cancel-btn modal-btn" type="button" value="cancel" ref="cancel" role="button" tabIndex="5" onClick={this.hideModal}/>
+            <input className="cancel-btn modal-btn" type="button" value="cancel" ref="cancel" role="button" tabIndex="0" onClick={this.hideModal}/>
           </header>
           <main className="modal-body">
             <label htmlFor="input-username">username</label>

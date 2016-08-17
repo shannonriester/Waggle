@@ -1,3 +1,4 @@
+import CheckinCollection from './Collections/CheckinCollection';
 import PlacesCollection from './Collections/PlacesCollection';
 import UserCollection from './Collections/UserCollection';
 import PlaceModel from './Models/PlaceModel';
@@ -8,6 +9,7 @@ export default ({
   placeModel: new PlaceModel(),
   placesCollection: new PlacesCollection(),
   userCollection: new UserCollection(),
+  checkinCollection: new CheckinCollection(),
   settings: {
       appKey: 'kid_SkBnla5Y',
       appSecret: 'e7a59b1546d74c5e824901fbab190092',

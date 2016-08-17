@@ -3,35 +3,42 @@ import _ from 'underscore';
 
 import store from '../store';
 import Nav from '../Components/Nav';
+import CheckedinUserPreview from '../Components/CheckedinUserPreview';
 
 export default React.createClass({
     getInitialState: function() {
       return {
         placeModel: {},
         checkin: false,
-        checkinList: false,
+        checkinList: null,
+        usersCheckedin: store.checkinCollection.toJSON(),
       }
     },
-    checkin: function() {
-
+    toggleCheckin: function() {
+      store.checkinCollection.toggleCheckin(store.session.get('username'), this.props.params.placeId);
     },
     toggleCheckinList: function() {
       this.setState({checkinList: !this.state.checkinList});
+      console.log(this.state.usersCheckedin);
     },
     updateState: function() {
       this.setState({placeModel: store.placesCollection.findWhere({yelpID: this.props.params.placeId}).toJSON()});
+      this.setState({usersCheckedin: store.checkinCollection.where({place:this.props.params.placeId})});
     },
     componentDidMount: function() {
-      store.placesCollection.on('change update', this.updateState);
+      store.checkinCollection.fetch();
 
       if (store.placesCollection.findWhere({yelpID: this.props.params.placeId})) {
         this.setState({placeModel: store.placesCollection.findWhere({yelpID: this.props.params.placeId}).toJSON()});
       } else {
         store.placesCollection.getYelpResult(this.props.params.placeId);
       }
+      store.checkinCollection.on('change update', this.updateState);
+      store.placesCollection.on('change update', this.updateState);
     },
     componentWillUnmount: function() {
       store.placesCollection.off('change update', this.updateState);
+      store.checkinCollection.off('change update', this.updateState);
     },
     render: function() {
       let content;
@@ -44,12 +51,11 @@ export default React.createClass({
         placeItem = this.state.placeModel;
 
         let checkedinList;
+        let users = <CheckedinUserPreview user={this.state.usersCheckedin} />;
         if (this.state.checkinList) {
           checkedinList = (
             <ul className="ulist-users-checkedin">
-              <li>Shannon</li>
-              <li>Auggie</li>
-              <li>Max</li>
+              {users}
             </ul>
           );
         }
@@ -59,7 +65,7 @@ export default React.createClass({
 
             <div className="content-container">
               <h1>{placeItem.name}</h1>
-              <button className="checkin-btn">Check in here!</button>
+              <button className="checkin-btn" onClick={this.toggleCheckin}>Check in here!</button>
               <footer className="footer-users-checkedin">
                 <button className="users-checkedin-btn" onClick={this.toggleCheckinList}>Who's here?</button>
                 {checkedinList}

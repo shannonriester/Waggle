@@ -3,6 +3,7 @@ import { browserHistory } from 'react-router';
 
 import store from '../store';
 import Nav from '../Components/Nav';
+import ProfileBio from '../Components/ProfileBio';
 
 export default React.createClass({
   getInitialState: function() {
@@ -12,7 +13,8 @@ export default React.createClass({
       }
   },
   editProfile: function() {
-    this.setState({editProfile: true});
+    store.session.set('isEditing', true);
+    console.log(store.session.get('isEditing'));
   },
   gotToSettings: function() {
     // browserHistory.push('/settings')
@@ -44,13 +46,12 @@ export default React.createClass({
       );
     }
 
-    let profileData;
+    let profileBio;
     if (this.state.editProfile) {
-      console.log(this.state.session);
+      profileBio = <ProfileBio state="editing" />
     } else {
-
+      profileBio = <ProfileBio state="viewing" />
     }
-
 
     return (
       <div className="profile-component">
@@ -59,23 +60,12 @@ export default React.createClass({
         <header className="profile-header">
           <figure className="profile-pic"></figure>
           {sessionNav}
+          <div className="like-user">
+            <button className="like-btn"><i className="icon-heart fa fa-heart-o" aria-hidden="true"></i></button>
+          </div>
         </header>
 
-        <main className="profile-main">
-          <form className="profile-about-data">
-            <ul className="ul-about-data">
-              <li>Shannon, 28</li>
-              <li>Auggie, 4</li>
-              <li>Austin, 3 miles away</li>
-            </ul>
-            <div className="like-user">
-              <button className="like-btn"><i className="icon-heart fa fa-heart-o" aria-hidden="true"></i></button>
-            </div>
-          </form>
-          <p className="about-bio">
-            Hi I'm shannon and I like puppies and my dog is SO cute! His name is Auggie and he's a German-shepherd!
-          </p>
-        </main>
+        {profileBio}
 
         <form className="profile-footer">
           <ul className="ul-recent-places">
