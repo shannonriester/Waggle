@@ -16,7 +16,7 @@ export default React.createClass({
     }
   },
   updateState: function() {
-      console.log(store.session.toJSON());
+      // console.log(store.session.toJSON());
       this.setState({city: store.session.get('city')});
       this.setState({coordinates: store.session.get('coordinates')});
       this.setState({query: store.session.get('query')});

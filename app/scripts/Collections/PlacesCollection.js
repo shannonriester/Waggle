@@ -62,7 +62,7 @@ const PlacesCollection = Backbone.Collection.extend({
         'cache': true,
     })
     .then((places) => {
-      console.log('YELP DATA: ', places);
+      // console.log('YELP DATA: ', places);
       let placeList =  places.businesses.map((place) => {
         // console.log(place);
         return {

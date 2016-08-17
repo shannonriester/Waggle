@@ -64,7 +64,7 @@ const SessionModel = Backbone.Model.extend({
       type: 'GET',
       url: `https://freegeoip.net/json/`,
       success: (response) => {
-        console.log('response', response);
+        // console.log('location reponse', response);
         let coordinates = [response.latitude, response.longitude]
         this.set({
           coordinates,
@@ -74,7 +74,7 @@ const SessionModel = Backbone.Model.extend({
           'regionName': response.regionName,
           'country': response.country_name,
         });
-        console.log('this in the sessionModel ', this);
+        console.log('session in the geoLocation ', this);
       },
       error: (e) => {
         console.log('apiGeoLocation ERROR: ', e);
