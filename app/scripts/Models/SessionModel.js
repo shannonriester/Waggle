@@ -9,7 +9,7 @@ const SessionModel = Backbone.Model.extend({
     isEditing: false,
     profile: {
       usersName: '',
-      images: [],
+      images: ['/assets/default_dog_large.png',],
       usersAge: '',
       bio: '',
       recentPlaces: [{},],
