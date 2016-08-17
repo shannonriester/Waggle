@@ -11,7 +11,7 @@ export default React.createClass({
         placeModel: {},
         checkin: false,
         checkinList: null,
-        usersCheckedin: store.checkinCollection.toJSON(),
+        checkedinModels: [],
       }
     },
     toggleCheckin: function() {
@@ -19,17 +19,25 @@ export default React.createClass({
     },
     toggleCheckinList: function() {
       this.setState({checkinList: !this.state.checkinList});
-      console.log(this.state.usersCheckedin);
+      // console.log(this.state.checkedinModels);
     },
     updateState: function() {
-      this.setState({placeModel: store.placesCollection.findWhere({yelpID: this.props.params.placeId}).toJSON()});
-      this.setState({usersCheckedin: store.checkinCollection.where({place:this.props.params.placeId})});
+      if (store.placesCollection.findWhere({yelpID: this.props.params.placeId}) && store.checkinCollection.where({place:this.props.params.placeId})){
+      this.setState({
+        placeModel: store.placesCollection.findWhere({yelpID: this.props.params.placeId}).toJSON(),
+        checkedinModels: store.checkinCollection.where({place:this.props.params.placeId}),
+      });
+    }
+    },
+    componentWillMount: function() {
+      store.checkinCollection.fetch();
     },
     componentDidMount: function() {
-      store.checkinCollection.fetch();
-
-      if (store.placesCollection.findWhere({yelpID: this.props.params.placeId})) {
-        this.setState({placeModel: store.placesCollection.findWhere({yelpID: this.props.params.placeId}).toJSON()});
+      if (store.placesCollection.findWhere({yelpID: this.props.params.placeId}) &&  store.checkinCollection.where({place:this.props.params.placeId})){
+        this.setState({
+          placeModel: store.placesCollection.findWhere({yelpID: this.props.params.placeId}).toJSON(),
+          checkedinModels: store.checkinCollection.where({place:this.props.params.placeId}),
+        });
       } else {
         store.placesCollection.getYelpResult(this.props.params.placeId);
       }
@@ -44,14 +52,13 @@ export default React.createClass({
       let content;
       if (this.state.placeModel.name) {
         let placeItem = this.state.placeModel;
-
         let url = placeItem.imageUrl.replace('ms', 'l');
         let styles = {backgroundImage: 'url(' + url + ')'};
 
         placeItem = this.state.placeModel;
 
         let checkedinList;
-        let users = <CheckedinUserPreview user={this.state.usersCheckedin} />;
+        let users = <CheckedinUserPreview checkedinModels={this.state.checkedinModels} />;
         if (this.state.checkinList) {
           checkedinList = (
             <ul className="ulist-users-checkedin">
@@ -62,7 +69,6 @@ export default React.createClass({
 
         content = (
           <div className="result-item-container" style={styles}>
-
             <div className="content-container">
               <h1>{placeItem.name}</h1>
               <button className="checkin-btn" onClick={this.toggleCheckin}>Check in here!</button>
@@ -71,7 +77,6 @@ export default React.createClass({
                 {checkedinList}
               </footer>
             </div>
-
           </div>
         );
       }

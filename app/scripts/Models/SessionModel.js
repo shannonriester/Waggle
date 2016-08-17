@@ -28,7 +28,6 @@ const SessionModel = Backbone.Model.extend({
     regionName: '',
     ip: '',
     country: '',
-    location: {},
   },
   updateUser: function() {
     this.save(null,
@@ -37,7 +36,7 @@ const SessionModel = Backbone.Model.extend({
         success: (model, response) => {
         console.log('UPDATED USER ', response);
       }, error: (e) => {
-          console.log('updateProfile ERROR: ', e);
+          console.log('SESSION.UPDATEUSER ERROR: ', e);
       }
     });
   },
@@ -55,20 +54,20 @@ const SessionModel = Backbone.Model.extend({
       }
     });
   },
-  getLocation: function() {
-      var promise = new Promise((resolve, reject) => {
-        if ('geolocation' in navigator) {
-          window.navigator.geolocation.getCurrentPosition((position) => {
-            // console.log('position ', position);
-            this.set('coordinates',[position.coords.latitude,position.coords.longitude]);
-            resolve (position);
-          });
-        } else {
-            reject('This browser doesn\'t support geolocation...');
-        }
-      });
-    return promise;
-  },
+  // getLocation: function() {
+  //     var promise = new Promise((resolve, reject) => {
+  //       if ('geolocation' in navigator) {
+  //         window.navigator.geolocation.getCurrentPosition((position) => {
+  //           // console.log('position ', position);
+  //           this.set('coordinates',[position.coords.latitude,position.coords.longitude]);
+  //           resolve (position);
+  //         });
+  //       } else {
+  //           reject('This browser doesn\'t support geolocation...');
+  //       }
+  //     });
+  //   return promise;
+  // },
   apiGeoLocation: function() {
     return $.ajax({
       type: 'GET',
@@ -85,7 +84,7 @@ const SessionModel = Backbone.Model.extend({
             country: response.country_name,
             ip: response.ip,
         });
-        this.updateUser();
+        // this.updateUser();
         console.log('session in the geoLocation ', this);
       },
       error: (e) => {
@@ -104,7 +103,10 @@ const SessionModel = Backbone.Model.extend({
         checkedin: false,
         coordinates:[0,0],
         city: response.city,
-        // location: response.location,
+        regionCode: response.regionCode,
+        regionName: response.regionName,
+        country: response.countryName,
+        ip: response.ip,
       };
     }
   },
@@ -152,8 +154,7 @@ const SessionModel = Backbone.Model.extend({
           model.clear();
           localStorage.removeItem('authtoken');
           this.set('query', 'park');
-          this.trigger('change update');
-          browserHistory.push('/');
+          // this.trigger('change update');
 
           console.log('USER LOGGED OUT!');
       },

@@ -14,12 +14,20 @@ export default Backbone.Collection.extend({
     // });
     // console.log(placetest);
 
+    //ect entity creation time _kmd.ect on kinvey response
+      //use this to find when they checked in
+      //run a query on the ect date/time so that if it's been x-number of hours/days, DESTROY this model from the collection
+
+      //var aweekago = new Date()
+      // aweekago.getDate()
+      //aweekago.setDate(aweekago.getDate() -7)
+        //compare Date objects any time you manipulate a date, you need to make a new date
+
     // console.log(username);
     // console.log(placeId);
-    let usersCheckedin = [username];
     // session.set({'checkedin', true});
     this.create(
-      {place:placeId, usersCheckedin: usersCheckedin},
+      {place:placeId, userCheckedin: username},
       {success: (model, response) => {
         console.log('YOU CHECKED IN!');
         console.log('model', model);

@@ -6,10 +6,10 @@ const CheckinModel = Backbone.Model.extend({
   urlRoot: `https://baas.kinvey.com/appdata/kid_SkBnla5Y/CheckinCollection`,
   defaults: {
     place: '',
-    usersCheckedin: [],
+    userCheckedin: '',
     time: new Date(),
     formatTime: moment().format('MMMM Do YYY, h:mm:ss a'),
-    shortTime: moment().format('MM Do, h:mm:ss a'),
+    shortTime: moment().format('MMM Do, h:mm:ss a'),
   },
 });
 

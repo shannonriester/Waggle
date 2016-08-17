@@ -26,11 +26,8 @@ export default React.createClass({
     if (!localStorage.authtoken) {
       browserHistory.push('/');
     } else {
-      // console.log(store.session.apiGeoLocation());
       store.session.apiGeoLocation()
-      // store.session.getLocation()
         .then(() => {
-          // console.log(this.state.location);
           store.placesCollection.getResults(this.state.city, this.state.coordinates, this.state.query);
         });
     }

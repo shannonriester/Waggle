@@ -27,29 +27,30 @@ export default React.createClass({
     this.setState({editing: store.session.get('isEditing')});
     // console.log('updateState state', this.state.editing);
   },
+  componentWillMount: function() {
+    if (store.session.get('zipcode'));
+    store.session.updateUser();
+  },
   componentDidMount: function() {
     // console.log('componentDidMount state', this.state.editing);
     this.setState({session: store.session.toJSON()});
     this.setState({editing: store.session.get('isEditing')});
 
-    store.session.on('change', this.updateState);
+    store.session.on('change update', this.updateState);
   },
   componentWillUnmount: function() {
-    store.session.off('change', this.updateState);
+    store.session.off('change update', this.updateState);
   },
   render: function() {
-    // console.log(this.state.editing);
     let content;
     if (!this.state.editing) {
-      // console.log(store.session.get('usersName'));
-      console.log(this.state.session);
       content =(
         <div>
           <form className="profile-about-data">
             <ul className="ul-about-data">
-              <li>{this.state.session.profile.usersName} {this.props.user.profile.usersAge}</li>
-              <li>{this.props.user.dog.dogName} {this.props.user.dog.dogAge}</li>
-              <li>{this.props.user.city}</li>
+              <li>{this.state.session.profile.usersName}, {this.props.user.profile.usersAge}</li>
+              <li>{this.props.user.dog.dogName}, {this.props.user.dog.dogAge}</li>
+              <li>{this.props.user.city}, {this.props.user.regionName}</li>
             </ul>
 
             <p className="about-bio">

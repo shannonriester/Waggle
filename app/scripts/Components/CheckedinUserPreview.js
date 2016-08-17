@@ -2,15 +2,21 @@ import React from 'react';
 
 export default React.createClass({
   render: function() {
-    console.log(this.props.user);
-    // let user = this.props.user.filter((currUser, i, arr) => {
-    //   console.log(currUser.get('usersCheckedin'));
-    //   return currUser.get('usersCheckedin');
-    // });
-    // console.log(user);
+    console.log('checkedinModels ', this.props.checkedinModels);
+
+    let checkedinPreview = this.props.checkedinModels.map((currItem, i, arr) => {
+      return (
+        <div key={i}>
+          <div className="checkedin-user-image"></div>
+          <h3>{currItem.attributes.userCheckedin}</h3>
+          <data>{currItem.attributes.shortTime}</data>
+        </div>
+      );
+    });
+    console.log(checkedinPreview);
     return (
       <li className="checkedin-user-preview-component">
-        <h3>{this.props.user}</h3>
+          {checkedinPreview}
       </li>
     );
   }
