@@ -20,16 +20,26 @@ const SessionModel = Backbone.Model.extend({
       dogAge: '',
     },
     query: 'park',
-    location: {
-      checkedin: false,
-      coordinates:[0,0],
-      city: '',
-      zipcode: '',
-      regionCode: '',
-      regionName: '',
-      ip: '',
-      country: '',
-    },
+    checkedin: false,
+    coordinates:[0,0],
+    city: '',
+    zipcode: '',
+    regionCode: '',
+    regionName: '',
+    ip: '',
+    country: '',
+    location: {},
+  },
+  updateUser: function() {
+    this.save(null,
+      { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/${this.get('userId')}`,
+        type: 'PUT',
+        success: (model, response) => {
+        console.log('UPDATED USER ', response);
+      }, error: (e) => {
+          console.log('updateProfile ERROR: ', e);
+      }
+    });
   },
   updateProfile: function(userName, userAge, dogName, dogAge, dogBreed, aboutInfo) {
     this.set('isEditing', false);
@@ -64,16 +74,18 @@ const SessionModel = Backbone.Model.extend({
       type: 'GET',
       url: `https://freegeoip.net/json/`,
       success: (response) => {
-        // console.log('location reponse', response);
+        console.log('location reponse', response);
         let coordinates = [response.latitude, response.longitude]
         this.set({
-          coordinates,
-          city: response.city,
-          zipcode: response.zip_code,
-          'regionCode': response.regionCode,
-          'regionName': response.regionName,
-          'country': response.country_name,
+            coordinates,
+            city: response.city,
+            zipcode: response.zip_code,
+            regionCode: response.region_code,
+            regionName: response.region_name,
+            country: response.country_name,
+            ip: response.ip,
         });
+        this.updateUser();
         console.log('session in the geoLocation ', this);
       },
       error: (e) => {
@@ -89,7 +101,10 @@ const SessionModel = Backbone.Model.extend({
         authtoken: response._kmd.authtoken,
         profile: response.profile,
         dog: response.dog,
-        location: response.location,
+        checkedin: false,
+        coordinates:[0,0],
+        city: response.city,
+        // location: response.location,
       };
     }
   },

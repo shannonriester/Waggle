@@ -22,7 +22,7 @@ export default React.createClass({
     store.session.set('isEditing', false);
   },
   updateState: function() {
-    console.log(store.session.toJSON());
+    // console.log(store.session.toJSON());
     this.setState({session: store.session.toJSON()});
     this.setState({editing: store.session.get('isEditing')});
     // console.log('updateState state', this.state.editing);
@@ -49,7 +49,7 @@ export default React.createClass({
             <ul className="ul-about-data">
               <li>{this.state.session.profile.usersName} {this.props.user.profile.usersAge}</li>
               <li>{this.props.user.dog.dogName} {this.props.user.dog.dogAge}</li>
-              <li>Austin, 3 miles away</li>
+              <li>{this.props.user.city}</li>
             </ul>
 
             <p className="about-bio">
