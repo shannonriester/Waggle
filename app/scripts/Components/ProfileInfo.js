@@ -7,18 +7,35 @@ export default React.createClass({
     return {
       session: store.session.toJSON(),
       editing: store.session.get('isEditing'),
+      // file: '',
+      imgSrc: [],
     }
   },
   saveEdits: function(e) {
     e.preventDefault();
+    let newProfilePic = this.state.file;
+    // console.log(newProfilePic);
     let newUserName = this.refs.userInfoName.value;
     let newUserAge = this.refs.userInfoAge.value;
     let newDogName = this.refs.dogInfoName.value;
     let newDogAge = this.refs.dogInfoAge.value;
     let newDogBreed = this.refs.dogInfoBreed.value;
     let newAboutInfo = this.refs.aboutInfo.value;
-    store.session.updateProfile(newUserName, newUserAge, newDogName, newDogAge, newDogBreed, newAboutInfo);
+    store.session.updateProfile(newProfilePic, newUserName, newUserAge, newDogName, newDogAge, newDogBreed, newAboutInfo);
     store.session.set('isEditing', false);
+  },
+  handleImgChange: function(e) {
+    e.preventDefault();
+    let file = this.refs.file.files[0];
+    let reader = new FileReader();
+    let url = reader.readAsDataURL(file);
+
+   reader.onloadend = function (e) {
+      this.setState({
+          imgSrc: [reader.result]
+      })
+    }.bind(this);
+      // reader.readAsDataURL(file);
   },
   updateState: function() {
     this.setState({session: store.session.toJSON()});
@@ -26,8 +43,9 @@ export default React.createClass({
   },
   componentWillMount: function() {
     console.log(store.session.get('zipcode'));
-    // if (store.session.get('zipcode'));
-    // store.session.updateUser();
+    if (store.session.get('zipcode')) {
+      store.session.updateUser();
+    }
   },
   componentDidMount: function() {
     // console.log('componentDidMount state', this.state.editing);
@@ -42,13 +60,18 @@ export default React.createClass({
   render: function() {
     let content;
     // console.log(this.props.user.profile.images[0]);
+
+    // let url = `${this.props.user.profile.profilePic}`;
     let url = `${this.props.user.profile.images[0]}`;
     let styles = {backgroundImage: 'url(' + url + ')'};
+
     if (!this.state.editing) {
       content =(
         <div>
           <form className="profile-about-data">
+
             <figure className="profile-pic" style={styles}></figure>
+
             <ul className="ul-about-data">
               <li>{this.state.session.profile.usersName}, {this.props.user.profile.usersAge}</li>
               <li>{this.props.user.dog.dogName}, {this.props.user.dog.dogAge}, {this.props.user.dog.breed}</li>
@@ -62,12 +85,34 @@ export default React.createClass({
         </div>
       );
     } else if (this.state.editing) {
+
+        // let imagePreviewUrl;
+        console.log(this.state.imgSrc);
+        // let preview = null;
+        // if (this.state.imagePreviewUrl) {
+        //     preview = (<img src={this.state.imagePreviewUrl} />);
+        // } else {
+        //     preview = (<p className="previewText">Please select an Image for Preview</p>);
+        // }
+
+
         content = (
           <div className="profile-info-component">
+          <form  className="profile-image-form" onSubmit={this.handleImgChange}>
+            <input
+              type="file"
+              name="user[profilePic]"
+              ref="file"
+              accept="image/*"
+              onChange={this.handleImgChange} />
+            </form>
+
             <form className="profile-about-data" onSubmit={this.saveEdits}>
+            <figure className="profile-pic" style={styles}></figure>
+            <div>
 
-            <figure className="profile-pic"></figure>
-
+            </div>
+            <img src={this.state.imgSrc} />
 
               <ul className="ul-about-data">
                 <li>

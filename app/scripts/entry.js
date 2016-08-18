@@ -27,11 +27,8 @@ $(document).ajaxSend(function(e, xhrAjax, jqueryAjax) {
 
 if (!localStorage.authtoken) {
   browserHistory.push('/');
-  // console.log(store.session.apiGeoLocation());
-
 } else {
   store.session.retrieve();
-  // console.log(store.session.apiGeoLocation());
 }
 store.session.apiGeoLocation();
 

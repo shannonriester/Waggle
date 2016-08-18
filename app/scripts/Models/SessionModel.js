@@ -9,6 +9,7 @@ const SessionModel = Backbone.Model.extend({
     isEditing: false,
     profile: {
       usersName: '',
+      profilePic: {},
       images: ['/assets/default_dog_large.png',],
       usersAge: '',
       bio: '',
@@ -40,10 +41,10 @@ const SessionModel = Backbone.Model.extend({
       }
     });
   },
-  updateProfile: function(userName, userAge, dogName, dogAge, dogBreed, aboutInfo) {
+  updateProfile: function(profilePic, userName, userAge, dogName, dogAge, dogBreed, aboutInfo) {
     this.set('isEditing', false);
     this.save(
-      {profile: {usersName:userName, usersAge:userAge, bio:aboutInfo},
+      {profile: {profilePic:profilePic, usersName:userName, usersAge:userAge, bio:aboutInfo, images:this.get('profile').images},
       dog:{dogName:dogName, breed:dogBreed, dogAge:dogAge}},
       { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/${this.get('userId')}`,
         type: 'PUT',
@@ -149,13 +150,13 @@ const SessionModel = Backbone.Model.extend({
       },
     });
   },
-  logout: function(){
+  logout: function(query){
     this.save(null,
       { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/_logout`,
         success: (model, response) => {
           model.clear();
           localStorage.removeItem('authtoken');
-          this.set('query', 'park');
+          this.set('query', query);
           // this.trigger('change update');
 
           console.log('USER LOGGED OUT!');

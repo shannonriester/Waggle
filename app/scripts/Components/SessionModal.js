@@ -8,8 +8,8 @@ export default React.createClass({
   login: function(e) {
     e.preventDefault();
     let username = this.refs.username.value;
-    username.toLowerCase();
     let password = this.refs.password.value;
+    username.toLowerCase();
 
     store.session.login(username, password);
 

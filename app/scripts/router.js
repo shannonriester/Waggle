@@ -8,6 +8,7 @@ import ResultsPage from './Pages/ResultsPage';
 import PlaceItemPage from './Pages/PlaceItemPage';
 import ProfilePage from './Pages/ProfilePage';
 import EditProfilePage from './Pages/ProfilePage';
+import SettingsPage from './Pages/SettingsPage';
 
 const router = (
   <Router history={browserHistory}>
@@ -19,8 +20,9 @@ const router = (
     <Route path="search" component={ResultsPage} />
     <Route path="places/:placeId" component={PlaceItemPage}/>
     <Route path="user/:userId" component={ProfilePage} >
-      <Route path="/edit" component={EditProfilePage} />
+      <Route path="edit" component={ProfilePage} />
     </Route>
+    <Route path="settings" component={SettingsPage} />
   </Router>
 );
 

@@ -27,9 +27,12 @@ export default React.createClass({
       browserHistory.push('/');
     } else {
       if (this.state.city) {
-        store.placesCollection.getResults(this.state.city, this.state.coordinates, this.state.query);
+        console.log(store.session.get('query'));
+        browserHistory.push({pathname:`/search/`, query:{category: store.session.get('query')} });
+        store.placesCollection.getResults(this.state.city, this.state.coordinates, store.session.get('query'));
       } else {
         store.session.once('change:city', () => {
+            browserHistory.push({pathname:`/search/`, query:{category: store.session.get('query')} });
             store.placesCollection.getResults(store.session.get('city'), store.session.get('coordinates'), this.state.query || store.session.get('query'));
           });
       }

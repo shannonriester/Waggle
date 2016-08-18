@@ -16,7 +16,7 @@ export default React.createClass({
     store.session.set('isEditing', true);
   },
   gotToSettings: function() {
-    // browserHistory.push('/settings')
+    browserHistory.push('settings');
   },
   updateState: function() {
     this.setState({session: store.session.toJSON()});
@@ -55,10 +55,8 @@ export default React.createClass({
     return (
       <div className="profile-component">
         <Nav />
-
         <header className="profile-header">
           {sessionNav}
-
           {profileInfo}
 
           <div className="like-user">

@@ -10,7 +10,9 @@ export default React.createClass({
     }
   },
   logout: function() {
-    store.session.logout();
+    let prevQuery = store.session.get('query');
+    store.session.logout(prevQuery);
+    localStorage.removeItem('authtoken');
     browserHistory.push('/');
     //the logout button should EVENTUALLY be moved to the settings part on the user's profile (once you make it)
   },
