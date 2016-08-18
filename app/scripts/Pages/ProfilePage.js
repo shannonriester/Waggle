@@ -4,13 +4,16 @@ import { browserHistory } from 'react-router';
 import store from '../store';
 import Nav from '../Components/Nav';
 import ProfileInfo from '../Components/ProfileInfo';
+import UserRecentPlaces from '../Components/UserRecentPlaces';
 
 export default React.createClass({
   getInitialState: function() {
       return {
         session: store.session.toJSON(),
         user: store.userCollection.toJSON(),
-        editProfile: false,
+        chechinCollection: store.checkinCollection.toJSON(),
+        state: "viewing",
+        recentPlaces: [],
       }
   },
   editProfile: function() {
@@ -20,25 +23,32 @@ export default React.createClass({
     browserHistory.push('settings');
   },
   updateState: function() {
+    // console.log('change detected');
+    // console.log(store.userCollection.toJSON());
     this.setState({
       session: store.session.toJSON(),
       users: store.userCollection.toJSON(),
+      checkinCollection: store.checkinCollection.toJSON(),
     });
-    
+    store.userCollection.fetch();
   },
   componentWillMount: function() {
     store.userCollection.fetch();
+    store.checkinCollection.fetch();
 
-    store.userCollection.on('change update', this.updateState);
     store.session.on('change', this.updateState);
-    // console.log(store.session.apiGeoLocation());
+    store.userCollection.once('change update', this.updateState);
+    store.checkinCollection.once('change update', this.updateState);
   },
   componentWillUnmount: function() {
     store.session.off('change', this.updateState);
     store.userCollection.off('change update', this.updateState);
+    store.checkinCollection.off('change update', this.updateState);
   },
   render: function() {
     let sessionNav;
+    let userProfileInfo;
+    let userRecentPlaces;
     if (this.state.session.username === this.props.params.userId) {
       sessionNav = (
         <ul className="nav-session">
@@ -52,20 +62,24 @@ export default React.createClass({
       );
     }
 
-    let userProfileInfo;
     if (this.state.users) {
-        let uiState;
-        if (this.state.editProfile) {
-          uiState="editing";
-        } else {
-          uiState="viewing";
-        }
         userProfileInfo = this.state.users.map((user, i, arr) => {
           if (this.props.params.userId === user.username) {
-            return (<ProfileInfo key={i} user={user} uiState={uiState}/>);
+              userProfileInfo = (<ProfileInfo key={i} user={user} updateSession={this.updateState} />);
+              return (userProfileInfo);
           }
         });
       }
+
+    if (this.state.checkinCollection) {
+      userRecentPlaces = this.state.checkinCollection.map((place, i, arr) => {
+        if (this.props.params.userId === place.userCheckedin) {
+          let recentPlaces = (<UserRecentPlaces key={i} place={place} updateSession={this.updateState} />);
+          // console.log(place);
+          return recentPlaces;
+        }
+      });
+    }
 
     return (
       <div className="profile-component">
@@ -73,19 +87,14 @@ export default React.createClass({
         <header className="profile-header">
           {sessionNav}
           {userProfileInfo}
-
-          <div className="like-user">
-            <button className="like-btn"><i className="icon-heart fa fa-heart-o" aria-hidden="true"></i></button>
-          </div>
+          <button className="like-btn"><i className="icon-heart fa fa-heart-o" aria-hidden="true"></i></button>
         </header>
 
-        <form className="profile-footer">
+        <footer className="profile-footer">
           <ul className="ul-recent-places">
-            <li>Barton Springs, 2 hours ago</li>
-            <li>Town Lake, 5 days ago</li>
-            <li>Random park, random time ago</li>
+            {userRecentPlaces}
           </ul>
-        </form>
+        </footer>
       </div>
     );
   }

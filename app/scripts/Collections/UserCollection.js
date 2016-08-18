@@ -9,6 +9,7 @@ const UserCollection = Backbone.Collection.extend({
     let userArr = this.where({username:username});
     return userArr;
   },
+  // fetchMatches: 
 });
 
 export default UserCollection;

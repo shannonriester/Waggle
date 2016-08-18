@@ -1,18 +1,26 @@
 #ToDo List
-- why can I see my data but no one else can???
-  - also, other user's data becomes mine...
-- logging out?!?!?
-- placeItemPage "can't read property .toJSON() of undefined..."
-  - only on the refresh
-  - why is it so slow??
-- checking in
-  -
-- updating user's location on the session model
-- 'liking' people
+- placeItemPage
+  - show session if they've already checked in
+  - setState for button
+
+- profilePage
+  - liking/matching users
+  - show recent checking history
+  - show current checkin?
+    - update user's location on the session model
+  - messaging?
+
+##Problems w/ Jess
+  - loading time AGAIN
+  - matched collection join table
+  - double check that checkinCollection/join table are working...?
+
 
 <Link to={`posts/${post._id}`}></Link>
 
 
-**Users that havn'et matched yet, cannot**
+**Users that haven't matched yet, cannot see where that user's recent checkedin history**
 
-waggle-on wag-along
+
+## fun puns
+ - waggle-on wag-along

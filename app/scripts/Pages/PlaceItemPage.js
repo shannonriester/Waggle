@@ -15,7 +15,9 @@ export default React.createClass({
       }
     },
     toggleCheckin: function() {
-      store.checkinCollection.toggleCheckin(store.session.get('username'), this.props.params.placeId);
+      let userModel = store.userCollection.findWhere({username: store.session.get('username')});
+      // console.log(userModel);
+      store.checkinCollection.toggleCheckin(store.session, userModel, this.props.params.placeId);
     },
     toggleCheckinList: function() {
       this.setState({checkinList: !this.state.checkinList});
@@ -40,7 +42,7 @@ export default React.createClass({
           checkedinModels: store.checkinCollection.where({place:this.props.params.placeId}),
         });
       } else {
-        store.placesCollection.getYelpResult(this.props.params.placeId);
+        store.placesCollection.getYelpResult(this.props.params.placeId, store.session.get('city'));
       }
       store.checkinCollection.on('change update', this.updateState);
       store.placesCollection.on('change update', this.updateState);

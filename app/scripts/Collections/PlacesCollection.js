@@ -18,15 +18,10 @@ const PlacesCollection = Backbone.Collection.extend({
           signatureMethod : "HMAC-SHA1",
       },
     };
-
-    // let latitude = location[0];
-    // let longituge = location[1];
-    // let cll = (latitude + ',' + longituge);
     let terms = 'dogs allowed, ' + query;
     let near = city;
     let sort = 2;
     // let radiusFilter = ;
-
     let accessor = {
         consumerSecret : auth.consumerSecret,
         tokenSecret : auth.accessTokenSecret,
@@ -51,7 +46,6 @@ const PlacesCollection = Backbone.Collection.extend({
 
     OAuth.setTimestampAndNonce(message);
     OAuth.SignatureMethod.sign(message, accessor);
-
     let parameterMap = OAuth.getParameterMap(message.parameters);
 
     $.ajax({
@@ -64,7 +58,6 @@ const PlacesCollection = Backbone.Collection.extend({
     .then((places) => {
       // console.log('YELP DATA: ', places);
       let placeList =  places.businesses.map((place) => {
-        // console.log(place);
         return {
           name: place.name,
           yelpRating: place.rating,
@@ -90,7 +83,7 @@ const PlacesCollection = Backbone.Collection.extend({
     });
 
   },
-  getYelpResult: function(yelpID) {
+  getYelpResult: function(yelpID, city) {
     this.reset();
     let auth = {
       consumerKey : "VNBVIZYVwtO4IZKuRQ4Jeg",
@@ -102,25 +95,14 @@ const PlacesCollection = Backbone.Collection.extend({
       },
     };
 
-    let latitude = location[0];
-    let longituge = location[1];
-    let cll = (latitude + ',' + longituge);
-
-    // let terms = 'dogs allowed, ' + query;
-    let near = 'Austin';
-    // let sort = 2;
-    // let radiusFilter = ;
-
+    let near = city;
     let accessor = {
         consumerSecret : auth.consumerSecret,
         tokenSecret : auth.accessTokenSecret,
     };
 
     let parameters = [];
-    // parameters.push(['term', terms]);
-    // parameters.push(['sort', sort]);
     parameters.push(['location', near]);
-    // parameters.push(['radius_filter', radiusFilter]);
     parameters.push(['callback', 'cb']);
     parameters.push(['oauth_consumer_key', auth.consumerKey]);
     parameters.push(['oauth_consumer_secret', auth.consumerSecret]);

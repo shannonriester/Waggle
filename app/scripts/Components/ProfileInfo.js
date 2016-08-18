@@ -5,8 +5,8 @@ import store from '../store';
 export default React.createClass({
   getInitialState: function() {
     return {
-      session: store.session.toJSON(),
-      users: store.userCollection.toJSON(),
+      // session: store.session.toJSON(),
+      // users: store.userCollection.toJSON(),
       editing: store.session.get('isEditing'),
       imgSrc: [],
     }
@@ -21,8 +21,13 @@ export default React.createClass({
     let newDogAge = this.refs.dogInfoAge.value;
     let newDogBreed = this.refs.dogInfoBreed.value;
     let newAboutInfo = this.refs.aboutInfo.value;
+
+
     store.session.updateProfile(newProfilePic, newUserName, newUserAge, newDogName, newDogAge, newDogBreed, newAboutInfo);
     store.session.set('isEditing', false);
+    // console.log(this);
+    this.props.updateSession();
+
   },
   handleImgChange: function(e) {
     e.preventDefault();
@@ -38,31 +43,38 @@ export default React.createClass({
       // reader.readAsDataURL(file);
   },
   updateState: function() {
-    this.setState({session: store.session.toJSON()});
-    this.setState({users: store.userCollection.toJSON()});
+    // this.setState({session: store.session.toJSON()});
+  //   this.setState({users: store.userCollection.toJSON()});
     this.setState({editing: store.session.get('isEditing')});
   },
   componentWillMount: function() {
     // console.log(store.session.get('zipcode'));
     // if (store.session.get('zipcode')) {
-      store.session.updateUser();
+      // store.session.updateUser();
     // }
   },
   componentDidMount: function() {
     this.setState({session: store.session.toJSON()});
-    this.setState({users: store.userCollection.toJSON()});
-    this.setState({editing: store.session.get('isEditing')});
+    // this.setState({users: store.userCollection.toJSON()});
+    // this.setState({editing: store.session.get('isEditing')});
 
-    store.session.on('change update', this.updateState);
+    store.session.on('change', this.updateState);
+  },
+  componentWillReceiveProps: function(newProps) {
+    // console.log(newProps);
   },
   componentWillUnmount: function() {
     store.session.off('change update', this.updateState);
-    store.userCollection.off('change update', this.updateState);
+    // store.userCollection.off('change update', this.updateState);
   },
   render: function() {
     let content;
-    // console.log(this.props.user);
 
+    // console.log(this);
+
+    // if (this.state.session === )
+
+    // console.log(this.props.user);
     // let url = `${this.props.user.profile.profilePic}`;
     let url = `${this.props.user.profile.images[0]}`;
     let styles = {backgroundImage: 'url(' + url + ')'};

@@ -7,13 +7,13 @@ const SessionModel = Backbone.Model.extend({
   defaults: {
     username: '',
     isEditing: false,
+    recentPlaces: [{},],
     profile: {
       usersName: '',
       profilePic: {},
       images: ['/assets/default_dog_large.png',],
       usersAge: '',
       bio: '',
-      recentPlaces: [{},],
     },
     dog: {
       dogName: '',
@@ -30,17 +30,17 @@ const SessionModel = Backbone.Model.extend({
     ip: '',
     country: '',
   },
-  updateUser: function() {
-    this.save(null,
-      { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/${this.get('userId')}`,
-        type: 'PUT',
-        success: (model, response) => {
-        console.log('UPDATED USER ', response);
-      }, error: (e) => {
-          console.log('SESSION.UPDATEUSER ERROR: ', e);
-      }
-    });
-  },
+  // updateUser: function() {
+  //   this.save(null,
+  //     { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/${this.get('userId')}`,
+  //       type: 'PUT',
+  //       success: (model, response) => {
+  //       console.log('UPDATED USER ', response);
+  //     }, error: (e) => {
+  //         console.log('SESSION.UPDATEUSER ERROR: ', e);
+  //     }
+  //   });
+  // },
   updateProfile: function(profilePic, userName, userAge, dogName, dogAge, dogBreed, aboutInfo) {
     this.set('isEditing', false);
     this.save(
@@ -51,6 +51,7 @@ const SessionModel = Backbone.Model.extend({
         success: (model, response) => {
         console.log('USER UPDATED PROFILE ', response);
         this.trigger('change');
+
       }, error: (e) => {
           console.log('updateProfile ERROR: ', e);
       }
@@ -109,6 +110,7 @@ const SessionModel = Backbone.Model.extend({
         regionName: response.regionName,
         country: response.countryName,
         ip: response.ip,
+        recentPlaces: response.recentPlaces,
       };
     }
   },
