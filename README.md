@@ -75,6 +75,7 @@ allow message of matches
 ##APIs and other Operating Systems
 1. [RandomUser Generator](https://randomuser.me/)
 <!-- 2. Dog-breed API (for specifying breed) -->
+2. [FreeGeoIP](https://freegeoip.net/?q=70.112.11.58)
 3. [Google Maps API](https://developers.google.com/maps/documentation/javascript/)
 4. Backend as a Service (BaaS) [Kinvey](https://www.kinvey.com/)
 5. [Mozilla Drag & Drop API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API)
@@ -168,7 +169,7 @@ allow message of matches
   - Design/wire-framing inspiration
 3. [Tinder](https://www.gotinder.com/)
   - Inspired heavily from Tinder's mobile design
-  
+
 ## Installation
   - Clone this repo (or fork then clone, if you prefer)
   - Run `npm install`

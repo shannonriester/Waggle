@@ -13,7 +13,7 @@ export default React.createClass({
   },
   saveEdits: function(e) {
     e.preventDefault();
-    let newProfilePic = this.state.file;
+    let newProfilePic = this.state.imgSrc;
     // console.log(newProfilePic);
     let newUserName = this.refs.userInfoName.value;
     let newUserAge = this.refs.userInfoAge.value;
@@ -44,9 +44,9 @@ export default React.createClass({
   },
   componentWillMount: function() {
     // console.log(store.session.get('zipcode'));
-    if (store.session.get('zipcode')) {
+    // if (store.session.get('zipcode')) {
       store.session.updateUser();
-    }
+    // }
   },
   componentDidMount: function() {
     this.setState({session: store.session.toJSON()});
@@ -61,7 +61,7 @@ export default React.createClass({
   },
   render: function() {
     let content;
-    console.log(this.props.user);
+    // console.log(this.props.user);
 
     // let url = `${this.props.user.profile.profilePic}`;
     let url = `${this.props.user.profile.images[0]}`;

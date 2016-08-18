@@ -50,6 +50,7 @@ const SessionModel = Backbone.Model.extend({
         type: 'PUT',
         success: (model, response) => {
         console.log('USER UPDATED PROFILE ', response);
+        this.trigger('change');
       }, error: (e) => {
           console.log('updateProfile ERROR: ', e);
       }
@@ -74,7 +75,7 @@ const SessionModel = Backbone.Model.extend({
       type: 'GET',
       url: `https://freegeoip.net/json/`,
       success: (response) => {
-        console.log('location reponse', response);
+        // console.log('location reponse', response);
         let coordinates = [response.latitude, response.longitude]
         this.set({
             coordinates,
@@ -86,7 +87,7 @@ const SessionModel = Backbone.Model.extend({
             ip: response.ip,
         });
         // this.updateUser();
-        console.log('session in the geoLocation ', this);
+        // console.log('session in the geoLocation ', this);
       },
       error: (e) => {
         console.log('apiGeoLocation ERROR: ', e);

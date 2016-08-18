@@ -23,18 +23,26 @@ export default Backbone.Collection.extend({
       //aweekago.setDate(aweekago.getDate() -7)
         //compare Date objects any time you manipulate a date, you need to make a new date
 
-    // console.log(username);
-    // console.log(placeId);
-    // session.set({'checkedin', true});
-    this.create(
-      {place:placeId, userCheckedin: username},
-      {success: (model, response) => {
-        console.log('YOU CHECKED IN!');
-        console.log('model', model);
-        console.log('response', response);
-      }, error: function(model, response) {
-        throw new Error('FAILED TO VOTE');
-      }
-    });
+
+    let alreadyCheckedin = this.where({userCheckedin: username, place:placeId});
+    // console.log(alreadyCheckedin[0]);
+
+    if (!alreadyCheckedin[0]) {
+      console.log('wagglr not in the collection...adding now...');
+      this.create(
+        {place:placeId, userCheckedin: username},
+        {success: (model, response) => {
+          console.log('YOU CHECKED IN!');
+          console.log('model', model);
+          console.log('response', response);
+        }, error: function(model, response) {
+          throw new Error('FAILED TO CHECKIN');
+        }
+      });
+    } else {
+      let checkedinModel = this.get(alreadyCheckedin[0].attributes._id)
+      checkedinModel.destroy();
+      console.log('USER CHECKEDOUT');
+    }
   },
 });

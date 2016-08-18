@@ -9,7 +9,7 @@ export default React.createClass({
   getInitialState: function() {
       return {
         session: store.session.toJSON(),
-        user: store.userCollection.findUser(this.props.params.userId),
+        user: store.userCollection.toJSON(),
         editProfile: false,
       }
   },
@@ -24,6 +24,7 @@ export default React.createClass({
       session: store.session.toJSON(),
       users: store.userCollection.toJSON(),
     });
+    
   },
   componentWillMount: function() {
     store.userCollection.fetch();
@@ -31,10 +32,6 @@ export default React.createClass({
     store.userCollection.on('change update', this.updateState);
     store.session.on('change', this.updateState);
     // console.log(store.session.apiGeoLocation());
-  },
-  componentDidMount: function() {
-    let user = store.userCollection.findUser(this.props.params.userId);
-    // this.setState({user:user});
   },
   componentWillUnmount: function() {
     store.session.off('change', this.updateState);
