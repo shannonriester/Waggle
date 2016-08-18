@@ -15,7 +15,7 @@ export default React.createClass({
     let checkedinPreview = this.props.checkedinModels.map((currItem, i, arr) => {
 
 
-      let wagglrUsers = store.userCollection.findCheckedinUser(currItem.attributes.userCheckedin);
+      let wagglrUsers = store.userCollection.findUser(currItem.attributes.userCheckedin);
       // console.log(wagglrUsers);
       let wagglr;
       wagglrUsers.forEach((wagglr) => {

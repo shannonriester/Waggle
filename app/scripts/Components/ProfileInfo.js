@@ -6,8 +6,8 @@ export default React.createClass({
   getInitialState: function() {
     return {
       session: store.session.toJSON(),
+      users: store.userCollection.toJSON(),
       editing: store.session.get('isEditing'),
-      // file: '',
       imgSrc: [],
     }
   },
@@ -39,27 +39,29 @@ export default React.createClass({
   },
   updateState: function() {
     this.setState({session: store.session.toJSON()});
+    this.setState({users: store.userCollection.toJSON()});
     this.setState({editing: store.session.get('isEditing')});
   },
   componentWillMount: function() {
-    console.log(store.session.get('zipcode'));
+    // console.log(store.session.get('zipcode'));
     if (store.session.get('zipcode')) {
       store.session.updateUser();
     }
   },
   componentDidMount: function() {
-    // console.log('componentDidMount state', this.state.editing);
     this.setState({session: store.session.toJSON()});
+    this.setState({users: store.userCollection.toJSON()});
     this.setState({editing: store.session.get('isEditing')});
 
     store.session.on('change update', this.updateState);
   },
   componentWillUnmount: function() {
     store.session.off('change update', this.updateState);
+    store.userCollection.off('change update', this.updateState);
   },
   render: function() {
     let content;
-    // console.log(this.props.user.profile.images[0]);
+    console.log(this.props.user);
 
     // let url = `${this.props.user.profile.profilePic}`;
     let url = `${this.props.user.profile.images[0]}`;
@@ -73,7 +75,7 @@ export default React.createClass({
             <figure className="profile-pic" style={styles}></figure>
 
             <ul className="ul-about-data">
-              <li>{this.state.session.profile.usersName}, {this.props.user.profile.usersAge}</li>
+              <li>{this.props.user.profile.usersName}, {this.props.user.profile.usersAge}</li>
               <li>{this.props.user.dog.dogName}, {this.props.user.dog.dogAge}, {this.props.user.dog.breed}</li>
               <li>{this.props.user.city}, {this.props.user.regionName}</li>
             </ul>
@@ -85,16 +87,6 @@ export default React.createClass({
         </div>
       );
     } else if (this.state.editing) {
-
-        // let imagePreviewUrl;
-        console.log(this.state.imgSrc);
-        // let preview = null;
-        // if (this.state.imagePreviewUrl) {
-        //     preview = (<img src={this.state.imagePreviewUrl} />);
-        // } else {
-        //     preview = (<p className="previewText">Please select an Image for Preview</p>);
-        // }
-
 
         content = (
           <div className="profile-info-component">

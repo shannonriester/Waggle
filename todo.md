@@ -1,6 +1,6 @@
 #ToDo List
-- FOUND BUG WHEN LOGIN after LOGOUT and the rerending of the search is undefined (see router)
 - why can I see my data but no one else can???
+  - also, other user's data becomes mine...
 - logging out?!?!?
 - placeItemPage "can't read property .toJSON() of undefined..."
   - only on the refresh
