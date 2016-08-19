@@ -6,7 +6,7 @@ import CheckinModel from '../Models/CheckinModel';
 export default Backbone.Collection.extend({
   model: CheckinModel,
   url: `https://baas.kinvey.com/appdata/kid_SkBnla5Y/CheckinCollection`,
-  toggleCheckin: function(session, userModel, placeId) {
+  toggleCheckin: function(session, userModel, placeId, checkout) {
 
     //ect entity creation time _kmd.ect on kinvey response
       //use this to find when they checked in
@@ -35,9 +35,14 @@ export default Backbone.Collection.extend({
           throw new Error('FAILED TO CHECKIN');
         }
       });
-    } else {
-      console.log('checkedinModel', alreadyCheckedin);
-      if ()
+    } else if (checkout)  {
+      console.log('checkedinModel', alreadyCheckedin[0].attributes._kmd.ect);
+      // let currTime = new Date();
+      // let currHour = currTime.getHours();
+      // let currMins = currTime.getMinutes();
+      // let thisTime = currHour + ':' + currMins;
+      // console.log(thisTime);
+      // if ()
       //get most recent checkin Date
       let checkedinModel = this.get(alreadyCheckedin[0].attributes._id)
       console.log(userModel.get('recentPlaces'));

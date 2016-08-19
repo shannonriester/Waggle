@@ -9,7 +9,7 @@ import ResultsList from '../Components/ResultsList';
 export default React.createClass({
   getInitialState: function() {
     return {
-      coordinates: store.session.get('coordinates'),
+      // coordinates: store.session.get('coordinates'),
       city: store.session.get('city'),
       query: store.session.get('query'),
       places: store.placesCollection.toJSON(),
@@ -18,7 +18,7 @@ export default React.createClass({
   updateState: function() {
       // console.log(store.session.toJSON());
       this.setState({city: store.session.get('city')});
-      this.setState({coordinates: store.session.get('coordinates')});
+      // this.setState({coordinates: store.session.get('coordinates')});
       this.setState({query: store.session.get('query')});
       this.setState({places: store.placesCollection.toJSON()});
   },
@@ -29,7 +29,7 @@ export default React.createClass({
       if (this.state.city) {
         console.log(store.session.get('query'));
         browserHistory.push({pathname:`/search/`, query:{category: store.session.get('query')} });
-        store.placesCollection.getResults(this.state.city, this.state.coordinates, store.session.get('query'));
+        store.placesCollection.getResults(this.state.city, store.session.get('query'));
       } else {
         store.session.once('change:city', () => {
             browserHistory.push({pathname:`/search/`, query:{category: store.session.get('query')} });

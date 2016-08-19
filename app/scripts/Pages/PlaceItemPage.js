@@ -9,15 +9,25 @@ export default React.createClass({
     getInitialState: function() {
       return {
         placeModel: {},
-        checkin: false,
+        // checkin: false,
         checkinList: null,
         checkedinModels: [],
+        intervalCheckout: false,
+        // interval: null,
       }
     },
     toggleCheckin: function() {
       let userModel = store.userCollection.findWhere({username: store.session.get('username')});
-      // console.log(userModel);
-      store.checkinCollection.toggleCheckin(store.session, userModel, this.props.params.placeId);
+      store.checkinCollection.toggleCheckin(store.session, userModel, this.props.params.placeId, this.state.intervalCheckout);
+
+      let interval = setTimeout(() => {
+        this.setState({intervalCheckout:!this.state.intervalCheckout});
+      // }, 1800000);
+      }, 5000);
+
+      this.setState({intervalCheckout:interval});
+
+      // this.setState({checkout:false});
     },
     toggleCheckinList: function() {
       this.setState({checkinList: !this.state.checkinList});
@@ -69,12 +79,15 @@ export default React.createClass({
             </ul>
           );
         }
-
+        let checkBtn = (<button className="checkin-btn" onClick={this.toggleCheckin}>Check in here!</button>);
+        if (this.state.intervalCheckout) {
+          checkBtn = (<button className="checkin-btn" onClick={this.toggleCheckin}>Checkout?</button>);
+        }
         content = (
           <div className="result-item-container" style={styles}>
             <div className="content-container">
               <h1>{placeItem.name}</h1>
-              <button className="checkin-btn" onClick={this.toggleCheckin}>Check in here!</button>
+              {checkBtn}
               <footer className="footer-users-checkedin">
                 <button className="users-checkedin-btn" onClick={this.toggleCheckinList}>Who's here?</button>
                 {checkedinList}

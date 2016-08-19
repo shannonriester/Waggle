@@ -6,8 +6,8 @@ import PlaceModel from '../Models/PlaceModel';
 
 const PlacesCollection = Backbone.Collection.extend({
   model: PlaceModel,
-  url: `https://api.foursquare.com/v2/venues/search/`,
-  getResults: function(city, coordinates, query){
+  url: `https://api.yelp.com/v2/search`,
+  getResults: function(city, query){
     this.reset();
     let auth = {
       consumerKey : "VNBVIZYVwtO4IZKuRQ4Jeg",
@@ -125,7 +125,7 @@ const PlacesCollection = Backbone.Collection.extend({
         'data' : parameterMap,
         'dataType' : 'jsonp',
         // 'jsonp': 'cb',
-        'jsonpCallback' : 'cb',
+        // 'jsonpCallback' : 'cb',
         'cache': true,
     })
     .then((place) => {
@@ -149,7 +149,7 @@ const PlacesCollection = Backbone.Collection.extend({
 
     })
     .fail(function(e) {
-      console.error('FAILED TO GET YELP DATA: ', e)
+      console.error('FAILED TO GET YELP DATA: ', arguments)
     });
   },
 
