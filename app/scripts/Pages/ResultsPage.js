@@ -43,7 +43,7 @@ export default React.createClass({
     if (!this.state.authtoken) {
       browserHistory.push('/');
     }
-    this.updateState()
+    // this.updateState()
     store.session.on('change', this.updateState);
     store.placesCollection.on('change update', this.updateState);
   },
@@ -61,7 +61,6 @@ export default React.createClass({
         <ul className="results-list">
           {resultsList}
         </ul>
-
       </div>
     );
   }

@@ -10,13 +10,11 @@ export default React.createClass({
     }
   },
   logout: function() {
-    console.log(this.state.authtoken);
     let prevQuery = store.session.get('query');
     store.session.logout(prevQuery);
     console.log(this.state.authtoken);
-    this.setState({authtoken:null})
-    // localStorage.removeItem('authtoken');
     // this.updateState();
+    this.setState({authtoken:null});
     if (!this.state.authtoken) {
       browserHistory.push('/');
     }
@@ -29,20 +27,25 @@ export default React.createClass({
     browserHistory.push({pathname:`/search/`, query:{category: store.session.get('query')} });
   },
   updateState: function() {
-    this.setState({authtoken: store.session.get('authtoken')});
+    this.setState({authtoken: localStorage.authtoken});
   },
   componentWillMount: function() {
-    // if (!this.state.authtoken) {
-    //   browserHistory.push('/');
-    // }
+    if (!this.state.authtoken) {
+      browserHistory.push('/');
+    }
   },
   componentDidMount: function() {
     store.session.on('change', this.updateState);
-    // localStorage.authtoken.on('change update', this.updateState);
+    console.log('component did mount auth', this.state.authtoken);
+    if (!this.state.authtoken) {
+      browserHistory.push('/');
+    }
+    console.log('component did mount auth', this.state.authtoken);
+    // this.updateState();
+    store.session.on('change', this.updateState);
   },
   componentWillUnmount: function() {
     store.session.off('change', this.updateState);
-    // localStorage.authtoken.off('change update', this.updateState);
   },
   render: function() {
     //potential icon <img className="nav-icon bone-icon" src="../../assets/bone.svg" alt="image of a cute dog-bone" role="button"/>
