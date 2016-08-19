@@ -322,6 +322,8 @@
     display: column;
     align-items: center;
     justify-content: center; }
+    .result-item-component .ulist-users-checkedin .userpreview-container h3 {
+      margin: 0; }
   .result-item-component .ulist-users-checkedin .checkedin-user-image {
     height: 5em;
     width: 5em;
@@ -337,11 +339,43 @@
   background-repeat: no-repeat;
   background-position-x: -15px; }
 
+.profile-footer {
+  display: flex;
+  width: 100vw; }
+  .profile-footer ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0; }
+  .profile-footer .user-recent-places-component {
+    list-style-type: none;
+    text-align: center;
+    width: 10em; }
+    .profile-footer .user-recent-places-component .recent-place-image {
+      height: 7em;
+      width: 7em;
+      background-size: cover;
+      background-repeat: no-repeat; }
+    .profile-footer .user-recent-places-component h3 {
+      margin: .5em 0 0 0;
+      width: 50%;
+      font-size: 20px; }
+
 body {
   margin: 0;
   font-family: sans-serif;
   font-weight: 100;
   color: #555;
   font-family: "Lato", sans-serif; }
+
+.link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+  text-decoration: none; }
 
 /*# sourceMappingURL=main.css.map */
