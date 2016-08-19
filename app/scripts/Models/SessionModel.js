@@ -30,17 +30,17 @@ const SessionModel = Backbone.Model.extend({
     ip: '',
     country: '',
   },
-  // updateUser: function() {
-  //   this.save(null,
-  //     { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/${this.get('userId')}`,
-  //       type: 'PUT',
-  //       success: (model, response) => {
-  //       console.log('UPDATED USER ', response);
-  //     }, error: (e) => {
-  //         console.log('SESSION.UPDATEUSER ERROR: ', e);
-  //     }
-  //   });
-  // },
+  updateUser: function() {
+    this.save(null,
+      { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/${this.get('userId')}`,
+        type: 'PUT',
+        success: (model, response) => {
+        console.log('UPDATED USER ', response);
+      }, error: (e) => {
+          console.log('SESSION.UPDATEUSER ERROR: ', e);
+      }
+    });
+  },
   updateProfile: function(profilePic, userName, userAge, dogName, dogAge, dogBreed, aboutInfo) {
     this.set('isEditing', false);
     this.save(
@@ -87,8 +87,8 @@ const SessionModel = Backbone.Model.extend({
             country: response.country_name,
             ip: response.ip,
         });
-        // this.updateUser();
-        // console.log('session in the geoLocation ', this);
+        this.updateUser();
+        console.log('session in the geoLocation ', this);
       },
       error: (e) => {
         console.log('apiGeoLocation ERROR: ', e);
@@ -123,7 +123,6 @@ const SessionModel = Backbone.Model.extend({
           localStorage.setItem('authtoken', response._kmd.authtoken);
           this.unset('password');
           this.trigger('change update');
-
           console.log('USER SIGNED IN', newUsername);
       },
        error: function(model, response) {
@@ -158,9 +157,11 @@ const SessionModel = Backbone.Model.extend({
       { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/_logout`,
         success: (model, response) => {
           model.clear();
-          localStorage.removeItem('authtoken');
+          // localStorage.removeItem('authtoken');
+          localStorage.clear();
+          // console.log(localStorage.au);
           this.set('query', query);
-          // this.trigger('change update');
+          this.trigger('change');
 
           console.log('USER LOGGED OUT!');
       },

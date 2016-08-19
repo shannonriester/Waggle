@@ -14,9 +14,10 @@ export default React.createClass({
 
       return (
         <div className="userpreview-container" key={i}>
-          <Link to={`/user/${currItem.attributes.userCheckedin}`}><figure className="profile-pic" style={styles}></figure></Link>
+          <Link className="link" to={`/user/${currItem.attributes.userCheckedin}`}><figure className="profile-pic" style={styles}></figure>
           <h3>{currItem.attributes.userCheckedin}</h3>
           <data>{currItem.attributes.shortTime}</data>
+          </Link>
         </div>
       );
     });

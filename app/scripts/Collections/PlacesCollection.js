@@ -8,6 +8,7 @@ const PlacesCollection = Backbone.Collection.extend({
   model: PlaceModel,
   url: `https://api.yelp.com/v2/search`,
   getResults: function(city, query){
+    // console.log(query);
     this.reset();
     let auth = {
       consumerKey : "VNBVIZYVwtO4IZKuRQ4Jeg",
@@ -48,11 +49,12 @@ const PlacesCollection = Backbone.Collection.extend({
     OAuth.SignatureMethod.sign(message, accessor);
     let parameterMap = OAuth.getParameterMap(message.parameters);
 
+    console.log(terms);
     $.ajax({
         'url' : message.action,
         'data' : parameterMap,
         'dataType' : 'jsonp',
-        'jsonpCallback' : 'cb',
+        // 'jsonpCallback' : 'cb',
         'cache': true,
     })
     .then((places) => {

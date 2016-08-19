@@ -3,7 +3,7 @@
 @import 'SessionModal.scss';
 @import 'Header.scss';
 @import 'ResultsPage.scss';
-@import 'ResultItemPage.scss';
+@import 'PlaceItemPage.scss';
 @import 'ProfilePage.scss';
 
 
@@ -13,4 +13,13 @@ body {
   font-weight: 100;
   color: $font-color;
   font-family: $font-family;
+}
+
+.link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: $font-color;
+  text-decoration: none;
 }

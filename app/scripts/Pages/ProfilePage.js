@@ -15,7 +15,6 @@ export default React.createClass({
         checkinCollection: [],
         placesCollection: [],
         state: "viewing",
-        // checkedinPlaces: [],
         recentPlaces: [],
       }
   },
@@ -25,14 +24,11 @@ export default React.createClass({
     if (this.state.checkinCollection) {
       let recentPlaces = this.state.checkinCollection.filter((curr,i,arr) => {
         if (this.props.params.userId === curr.userCheckedin) {
-          // console.log(curr.place);
-          // console.log(store.placesCollection.where(curr.place));
             store.placesCollection.getYelpResult(curr.place, store.session.get('city'));
           return true;
 
         }
       });
-      // console.log(recentPlaces);
       this.setState({'recentPlaces': recentPlaces});
     }
   },
@@ -43,8 +39,6 @@ export default React.createClass({
     browserHistory.push('settings');
   },
   updateState: function() {
-    // console.log('change detected');
-    // console.log(store.userCollection.toJSON());
     this.setState({
       session: store.session.toJSON(),
       user: store.userCollection.toJSON(),
@@ -53,18 +47,11 @@ export default React.createClass({
     });
   },
   componentDidMount: function() {
-    // store.placesCollection.reset();
-    // store.checkinCollection.reset();
     this.fetchPlaces();
     store.userCollection.fetch();
-    // store.userCollection.fetch();
     store.checkinCollection.fetch();
   },
   componentWillMount: function() {
-    // store.placesCollection.getResults(,store.session.get('city'));
-    // store.placesCollection.reset();
-    // store.checkinCollection.reset();
-
     store.session.on('change', this.updateState);
     store.userCollection.once('change update', this.updateState);
     store.checkinCollection.on('change update', this.updateState);
@@ -94,28 +81,23 @@ export default React.createClass({
         </ul>
       );
     }
-        userProfileInfo = this.state.user.map((user, i, arr) => {
-          if (this.props.params.userId === user.username) {
-              userProfileInfo = (<ProfileInfo key={i} user={user} updateSession={this.updateState} />);
-              return (userProfileInfo);
-          }
-        });
+    
+      userProfileInfo = this.state.user.map((user, i, arr) => {
+        if (this.props.params.userId === user.username) {
+            userProfileInfo = (<ProfileInfo key={i} user={user} updateSession={this.updateState} />);
+            return (userProfileInfo);
+        }
+      });
 
-      console.log('placesCollection', this.state.placesCollection);
-      // let fixedPlacesCollection = _.uniq(this.state.placesCollection)
       let placeIDArr = this.state.recentPlaces.map((place, i, arr) => {
-        console.log(place);
-        return place.place
-      })
-      // console.log(placeIDArr);
+        return place.place;
+      });
 
       let fixedPlaces = this.state.placesCollection.filter((place) => {
-        // console.log(place.yelpID);
         if (placeIDArr.indexOf(place.yelpID) > -1) {
-          return true
+          return true;
         }
-      })
-
+      });
       userRecentPlaces = fixedPlaces.map((place, i, arr) => {
           return (<UserRecentPlaces key={i} place={place} updateSession={this.updateState} />);
       });

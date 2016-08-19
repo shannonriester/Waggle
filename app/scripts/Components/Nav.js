@@ -6,14 +6,20 @@ import store from '../store';
 export default React.createClass({
   getInitialState: function() {
     return {
-      authtoken: localStorage.getItem('authtoken'),
+      authtoken: localStorage.authtoken,
     }
   },
   logout: function() {
+    console.log(this.state.authtoken);
     let prevQuery = store.session.get('query');
     store.session.logout(prevQuery);
-    localStorage.removeItem('authtoken');
-    browserHistory.push('/');
+    console.log(this.state.authtoken);
+    this.setState({authtoken:null})
+    // localStorage.removeItem('authtoken');
+    // this.updateState();
+    if (!this.state.authtoken) {
+      browserHistory.push('/');
+    }
     //the logout button should EVENTUALLY be moved to the settings part on the user's profile (once you make it)
   },
   userProfile: function() {
@@ -25,11 +31,18 @@ export default React.createClass({
   updateState: function() {
     this.setState({authtoken: store.session.get('authtoken')});
   },
+  componentWillMount: function() {
+    // if (!this.state.authtoken) {
+    //   browserHistory.push('/');
+    // }
+  },
   componentDidMount: function() {
-    store.session.on('change update', this.updateState);
+    store.session.on('change', this.updateState);
+    // localStorage.authtoken.on('change update', this.updateState);
   },
   componentWillUnmount: function() {
-    store.session.off('change update', this.updateState);
+    store.session.off('change', this.updateState);
+    // localStorage.authtoken.off('change update', this.updateState);
   },
   render: function() {
     //potential icon <img className="nav-icon bone-icon" src="../../assets/bone.svg" alt="image of a cute dog-bone" role="button"/>

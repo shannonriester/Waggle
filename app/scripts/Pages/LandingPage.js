@@ -14,7 +14,8 @@ export default React.createClass({
       hero: true,
       modal: false,
       content: 'login',
-      location: store.session.get('location'),
+      city: '',
+      authtoken: store.session.get('authtoken'),
     }
   },
   pauseSlider: function() {
@@ -36,26 +37,30 @@ export default React.createClass({
     this.setState({content:content})
   },
   updateState: function() {
-    if (localStorage.authtoken) {
-      store.session.set('location', this.state.location);
-      browserHistory.push({pathname:`search/`, query:{category: store.session.get('query')} });
+    this.setState({authtoken:localStorage.getItem('authtoken')});
+    this.setState({city:store.session.get('city')});
+    console.log(this.state.authtoken);
+    if (this.state.authtoken) {
+      browserHistory.push({pathname:`/search/`, query:{category: store.session.get('query')} });
     }
   },
   componentWillMount: function() {
-    if (localStorage.authtoken) {
+    if (this.state.authtoken) {
       store.session.retrieve();
-      store.session.set('location', this.state.location);
-      browserHistory.push({pathname:`search/`, query:{category: store.session.get('query')} });
+      store.session.set('city', store.session.get('city'));
+      browserHistory.push({pathname:`/search/`, query:{category: store.session.get('query')} });
     }
   },
   componentDidMount: function() {
+    // if (!this.state.authtoken) {
+      store.session.set('city', store.session.get('city'));
+    // }
     this.startInterval();
-    store.session.on('change update', this.updateState);
+    store.session.on('change', this.updateState);
   },
   componentWillUnmount: function() {
-    store.session.off('change update', this.updateState);
+    store.session.off('change', this.updateState);
     clearInterval(this.state.interval);
-
   },
   render: function() {
     let styles = {backgroundImage: `url(${store.entryImages[this.state.images]})`};

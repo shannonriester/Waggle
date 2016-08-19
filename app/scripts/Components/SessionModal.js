@@ -13,7 +13,10 @@ export default React.createClass({
 
     store.session.login(username, password);
 
+
     this.props.hideModal();
+    // browserHistory.push({pathname:`/search/`, query:{category: store.session.get('query')} });
+
   },
   signup: function(e) {
     e.preventDefault();
@@ -28,9 +31,12 @@ export default React.createClass({
       console.log('passwords don\'t match or you didn\'t enter a username!');
     } else {
       store.session.signup(username, password);
+
     }
 
     this.props.hideModal();
+    // browserHistory.push({pathname:`/search/`, query:{category: store.session.get('query')} });
+
   },
   hideModal: function(e) {
     if (_.toArray(e.target.classList).indexOf('modal-component') !== -1 || _.toArray(e.target.classList).indexOf('cancel-btn') !== -1 ) {
