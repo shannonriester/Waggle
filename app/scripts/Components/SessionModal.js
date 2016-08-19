@@ -22,7 +22,7 @@ export default React.createClass({
     if (this.state.username) {
       this.props.hideModal();
     }
-    // browserHistory.push({pathname:`/search/`, query:{category: store.session.get('query')} });
+    browserHistory.push({pathname:`/search/`, query:{category: store.session.get('query')} });
   },
   signup: function(e) {
     e.preventDefault();

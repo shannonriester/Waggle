@@ -16,7 +16,6 @@ import store from './store';
 $(document).ajaxSend(function(e, xhrAjax, jqueryAjax) {
   if (jqueryAjax.url.indexOf('freegeoip') === -1) {
     if (localStorage.authtoken) {
-      store.session.retrieve();
       xhrAjax.setRequestHeader('Authorization', `Kinvey ${localStorage.authtoken}`);
     } else {
       browserHistory.push('/');

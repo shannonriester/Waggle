@@ -50,39 +50,39 @@ const PlacesCollection = Backbone.Collection.extend({
     let parameterMap = OAuth.getParameterMap(message.parameters);
 
     console.log(terms);
-    // $.ajax({
-    //     'url' : message.action,
-    //     'data' : parameterMap,
-    //     'dataType' : 'jsonp',
-    //     // 'jsonpCallback' : 'cb',
-    //     'cache': true,
-    // })
-    // .then((places) => {
-    //   // console.log('YELP DATA: ', places);
-    //   let placeList =  places.businesses.map((place) => {
-    //     return {
-    //       name: place.name,
-    //       yelpRating: place.rating,
-    //       yelpRatingStars: place.rating_img_url,
-    //       yelpMobileUrl: place.mobile_url,
-    //       yelpID: place.id,
-    //       categories: place.categories,
-    //       imageUrl: place.image_url,
-    //       snippetImageUrl: place.snippet_image_url,
-    //       snippetText: place.snippet_text,
-    //       ll: place.location.coordinate,
-    //       address: place.location.display_address,
-    //       neighborhoods: place.location.neighborhoods,
-    //       isClosed: place.is_closed,
-    //       reviewCount: place.review_count,
-    //     }
-    //   });
-    //   this.add(placeList)
-    //
-    // })
-    // .fail(function(e) {
-    //   console.error('FAILED TO GET YELP DATA: ', e)
-    // });
+    $.ajax({
+        'url' : message.action,
+        'data' : parameterMap,
+        'dataType' : 'jsonp',
+        // 'jsonpCallback' : 'cb',
+        'cache': true,
+    })
+    .then((places) => {
+      console.log('YELP DATA: ', places);
+      let placeList =  places.businesses.map((place) => {
+        return {
+          name: place.name,
+          yelpRating: place.rating,
+          yelpRatingStars: place.rating_img_url,
+          yelpMobileUrl: place.mobile_url,
+          yelpID: place.id,
+          categories: place.categories,
+          imageUrl: place.image_url,
+          snippetImageUrl: place.snippet_image_url,
+          snippetText: place.snippet_text,
+          ll: place.location.coordinate,
+          address: place.location.display_address,
+          neighborhoods: place.location.neighborhoods,
+          isClosed: place.is_closed,
+          reviewCount: place.review_count,
+        }
+      });
+      this.add(placeList)
+
+    })
+    .fail(function(e) {
+      console.error('FAILED TO GET YELP DATA: ', e)
+    });
 
   },
   getYelpResult: function(yelpID, city) {
@@ -122,37 +122,37 @@ const PlacesCollection = Backbone.Collection.extend({
 
     let parameterMap = OAuth.getParameterMap(message.parameters);
 
-    // $.ajax({
-    //     'url' : message.action,
-    //     'data' : parameterMap,
-    //     'dataType' : 'jsonp',
-    //     // 'jsonp': 'cb',
-    //     // 'jsonpCallback' : 'cb',
-    //     'cache': true,
-    // })
-    // .then((place) => {
-    //   // console.log('YELP DATA: ', place);
-    //     this.add({
-    //       name: place.name,
-    //       yelpRating: place.rating,
-    //       yelpRatingStars: place.rating_img_url,
-    //       yelpMobileUrl: place.mobile_url,
-    //       yelpID: place.id,
-    //       categories: place.categories,
-    //       imageUrl: place.image_url,
-    //       snippetImageUrl: place.snippet_image_url,
-    //       snippetText: place.snippet_text,
-    //       ll: place.location.coordinate,
-    //       address: place.location.display_address,
-    //       neighborhoods: place.location.neighborhoods,
-    //       isClosed: place.is_closed,
-    //       reviewCount: place.review_count,
-    //     });
-    //
-    // })
-    // .fail(function(e) {
-    //   console.error('FAILED TO GET YELP DATA: ', arguments)
-    // });
+    $.ajax({
+        'url' : message.action,
+        'data' : parameterMap,
+        'dataType' : 'jsonp',
+        // 'jsonp': 'cb',
+        // 'jsonpCallback' : 'cb',
+        'cache': true,
+    })
+    .then((place) => {
+      // console.log('YELP DATA: ', place);
+        this.add({
+          name: place.name,
+          yelpRating: place.rating,
+          yelpRatingStars: place.rating_img_url,
+          yelpMobileUrl: place.mobile_url,
+          yelpID: place.id,
+          categories: place.categories,
+          imageUrl: place.image_url,
+          snippetImageUrl: place.snippet_image_url,
+          snippetText: place.snippet_text,
+          ll: place.location.coordinate,
+          address: place.location.display_address,
+          neighborhoods: place.location.neighborhoods,
+          isClosed: place.is_closed,
+          reviewCount: place.review_count,
+        });
+
+    })
+    .fail(function(e) {
+      console.error('FAILED TO GET YELP DATA: ', arguments)
+    });
   },
 
 });

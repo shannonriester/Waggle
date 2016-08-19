@@ -10,14 +10,14 @@ export default React.createClass({
     }
   },
   logout: function() {
-    // console.log(this.state.authtoken);
+    console.log(this.state.authtoken);
     let prevQuery = store.session.get('query');
     store.session.logout(prevQuery);
-    // console.log(this.state.authtoken);
-    // this.updateState();
-    // this.setState({authtoken:localStorage.authtoken})
-    // localStorage.removeItem('authtoken');
-    // this.updateState();
+    console.log(this.state.authtoken);
+    this.updateState();
+    this.setState({authtoken:localStorage.authtoken})
+    localStorage.removeItem('authtoken');
+    this.updateState();
 
     //the logout button should EVENTUALLY be moved to the settings part on the user's profile (once you make it)
   },
@@ -47,7 +47,6 @@ export default React.createClass({
   },
   componentWillUnmount: function() {
     store.session.off('change', this.updateState);
-    // localStorage.authtoken.off('change update', this.updateState);
   },
   render: function() {
     //potential icon <img className="nav-icon bone-icon" src="../../assets/bone.svg" alt="image of a cute dog-bone" role="button"/>
