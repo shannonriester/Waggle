@@ -87,8 +87,11 @@ const SessionModel = Backbone.Model.extend({
             country: response.country_name,
             ip: response.ip,
         });
-        this.updateUser();
-        console.log('session in the geoLocation ', this);
+        if (this.get('username')) {
+          this.updateUser();
+          console.log('session in the geoLocation ', this);
+        }
+        // this.updateUser();
       },
       error: (e) => {
         console.log('apiGeoLocation ERROR: ', e);

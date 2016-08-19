@@ -11,10 +11,10 @@ const PlacesCollection = Backbone.Collection.extend({
     // console.log(query);
     this.reset();
     let auth = {
-      consumerKey : "VNBVIZYVwtO4IZKuRQ4Jeg",
-      consumerSecret : "Ka94kOBVXrxnZqQHxUU-P5KASvM",
-      accessToken : "03rzdIzPRqHNjl6h6Qyui8fv2cmLc8ul",
-      accessTokenSecret : "Vh7sHRdk_xDjioNtwrPsNUPHnwA",
+      consumerKey : "HfA_mwIcjg6t1Lb2PlHySA",
+      consumerSecret : "8MyGFZlP7O3P8p1vJyHq01PhN-I",
+      accessToken : "zkaRpuCSk881suZ9K2sAqUfUuMt9lFjC",
+      accessTokenSecret : "8UZDaDsfuOnJHAHgct1nKj21UMg",
       serviceProvider : {
           signatureMethod : "HMAC-SHA1",
       },
@@ -88,10 +88,10 @@ const PlacesCollection = Backbone.Collection.extend({
   getYelpResult: function(yelpID, city) {
     this.reset();
     let auth = {
-      consumerKey : "VNBVIZYVwtO4IZKuRQ4Jeg",
-      consumerSecret : "Ka94kOBVXrxnZqQHxUU-P5KASvM",
-      accessToken : "03rzdIzPRqHNjl6h6Qyui8fv2cmLc8ul",
-      accessTokenSecret : "Vh7sHRdk_xDjioNtwrPsNUPHnwA",
+      consumerKey : "HfA_mwIcjg6t1Lb2PlHySA",
+      consumerSecret : "8MyGFZlP7O3P8p1vJyHq01PhN-I",
+      accessToken : "zkaRpuCSk881suZ9K2sAqUfUuMt9lFjC",
+      accessTokenSecret : "8UZDaDsfuOnJHAHgct1nKj21UMg",
       serviceProvider : {
           signatureMethod : "HMAC-SHA1",
       },

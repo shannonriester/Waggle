@@ -20,7 +20,7 @@ export default React.createClass({
       this.setState({city: store.session.get('city')});
       this.setState({query: store.session.get('query')});
       this.setState({places: store.placesCollection.toJSON()});
-      this.setState({authtoken: localStorage.authtoken});
+      this.setState({authtoken: store.session.get('authtoken')});
 
       if (this.state.city && this.state.fetch) {
         browserHistory.push({pathname:`/search/`, query:{category: store.session.get('query')} });
@@ -30,7 +30,7 @@ export default React.createClass({
       else {
         store.session.once('change:city', () => {
             browserHistory.push({pathname:`/search/`, query:{category: store.session.get('query')} });
-            store.placesCollection.getResults(store.session.get('city'), store.session.get('coordinates'), this.state.query || store.session.get('query'));
+            store.placesCollection.getResults(store.session.get('city'), this.state.query || store.session.get('query'));
           });
       }
   },

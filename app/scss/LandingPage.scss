@@ -48,18 +48,19 @@
       width: 7em;
       margin-bottom: 1em;
       padding: 15px;
-      background: rgba(#FFF, .7);
-      border: solid 2px $button-color;
+      background: rgba(#FFF, .3);
+      border: solid 2px #FFF;
       border-radius: 10px;
       outline: none;
       font-size: 2em;
-      color: $accent;
+      color: #FFF;
 
       &:hover {
         -webkit-transition: .5s;
         transition: .5s;
-        background: rgba($button-color, .4);
-        color: $border;
+        background: #FFF;
+        border: solid 2px #FFF;
+        color: $accent;
       }
     }
   }

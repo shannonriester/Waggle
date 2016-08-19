@@ -5,6 +5,12 @@ import _ from 'underscore';
 import store from '../store';
 
 export default React.createClass({
+  getInitialState: function() {
+    return {
+      username: null,
+      shakeModal: false,
+    }
+  },
   login: function(e) {
     e.preventDefault();
     let username = this.refs.username.value;
@@ -13,10 +19,10 @@ export default React.createClass({
 
     store.session.login(username, password);
 
-
-    this.props.hideModal();
+    if (this.state.username) {
+      this.props.hideModal();
+    }
     // browserHistory.push({pathname:`/search/`, query:{category: store.session.get('query')} });
-
   },
   signup: function(e) {
     e.preventDefault();
@@ -31,11 +37,15 @@ export default React.createClass({
       console.log('passwords don\'t match or you didn\'t enter a username!');
     } else {
       store.session.signup(username, password);
-
     }
 
-    this.props.hideModal();
-    // browserHistory.push({pathname:`/search/`, query:{category: store.session.get('query')} });
+    if (this.state.username) {
+      this.props.hideModal();
+    } else {
+      this.shakeModal();
+    }
+  },
+  shakeModal: function() {
 
   },
   hideModal: function(e) {
@@ -43,7 +53,21 @@ export default React.createClass({
       this.props.hideModal();
     }
   },
+  updateState: function() {
+    this.setState({username:store.session.get('username')});
+  },
+  componentDidMount: function() {
+    store.session.on('change', this.updateState);
+  },
+  componentWillUnmount: function() {
+    store.session.off('change', this.updateState);
+  },
   render: function() {
+    let animations = '';
+    if (this.state.shakeModal) {
+      animations = 'shake';
+    }
+
     let modalContent;
     if (this.props.content === 'login') {
       modalContent = (
@@ -59,7 +83,8 @@ export default React.createClass({
             <input className="user-info-input" type="password" placeholder="password" ref="password" role="button" tabIndex="2" />
           </main>
           <footer className="modal-footer">
-            <input className="submit-btn modal-btn" type="submit" value="submit" ref="submit" role="button" tabIndex="3" onSubmit={this.login} onClick={this.login} />
+            <button className="modal-btn" role="button" tabIndex="3" onSubmit={this.login} onClick={this.login}>Login</button>
+            <input className="submit-btn" type="submit" value="submit" role="button" onSubmit={this.login} />
           </footer>
         </form>
       );
@@ -79,14 +104,15 @@ export default React.createClass({
             <input className="user-info-input" type="password" placeholder="password" ref="password2" tabIndex="3" />
           </main>
           <footer className="modal-footer">
-            <input className="submit-btn modal-btn" type="submit" value="submit" ref="submit" role="button" tabIndex="4" onSubmit={this.signup} onClick={this.signup}/>
+            <button className="modal-btn" role="button" tabIndex="3" onSubmit={this.signup} onClick={this.signup}>Sign up</button>
+            <input className="submit-btn" type="submit" value="submit" role="button" onSubmit={this.signup} />
           </footer>
         </form>
       );
     }
     return (
       <div className="modal-component" onClick={this.hideModal}>
-          <div className="modal-content">
+          <div className="modal-content" id={animations}>
             {modalContent}
         </div>
       </div>

@@ -10,16 +10,15 @@ export default React.createClass({
     }
   },
   logout: function() {
-    console.log(this.state.authtoken);
+    // console.log(this.state.authtoken);
     let prevQuery = store.session.get('query');
     store.session.logout(prevQuery);
-    console.log(this.state.authtoken);
-    this.setState({authtoken:null})
+    // console.log(this.state.authtoken);
+    // this.updateState();
+    // this.setState({authtoken:localStorage.authtoken})
     // localStorage.removeItem('authtoken');
     // this.updateState();
-    if (!this.state.authtoken) {
-      browserHistory.push('/');
-    }
+
     //the logout button should EVENTUALLY be moved to the settings part on the user's profile (once you make it)
   },
   userProfile: function() {
@@ -29,16 +28,22 @@ export default React.createClass({
     browserHistory.push({pathname:`/search/`, query:{category: store.session.get('query')} });
   },
   updateState: function() {
-    this.setState({authtoken: store.session.get('authtoken')});
+    if (!this.state.authtoken) {
+      browserHistory.push('/');
+    } else {
+      this.setState({authtoken: localStorage.authtoken});
+    }
   },
   componentWillMount: function() {
-    // if (!this.state.authtoken) {
-    //   browserHistory.push('/');
-    // }
+    if (!this.state.authtoken) {
+      browserHistory.push('/');
+    }
   },
   componentDidMount: function() {
     store.session.on('change', this.updateState);
-    // localStorage.authtoken.on('change update', this.updateState);
+    if (!this.state.authtoken) {
+      browserHistory.push('/');
+    }
   },
   componentWillUnmount: function() {
     store.session.off('change', this.updateState);

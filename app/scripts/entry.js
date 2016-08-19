@@ -15,19 +15,17 @@ import store from './store';
 
 $(document).ajaxSend(function(e, xhrAjax, jqueryAjax) {
   if (jqueryAjax.url.indexOf('freegeoip') === -1) {
-    if (localStorage.getItem('authtoken')) {
-      // console.log('kinvey auth');
+    if (localStorage.authtoken) {
+      store.session.retrieve();
       xhrAjax.setRequestHeader('Authorization', `Kinvey ${localStorage.authtoken}`);
     } else {
-      // console.log('basic auth');
+      browserHistory.push('/');
       xhrAjax.setRequestHeader('Authorization', `Basic ${store.settings.basicAuth}`);
     }
   }
 });
 
-if (!localStorage.authtoken) {
-  browserHistory.push('/');
-} else {
+if (localStorage.authtoken) {
   store.session.retrieve();
 }
 store.session.apiGeoLocation();

@@ -1,4 +1,5 @@
 .modal-component {
+  font-family: sans-serif;
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -11,8 +12,8 @@
   .modal-content{
     display: flex;
     background: #FFF;
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
     font-family: $font-family;
     overflow: scroll;
   }
@@ -21,8 +22,9 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
+    height: 100%;
     width: 100%;
 
     label {
@@ -35,23 +37,27 @@
    align-items: center;
    justify-content: space-around;
    width: 100%;
-   height: 200px;
+  //  height: 30%;
 
    h2 {
      margin: 0;
      font-size: 1.8em;
+     font-family: $font-family;
    }
 
    .cancel-btn {
+     color: $accent;
+     font-size: 1em;
      background: transparent;
-     padding: 2%;
-     width: 50px;
+     padding: 1em;
+     width: 5em;
    }
  }
 
  .modal-body{
-  height: 200px;
-
+  // height: 200px;
+  width: 90%;
+  margin: 0 auto;
    .user-info-input {
      width: 100%;
      margin-bottom: 10%;
@@ -70,27 +76,34 @@
    align-items: center;
    justify-content: center;
    width: 100%;
-   height: 200px;
+  //  height: 200px;
 
-   .submit-btn {
-     background: $accent;
-     color: #FFF;
-     padding: 2%;
-     width: 160px;
-     font-size: 1.5em;
-   }
+  //  .submit-btn {
+  //   //  background: $accent;
+  //   //  color: #FFF;
+  //   //  padding: 2%;
+  //   //  width: 160px;
+  //  }
  }
 
  .modal-btn {
+   font-size: 1.5em;
    outline: none;
    border: none;
-   color: $accent;
+   background: $accent;
+   color: #FFF;
    border-radius: 5px;
+   padding: 15px;
+   width: 89%;
    &:hover {
-     transition: 1s;
-     background: $accent;
-     color: #FFF;
+    //  transition: 1s;
+    //
+    //  color: #FFF;
    }
+ }
+
+ .submit-btn {
+   display: none;
  }
 
 }
