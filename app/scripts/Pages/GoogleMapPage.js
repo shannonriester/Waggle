@@ -6,7 +6,7 @@ let GoogleMapPage = React.createClass({
     return (
        <GoogleMap
         // apiKey={AIzaSyBGH9fSjS0D-dpIgVYpOUfg5F63Igifl7I} // set if you need stats etc ...
-        center={[59.938043, 30.337157]}
+        center={[this.props.coordinates[0], this.props.coordinates[1]]}
         zoom={9}>
 
       </GoogleMap>

@@ -22,7 +22,7 @@ const SessionModel = Backbone.Model.extend({
     },
     query: 'park',
     checkedin: false,
-    coordinates:[0,0],
+    coordinates: [],
     city: '',
     zipcode: '',
     regionCode: '',
@@ -100,6 +100,7 @@ const SessionModel = Backbone.Model.extend({
   },
   parse: function(response) {
     if (response) {
+      // console.log(response);
       return {
         username: response.username,
         userId: response._id,
@@ -108,7 +109,7 @@ const SessionModel = Backbone.Model.extend({
         messages: response.messages,
         dog: response.dog,
         checkedin: false,
-        coordinates:[0,0],
+        coordinates:response.coordinates,
         city: response.city,
         regionCode: response.regionCode,
         regionName: response.regionName,

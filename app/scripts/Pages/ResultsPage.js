@@ -7,32 +7,30 @@ import store from '../store';
 import Header from '../Components/Header';
 import Searchbar from '../Components/Searchbar';
 import ResultsList from '../Components/ResultsList';
-import SimpleMap from './GoogleMapPage';
+import GoogleMapPage from './GoogleMapPage';
 
 export default React.createClass({
   getInitialState: function() {
     return {
-      coordinates: store.session.get('coordinates'),
+      city: store.session.get('city'),
+      coordinates: [],
       query: store.session.get('query'),
       places: store.placesCollection.toJSON(),
-      fetch: true,
       authtoken: localStorage.authtoken,
+      fetch: true,
     }
   },
-  initMap: function() {
-    let container = this.refs.map;
-    console.log(container);
-    console.log(this.state.coordinates);
-    let map = new google.maps.Map((container), {
-      // center: {lat: , lng: ,},
-      // zoom: 6,
-    });
+  getCoordinates: function() {
+
   },
   updateState: function() {
-      this.setState({city: store.session.get('city')});
-      this.setState({query: store.session.get('query')});
-      this.setState({places: store.placesCollection.toJSON()});
-      this.setState({authtoken: store.session.get('authtoken')});
+      this.setState({
+        city: store.session.get('city'),
+        coordinates: store.session.get('coordinates'),
+        query: store.session.get('query'),
+        places: store.placesCollection.toJSON(),
+        authtoken: store.session.get('authtoken')
+      });
 
       if (this.state.city && this.state.fetch) {
         browserHistory.push({pathname:`/search/`, query:{category: store.session.get('query')} });
@@ -52,9 +50,9 @@ export default React.createClass({
     }
   },
   componentDidMount: function () {
-    if (!this.state.authtoken) {
-      browserHistory.push('/');
-    }
+    // if (!this.state.authtoken) {
+    //   browserHistory.push('/');
+    // }
     this.updateState()
     store.session.on('change', this.updateState);
     store.placesCollection.on('change update', this.updateState);
@@ -68,11 +66,16 @@ export default React.createClass({
       return (<ResultsList key={i} place={place} />);
     });
 
+    let coordinates = [0,0];
+    if (this.state.coordinates[0] !== 0 && this.state.coordinates[1] !== 0) {
+      coordinates = store.session.get('coordinates');
+      console.log(coordinates);
+    }
     return (
       <div className="results-page-component">
         <Header />
         <div className="map-container">
-          <SimpleMap />
+          <GoogleMapPage coordinates={coordinates} />
         </div>
         <ul className="results-list">
           {resultsList}
