@@ -6,6 +6,7 @@ const MessageModel = Backbone.Model.extend({
   urlRoot:`https://baas.kinvey.com/appdata/kid_SkBnla5Y/MessagesCollection`,
   defaults: {
       timestamp: new Date(),
+      momentTime: moment().format('MMM Do YYYY, h:mm:ss a'),
       sender: '',
       recipient: '',
       body: '',

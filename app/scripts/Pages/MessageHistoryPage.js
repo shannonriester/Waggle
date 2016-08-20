@@ -1,5 +1,6 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
+import _ from 'underscore';
 
 import store from '../store';
 import Nav from '../Components/Nav';
@@ -9,7 +10,8 @@ export default React.createClass({
     return {
       session: store.session.get('username'),
       messages: store.messagesCollection.toJSON(),
-      myMessages: [],
+      // myMessages: [],
+      fetched: false,
     }
   },
   viewChatMessage: function(convoWith) {
@@ -18,9 +20,12 @@ export default React.createClass({
   updateState: function() {
     this.setState({session: store.session.get('username')});
     this.setState({messages: store.messagesCollection.toJSON()});
+    if (this.state.session && !this.state.fetched) {
+      store.messagesCollection.findMyMessages(this.state.username);
+      this.setState({fetched:true});
+    }
   },
   componentDidMount: function() {
-    
     store.messagesCollection.findMyMessages(this.state.session).then((response) => {
       this.setState({myMessages: response.toJSON() });
     });
@@ -28,8 +33,8 @@ export default React.createClass({
     store.session.on('change', this.updateState);
   },
   componentWillUnmount: function() {
-    store.messagesCollection.off('change update', this.updateState);
     store.session.off('change', this.updateState);
+    store.messagesCollection.off('change update', this.updateState);
   },
   render: function() {
     let allMyConversations = [];
@@ -45,15 +50,21 @@ export default React.createClass({
       }
     });
 
+    // console.log(messagesArr);
+
     messagesArr = messagesArr.map((curr, i, arr) => {
       let convoWith = curr.sender;
       if (this.state.session === curr.sender) {
         convoWith = curr.recipient;
       }
+      // console.log(curr);
+      // console.log(curr.timestamp);
+      // let mostRecentReply = _.sortBy(curr.timestamp);
+      // console.log(mostRecentReply);
       let messagePreview = (
         <li key={i} onClick={this.viewChatMessage.bind(null, convoWith)}>
-          <h2>{curr.recipient}</h2>
-          <p>{curr.body}</p>
+          <h2>{convoWith}</h2>
+          <data>{curr.momentTime}</data>
         </li>
       );
       return messagePreview;

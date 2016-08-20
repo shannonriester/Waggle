@@ -10,12 +10,22 @@ const MessagesCollection = Backbone.Collection.extend({
 
   },
   sendMessage: function(session, recipient, message) {
-    // console.log(this);
-    // let conversation = this.findConversation(id);
-    // let conversation = this.get(convoID);
-    // console.log(this.create({sender:session, body:message}));
-    // conversation.create({sender:session,body:message,recipient:user});
-    // console.log(conversation);
+    console.log(session);
+    console.log(recipient);
+    console.log(message);
+    this.create({
+      sender:session,
+      recipient:recipient,
+      body:message
+    },{
+      success: (model, response) => {
+        console.log('model', model);
+        console.log('response', response);
+      },
+      error: function() {
+          console.error('FAILED TO CREATE NEW MESSAGE', response);
+      }
+      });
   },
   findMyMessages: function(me) {
     let query = [{sender:me},{recipient:me}];
@@ -39,7 +49,6 @@ const MessagesCollection = Backbone.Collection.extend({
     let convoArr = [];
     convoArr.push(this.where({recipient:recipient}));
     convoArr.push(this.where({sender:recipient}));
-    console.log(convoArr);
     return _.flatten(convoArr);
   },
   // findUser: function(username) {

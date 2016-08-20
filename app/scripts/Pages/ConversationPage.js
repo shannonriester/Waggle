@@ -1,4 +1,6 @@
 import React from 'react';
+import _ from 'underscore';
+import moment from 'moment';
 
 import store from '../store';
 import Nav from '../Components/Nav';
@@ -9,29 +11,23 @@ export default React.createClass({
       session: store.session.get('username'),
       messages: store.messagesCollection.toJSON(),
       conversation: store.messagesCollection.findConversation(this.props.params.recipient),
-      newMessage: [],
       fetched: false,
     }
   },
   sendMessage: function(e) {
     e.preventDefault();
     let sentMessage = this.refs.textbox.value;
-    console.log(sentMessage);
-    // console.log(this.state.conversation);
-    store.messagesCollection.sendMessage(store.session.get('username'), sentMessage);
+    store.messagesCollection.sendMessage(store.session.get('username'), this.props.params.recipient, sentMessage);
   },
   updateState: function() {
     this.setState({conversation:store.messagesCollection.findConversation(this.props.params.recipient)});
     this.setState({session:store.session.get('username')});
-
     if (this.state.session && !this.state.fetched) {
-      // this.setState({fetched:true});
       store.messagesCollection.findMyMessages(this.state.username);
       this.setState({fetched:true});
     }
   },
   componentDidMount: function() {
-
     store.session.on('change', this.updateState);
     store.messagesCollection.on('change update', this.updateState);
   },
@@ -42,14 +38,15 @@ export default React.createClass({
   render: function() {
     let convo = this.state.conversation.map((curr, i, arr) => {
       curr = curr.toJSON();
-      console.log(curr);
-      let whoSent = whoSent = 'not-me';;
+      let whoSent = whoSent = 'not-me';
       if (this.state.session === curr.sender) {
         whoSent = 'me';
       }
+      _.sortBy(curr.timestamp);
       let content = (
         <li key={i} className={whoSent}>
           <p className="message-body">{curr.body}</p>
+          <data>{curr.momentTime}</data>
         </li>
       );
       return content;

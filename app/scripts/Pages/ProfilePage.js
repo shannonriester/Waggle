@@ -6,6 +6,7 @@ import store from '../store';
 import Nav from '../Components/Nav';
 import ProfileInfo from '../Components/ProfileInfo';
 import UserRecentPlaces from '../Components/UserRecentPlaces';
+import NewMessage from '../Components/NewMessage';
 
 export default React.createClass({
   getInitialState: function() {
@@ -16,6 +17,7 @@ export default React.createClass({
         placesCollection: [],
         state: "viewing",
         recentPlaces: [],
+        newMessage: false,
       }
   },
   fetchPlaces: function() {
@@ -34,8 +36,8 @@ export default React.createClass({
   },
   messageUser: function() {
     console.log('messaging user!');
-    // console.log(this.props.params);
-    browserHistory.push(`/messages/newMessage`)
+    this.setState({newMessage:true});
+    // browserHistory.push(`/messages/newMessage`)
   },
   goToSettings: function() {
     browserHistory.push('settings');
@@ -75,6 +77,7 @@ export default React.createClass({
     let sessionNav;
     let userProfileInfo;
     let userRecentPlaces;
+    let newMessageModal;
     if (this.state.session.username === this.props.params.userId) {
       sessionNav = (
         <ul className="nav-session">
@@ -87,7 +90,6 @@ export default React.createClass({
         </ul>
       );
     }
-
       userProfileInfo = this.state.user.map((user, i, arr) => {
         if (this.props.params.userId === user.username) {
             userProfileInfo = (<ProfileInfo key={i} user={user} updateSession={this.updateState} />);
@@ -96,30 +98,29 @@ export default React.createClass({
       });
 
       let placeIDArr = this.state.recentPlaces.map((place, i, arr) => {
-        // console.log(place);
         let newPlace = _.sortBy([place.place, place.time]);
         newPlace.slice(0,1)
-        // console.log(newPlace);
         return place.place;
       });
-      // console.log(placeIDArr);
 
       let fixedPlaces = this.state.placesCollection.filter((place) => {
         if (placeIDArr.indexOf(place.yelpID) > -1) {
           return true;
         }
       });
+
       userRecentPlaces = fixedPlaces.map((place, i, arr) => {
-          // console.log(place);
-          // console.log(place);
           return (<UserRecentPlaces key={i} place={place} updateSession={this.updateState} />);
       });
-      // console.log(userRecentPlaces);
-      // userRecentPlaces = userRecentPlaces.
+
+      if (this.state.newMessage) {
+        newMessageModal = (<NewMessage recipient={this.props.params.userId}/>);
+      }
 
     return (
       <div className="profile-component">
         <Nav />
+          {newMessageModal}
         <header className="profile-header">
           {sessionNav}
           {userProfileInfo}

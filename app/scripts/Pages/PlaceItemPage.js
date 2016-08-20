@@ -21,7 +21,6 @@ export default React.createClass({
       store.checkinCollection.toggleCheckin(store.session, userModel, this.props.params.placeId, this.state.intervalCheckout);
 
       this.setState({checkedin:!this.state.checkedin});
-
       // let interval = setTimeout(() => {
       //   this.setState({intervalCheckout:!this.state.intervalCheckout});
       // // }, 1800000);
@@ -85,7 +84,7 @@ export default React.createClass({
         let checkBtn = (<button className="checkin-btn" onClick={this.toggleCheckin}>Check in here!</button>);
         if (this.state.checkedin) {
           checkedin = "checked-in";
-          checkBtn = (<button className="checkin-btn" id={checkedin} onClick={this.toggleCheckin}>Checkedin!</button>);
+          checkBtn = (<button className="checkin-btn" id={checkedin} onClick={this.toggleCheckin}>Checked in!</button>);
         }
         // if (this.state.intervalCheckout) {
           // checkBtn = (<button className="checkin-btn" onClick={this.toggleCheckin}>Checkout?</button>);
