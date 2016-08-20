@@ -75,7 +75,9 @@ export default React.createClass({
       <div className="results-page-component">
         <Header />
         <div className="map-container">
-          <GoogleMapPage coordinates={coordinates} />
+          <div className="map">
+            <GoogleMapPage coordinates={coordinates} />
+          </div>
         </div>
         <ul className="results-list">
           {resultsList}

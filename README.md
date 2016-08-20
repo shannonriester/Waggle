@@ -163,11 +163,10 @@ allow message of matches
 ## Credits
 1. Bone icon
   - `<div>Icons made by <a href="http://www.flaticon.com/authors/metropolicons" title="Metropolicons">Metropolicons</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>`
-2. [Foursquare](https://developer.foursquare.com/)
-  - API
-  - Design/wire-framing inspiration
+2. [The Noun Project](https://thenounproject.com/)
+  - Created by YuguDesign from the Noun Project
 3. [Tinder](https://www.gotinder.com/)
-  - Inspired heavily from Tinder's mobile design
+  - Inspired from Tinder's mobile design
 
 ## Installation
   - Clone this repo (or fork then clone, if you prefer)
