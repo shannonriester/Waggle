@@ -220,9 +220,25 @@
   width: 75%;
   margin: 10px auto; }
 
+.place-marker {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  height: 2.5em;
+  width: 2.5em;
+  background-color: #F55959;
+  border-radius: 50%;
+  border: solid #FFF 1px; }
+
 .paw-icon {
+  position: relative;
+  top: 7%;
+  left: 2%;
   height: 2em;
   width: 2em; }
+
+.my-location .place-marker {
+  background-color: purple; }
 
 .results-list {
   margin: 0;
