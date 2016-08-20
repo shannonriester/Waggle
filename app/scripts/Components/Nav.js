@@ -54,12 +54,13 @@ export default React.createClass({
   },
   render: function() {
     // console.log(this.props);
+    //<i className="nav-icon paw-icon fa fa-paw" aria-hidden="true" onClick={this.logout}></i>
+
     //potential icon <img className="nav-icon bone-icon" src="../../assets/bone.svg" alt="image of a cute dog-bone" role="button"/>
     return (
       <nav className="nav-component">
           <ul>
             <li className="li-third">
-              <i className="nav-icon paw-icon fa fa-paw" aria-hidden="true" onClick={this.logout}></i>
               <i className="nav-icon messages-icon fa fa-comments-o" aria-hidden="true" onClick={this.messages}></i>
             </li>
 

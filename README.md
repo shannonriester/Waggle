@@ -80,7 +80,6 @@ allow message of matches
 4. Backend as a Service (BaaS) [Kinvey](https://www.kinvey.com/)
 5. [Mozilla Drag & Drop API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API)
 6. [Mozilla Touch Events](https://developer.mozilla.org/en-US/docs/Web/API/Touch_events)
-7. [Facebook API](https://developers.facebook.com/)
 8. [Yelp](https://www.yelp.com/developers/manage_api_keys)
 
 

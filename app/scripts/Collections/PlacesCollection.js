@@ -1,12 +1,19 @@
 import Backbone from 'backbone';
 import $ from 'jQuery';
 import OAuth from '../OAuth';
+// import googleData from 'Google';
 
 import PlaceModel from '../Models/PlaceModel';
 
 const PlacesCollection = Backbone.Collection.extend({
   model: PlaceModel,
   url: `https://api.yelp.com/v2/search`,
+  googleMapResult: function () {
+    // $.ajax({
+    //   url:`https://maps.googleapis.com/maps/api/js?key=${googleData.browserKey}&callback=initMap`,
+    //
+    // })
+  },
   getResults: function(city, query){
     // console.log(query);
     this.reset();
@@ -48,8 +55,6 @@ const PlacesCollection = Backbone.Collection.extend({
     OAuth.setTimestampAndNonce(message);
     OAuth.SignatureMethod.sign(message, accessor);
     let parameterMap = OAuth.getParameterMap(message.parameters);
-
-    console.log(terms);
     $.ajax({
         'url' : message.action,
         'data' : parameterMap,
@@ -58,7 +63,7 @@ const PlacesCollection = Backbone.Collection.extend({
         'cache': true,
     })
     .then((places) => {
-      console.log('YELP DATA: ', places);
+      // console.log('YELP DATA: ', places);
       let placeList =  places.businesses.map((place) => {
         return {
           name: place.name,

@@ -1,17 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import GoogleMap from 'google-map-react';
 import { browserHistory } from 'react-router';
 import $ from 'jquery';
 
 import router from './router';
 import store from './store';
-
-//ask jess
-/*
-  1. Location before login
-  2. PUT request to users
-*/
-
 
 $(document).ajaxSend(function(e, xhrAjax, jqueryAjax) {
   if (jqueryAjax.url.indexOf('freegeoip') === -1) {
@@ -28,7 +22,6 @@ if (localStorage.authtoken) {
   store.session.retrieve();
 }
 store.session.apiGeoLocation();
-
 
 
 ReactDOM.render(router, document.getElementById('container'));

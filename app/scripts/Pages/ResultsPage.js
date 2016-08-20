@@ -1,20 +1,32 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
+import GoogleMap from 'google-map-react';
+
 
 import store from '../store';
 import Header from '../Components/Header';
 import Searchbar from '../Components/Searchbar';
 import ResultsList from '../Components/ResultsList';
+import SimpleMap from './GoogleMapPage';
 
 export default React.createClass({
   getInitialState: function() {
     return {
-      // city: store.session.get('city'),
+      coordinates: store.session.get('coordinates'),
       query: store.session.get('query'),
       places: store.placesCollection.toJSON(),
       fetch: true,
       authtoken: localStorage.authtoken,
     }
+  },
+  initMap: function() {
+    let container = this.refs.map;
+    console.log(container);
+    console.log(this.state.coordinates);
+    let map = new google.maps.Map((container), {
+      // center: {lat: , lng: ,},
+      // zoom: 6,
+    });
   },
   updateState: function() {
       this.setState({city: store.session.get('city')});
@@ -55,13 +67,16 @@ export default React.createClass({
     let resultsList = this.state.places.map((place, i, arr) => {
       return (<ResultsList key={i} place={place} />);
     });
+
     return (
       <div className="results-page-component">
         <Header />
+        <div className="map-container">
+          <SimpleMap />
+        </div>
         <ul className="results-list">
           {resultsList}
         </ul>
-
       </div>
     );
   }

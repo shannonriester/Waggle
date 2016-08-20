@@ -215,6 +215,10 @@
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px; }
 
+.map-container {
+  height: 300px;
+  width: 400px; }
+
 .results-list {
   margin: 0;
   padding: 0;

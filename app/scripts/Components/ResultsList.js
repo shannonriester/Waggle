@@ -10,7 +10,7 @@ export default React.createClass({
     },
     routeTo: function() {
       let placeID = store.placesCollection.where({yelpID: this.props.place.yelpID});
-      console.log(placeID[0].attributes.yelpID);
+      // console.log(placeID[0].attributes.yelpID);
       browserHistory.push(`/places/${placeID[0].attributes.yelpID}`);
     },
     render: function() {

@@ -11,9 +11,6 @@ export default React.createClass({
   sendNewMessage: function(e) {
     e.preventDefault();
     let message = this.refs.textarea.value;
-    console.log('username', store.session.get('username'));
-    console.log('recipient ', this.props.recipient);
-    console.log('message', message);
     store.messagesCollection.sendMessage(store.session.get('username'), this.props.recipient, message);
 
   },

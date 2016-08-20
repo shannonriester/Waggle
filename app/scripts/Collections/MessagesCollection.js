@@ -19,8 +19,8 @@ const MessagesCollection = Backbone.Collection.extend({
       body:message
     },{
       success: (model, response) => {
-        console.log('model', model);
-        console.log('response', response);
+        // console.log('model', model);
+        // console.log('response', response);
       },
       error: function() {
           console.error('FAILED TO CREATE NEW MESSAGE', response);
