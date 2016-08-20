@@ -11,8 +11,6 @@ export default React.createClass({
     routeTo: function() {
       let placeID = store.placesCollection.where({yelpID: this.props.place.yelpID});
       console.log(placeID[0].attributes.yelpID);
-      // browserHistory.push(`/search/${store.session.get('query')}/${placeItem[0].attributes.name}`);
-      // browserHistory.push('results/'+ store.session.get('query'));
       browserHistory.push(`/places/${placeID[0].attributes.yelpID}`);
     },
     render: function() {

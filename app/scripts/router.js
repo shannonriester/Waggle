@@ -21,6 +21,7 @@ const router = (
     <Route path="places/:placeId" component={PlaceItemPage}/>
     <Route path="user/:userId" component={ProfilePage}/>
     <Route path="messages" component={MessageHistoryPage}/>
+    <Route path="messages/:messageId" component={MessagePage}/>
     <Route path="messages/newMessage" component={MessagePage}/>
     <Route path="settings" component={SettingsPage}/>
   </Router>

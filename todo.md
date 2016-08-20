@@ -1,14 +1,13 @@
 #ToDo List
 - placeItemPage
-  - show session if they've already checked in
-  - setState for button
 
 - profilePage
   - liking/matching users
-  - show recent checking history
+  - why not updating user when they edit profile?
   - show current checkin?
     - update user's location on the session model
-  - messaging?
+- messaging?
+
 
 ##Problems w/ Jess
   - loading time AGAIN
