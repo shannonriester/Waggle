@@ -19,14 +19,11 @@ export default React.createClass({
       }
   },
   fetchPlaces: function() {
-    console.log('fetching places');
-
     if (this.state.checkinCollection) {
       let recentPlaces = this.state.checkinCollection.filter((curr,i,arr) => {
         if (this.props.params.userId === curr.userCheckedin) {
             store.placesCollection.getYelpResult(curr.place, store.session.get('city'));
           return true;
-
         }
       });
       this.setState({'recentPlaces': recentPlaces});
@@ -34,6 +31,11 @@ export default React.createClass({
   },
   editProfile: function() {
     store.session.set('isEditing', true);
+  },
+  messageUser: function() {
+    console.log('messaging user!');
+    // console.log(this.props.params);
+    browserHistory.push(`/messages/newMessage`)
   },
   goToSettings: function() {
     browserHistory.push('settings');
@@ -45,6 +47,10 @@ export default React.createClass({
       checkinCollection: store.checkinCollection.toJSON(),
       placesCollection: store.placesCollection.toJSON(),
     });
+  },
+  updateSession: function() {
+    store.session.updateUser();
+    this.setState({user:store.userCollection.toJSON()})
   },
   componentDidMount: function() {
     this.fetchPlaces();
@@ -81,7 +87,7 @@ export default React.createClass({
         </ul>
       );
     }
-    
+
       userProfileInfo = this.state.user.map((user, i, arr) => {
         if (this.props.params.userId === user.username) {
             userProfileInfo = (<ProfileInfo key={i} user={user} updateSession={this.updateState} />);
@@ -90,8 +96,13 @@ export default React.createClass({
       });
 
       let placeIDArr = this.state.recentPlaces.map((place, i, arr) => {
+        // console.log(place);
+        let newPlace = _.sortBy([place.place, place.time]);
+        newPlace.slice(0,1)
+        // console.log(newPlace);
         return place.place;
       });
+      // console.log(placeIDArr);
 
       let fixedPlaces = this.state.placesCollection.filter((place) => {
         if (placeIDArr.indexOf(place.yelpID) > -1) {
@@ -99,8 +110,12 @@ export default React.createClass({
         }
       });
       userRecentPlaces = fixedPlaces.map((place, i, arr) => {
+          // console.log(place);
+          // console.log(place);
           return (<UserRecentPlaces key={i} place={place} updateSession={this.updateState} />);
       });
+      // console.log(userRecentPlaces);
+      // userRecentPlaces = userRecentPlaces.
 
     return (
       <div className="profile-component">
@@ -108,7 +123,8 @@ export default React.createClass({
         <header className="profile-header">
           {sessionNav}
           {userProfileInfo}
-          <button className="like-btn"><i className="icon-heart fa fa-heart-o" aria-hidden="true"></i></button>
+          <button className="like-btn" onClick={this.likeUser}><i className="icon-heart fa fa-heart-o" aria-hidden="true"></i></button>
+          <button className="message-btn" onClick={this.messageUser}><i className="fa fa-comments-o" aria-hidden="true"></i></button>
         </header>
 
         <footer className="profile-footer">

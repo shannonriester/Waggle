@@ -35,7 +35,7 @@ export default Backbone.Collection.extend({
           throw new Error('FAILED TO CHECKIN');
         }
       });
-    } else if (checkout)  {
+    } else {
       console.log('checkedinModel', alreadyCheckedin[0].attributes._kmd.ect);
       // let currTime = new Date();
       // let currHour = currTime.getHours();

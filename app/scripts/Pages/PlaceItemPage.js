@@ -9,7 +9,7 @@ export default React.createClass({
     getInitialState: function() {
       return {
         placeModel: {},
-        // checkin: false,
+        checkedin: false,
         checkinList: null,
         checkedinModels: [],
         intervalCheckout: false,
@@ -20,12 +20,14 @@ export default React.createClass({
       let userModel = store.userCollection.findWhere({username: store.session.get('username')});
       store.checkinCollection.toggleCheckin(store.session, userModel, this.props.params.placeId, this.state.intervalCheckout);
 
-      let interval = setTimeout(() => {
-        this.setState({intervalCheckout:!this.state.intervalCheckout});
-      // }, 1800000);
-      }, 5000);
+      this.setState({checkedin:!this.state.checkedin});
 
-      this.setState({intervalCheckout:interval});
+      // let interval = setTimeout(() => {
+      //   this.setState({intervalCheckout:!this.state.intervalCheckout});
+      // // }, 1800000);
+      // }, 5000);
+      //
+      // this.setState({intervalCheckout:interval});
 
       // this.setState({checkout:false});
     },
@@ -79,18 +81,24 @@ export default React.createClass({
             </ul>
           );
         }
+        let checkedin;
         let checkBtn = (<button className="checkin-btn" onClick={this.toggleCheckin}>Check in here!</button>);
-        if (this.state.intervalCheckout) {
-          checkBtn = (<button className="checkin-btn" onClick={this.toggleCheckin}>Checkout?</button>);
+        if (this.state.checkedin) {
+          checkedin = "checked-in";
+          checkBtn = (<button className="checkin-btn" id={checkedin} onClick={this.toggleCheckin}>Checkedin!</button>);
         }
+        // if (this.state.intervalCheckout) {
+          // checkBtn = (<button className="checkin-btn" onClick={this.toggleCheckin}>Checkout?</button>);
+        // }
         content = (
-          <div className="result-item-container" style={styles}>
+          <div className="result-item-container">
+            <div className="place-image" style={styles}><h1>{placeItem.name}</h1></div>
             <div className="content-container">
-              <h1>{placeItem.name}</h1>
-              {checkBtn}
+
               <footer className="footer-users-checkedin">
-                <button className="users-checkedin-btn" onClick={this.toggleCheckinList}>Who's here?</button>
                 {checkedinList}
+                <button className="users-checkedin-btn" onClick={this.toggleCheckinList}>Who's here?</button>
+                {checkBtn}
               </footer>
             </div>
           </div>

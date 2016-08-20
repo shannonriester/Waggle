@@ -7,7 +7,12 @@
   margin: 0;
 }
 
+.current-location {
+  color: $accent;
+}
+
 .nav-component {
+  // height: 8vh;
   // margin: 0 0 10px 0;
   background: $background;
   ul {

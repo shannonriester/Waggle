@@ -6,6 +6,7 @@ export default React.createClass({
   getInitialState: function() {
     return {
       editing: store.session.get('isEditing'),
+      session: store.session.toJSON(),
       imgSrc: [],
     }
   },
@@ -20,11 +21,10 @@ export default React.createClass({
     let newDogBreed = this.refs.dogInfoBreed.value;
     let newAboutInfo = this.refs.aboutInfo.value;
 
-
     store.session.updateProfile(newProfilePic, newUserName, newUserAge, newDogName, newDogAge, newDogBreed, newAboutInfo);
     store.session.set('isEditing', false);
+    store.session.updateUser();
     this.props.updateSession();
-
   },
   handleImgChange: function(e) {
     e.preventDefault();
@@ -41,6 +41,7 @@ export default React.createClass({
   },
   updateState: function() {
     this.setState({editing: store.session.get('isEditing')});
+    this.setState({session: store.session.toJSON()});
   },
   componentDidMount: function() {
     store.session.on('change', this.updateState);
@@ -104,9 +105,7 @@ export default React.createClass({
                   <label>dog age</label><input type="text" defaultValue={this.props.user.dog.dogAge} tabIndex="4" role="textbox" ref="dogInfoAge" />
                   <label>dog breed</label><input type="text" defaultValue={this.props.user.dog.dogBreed} tabIndex="5" role="textbox" ref="dogInfoBreed" />
                 </li>
-
               </ul>
-
 
               <textarea  className="about-bio" defaultValue={this.props.user.profile.bio} tabIndex="6" role="textbox" ref="aboutInfo" />
 

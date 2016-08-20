@@ -105,6 +105,7 @@ const SessionModel = Backbone.Model.extend({
         userId: response._id,
         authtoken: response._kmd.authtoken,
         profile: response.profile,
+        messages: response.messages,
         dog: response.dog,
         checkedin: false,
         coordinates:[0,0],

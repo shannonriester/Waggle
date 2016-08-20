@@ -7,13 +7,17 @@ export default React.createClass({
   getInitialState: function() {
     return {
       authtoken: localStorage.authtoken,
+      // currentRoute: this.props.params.
     }
   },
+  messages: function() {
+    browserHistory.push(`/messages`)
+  },
   logout: function() {
-    console.log(this.state.authtoken);
+    // console.log(this.state.authtoken);
     let prevQuery = store.session.get('query');
     store.session.logout(prevQuery);
-    console.log(this.state.authtoken);
+    // console.log(this.state.authtoken);
     this.updateState();
     this.setState({authtoken:localStorage.authtoken})
     localStorage.removeItem('authtoken');
@@ -49,12 +53,14 @@ export default React.createClass({
     store.session.off('change', this.updateState);
   },
   render: function() {
+    // console.log(this.props);
     //potential icon <img className="nav-icon bone-icon" src="../../assets/bone.svg" alt="image of a cute dog-bone" role="button"/>
     return (
       <nav className="nav-component">
           <ul>
             <li className="li-third">
               <i className="nav-icon paw-icon fa fa-paw" aria-hidden="true" onClick={this.logout}></i>
+              <i className="nav-icon messages-icon fa fa-comments-o" aria-hidden="true" onClick={this.messages}></i>
             </li>
 
 

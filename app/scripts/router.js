@@ -9,20 +9,20 @@ import PlaceItemPage from './Pages/PlaceItemPage';
 import ProfilePage from './Pages/ProfilePage';
 import EditProfilePage from './Pages/ProfilePage';
 import SettingsPage from './Pages/SettingsPage';
+import MessageHistoryPage from './Pages/MessageHistoryPage';
+import MessagePage from './Pages/MessagePage';
 
 const router = (
   <Router history={browserHistory}>
     <Route path="/" component={LandingPage}>
-      <IndexRoute component={LandingPage} />
-      <Route path="login" component={SessionModal} />
-      <Route path="signup" component={SessionModal} />
+      <IndexRoute component={LandingPage}/>
     </Route>
-    <Route path="search" component={ResultsPage} />
+    <Route path="search" component={ResultsPage}/>
     <Route path="places/:placeId" component={PlaceItemPage}/>
-    <Route path="user/:userId" component={ProfilePage} >
-      <Route path="edit" component={ProfilePage} />
-    </Route>
-    <Route path="settings" component={SettingsPage} />
+    <Route path="user/:userId" component={ProfilePage}/>
+    <Route path="messages" component={MessageHistoryPage}/>
+    <Route path="messages/newMessage" component={MessagePage}/>
+    <Route path="settings" component={SettingsPage}/>
   </Router>
 );
 

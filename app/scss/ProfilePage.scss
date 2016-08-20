@@ -11,26 +11,26 @@
 
 }
 
-
 .profile-footer {
   display: flex;
   width: 100vw;
   ul {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 0;
     margin: 0;
+    width: 100%;
   }
   .user-recent-places-component {
     list-style-type: none;
     text-align: center;
-    width: 10em;
+    width: 100%;
 
     .recent-place-image {
-      height: 7em;
-      width: 7em;
+      height: 10em;
+      width: 10em;
       background-size: cover;
       background-repeat: no-repeat;
     }
@@ -39,6 +39,7 @@
       margin: .5em 0 0 0;
       width: 50%;
       font-size: 20px;
+      width: 100%;
     }
 
   }

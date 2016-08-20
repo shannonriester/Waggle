@@ -45,8 +45,9 @@
     h1 {
       margin: 0;
       font-size: 1.1em;
-      // width: 80%;
+      color: $accent;
       font-weight: 500;
+      background: transparent;
     }
 
     .place-snippet {
