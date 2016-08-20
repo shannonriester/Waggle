@@ -69,14 +69,16 @@ export default React.createClass({
     let coordinates = [0,0];
     if (this.state.coordinates[0] !== 0 && this.state.coordinates[1] !== 0) {
       coordinates = store.session.get('coordinates');
-      console.log(coordinates);
     }
     return (
       <div className="results-page-component">
         <Header />
         <div className="map-container">
           <div className="map">
-            <GoogleMapPage coordinates={coordinates} />
+            <GoogleMapPage
+            coordinates={coordinates}
+            resultsList={resultsList}
+            />
           </div>
         </div>
         <ul className="results-list">
