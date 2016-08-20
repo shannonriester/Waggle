@@ -10,7 +10,8 @@ import ProfilePage from './Pages/ProfilePage';
 import EditProfilePage from './Pages/ProfilePage';
 import SettingsPage from './Pages/SettingsPage';
 import MessageHistoryPage from './Pages/MessageHistoryPage';
-import MessagePage from './Pages/MessagePage';
+import ConversationPage from './Pages/ConversationPage';
+// import MessagePage from './Pages/MessagePage';
 
 const router = (
   <Router history={browserHistory}>
@@ -21,8 +22,7 @@ const router = (
     <Route path="places/:placeId" component={PlaceItemPage}/>
     <Route path="user/:userId" component={ProfilePage}/>
     <Route path="messages" component={MessageHistoryPage}/>
-    <Route path="messages/:messageId" component={MessagePage}/>
-    <Route path="messages/newMessage" component={MessagePage}/>
+    <Route path="messages/:recipient" component={ConversationPage}/>
     <Route path="settings" component={SettingsPage}/>
   </Router>
 );

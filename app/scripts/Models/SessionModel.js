@@ -35,7 +35,7 @@ const SessionModel = Backbone.Model.extend({
       { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/${this.get('userId')}`,
         type: 'PUT',
         success: (model, response) => {
-        console.log('UPDATED USER ', response);
+        // console.log('UPDATED USER ', response);
       }, error: (e) => {
           console.log('SESSION.UPDATEUSER ERROR: ', e);
       }
@@ -49,7 +49,7 @@ const SessionModel = Backbone.Model.extend({
       { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/${this.get('userId')}`,
         type: 'PUT',
         success: (model, response) => {
-        console.log('USER UPDATED PROFILE ', response);
+        // console.log('USER UPDATED PROFILE ', response);
         this.trigger('change');
 
       }, error: (e) => {
@@ -89,7 +89,7 @@ const SessionModel = Backbone.Model.extend({
         });
         if (this.get('username')) {
           this.updateUser();
-          console.log('session in the geoLocation ', this);
+          // console.log('session in the geoLocation ', this);
         }
         // this.updateUser();
       },
@@ -180,7 +180,7 @@ const SessionModel = Backbone.Model.extend({
       success: (model, response) => {
           this.trigger('change');
 
-          console.log('USER RETRIEVED: this ', this);
+          // console.log('USER RETRIEVED: this ', this);
       },
       error: function(response) {
         throw new Error('COULD NOT FETCH USER!');

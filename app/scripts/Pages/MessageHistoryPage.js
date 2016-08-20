@@ -9,23 +9,21 @@ export default React.createClass({
     return {
       session: store.session.get('username'),
       messages: store.messagesCollection.toJSON(),
-      myMessages: store.messagesCollection.findMyMessages(store.session.get('username')),
+      myMessages: [],
     }
   },
-  viewChatMessage: function(id) {
-    // console.log(id);
-    // console.log(e);
-    // console.log(e);
-    browserHistory.push(`/messages/${id}`);
+  viewChatMessage: function(convoWith) {
+    browserHistory.push(`/messages/${convoWith}`);
   },
   updateState: function() {
-    this.setState({messages: store.messagesCollection.toJSON()});
     this.setState({session: store.session.get('username')});
-    this.setState({myMessages:store.messagesCollection.findMyMessages(store.session.get('username'))});
+    this.setState({messages: store.messagesCollection.toJSON()});
   },
   componentDidMount: function() {
-    store.messagesCollection.fetch();
-    // console.log(this.state.session);
+    
+    store.messagesCollection.findMyMessages(this.state.session).then((response) => {
+      this.setState({myMessages: response.toJSON() });
+    });
     store.messagesCollection.on('change update', this.updateState);
     store.session.on('change', this.updateState);
   },
@@ -34,14 +32,30 @@ export default React.createClass({
     store.session.off('change', this.updateState);
   },
   render: function() {
-    let messagesArr = this.state.myMessages.map((curr, i, arr) => {
+    let allMyConversations = [];
+
+    let messagesArr = this.state.messages.filter((curr, i, arr) => {
+      let convoWith = curr.sender;
+      if (this.state.session === curr.sender) {
+        convoWith = curr.recipient;
+      }
+      if (allMyConversations.indexOf(convoWith) === -1) {
+        allMyConversations.push(convoWith);
+        return true;
+      }
+    });
+
+    messagesArr = messagesArr.map((curr, i, arr) => {
+      let convoWith = curr.sender;
+      if (this.state.session === curr.sender) {
+        convoWith = curr.recipient;
+      }
       let messagePreview = (
-        <li key={i} onClick={this.viewChatMessage.bind(null,`${curr.attributes._id}`)}>
-          <h2>{curr.attributes.recipient}</h2>
-          <p>{curr.attributes.body}</p>
+        <li key={i} onClick={this.viewChatMessage.bind(null, convoWith)}>
+          <h2>{curr.recipient}</h2>
+          <p>{curr.body}</p>
         </li>
       );
-      // console.log(curr.attributes);
       return messagePreview;
     });
     return (

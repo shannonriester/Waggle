@@ -78,9 +78,9 @@ export default React.createClass({
           </header>
           <main className="modal-body">
             <label htmlFor="input-username">username</label>
-            <input className="user-info-input" type="text" placeholder="username" ref="username" role="button" tabIndex="1" />
+            <input className="user-info-input" type="text" placeholder="username" ref="username" role="textbox" tabIndex="1" />
             <label htmlFor="input-password">password</label>
-            <input className="user-info-input" type="password" placeholder="password" ref="password" role="button" tabIndex="2" />
+            <input className="user-info-input" type="password" placeholder="password" ref="password" role="textbox" tabIndex="2" />
           </main>
           <footer className="modal-footer">
             <button className="modal-btn" role="button" tabIndex="3" onSubmit={this.login} onClick={this.login}>Login</button>
@@ -97,11 +97,11 @@ export default React.createClass({
           </header>
           <main className="modal-body">
             <label htmlFor="input-username">username</label>
-            <input className="user-info-input" type="text" placeholder="username" ref="username" role="button" tabIndex="1" />
+            <input className="user-info-input" type="text" placeholder="username" ref="username" role="textbox" tabIndex="1" />
             <label htmlFor="input-password">password</label>
-            <input className="user-info-input" type="password" placeholder="password" ref="password" tabIndex="2" />
+            <input className="user-info-input" type="password" placeholder="password" ref="password" role="textbox" tabIndex="2" />
             <label htmlFor="input-confirm-password">confirm password</label>
-            <input className="user-info-input" type="password" placeholder="password" ref="password2" tabIndex="3" />
+            <input className="user-info-input" type="password" placeholder="password" ref="password2" role="textbox" tabIndex="3" />
           </main>
           <footer className="modal-footer">
             <button className="modal-btn" role="button" tabIndex="3" onSubmit={this.signup} onClick={this.signup}>Sign up</button>
