@@ -215,9 +215,14 @@
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px; }
 
-.map-container {
-  height: 300px;
-  width: 400px; }
+.map {
+  height: 350px;
+  width: 75%;
+  margin: 10px auto; }
+
+.paw-icon {
+  height: 2em;
+  width: 2em; }
 
 .results-list {
   margin: 0;
