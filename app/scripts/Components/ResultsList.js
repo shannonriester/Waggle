@@ -16,11 +16,6 @@ export default React.createClass({
     render: function() {
       let backgroundImage = {backgroundImage: 'url(' + this.props.place.imageUrl + ')'};
 
-      let status = 'closed';
-      if (!this.props.place.isClosed) {
-        status = 'open now';
-      }
-
       let category;
       if (this.props.place.categories[0][0].indexOf('/') !== -1) {
         category = this.props.place.categories[0][0].split('/').join(' ');

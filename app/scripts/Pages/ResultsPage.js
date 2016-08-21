@@ -35,9 +35,9 @@ export default React.createClass({
         this.setState({fetch:false});
       }
       else {
-        store.session.once('change:city', () => {
+        store.session.on('change: city', () => {
             browserHistory.push({pathname:`/search/`, query:{category: store.session.get('query')} });
-            store.placesCollection.getResults(store.session.get('city'), this.state.query || store.session.get('query'));
+            store.placesCollection.getResults(store.session.get('city'), store.session.get('query'));
           });
       }
   },

@@ -12,7 +12,11 @@ export default React.createClass({
     e.preventDefault();
     let message = this.refs.textarea.value;
     store.messagesCollection.sendMessage(store.session.get('username'), this.props.recipient, message);
-
+    this.props.hideMessageModal();
+  },
+  cancel: function(e) {
+    e.preventDefault();
+    this.props.hideMessageModal();
   },
   componentDidMount: function() {
 
@@ -21,6 +25,7 @@ export default React.createClass({
     return (
       <div className="modal-component">
         <form className="message-content-container" onSubmit={this.sendNewMessage}>
+          <button className="cancel-btn" onClick={this.cancel}>cancel</button>
           <h2>Send {this.props.recipient} a message!</h2>
           <input type="text" className="new-message-textarea" ref="textarea" tabIndex="0" />
           <input className="submit-btn" type="submit" value="submit" role="button" />

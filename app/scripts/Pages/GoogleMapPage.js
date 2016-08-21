@@ -12,10 +12,10 @@ let GoogleMapPage = React.createClass({
     });
 
     let myLocation = (<PlaceMarker
-                      className="my-location"
+                      id="my-location"
                       lat={this.props.coordinates[0]}
                       lng={this.props.coordinates[1]} />);
-    // <img className="paw-icon myPlace" src="/assets/Icons/paw-white.svg" alt="dog-paw-print-icon" />
+
     return (
        <GoogleMap
         // apiKey={AIzaSyBGH9fSjS0D-dpIgVYpOUfg5F63Igifl7I} // set if you need stats etc ...

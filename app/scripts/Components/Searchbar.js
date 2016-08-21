@@ -9,7 +9,11 @@ export default React.createClass({
     let query = this.refs.searchbar.value;
     store.session.set('query', query);
     console.log('query on searchbar ', store.session.get('query'));
-    store.placesCollection.getResults(store.session.get('city'), store.session.get('coordinates'), store.session.get('query'));
+    store.placesCollection.getResults(
+      store.session.get('city'),
+      store.session.get('query')
+    );
+
     browserHistory.push({pathname:`/search/`, query:{category: query} });
     // sessionStorage.searchTerm = query;
     // console.log(store.session.get('query'));
