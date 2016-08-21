@@ -6,7 +6,6 @@ export default React.createClass({
   getInitialState: function() {
     return {
       editing: store.session.get('isEditing'),
-      session: store.session.toJSON(),
       imgSrc: [],
     }
   },
@@ -22,10 +21,6 @@ export default React.createClass({
     let newAboutInfo = this.refs.aboutInfo.value;
 
     store.session.updateProfile(newProfilePic, newUserName, newUserAge, newDogName, newDogAge, newDogBreed, newAboutInfo);
-    // store.session.updateUser();
-    this.props.updateSession();
-    this.props.updateState();
-    // console.log(this.props);
     store.session.set('isEditing', false);
   },
   handleImgChange: function(e) {
@@ -42,14 +37,20 @@ export default React.createClass({
       // reader.readAsDataURL(file);
   },
   updateState: function() {
-    this.setState({editing: store.session.get('isEditing')});
-    this.setState({session: store.session.toJSON()});
+    store.userCollection.fetch();
+    this.setState({
+      session: store.session.toJSON(),
+      editing: store.session.get('isEditing'),
+      users: store.userCollection.toJSON(),
+  });
   },
   componentDidMount: function() {
     store.session.on('change', this.updateState);
+    store.userCollection.on('change update', this.updateState);
   },
   componentWillUnmount: function() {
-    store.session.off('change update', this.updateState);
+    store.session.off('change', this.updateState);
+    store.userCollection.off('change update', this.updateState);
   },
   render: function() {
     let content;

@@ -35,6 +35,7 @@ const SessionModel = Backbone.Model.extend({
       { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/${this.get('userId')}`,
         type: 'PUT',
         success: (model, response) => {
+          this.trigger('change update');
         // console.log('UPDATED USER ', response);
       }, error: (e) => {
           console.log('SESSION.UPDATEUSER ERROR: ', e);
@@ -50,7 +51,7 @@ const SessionModel = Backbone.Model.extend({
         type: 'PUT',
         success: (model, response) => {
         // console.log('USER UPDATED PROFILE ', response);
-        this.trigger('change');
+        this.trigger('change update');
 
       }, error: (e) => {
           console.log('updateProfile ERROR: ', e);

@@ -16,9 +16,9 @@ export default React.createClass({
         matchCollection: [],
         checkinCollection: [],
         placesCollection: [],
-        state: "viewing",
         recentPlaces: [],
         newMessage: false,
+        fetch: true,
       }
   },
   fetchPlaces: function() {
@@ -36,14 +36,14 @@ export default React.createClass({
     store.session.set('isEditing', true);
   },
   toggleMatch: function() {
-    console.log(this.state.session.username);
-    console.log(this.props.params.userId);
     store.matchCollection.toggleMatch(this.state.session.username, this.props.params.userId);
   },
   messageUser: function() {
-    console.log('messaging user!');
     this.setState({newMessage:true});
     // browserHistory.push(`/messages/newMessage`)
+  },
+  hideMessageModal: function() {
+    this.setState({newMessage:false});
   },
   goToSettings: function() {
     browserHistory.push('settings');
@@ -54,23 +54,23 @@ export default React.createClass({
       user: store.userCollection.toJSON(),
       checkinCollection: store.checkinCollection.toJSON(),
       placesCollection: store.placesCollection.toJSON(),
-      // userCollection: store.userCollection.toJSON(),
     });
   },
   updateSession: function() {
-    // console.log('updateSession ');
-    store.session.updateUser();
-    this.setState({user:store.userCollection.toJSON()})
+    store.userCollection.fetch();
+    this.setState({
+      session: store.session.toJSON(),
+      user: store.userCollection.toJSON(),
+    });
   },
-  componentDidMount: function() {
+  componentWillMount: function() {
     this.fetchPlaces();
     store.userCollection.fetch();
     store.checkinCollection.fetch();
   },
-  componentWillMount: function() {
+  componentDidMount: function() {
     store.session.on('change', this.updateState);
-    //changed this from once to on...
-    store.userCollection.on('change update', this.updateSession);
+    store.userCollection.once('change update', this.updateSession);
     store.checkinCollection.on('change update', this.updateState);
     store.checkinCollection.on('change update', this.fetchPlaces);
     store.placesCollection.on('change update', this.updateState);
@@ -103,7 +103,7 @@ export default React.createClass({
     }
       userProfileInfo = this.state.user.map((user, i, arr) => {
         if (this.props.params.userId === user.username) {
-            return (<ProfileInfo key={i} user={user} updateSession={this.updateSession} updateState={this.updateState} />);
+            return (<ProfileInfo key={i} user={user} updateState={this.updateState} />);
         }
       });
 
@@ -120,11 +120,11 @@ export default React.createClass({
       });
 
       userRecentPlaces = fixedPlaces.map((place, i, arr) => {
-          return (<UserRecentPlaces key={i} place={place} updateSession={this.updateState} />);
+          return (<UserRecentPlaces key={i} place={place} updateState={this.updateSession} />);
       });
 
       if (this.state.newMessage) {
-        newMessageModal = (<NewMessage recipient={this.props.params.userId}/>);
+        newMessageModal = (<NewMessage recipient={this.props.params.userId} hideMessageModal={this.hideMessageModal}/>);
       }
 
     return (

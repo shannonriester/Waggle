@@ -20,9 +20,6 @@ export default React.createClass({
       fetch: true,
     }
   },
-  getCoordinates: function() {
-
-  },
   updateState: function() {
       this.setState({
         city: store.session.get('city'),
@@ -50,9 +47,6 @@ export default React.createClass({
     }
   },
   componentDidMount: function () {
-    // if (!this.state.authtoken) {
-    //   browserHistory.push('/');
-    // }
     this.updateState()
     store.session.on('change', this.updateState);
     store.placesCollection.on('change update', this.updateState);

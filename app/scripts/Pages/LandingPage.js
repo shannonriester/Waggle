@@ -39,14 +39,14 @@ export default React.createClass({
   updateState: function() {
     this.setState({authtoken:localStorage.getItem('authtoken')});
     this.setState({city:store.session.get('city')});
-    console.log(this.state.authtoken);
+    // console.log(this.state.authtoken);
     if (this.state.authtoken) {
-      console.log(this.state.authtoken);
+      // console.log(this.state.authtoken);
       browserHistory.push({pathname:`/search/`, query:{category: store.session.get('query')} });
     }
   },
   componentWillMount: function() {
-    console.log(this.state.authtoken);
+    // console.log(this.state.authtoken);
     if (this.state.authtoken) {
       store.session.retrieve();
       store.session.set('city', store.session.get('city'));

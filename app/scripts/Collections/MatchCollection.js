@@ -19,11 +19,6 @@ const MatchCollection = Backbone.Collection.extend({
           }
         });
       }
-
-
-
-      // console.log('response ', response.models[0]);
-      // return response.models[0];
     });
     // console.log(matchRequest);
     // let alreadyMatched = this.findWhere({sender:session, likee:likee});
