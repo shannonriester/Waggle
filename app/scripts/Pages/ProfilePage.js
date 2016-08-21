@@ -21,6 +21,7 @@ export default React.createClass({
         newMessage: false,
         fetch: true,
         sentMatch: false,
+        receivedMatch: false,
       }
   },
   fetchPlaces: function() {
@@ -79,6 +80,10 @@ export default React.createClass({
       this.setState({sentMatch: response.toJSON()[0]})
       console.log(response.toJSON()[0]);
     });
+    store.matchCollection.findMatch(this.props.params.userId, this.state.session.username).then((response) => {
+      this.setState({receivedMatch: response.toJSON()[0]})
+      console.log(response.toJSON()[0]);
+    });
   },
   componentDidMount: function() {
     store.session.on('change', this.updateState);
@@ -97,7 +102,6 @@ export default React.createClass({
     store.matchCollection.off('change update', this.updateState);
   },
   render: function() {
-    console.log(this.state.sentMatch);
     let sessionNav;
     let userProfileInfo;
     let newMessageModal;
@@ -113,43 +117,49 @@ export default React.createClass({
         </ul>
       );
     }
+
     userProfileInfo = this.state.user.map((user, i, arr) => {
         if (this.props.params.userId === user.username) {
             return (<ProfileInfo key={i} user={user} updateState={this.updateState} />);
         }
       });
 
-      let placeIDArr = this.state.recentPlaces.map((place, i, arr) => {
-        return place.place;
-      });
-
-      placeIDArr = _.sortBy(placeIDArr, (place) => {
-        return moment(place.time).unix();
-      }).reverse();
-
-      let fixedPlaces = this.state.placesCollection.filter((place) => {
-        if (placeIDArr.indexOf(place.yelpID) > -1) {
-          return true;
-        }
-      });
-
-      if (fixedPlaces.length > 4) {
-        fixedPlaces = fixedPlaces.slice(0,4);
-      }
-
-      let userRecentPlaces = fixedPlaces.map((place, i, arr) => {
-          return (<UserRecentPlaces key={i} place={place} updateState={this.updateSession} />);
-      });
-
       if (this.state.newMessage) {
         newMessageModal = (<NewMessage recipient={this.props.params.userId} hideMessageModal={this.hideMessageModal}/>);
       }
 
-    // let sentMatch;
     let heartIcon = <i className="icon-heart fa fa-heart-o" aria-hidden="true"></i>;
     if (this.state.sentMatch) {
-      // sentMatch='sent-match'
       heartIcon = <i className="icon-heart sent-match fa fa-heart" aria-hidden="true"></i>
+    }
+
+    console.log(this.state.receivedMatch);
+    let userRecentPlaces;
+    if (this.state.sentMatch && this.state.receivedMatch) {
+      console.log('both users matched eachother!');
+        let placeIDArr = this.state.recentPlaces.map((place, i, arr) => {
+          return place.place;
+        });
+
+        placeIDArr = _.sortBy(placeIDArr, (place) => {
+          return moment(place.time).unix();
+        }).reverse();
+
+        let fixedPlaces = this.state.placesCollection.filter((place) => {
+          if (placeIDArr.indexOf(place.yelpID) > -1) {
+            return true;
+          }
+        });
+
+        if (fixedPlaces.length > 4) {
+          fixedPlaces = fixedPlaces.slice(0,4);
+        }
+
+        userRecentPlaces = fixedPlaces.map((place, i, arr) => {
+            return (<UserRecentPlaces key={i} place={place} updateState={this.updateSession} />);
+        });
+
+
     }
 
     return (

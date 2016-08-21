@@ -30,14 +30,15 @@ const MatchCollection = Backbone.Collection.extend({
       this.fetch({url:`https://baas.kinvey.com/appdata/kid_SkBnla5Y/MatchCollection?query={"$or":${query}}`,
       success: (response) => {
         resolve(response);
-        
+
       }, error: function (response) {
           console.error('FAILED TO FETCH MY MESSAGES ', response);
           reject();
       }});
     });
-
-
+  },
+  findAllMyMatches: function() {
+    
   },
 });
 
