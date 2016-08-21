@@ -5,6 +5,7 @@ const PlaceModel = Backbone.Model.extend({
   defaults: {
     checkedinUsers: [],
   },
+  infoBox: false,
 });
 
 export default PlaceModel;
