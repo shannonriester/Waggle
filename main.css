@@ -237,7 +237,7 @@
   height: 2em;
   width: 2em; }
 
-.my-location .place-marker {
+#my-location {
   background-color: purple; }
 
 .results-list {
