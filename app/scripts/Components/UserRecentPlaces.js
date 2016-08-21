@@ -5,7 +5,6 @@ import store from '../store';
 
 export default React.createClass({
   render: function() {
-    // console.log(this.props.place);
     let url = `${this.props.place.imageUrl}`;
     let styles = {backgroundImage: 'url(' + url + ')'};
     return (
@@ -13,6 +12,7 @@ export default React.createClass({
         <Link className="link" to={`/places/${this.props.place.yelpID}`}>
         <div className="recent-place-image" style={styles}></div>
         <h3>{this.props.place.name}</h3>
+        <h4>{this.props.place.userCheckedin}</h4>
         </Link>
       </li>
     )

@@ -1,6 +1,7 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 import _ from 'underscore';
+import moment from 'moment';
 
 import store from '../store';
 import Nav from '../Components/Nav';
@@ -87,7 +88,6 @@ export default React.createClass({
   render: function() {
     let sessionNav;
     let userProfileInfo;
-    let userRecentPlaces;
     let newMessageModal;
     if (this.state.session.username === this.props.params.userId) {
       sessionNav = (
@@ -101,17 +101,19 @@ export default React.createClass({
         </ul>
       );
     }
-      userProfileInfo = this.state.user.map((user, i, arr) => {
+    userProfileInfo = this.state.user.map((user, i, arr) => {
         if (this.props.params.userId === user.username) {
             return (<ProfileInfo key={i} user={user} updateState={this.updateState} />);
         }
       });
 
       let placeIDArr = this.state.recentPlaces.map((place, i, arr) => {
-        let newPlace = _.sortBy([place.place, place.time]);
-        newPlace.slice(0,1)
         return place.place;
       });
+
+      placeIDArr = _.sortBy(placeIDArr, (place) => {
+        return moment(place.time).unix();
+      }).reverse();
 
       let fixedPlaces = this.state.placesCollection.filter((place) => {
         if (placeIDArr.indexOf(place.yelpID) > -1) {
@@ -119,7 +121,11 @@ export default React.createClass({
         }
       });
 
-      userRecentPlaces = fixedPlaces.map((place, i, arr) => {
+      if (fixedPlaces.length > 4) {
+        fixedPlaces = fixedPlaces.slice(0,4);
+      }
+
+      let userRecentPlaces = fixedPlaces.map((place, i, arr) => {
           return (<UserRecentPlaces key={i} place={place} updateState={this.updateSession} />);
       });
 

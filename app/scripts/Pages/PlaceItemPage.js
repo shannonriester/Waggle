@@ -9,10 +9,14 @@ export default React.createClass({
     getInitialState: function() {
       return {
         placeModel: {},
-        checkedin: store.userCollection.findWhere({username: store.session.get('username')}),
+        // checkedin: false,
         checkinList: null,
         checkedinModels: [],
         intervalCheckout: false,
+        checkedin: store.checkinCollection.where({
+          place: this.props.params.placeId,
+          userCheckedin: store.session.get('username')
+        }),
       }
     },
     toggleCheckin: function() {
@@ -24,6 +28,14 @@ export default React.createClass({
           this.state.intervalCheckout
         );
       this.updateState();
+      this.setState({
+        // checkedin:!this.state.checkedin,
+        checkedin: store.checkinCollection.where({
+          place: this.props.params.placeId,
+          userCheckedin: store.session.get('username')
+        }),
+
+      })
       // let interval = setTimeout(() => {
       //   this.setState({intervalCheckout:!this.state.intervalCheckout});
       // // }, 1800000);
@@ -37,13 +49,16 @@ export default React.createClass({
       this.setState({checkinList: !this.state.checkinList});
     },
     updateState: function() {
-      if (store.placesCollection.findWhere({yelpID: this.props.params.placeId}) && store.checkinCollection.where({place:this.props.params.placeId})){
-      this.setState({
-        placeModel: store.placesCollection.findWhere({yelpID: this.props.params.placeId}).toJSON(),
-        checkedinModels: store.checkinCollection.where({place:this.props.params.placeId}),
-        checkedin: store.userCollection.findWhere({username: store.session.get('username')}),
-      });
-    }
+      if (store.placesCollection.findWhere({yelpID: this.props.params.placeId}) && store.checkinCollection.where({place:this.props.params.placeId})) {
+        this.setState({
+          placeModel: store.placesCollection.findWhere({yelpID: this.props.params.placeId}).toJSON(),
+          checkedinModels: store.checkinCollection.where({place:this.props.params.placeId}),
+          checkedin: store.checkinCollection.where({
+            place: this.props.params.placeId,
+            userCheckedin: store.session.get('username')
+          }),
+        });
+      }
     },
     componentWillMount: function() {
       store.checkinCollection.fetch();
@@ -54,7 +69,10 @@ export default React.createClass({
         this.setState({
           placeModel: store.placesCollection.findWhere({yelpID: this.props.params.placeId}).toJSON(),
           checkedinModels: store.checkinCollection.where({place:this.props.params.placeId}),
-          checkedin: store.userCollection.findWhere({username: store.session.get('username')}),
+          checkedin: store.checkinCollection.where({
+            place: this.props.params.placeId,
+            userCheckedin: store.session.get('username')
+          }),
         });
       } else {
         store.placesCollection.getYelpResult(this.props.params.placeId, store.session.get('city'));
@@ -68,6 +86,7 @@ export default React.createClass({
       store.userCollection.off('change update', this.updateState);
     },
     render: function() {
+      // console.log(this.state);
       let content;
       if (this.state.placeModel.name) {
         let placeItem = this.state.placeModel;
@@ -91,7 +110,7 @@ export default React.createClass({
 
         // console.log('this.state.users', this.state.users);
         let checkBtn = (<button className="checkin-btn" onClick={this.toggleCheckin}>Check in here!</button>);
-        if (this.state.checkedin) {
+        if (this.state.checkedin[0]) {
           checkedin = "checked-in";
           checkBtn = (<button className="checkin-btn" id={checkedin} onClick={this.toggleCheckin}>Checked in!</button>);
         }

@@ -10,7 +10,6 @@ export default React.createClass({
     return {
       session: store.session.get('username'),
       messages: store.messagesCollection.toJSON(),
-      // myMessages: [],
       fetched: false,
     }
   },
@@ -50,17 +49,12 @@ export default React.createClass({
       }
     });
 
-    // console.log(messagesArr);
-
     messagesArr = messagesArr.map((curr, i, arr) => {
       let convoWith = curr.sender;
       if (this.state.session === curr.sender) {
         convoWith = curr.recipient;
       }
-      // console.log(curr);
-      // console.log(curr.timestamp);
-      // let mostRecentReply = _.sortBy(curr.timestamp);
-      // console.log(mostRecentReply);
+
       let messagePreview = (
         <li key={i} onClick={this.viewChatMessage.bind(null, convoWith)}>
           <h2>{convoWith}</h2>
@@ -69,6 +63,8 @@ export default React.createClass({
       );
       return messagePreview;
     });
+
+    
     return (
       <div className="message-history-page-container">
         <Nav />
