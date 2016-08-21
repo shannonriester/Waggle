@@ -22,9 +22,11 @@ export default React.createClass({
     let newAboutInfo = this.refs.aboutInfo.value;
 
     store.session.updateProfile(newProfilePic, newUserName, newUserAge, newDogName, newDogAge, newDogBreed, newAboutInfo);
-    store.session.set('isEditing', false);
-    store.session.updateUser();
+    // store.session.updateUser();
     this.props.updateSession();
+    this.props.updateState();
+    // console.log(this.props);
+    store.session.set('isEditing', false);
   },
   handleImgChange: function(e) {
     e.preventDefault();
@@ -51,8 +53,6 @@ export default React.createClass({
   },
   render: function() {
     let content;
-    // console.log(this.props.user.profile.profilePic);
-    // let url = `${this.props.user.profile.profilePic}`;
     let url = `${this.props.user.profile.images[0]}`;
     let styles = {backgroundImage: 'url(' + url + ')'};
 

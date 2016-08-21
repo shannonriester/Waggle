@@ -13,6 +13,7 @@ export default React.createClass({
       return {
         session: store.session.toJSON(),
         user: store.userCollection.toJSON(),
+        matchCollection: [],
         checkinCollection: [],
         placesCollection: [],
         state: "viewing",
@@ -34,6 +35,11 @@ export default React.createClass({
   editProfile: function() {
     store.session.set('isEditing', true);
   },
+  toggleMatch: function() {
+    console.log(this.state.session.username);
+    console.log(this.props.params.userId);
+    store.matchCollection.toggleMatch(this.state.session.username, this.props.params.userId);
+  },
   messageUser: function() {
     console.log('messaging user!');
     this.setState({newMessage:true});
@@ -48,9 +54,11 @@ export default React.createClass({
       user: store.userCollection.toJSON(),
       checkinCollection: store.checkinCollection.toJSON(),
       placesCollection: store.placesCollection.toJSON(),
+      // userCollection: store.userCollection.toJSON(),
     });
   },
   updateSession: function() {
+    // console.log('updateSession ');
     store.session.updateUser();
     this.setState({user:store.userCollection.toJSON()})
   },
@@ -61,10 +69,12 @@ export default React.createClass({
   },
   componentWillMount: function() {
     store.session.on('change', this.updateState);
-    store.userCollection.once('change update', this.updateState);
+    //changed this from once to on...
+    store.userCollection.on('change update', this.updateSession);
     store.checkinCollection.on('change update', this.updateState);
     store.checkinCollection.on('change update', this.fetchPlaces);
     store.placesCollection.on('change update', this.updateState);
+    store.matchCollection.on('change update', this.updateState);
   },
   componentWillUnmount: function() {
     store.session.off('change', this.updateState);
@@ -72,6 +82,7 @@ export default React.createClass({
     store.checkinCollection.off('change update', this.updateState);
     store.checkinCollection.off('change update', this.fetchPlaces);
     store.placesCollection.off('change update', this.updateState);
+    store.matchCollection.off('change update', this.updateState);
   },
   render: function() {
     let sessionNav;
@@ -92,8 +103,7 @@ export default React.createClass({
     }
       userProfileInfo = this.state.user.map((user, i, arr) => {
         if (this.props.params.userId === user.username) {
-            userProfileInfo = (<ProfileInfo key={i} user={user} updateSession={this.updateState} />);
-            return (userProfileInfo);
+            return (<ProfileInfo key={i} user={user} updateSession={this.updateSession} updateState={this.updateState} />);
         }
       });
 
@@ -124,7 +134,7 @@ export default React.createClass({
         <header className="profile-header">
           {sessionNav}
           {userProfileInfo}
-          <button className="like-btn" onClick={this.likeUser}><i className="icon-heart fa fa-heart-o" aria-hidden="true"></i></button>
+          <button className="like-btn" onClick={this.toggleMatch}><i className="icon-heart fa fa-heart-o" aria-hidden="true"></i></button>
           <button className="message-btn" onClick={this.messageUser}><i className="fa fa-comments-o" aria-hidden="true"></i></button>
         </header>
 
