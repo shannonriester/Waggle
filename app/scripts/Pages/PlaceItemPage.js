@@ -9,7 +9,6 @@ export default React.createClass({
     getInitialState: function() {
       return {
         placeModel: {},
-        // checkedin: false,
         checkinList: null,
         checkedinModels: [],
         intervalCheckout: false,
@@ -29,7 +28,6 @@ export default React.createClass({
         );
       this.updateState();
       this.setState({
-        // checkedin:!this.state.checkedin,
         checkedin: store.checkinCollection.where({
           place: this.props.params.placeId,
           userCheckedin: store.session.get('username')
@@ -86,19 +84,15 @@ export default React.createClass({
       store.userCollection.off('change update', this.updateState);
     },
     render: function() {
-      // console.log(this.state);
       let content;
       if (this.state.placeModel.name) {
         let placeItem = this.state.placeModel;
-        let url = placeItem.imageUrl.replace('ms', 'l');
-        let styles = {backgroundImage: 'url(' + url + ')'};
+        let styles = {backgroundImage: 'url(' + placeItem.imageUrl + ')'};
 
-        placeItem = this.state.placeModel;
-
-        let checkedinList;
+        let checkedinUserPreview;
         let users = <CheckedinUserPreview checkedinModels={this.state.checkedinModels} />;
         if (this.state.checkinList) {
-          checkedinList = (
+          checkedinUserPreview = (
             <ul className="ulist-users-checkedin">
               {users}
             </ul>
@@ -120,7 +114,7 @@ export default React.createClass({
             <div className="content-container">
 
               <footer className="footer-users-checkedin">
-                {checkedinList}
+                {checkedinUserPreview}
                 <button className="users-checkedin-btn" onClick={this.toggleCheckinList}>Who's here?</button>
                 {checkBtn}
               </footer>

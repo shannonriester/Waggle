@@ -47,11 +47,12 @@ export default React.createClass({
     store.messagesCollection.off('change update', this.updateState);
   },
   render: function() {
-    let src;
+    let styles;
     if (this.state.recipient[0]) {
-      console.log();
-      src = this.state.recipient[0].attributes.profile.profilePic;
+      let url = this.state.recipient[0].attributes.profile.profilePic;
+      styles = {backgroundImage: 'url(' + url + ')'};
     }
+
     let convo = _.sortBy(this.state.conversation, (message) => {
       return moment(message.get('timestamp')).unix();
     });
@@ -77,7 +78,7 @@ export default React.createClass({
       <div className="message-page-container">
         <Nav/>
         <Link to={`/user/${this.props.params.recipient}`} className="link">
-          <img src={src} alt="profile-picture of recipient"/>
+          <figure className="profile-pic" style={styles} alt="profile-picture of recipient"/>
           <h2>{this.props.params.recipient}</h2>
         </Link>
         <ul className="messages-container">
