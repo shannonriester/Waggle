@@ -417,6 +417,10 @@
       font-size: 20px;
       width: 100%; }
 
+.me {
+  background: #8D5A97;
+  color: #EFF1EF; }
+
 body {
   margin: 0;
   font-family: sans-serif;

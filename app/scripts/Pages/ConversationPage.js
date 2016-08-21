@@ -36,27 +36,24 @@ export default React.createClass({
     store.messagesCollection.off('change update', this.updateState);
   },
   render: function() {
-    let convo = this.state.conversation.map((curr, i, arr) => {
+    let convo = _.sortBy(this.state.conversation, (message) => {
+      return moment(message.get('timestamp')).unix();
+    });
+
+    convo = convo.map((curr, i, arr) => {
       curr = curr.toJSON();
-      let whoSent = whoSent = 'not-me';
+      let whoSent = 'not-me';
       if (this.state.session === curr.sender) {
         whoSent = 'me';
       }
-      _.sortBy(curr.timestamp);
       let content = (
         <li key={i} className={whoSent}>
-          <p className="message-body">{curr.body}</p>
+          <p className="message-body">{whoSent}: {curr.body}</p>
           <data>{curr.momentTime}</data>
         </li>
       );
       return content;
     });
-    // console.log(this.state);
-    // let convo = this.state.conversation.attributes;
-    // console.log(this.state.conversation.toJSON());
-    // if (this.state.conversation.attributes) {
-      // console.log(this.state.conversation.attributes);
-    // }
     return (
       <div className="message-page-container">
         <Nav/>
