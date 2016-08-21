@@ -10,6 +10,19 @@
 .profile-main {
 
 }
+.like-btn {
+  border: none;
+  outline: none;
+  background: none;
+}
+.icon-heart {
+  padding: 2%;
+  font-size: 2em;
+  // background: blue;
+}
+.sent-match {
+  color: red;
+}
 
 .profile-footer {
   display: flex;

@@ -30,7 +30,7 @@ export default React.createClass({
 
     let infoBox;
     // console.log(this.state.infoBox);
-    console.log(this.props.infoBox);
+    // console.log(this.props.infoBox);
     if (this.state.infoBox && this.props.infoBox) {
       infoBox = (
         <div>infobox</div>

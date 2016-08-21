@@ -20,6 +20,7 @@ export default React.createClass({
         recentPlaces: [],
         newMessage: false,
         fetch: true,
+        sentMatch: false,
       }
   },
   fetchPlaces: function() {
@@ -38,6 +39,10 @@ export default React.createClass({
   },
   toggleMatch: function() {
     store.matchCollection.toggleMatch(this.state.session.username, this.props.params.userId);
+    this.setState({
+      matchBtn: !this.state.matchBtn,
+      sentMatch: !this.state.sentMatch,
+    });
   },
   messageUser: function() {
     this.setState({newMessage:true});
@@ -50,6 +55,7 @@ export default React.createClass({
     browserHistory.push('settings');
   },
   updateState: function() {
+
     this.setState({
       session: store.session.toJSON(),
       user: store.userCollection.toJSON(),
@@ -68,6 +74,11 @@ export default React.createClass({
     this.fetchPlaces();
     store.userCollection.fetch();
     store.checkinCollection.fetch();
+
+    store.matchCollection.findMatch(this.state.session.username, this.props.params.userId).then((response) => {
+      this.setState({sentMatch: response.toJSON()[0]})
+      console.log(response.toJSON()[0]);
+    });
   },
   componentDidMount: function() {
     store.session.on('change', this.updateState);
@@ -86,6 +97,7 @@ export default React.createClass({
     store.matchCollection.off('change update', this.updateState);
   },
   render: function() {
+    console.log(this.state.sentMatch);
     let sessionNav;
     let userProfileInfo;
     let newMessageModal;
@@ -133,6 +145,13 @@ export default React.createClass({
         newMessageModal = (<NewMessage recipient={this.props.params.userId} hideMessageModal={this.hideMessageModal}/>);
       }
 
+    // let sentMatch;
+    let heartIcon = <i className="icon-heart fa fa-heart-o" aria-hidden="true"></i>;
+    if (this.state.sentMatch) {
+      // sentMatch='sent-match'
+      heartIcon = <i className="icon-heart sent-match fa fa-heart" aria-hidden="true"></i>
+    }
+
     return (
       <div className="profile-component">
         <Nav />
@@ -140,7 +159,7 @@ export default React.createClass({
         <header className="profile-header">
           {sessionNav}
           {userProfileInfo}
-          <button className="like-btn" onClick={this.toggleMatch}><i className="icon-heart fa fa-heart-o" aria-hidden="true"></i></button>
+          <button className="like-btn" onClick={this.toggleMatch}>{heartIcon}</button>
           <button className="message-btn" onClick={this.messageUser}><i className="fa fa-comments-o" aria-hidden="true"></i></button>
         </header>
 

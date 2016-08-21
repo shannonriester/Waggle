@@ -40,7 +40,7 @@ let GoogleMapPage = React.createClass({
       //   hideInfoBox = true;
       //   console.log('hideInfoBox', hideInfoBox);
       // }
-      console.log(this.state.infoBox);
+      // console.log(this.state.infoBox);
       let infoBox;
       if (this.state.infoBox) {
         infoBox = place.props.place

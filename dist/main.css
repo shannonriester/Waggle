@@ -391,6 +391,18 @@
   background-repeat: no-repeat;
   background-position-x: -15px; }
 
+.like-btn {
+  border: none;
+  outline: none;
+  background: none; }
+
+.icon-heart {
+  padding: 2%;
+  font-size: 2em; }
+
+.sent-match {
+  color: red; }
+
 .profile-footer {
   display: flex;
   width: 100vw; }
