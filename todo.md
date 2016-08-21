@@ -1,18 +1,32 @@
 #ToDo List
-- placeItemPage
+- DATE MATH:
+  - when it's been longer than a day, remove from placeItemPage
+    - keep that place on their recently visited places though!
+  - User's recent places
+    - don't show places if over 3 months ago...
+- MAP:
+  - animate: show bleeping if there are more than 3-5 users at one place!
 
 - profilePage
-  - liking/matching users
-  - why not updating user when they edit profile?
-  - show current checkin?
-    - update user's location on the session model
-- messaging?
+  - update user's location on the session model
+  - reorganize their editing profile?
+  - uploading photos
+    - drag and drop
+    - dog photos
+  - show all of the matches a user has received!
+
+- messaging
+  - double check that messages aren't viewable by other people
+  - what to do when message convo exceeds 20 models??
+
+- Features to add:  
+  - commenting on places
 
 
-##Problems w/ Jess
-  - loading time AGAIN
-  - matched collection join table
-  - double check that checkinCollection/join table are working...?
+##QUESTIONS:
+  - router?
+    - doesn't link to login/signup
+    - won't let me nest things like I want
 
 
 <Link to={`posts/${post._id}`}></Link>

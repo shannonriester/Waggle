@@ -61,10 +61,10 @@ const PlacesCollection = Backbone.Collection.extend({
         'dataType' : 'jsonp',
         // 'jsonpCallback' : 'cb',
         'cache': true,
-    })
-    .then((places) => {
+    }).then((places) => {
       // console.log('YELP DATA: ', places);
       let placeList =  places.businesses.map((place) => {
+        let imageUrl = place.image_url.replace('ms', 'l');
         return {
           name: place.name,
           yelpRating: place.rating,
@@ -72,7 +72,7 @@ const PlacesCollection = Backbone.Collection.extend({
           yelpMobileUrl: place.mobile_url,
           yelpID: place.id,
           categories: place.categories,
-          imageUrl: place.image_url,
+          imageUrl: imageUrl,
           snippetImageUrl: place.snippet_image_url,
           snippetText: place.snippet_text,
           ll: place.location.coordinate,
@@ -134,8 +134,8 @@ const PlacesCollection = Backbone.Collection.extend({
         // 'jsonp': 'cb',
         // 'jsonpCallback' : 'cb',
         'cache': true,
-    })
-    .then((place) => {
+    }).then((place) => {
+      let imageUrl = place.image_url.replace('ms', 'l');
       // console.log('YELP DATA: ', place);
         this.add({
           name: place.name,
@@ -144,7 +144,7 @@ const PlacesCollection = Backbone.Collection.extend({
           yelpMobileUrl: place.mobile_url,
           yelpID: place.id,
           categories: place.categories,
-          imageUrl: place.image_url,
+          imageUrl: imageUrl,
           snippetImageUrl: place.snippet_image_url,
           snippetText: place.snippet_text,
           ll: place.location.coordinate,

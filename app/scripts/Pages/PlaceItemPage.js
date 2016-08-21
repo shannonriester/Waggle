@@ -106,9 +106,6 @@ export default React.createClass({
         }
 
         let checkedin;
-        console.log('this.state.checkedin ',this.state.checkedin);
-
-        // console.log('this.state.users', this.state.users);
         let checkBtn = (<button className="checkin-btn" onClick={this.toggleCheckin}>Check in here!</button>);
         if (this.state.checkedin[0]) {
           checkedin = "checked-in";

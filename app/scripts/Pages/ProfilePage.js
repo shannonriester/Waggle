@@ -76,13 +76,13 @@ export default React.createClass({
     store.userCollection.fetch();
     store.checkinCollection.fetch();
 
+    //be careful here! notice that the parameters are SWITCHED to see who sent the match and who received the match
     store.matchCollection.findMatch(this.state.session.username, this.props.params.userId).then((response) => {
       this.setState({sentMatch: response.toJSON()[0]})
-      console.log(response.toJSON()[0]);
     });
+
     store.matchCollection.findMatch(this.props.params.userId, this.state.session.username).then((response) => {
       this.setState({receivedMatch: response.toJSON()[0]})
-      console.log(response.toJSON()[0]);
     });
   },
   componentDidMount: function() {
@@ -105,6 +105,8 @@ export default React.createClass({
     let sessionNav;
     let userProfileInfo;
     let newMessageModal;
+    let heartIcon = <i className="icon-heart fa fa-heart-o" aria-hidden="true"></i>;
+
     if (this.state.session.username === this.props.params.userId) {
       sessionNav = (
         <ul className="nav-session">
@@ -119,24 +121,21 @@ export default React.createClass({
     }
 
     userProfileInfo = this.state.user.map((user, i, arr) => {
-        if (this.props.params.userId === user.username) {
-            return (<ProfileInfo key={i} user={user} updateState={this.updateState} />);
-        }
-      });
-
-      if (this.state.newMessage) {
-        newMessageModal = (<NewMessage recipient={this.props.params.userId} hideMessageModal={this.hideMessageModal}/>);
+      if (this.props.params.userId === user.username) {
+          return (<ProfileInfo key={i} user={user} updateState={this.updateState} />);
       }
+    });
 
-    let heartIcon = <i className="icon-heart fa fa-heart-o" aria-hidden="true"></i>;
+    if (this.state.newMessage) {
+      newMessageModal = (<NewMessage recipient={this.props.params.userId} hideMessageModal={this.hideMessageModal}/>);
+    }
+
     if (this.state.sentMatch) {
       heartIcon = <i className="icon-heart sent-match fa fa-heart" aria-hidden="true"></i>
     }
 
-    console.log(this.state.receivedMatch);
     let userRecentPlaces;
     if (this.state.sentMatch && this.state.receivedMatch) {
-      console.log('both users matched eachother!');
         let placeIDArr = this.state.recentPlaces.map((place, i, arr) => {
           return place.place;
         });

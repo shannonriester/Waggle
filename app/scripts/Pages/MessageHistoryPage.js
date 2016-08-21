@@ -10,6 +10,7 @@ export default React.createClass({
     return {
       session: store.session.get('username'),
       messages: store.messagesCollection.toJSON(),
+      // recipient:
       fetched: false,
     }
   },
@@ -17,8 +18,11 @@ export default React.createClass({
     browserHistory.push(`/messages/${convoWith}`);
   },
   updateState: function() {
-    this.setState({session: store.session.get('username')});
-    this.setState({messages: store.messagesCollection.toJSON()});
+    this.setState({
+      session: store.session.get('username'),
+      messages: store.messagesCollection.toJSON(),
+    });
+
     if (this.state.session && !this.state.fetched) {
       store.messagesCollection.findMyMessages(this.state.username);
       this.setState({fetched:true});
@@ -64,7 +68,7 @@ export default React.createClass({
       return messagePreview;
     });
 
-    
+
     return (
       <div className="message-history-page-container">
         <Nav />
