@@ -45,7 +45,7 @@ const SessionModel = Backbone.Model.extend({
   updateProfile: function(profilePic, userName, userAge, dogName, dogAge, dogBreed, aboutInfo) {
     this.set('isEditing', false);
     this.save(
-      {profile: {profilePic:profilePic, usersName:userName, usersAge:userAge, bio:aboutInfo, images:this.get('profile').images},
+      {profile: {profilePic:profilePic, usersName:userName, usersAge:userAge, bio:aboutInfo},
       dog:{dogName:dogName, breed:dogBreed, dogAge:dogAge}},
       { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/${this.get('userId')}`,
         type: 'PUT',

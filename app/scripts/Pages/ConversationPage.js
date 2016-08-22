@@ -20,17 +20,18 @@ export default React.createClass({
     e.preventDefault();
     let sentMessage = this.refs.textbox.value;
     store.messagesCollection.sendMessage(store.session.get('username'), this.props.params.recipient, sentMessage);
+    this.refs.textbox.value = '';
   },
   updateState: function() {
     this.setState({
-      session:store.session.get('username'),
+      session: store.session.get('username'),
       recipient: store.userCollection.where({username:this.props.params.recipient}),
       conversation: store.messagesCollection.findConversation(this.props.params.recipient),
     });
 
     if (this.state.session && !this.state.fetched) {
       store.messagesCollection.findMyMessages(this.state.username);
-      this.setState({fetched:true});
+      this.setState({fetched: true});
     }
   },
   componentDidMount: function() {
@@ -73,7 +74,7 @@ export default React.createClass({
         );
         return content;
       }
-    
+
     });
     return (
       <div className="message-page-container">

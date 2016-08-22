@@ -33,7 +33,7 @@ render: function() {
             <li><label>email: </label></li>
           </ul>
 
-          <input className="hide-submit" type="submit"/>
+          <input className="submit-btn" type="submit"/>
         </form>
       </header>
 
@@ -41,7 +41,7 @@ render: function() {
         <form>
           location: my current location
           max-distance
-          <input type="range" min="1" max="25" step="1" />
+          <input type="range" step="1" min="1" max="25" step="1" />
         </form>
       </main>
 

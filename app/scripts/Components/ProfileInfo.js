@@ -11,8 +11,13 @@ export default React.createClass({
   },
   saveEdits: function(e) {
     e.preventDefault();
-    let newProfilePic = this.state.imgSrc;
-    // console.log(newProfilePic);
+    let newProfilePic = '/assets/default_dog_large.png';
+
+    if (this.state.imgSrc[0]) {
+      newProfilePic = this.state.imgSrc;
+      document.querySelector('.profile-pic').removeClass('.default-profile-pic');
+    }
+    console.log(newProfilePic);
     let newUserName = this.refs.userInfoName.value;
     let newUserAge = this.refs.userInfoAge.value;
     let newDogName = this.refs.dogInfoName.value;
@@ -46,7 +51,7 @@ export default React.createClass({
   },
   componentDidMount: function() {
     store.session.on('change', this.updateState);
-    store.userCollection.on('change update', this.updateState);
+    store.userCollection.once('change update', this.updateState);
   },
   componentWillUnmount: function() {
     store.session.off('change', this.updateState);
@@ -54,7 +59,7 @@ export default React.createClass({
   },
   render: function() {
     let content;
-    let url = `${this.props.user.profile.images[0]}`;
+    let url = `${this.props.user.profile.profilePic}`;
     let styles = {backgroundImage: 'url(' + url + ')'};
 
     if (!this.state.editing) {
@@ -62,7 +67,7 @@ export default React.createClass({
         <div>
           <form className="profile-about-data">
 
-            <figure className="profile-pic" style={styles}></figure>
+            <figure className="profile-pic default-profile-pic" style={styles}></figure>
 
             <ul className="ul-about-data">
               <li>{this.props.user.profile.usersName}, {this.props.user.profile.usersAge}</li>

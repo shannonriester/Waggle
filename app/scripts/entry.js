@@ -8,7 +8,7 @@ import router from './router';
 import store from './store';
 
 $(document).ajaxSend(function(e, xhrAjax, jqueryAjax) {
-  if (jqueryAjax.url.indexOf('freegeoip') === -1) {
+  if (jqueryAjax.url.indexOf('kinvey') !== -1) {
     if (localStorage.authtoken) {
       xhrAjax.setRequestHeader('Authorization', `Kinvey ${localStorage.authtoken}`);
     } else {

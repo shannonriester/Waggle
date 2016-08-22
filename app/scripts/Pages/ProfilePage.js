@@ -56,7 +56,6 @@ export default React.createClass({
     browserHistory.push('settings');
   },
   updateState: function() {
-
     this.setState({
       session: store.session.toJSON(),
       user: store.userCollection.toJSON(),
@@ -78,11 +77,11 @@ export default React.createClass({
 
     //be careful here! notice that the parameters are SWITCHED to see who sent the match and who received the match
     store.matchCollection.findMatch(this.state.session.username, this.props.params.userId).then((response) => {
-      this.setState({sentMatch: response.toJSON()[0]})
+      this.setState({sentMatch: response.toJSON()[0]});
     });
 
     store.matchCollection.findMatch(this.props.params.userId, this.state.session.username).then((response) => {
-      this.setState({receivedMatch: response.toJSON()[0]})
+      this.setState({receivedMatch: response.toJSON()[0]});
     });
   },
   componentDidMount: function() {
@@ -122,9 +121,8 @@ export default React.createClass({
     } else if (this.state.sentMatch) {
         heartIcon = (<i className="icon-heart sent-match fa fa-heart" aria-hidden="true"></i>);
         messageBtn = (<i className="message-icon sent-match fa fa-comments-o" aria-hidden="true" onClick={this.messageUser}></i>);
-
     } else {
-        heartIcon = <i className="icon-heart fa fa-heart-o" aria-hidden="true"></i>;
+        heartIcon = (<i className="icon-heart fa fa-heart-o" aria-hidden="true"></i>);
         messageBtn = (<i className="message-icon fa fa-comments-o" aria-hidden="true" onClick={this.messageUser}></i>);
     }
 
