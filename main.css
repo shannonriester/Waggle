@@ -420,7 +420,9 @@
   width: 5em;
   border-radius: 50%;
   background-size: cover;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; }
+
+.default-profilePic {
   background-position-x: -15px; }
 
 .like-btn {
