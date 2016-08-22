@@ -3,23 +3,26 @@ import React from 'react';
 import store from '../store';
 
 export default React.createClass({
-  getInitialState: function() {
-    return {
-      infoBox: this.props.infoBox,
-    }
-  },
+  // getInitialState: function() {
+  //   return {
+  //     infoBox: this.props.infoBox,
+  //   }
+  // },
   clickedMarker: function() {
-    store.placeModel.set('infoBox', true);
-    this.setState({infoBox:true});
-    this.props.updateState();
+    store.placesCollection.forEach((model) => {
+      model.set('infoBox', false);
+    });
+    store.placesCollection.findWhere({yelpID: this.props.id}).set('infoBox', true);
+    // this.setState({infoBox:true});
+    // this.props.updateState();
   },
-  updateState: function() {
-    this.setState({infoBox: store.placeModel.get('infoBox')});
-  },
-  componendDidMount: function() {
-    store.placeModel.get('infoBox');
-    store.placeModel.on('change update', this.updateState);
-  },
+  // updateState: function() {
+  //   this.setState({infoBox: store.placeModel.get('infoBox')});
+  // },
+  // componendDidMount: function() {
+  //   store.placeModel.get('infoBox');
+  //   store.placeModel.on('change update', this.updateState);
+  // },
   render: function() {
     let url = `/assets/Icons/paw.svg`;
     let backgroundImage = {backgroundImage: 'url(' + url + ')'};
@@ -29,8 +32,8 @@ export default React.createClass({
     }
 
     let infoBox;
-    console.log(this.props.infoBox);
-    if (this.state.infoBox && this.props.infoBox) {
+    // console.log(this.props.infoBox);
+    if (this.props.showInfoBox) {
       infoBox = (
         <div className="infobox-container">
           <section className="place-img-name">

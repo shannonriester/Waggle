@@ -6,28 +6,31 @@ import store from '../store';
 
 
 let GoogleMapPage = React.createClass({
-  getInitialState: function() {
-    return {
-      infoBox: store.placeModel.get('infoBox'),
-    }
-  },
+  // getInitialState: function() {
+  //   return {
+  //     places: store.placesCollection.toJSON(),
+  //   }
+  // },
   clickedMap: function() {
-    store.placeModel.set('infoBox', false);
-    this.updateState();
+    store.placesCollection.forEach((model) => {
+      model.set('infoBox', false);
+    });
+    // this.updateState();
     // this.setState({clickedMap: true});
   },
-  updateState: function() {
-    this.setState({
-      infoBox: store.placeModel.get('infoBox'),
-      hideInfoBox: false,
-    });
-  },
-  componendDidMount: function() {
-    store.placeModel.get('infoBox');
-    store.placeModel.on('change update', this.updateState);
-  },
+  // updateState: function() {
+  //   this.setState({
+  //     places: store.placesCollection.toJSON(),
+  //     // hideInfoBox: false,
+  //   });
+  // },
+  // componendDidMount: function() {
+  //   // store.placeModel.get('infoBox');
+  //   store.placesCollection.on('change update', this.updateState);
+  // },
   render: function() {
-    let infoBox;
+    console.log(this.props.resultsList);
+    // let infoBox;
     let placeMarker = this.props.resultsList.map((place, i) => {
       let lat = place.props.place.ll.latitude;
       let lng = place.props.place.ll.longitude;
@@ -39,19 +42,19 @@ let GoogleMapPage = React.createClass({
       //   console.log('hideInfoBox', hideInfoBox);
       // }
       // console.log(this.state.infoBox);
-      let infoBox;
-      if (this.state.infoBox) {
-        infoBox = place.props.place
-      }
+      // let infoBox;
+      // if (this.state.infoBox) {
+        // let infoBox = /
+      // }
 
       return (<PlaceMarker
                 key={i}
-                infoBox={infoBox}
+                id={place.props.place.yelpID}
+                infoBox={place.props.place}
                 lat={lat}
                 lng={lng}
                 clickedMap={this.clickedMap}
-                hideInfoBox={this.state.hideInfoBox}
-                updateState={this.updateState}
+                showInfoBox={place.props.place.infoBox}
                 />);
     });
 
