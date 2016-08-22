@@ -14,6 +14,11 @@ export default React.createClass({
       messages: store.messagesCollection.toJSON(),
       conversation: store.messagesCollection.findConversation(this.props.params.recipient),
       fetched: false,
+      interval: window.setInterval(() => {
+       store.messagesCollection.fetch();
+       store.messagesCollection.findConversation(this.props.params.recipient)
+      }, 1000),
+
     }
   },
   sendMessage: function(e) {
@@ -31,11 +36,18 @@ export default React.createClass({
 
     if (this.state.session && !this.state.fetched) {
       store.messagesCollection.findMyMessages(this.state.username);
-      this.setState({fetched: true});
+      this.setState({
+        fetched: true,
+        interval: window.setInterval(() => {
+         store.messagesCollection.fetch();
+         store.messagesCollection.findConversation(this.props.params.recipient)
+        }, 1000),
+      });
     }
   },
   componentDidMount: function() {
     store.userCollection.fetch();
+    store.messagesCollection.fetch();
     // store.userCollection.where({username: this.props.params.recipient});
     store.session.on('change', this.updateState);
     store.userCollection.on('change update', this.updateState);
@@ -45,6 +57,7 @@ export default React.createClass({
     store.session.off('change', this.updateState);
     store.userCollection.off('change update', this.updateState);
     store.messagesCollection.off('change update', this.updateState);
+    clearInterval(this.state.interval);
   },
   render: function() {
     let styles;

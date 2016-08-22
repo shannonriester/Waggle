@@ -16,7 +16,8 @@ const MessagesCollection = Backbone.Collection.extend({
     this.create({
       sender:session,
       recipient:recipient,
-      body:message
+      body:message,
+      timestamp: new Date(),
     },{
       success: (model, response) => {
         // console.log('model', model);
