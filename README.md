@@ -78,7 +78,7 @@ allow message of matches
 2. [FreeGeoIP](https://freegeoip.net/?q=70.112.11.58)
 3. [Google Maps API](https://developers.google.com/maps/documentation/javascript/)
 4. Backend as a Service (BaaS) [Kinvey](https://www.kinvey.com/)
-5. [Mozilla Drag & Drop API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API)
+<!-- 5. [Mozilla Drag & Drop API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API) -->
 6. [Mozilla Touch Events](https://developer.mozilla.org/en-US/docs/Web/API/Touch_events)
 8. [Yelp](https://www.yelp.com/developers/manage_api_keys)
 

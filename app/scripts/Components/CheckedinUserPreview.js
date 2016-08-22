@@ -8,12 +8,14 @@ export default React.createClass({
     let styles;
     let checkedinPreview = this.props.checkedinModels.map((currItem, i, arr) => {
       let wagglrUser = store.userCollection.findUser(currItem.attributes.userCheckedin);
-      // console.log(wagglrUser[0].attributes.profile);
+      // console.log(wagglrUser);
       let url;
       if (wagglrUser[0].attributes.profile.profilePic[0]) {
+        // console.log(wagglrUser[0].attributes.profile);
         url = wagglrUser[0].attributes.profile.profilePic[0];
-      } else if (wagglrUser[0].attributes.profile.images[0]) {
-        url = wagglrUser[0].attributes.profile.images[0];
+      } else if (wagglrUser[0].attributes.profile.profilePic) {
+        console.log(wagglrUser[0].attributes.profile);
+        url = wagglrUser[0].attributes.profile.profilePic;
       }
       let styles = {backgroundImage: 'url(' + url + ')'};
 

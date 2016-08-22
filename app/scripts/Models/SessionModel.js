@@ -20,6 +20,7 @@ const SessionModel = Backbone.Model.extend({
       breed: '',
       dogAge: '',
     },
+    bkgrndImgs: [],
     query: 'park',
     checkedin: false,
     coordinates: [],
@@ -57,6 +58,54 @@ const SessionModel = Backbone.Model.extend({
           console.log('updateProfile ERROR: ', e);
       }
     });
+  },
+  updateBkgrndImgs: function(bkgrndImgs) {
+    console.log(bkgrndImgs);
+    this.set('isEditing', false);
+
+    this.save(
+      {bkgrndImgs: bkgrndImgs},
+      { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/${this.get('userId')}`,
+        type: 'PUT',
+        success: (model, response) => {
+        console.log('USER UPDATED BACKGROUND IMAGES ', response);
+        this.trigger('change update');
+
+      }, error: (e) => {
+          console.log('updateProfile ERROR: ', e);
+      }
+    });
+
+    // $.ajax({
+    //     url: `https://baas.kinvey.com/blob/kid_SkBnla5Y/`,
+    //     type: 'POST',
+    //     data: {
+    //       "_filename": bkgrndImgs,
+    //       "_public": true
+    //     },
+    //     success: (response) => {
+    //     // console.log('response ', response  );
+    //     $.ajax({
+    //       type: 'PUT',
+    //       url: response._uploadURL,
+    //       headers: response._requiredHeaders,
+    //       success: () => {
+    //         console.log('file response', response);
+    //         this.save({'bkgrndImgs': {_type:"KinveyFile", "_id": response._id}},{
+    //           success: (response1) => {
+    //             $.ajax({url: `https://baas.kinvey.com/blob/kid_SkBnla5Y/${response._id}`}).then(console.log.bind(console))
+    //             console.log('user save response', response1);
+    //           }
+    //         })
+    //
+    //     // this.trigger('change update');
+    //       },
+    //       error: (e) => {
+    //         console.log('updateProfile ERROR: ', e);
+    //       }
+    //     });
+    //   }
+    // })
   },
   // getLocation: function() {
   //     var promise = new Promise((resolve, reject) => {
@@ -103,10 +152,12 @@ const SessionModel = Backbone.Model.extend({
     if (response) {
       // console.log(response);
       return {
+        _id: response._id,
         username: response.username,
         userId: response._id,
         authtoken: response._kmd.authtoken,
         profile: response.profile,
+        bkgrndImgs: response.bkgrndImgs,
         messages: response.messages,
         dog: response.dog,
         checkedin: false,
