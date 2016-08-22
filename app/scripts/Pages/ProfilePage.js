@@ -121,11 +121,11 @@ export default React.createClass({
       );
     } else if (this.state.sentMatch) {
         heartIcon = (<i className="icon-heart sent-match fa fa-heart" aria-hidden="true"></i>);
-        messageBtn = (<button className="message-btn" onClick={this.messageUser}><i className="message-icon sent-match fa fa-comments-o" aria-hidden="true"></i></button>);
+        messageBtn = (<i className="message-icon sent-match fa fa-comments-o" aria-hidden="true" onClick={this.messageUser}></i>);
 
     } else {
         heartIcon = <i className="icon-heart fa fa-heart-o" aria-hidden="true"></i>;
-        messageBtn = (<button className="message-btn" onClick={this.messageUser}><i className="message-icon fa fa-comments-o" aria-hidden="true"></i></button>);
+        messageBtn = (<i className="message-icon fa fa-comments-o" aria-hidden="true" onClick={this.messageUser}></i>);
     }
 
     userProfileInfo = this.state.user.map((user, i, arr) => {

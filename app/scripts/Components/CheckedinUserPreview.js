@@ -8,6 +8,7 @@ export default React.createClass({
     let styles;
     let checkedinPreview = this.props.checkedinModels.map((currItem, i, arr) => {
       let wagglrUser = store.userCollection.findUser(currItem.attributes.userCheckedin);
+      console.log(wagglrUser);
       let url = wagglrUser[0].attributes.profile.images[0];
       let styles = {backgroundImage: 'url(' + url + ')'};
 

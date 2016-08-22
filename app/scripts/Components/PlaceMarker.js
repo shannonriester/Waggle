@@ -29,11 +29,19 @@ export default React.createClass({
     }
 
     let infoBox;
-    // console.log(this.state.infoBox);
-    // console.log(this.props.infoBox);
+    console.log(this.props.infoBox);
     if (this.state.infoBox && this.props.infoBox) {
       infoBox = (
-        <div>infobox</div>
+        <div className="infobox-container">
+          <section className="place-img-name">
+            <img src={this.props.infoBox.imageUrl} />
+          </section>
+          <section className="address-section">
+            <h3>{this.props.infoBox.name}</h3>
+            {this.props.infoBox.address[0]}
+            {this.props.infoBox.address[1]}
+          </section>
+        </div>
       );
     }
     return (

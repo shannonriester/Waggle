@@ -21,8 +21,6 @@ let GoogleMapPage = React.createClass({
       infoBox: store.placeModel.get('infoBox'),
       hideInfoBox: false,
     });
-    // console.log(this.state.infoBox);
-    // console.log(store.placeModel.get('infoBox'));
   },
   componendDidMount: function() {
     store.placeModel.get('infoBox');

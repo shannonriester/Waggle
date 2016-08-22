@@ -231,11 +231,43 @@
   border: solid #FFF 1px; }
 
 .paw-icon {
-  position: relative;
-  top: 7%;
-  left: 2%;
+  position: absolute;
+  top: 3px;
+  left: 4px;
   height: 2em;
   width: 2em; }
+
+.infobox-container {
+  position: absolute;
+  bottom: 0px;
+  left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  width: 40vw;
+  height: 14vh;
+  border-radius: 10px;
+  z-index: 1;
+  padding: 10px; }
+  .infobox-container .place-img-name {
+    width: 50%; }
+    .infobox-container .place-img-name img {
+      height: 100px;
+      width: 100px;
+      border-radius: 4px; }
+  .infobox-container .address-section {
+    width: 50%;
+    height: 110px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    line-height: 1.5; }
+    .infobox-container .address-section h3 {
+      color: #F55959;
+      font-size: 16px;
+      margin: 0; }
 
 #my-location {
   background-color: purple; }

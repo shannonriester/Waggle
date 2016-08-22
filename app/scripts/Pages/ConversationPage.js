@@ -48,9 +48,7 @@ export default React.createClass({
   render: function() {
     let styles;
     if (this.state.recipient[0]) {
-      console.log(this.state.recipient[0]);
       let url = this.state.recipient[0].attributes.profile.profilePic;
-      console.log(url);
       styles = {backgroundImage: 'url(' + url + ')'};
     }
 
@@ -60,20 +58,22 @@ export default React.createClass({
 
     convo = convo.map((curr, i, arr) => {
       curr = curr.toJSON();
-      let whoSent = 'not-me';
-      name = this.props.params.recipient;
-      if (this.state.session === curr.sender) {
-        whoSent = 'me';
-        name = this.state.session;
+      if (store.session.get('username') === curr.sender || store.session.get('username') === curr.recipient) {
+        let whoSent = 'not-me';
+        name = this.props.params.recipient;
+        if (this.state.session === curr.sender) {
+          whoSent = 'me';
+          name = this.state.session;
+        }
+        let content = (
+          <li key={i} className={whoSent}>
+            <p className="message-body">{name}: {curr.body}</p>
+            <data>{curr.momentTime}</data>
+          </li>
+        );
+        return content;
       }
-
-      let content = (
-        <li key={i} className={whoSent}>
-          <p className="message-body">{name}: {curr.body}</p>
-          <data>{curr.momentTime}</data>
-        </li>
-      );
-      return content;
+    
     });
     return (
       <div className="message-page-container">

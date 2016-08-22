@@ -1,19 +1,25 @@
 #ToDo List
+- test:
+  - matching shows up for sarah and shannon on test view...need to make sure matches are only seen by the user logged in
+  - shows all the messages between everyone...
+
 - DATE MATH:
   - when it's been longer than a day, remove from placeItemPage
     - keep that place on their recently visited places though!
   - User's recent places
     - don't show places if over 3 months ago...
+
 - MAP:
   - animate: show bleeping if there are more than 3-5 users at one place!
+  - toggle infoBox
+  - make infoBox
 
 - profilePage
-  - update user's location on the session model
   - reorganize their editing profile?
   - uploading photos
     - drag and drop
     - dog photos
-  - show all of the matches a user has received!
+  <!-- - show all of the matches a user has received! -->
 
 - messaging
   - double check that messages aren't viewable by other people

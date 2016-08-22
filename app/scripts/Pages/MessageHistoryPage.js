@@ -10,7 +10,7 @@ export default React.createClass({
     return {
       session: store.session.get('username'),
       messages: store.messagesCollection.toJSON(),
-      // recipient:
+      // allMyConversations: [],
       fetched: false,
     }
   },
@@ -46,15 +46,19 @@ export default React.createClass({
       let convoWith = curr.sender;
       if (this.state.session === curr.sender) {
         convoWith = curr.recipient;
-      }
-      if (allMyConversations.indexOf(convoWith) === -1) {
-        allMyConversations.push(convoWith);
-        return true;
-      }
-    });
 
+        if (allMyConversations.indexOf(convoWith) === -1) {
+          allMyConversations.push(convoWith);
+          console.log('allMyConversations', allMyConversations);
+          return true;
+        }
+      }
+
+    });
     messagesArr = messagesArr.map((curr, i, arr) => {
       let convoWith = curr.sender;
+      console.log('convoWith: ', convoWith);
+      console.log('curr.sender: ', curr.sender);
       if (this.state.session === curr.sender) {
         convoWith = curr.recipient;
       }
@@ -67,7 +71,6 @@ export default React.createClass({
       );
       return messagePreview;
     });
-
 
     return (
       <div className="message-history-page-container">
