@@ -417,7 +417,7 @@
   .profile-footer .user-recent-places-component {
     list-style-type: none;
     text-align: center;
-    width: 100%; }
+    width: 50%; }
     .profile-footer .user-recent-places-component .recent-place-image {
       height: 10em;
       width: 10em;

@@ -36,7 +36,6 @@ export default React.createClass({
   componentDidMount: function() {
     store.userCollection.fetch();
     // store.userCollection.where({username: this.props.params.recipient});
-
     store.session.on('change', this.updateState);
     store.userCollection.on('change update', this.updateState);
     store.messagesCollection.on('change update', this.updateState);
@@ -49,7 +48,9 @@ export default React.createClass({
   render: function() {
     let styles;
     if (this.state.recipient[0]) {
+      console.log(this.state.recipient[0]);
       let url = this.state.recipient[0].attributes.profile.profilePic;
+      console.log(url);
       styles = {backgroundImage: 'url(' + url + ')'};
     }
 

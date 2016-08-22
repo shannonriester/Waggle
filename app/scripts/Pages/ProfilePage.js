@@ -105,7 +105,8 @@ export default React.createClass({
     let sessionNav;
     let userProfileInfo;
     let newMessageModal;
-    let heartIcon = <i className="icon-heart fa fa-heart-o" aria-hidden="true"></i>;
+    let heartIcon;
+    let messageBtn;
 
     if (this.state.session.username === this.props.params.userId) {
       sessionNav = (
@@ -118,6 +119,13 @@ export default React.createClass({
           </li>
         </ul>
       );
+    } else if (this.state.sentMatch) {
+        heartIcon = (<i className="icon-heart sent-match fa fa-heart" aria-hidden="true"></i>);
+        messageBtn = (<button className="message-btn" onClick={this.messageUser}><i className="message-icon sent-match fa fa-comments-o" aria-hidden="true"></i></button>);
+
+    } else {
+        heartIcon = <i className="icon-heart fa fa-heart-o" aria-hidden="true"></i>;
+        messageBtn = (<button className="message-btn" onClick={this.messageUser}><i className="message-icon fa fa-comments-o" aria-hidden="true"></i></button>);
     }
 
     userProfileInfo = this.state.user.map((user, i, arr) => {
@@ -130,11 +138,8 @@ export default React.createClass({
       newMessageModal = (<NewMessage recipient={this.props.params.userId} hideMessageModal={this.hideMessageModal}/>);
     }
 
-    if (this.state.sentMatch) {
-      heartIcon = <i className="icon-heart sent-match fa fa-heart" aria-hidden="true"></i>
-    }
-
     let userRecentPlaces;
+    let myMatches = [];
     if (this.state.sentMatch && this.state.receivedMatch) {
         let placeIDArr = this.state.recentPlaces.map((place, i, arr) => {
           return place.place;
@@ -158,8 +163,10 @@ export default React.createClass({
             return (<UserRecentPlaces key={i} place={place} updateState={this.updateSession} />);
         });
 
-
+        myMatches = myMatches.concat(this.state.receivedMatch.likee);
+        // console.log(myMatches);
     }
+
 
     return (
       <div className="profile-component">
@@ -168,13 +175,19 @@ export default React.createClass({
         <header className="profile-header">
           {sessionNav}
           {userProfileInfo}
-          <button className="like-btn" onClick={this.toggleMatch}>{heartIcon}</button>
-          <button className="message-btn" onClick={this.messageUser}><i className="fa fa-comments-o" aria-hidden="true"></i></button>
+
+          <ul>
+            <li><button className="like-btn" onClick={this.toggleMatch}>{heartIcon}</button></li>
+            <li>{messageBtn}</li>
+          </ul>
         </header>
 
         <footer className="profile-footer">
           <ul className="ul-recent-places">
             {userRecentPlaces}
+          </ul>
+          <ul className="matched-wagglrs">
+            {myMatches}
           </ul>
         </footer>
       </div>
