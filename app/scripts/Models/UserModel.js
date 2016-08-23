@@ -7,7 +7,7 @@ const UserModel = Backbone.Model.extend({
     isEditing: false,
     editingDog: false,
     editingSelf: false,
-    recentPlaces: [{},],
+    recentPlaces: [],
     profile: {
       usersName: '',
       profilePic: ['/assets/default_dog_large.png'],

@@ -123,7 +123,7 @@ export default React.createClass({
         heartIcon = (<i className="icon-heart sent-match fa fa-heart" aria-hidden="true"></i>);
         messageBtn = (<i className="message-icon sent-match fa fa-comments-o" aria-hidden="true" onClick={this.messageUser}></i>);
     } else {
-        heartIcon = (<i className="icon-heart fa fa-heart-o" aria-hidden="true"></i>);
+        heartIcon = (<i className="icon-heart fa fa-heart-o" aria-hidden="true" onClick={this.toggleMatch}></i>);
         messageBtn = (<i className="message-icon fa fa-comments-o" aria-hidden="true" onClick={this.messageUser}></i>);
     }
 
@@ -167,11 +167,10 @@ export default React.createClass({
         <Nav />
           {newMessageModal}
         <header className="profile-header">
-          {sessionNav}
           {userProfileInfo}
-
-          <ul>
-            <li><button className="like-btn" onClick={this.toggleMatch}>{heartIcon}</button></li>
+          {sessionNav}
+          <ul className="ul-match-section">
+            <li>{heartIcon}</li>
             <li>{messageBtn}</li>
           </ul>
         </header>

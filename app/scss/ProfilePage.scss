@@ -1,10 +1,21 @@
-.profile-pic {
+.profile-pic-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  height: 100%;
+  width: 100vw;
+  background-size: cover;
+}
+
+.profile-pic, .default-profile-pic {
   position: relative;
-  height: 5em;
-  width: 5em;
+  bottom: 50px;
+  height: 8em;
+  width: 8em;
   border-radius: 50%;
   background-size: cover;
   background-repeat: no-repeat;
+  border: solid 5px $accent;
 }
 
 .input-file {
@@ -20,17 +31,71 @@
   background-position-x: -15px;
 }
 
-.profile-main {
+.nav-session, .ul-match-section {
+  position: absolute;
+  bottom: 20em;
+  margin: 0;
+  padding: 0;
+  left: 5em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: 3em;
+  li {
+    list-style-type: none;
+    width: 100%;
+  }
+}
 
+.profile-image-form {
+  position: absolute;
+  height: 400px;
+  width: 100%;
+}
+
+.profile-main {
+  padding: 3%;
+}
+
+.ul-about-data {
+  margin: 10px 0;
+  padding: 0;
+  border-bottom: solid 1px $border;
+  li {
+    list-style-type: none;
+    width: 100%;
+    border-radius: 5px;
+  }
+}
+
+.ul-match-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: white;
+  i {
+    font-size: 2em;
+    // background-color: white;
+    // width: 30px;
+    // border-radius: 2px;
+  }
+}
+
+.dropzone-container {
+  height: 99%;
+  width: 99%;
 }
 
 .dropzone {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 200px;
-  width: 250px;
+  height: 100%;
+  width: 100%;
   border: dashed 2px #555;
+  background: rgba(white, .5);
 
   .icon-camera {
     font-size: 100px;
@@ -38,14 +103,19 @@
   }
 }
 
-
-
-
 .profile-background-images {
   height: 400px;
-  width: 100%;
+  width: 100vw;
   margin: 0;
   background-size: cover;
+}
+
+.match-section-ul {
+  padding: 0;
+  margin: 10px 0;
+  li {
+    list-style-type: none;
+  }
 }
 
 .like-btn {
@@ -62,16 +132,19 @@
   color: red;
 }
 
+
+/* PROFILE FOOTER STARTS HERE */
+
 .profile-footer {
-  display: flex;
+  // display: flex;
   width: 100vw;
   ul {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     padding: 0;
-    margin: 0;
+    margin: 10px 0;
     width: 100%;
   }
   .user-recent-places-component {

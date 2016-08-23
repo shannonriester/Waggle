@@ -6,7 +6,6 @@ import store from '../store';
 export default React.createClass({
   getInitialState: function() {
     return {
-      // editAbout: store.session.get('editAbout'),
       editProfile: store.session.get('editProfile'),
       profilePicSrc: [],
       files: [],
@@ -26,6 +25,7 @@ export default React.createClass({
     if (this.state.files.length) {
       store.session.updateBkgrndImgs(this.state.files, newBody);
     }
+    store.session.set('editProfile', false);
   },
   onDrop: function(files) {
     files.forEach((file, i) => {
@@ -83,13 +83,11 @@ export default React.createClass({
     if (this.props.user.bkgrndImgs.length) {
       styles = {backgroundImage: 'url(' + this.props.user.bkgrndImgs[0] + ')'};
     }
-
     if (!this.state.editProfile) {
         profileBody =(
           <p className="about-bio">
             {this.props.user.profile.bio}
           </p>);
-
     } else if (this.state.editProfile) {
         profilePic = (
           <div className="file-container">
@@ -104,13 +102,11 @@ export default React.createClass({
         bkgrndImgs = (
           <form  className="profile-image-form" onSubmit={this.onDrop}>
             <img className="profile-pic-preview" src={this.state.profilePicSrc}/>
-            <figure className={this.state.profilePicSrc ? "profile-pic" : "default-profile-pic"} style={styles}></figure>
 
             <div className="dropzone-container">
-              <Dropzone className="dropzone" ref="dropzone" onDrop={this.onDrop}>
+              <Dropzone className="dropzone" ref="dropzone" onDrop={this.onDrop} onClick={this.onOpenClick}>
                 <i className="icon-camera fa fa-camera-retro" aria-hidden="true"></i>
               </Dropzone>
-              <button type="button" onClick={this.onOpenClick}>Open Dropzone</button>
               {this.state.files.length > 0 ? <div>
                   <h2>Uploading {this.state.files.length} files...</h2>
                   <div>{this.state.files.map((file, i) => <img key={i} src={file.preview} /> )}</div>
@@ -129,10 +125,11 @@ export default React.createClass({
       <div className="profile-info-component">
         <header>
           <div className="profile-background-images" style={styles}>
+            {bkgrndImgs}
             <div className="profile-pic-container">
               <figure className="profile-pic" style={profilePicUrl}>{profilePic}</figure>
             </div>
-            {bkgrndImgs}
+
           </div>
         </header>
 

@@ -6,8 +6,7 @@ const SessionModel = Backbone.Model.extend({
   urlRoot:`https://baas.kinvey.com/user/kid_SkBnla5Y/`,
   defaults: {
     username: '',
-    editAbout: false,
-    editImages: false,
+    editProfile: false,
     editingDog: false,
     editingSelf: false,
     recentPlaces: [{},],

@@ -17,6 +17,7 @@ body {
   font-weight: 100;
   color: $font-color;
   font-family: $font-family;
+  line-height: 150%;
 }
 
 .link {
@@ -26,4 +27,8 @@ body {
   justify-content: center;
   color: $font-color;
   text-decoration: none;
+}
+
+.submit-btn {
+  display: none;
 }
