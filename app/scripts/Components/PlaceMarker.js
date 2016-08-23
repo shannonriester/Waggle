@@ -53,10 +53,10 @@ export default React.createClass({
       infoBox = (
         <div className="infobox-container">
           <section className="place-img-name">
-            <Link to={`places/${this.props.infoBox.yelpID}`}><img src={this.props.infoBox.imageUrl} /></Link>
+            <Link to={`/places/${this.props.infoBox.yelpID}`}><img src={this.props.infoBox.imageUrl} /></Link>
           </section>
           <section className="address-section">
-            <Link to={`places/${this.props.infoBox.yelpID}`}><h3>{this.props.infoBox.name}</h3></Link>
+            <Link to={`/places/${this.props.infoBox.yelpID}`}><h3>{this.props.infoBox.name}</h3></Link>
             {this.props.infoBox.address[0]}
             {this.props.infoBox.address[1]}
           </section>

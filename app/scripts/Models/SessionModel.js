@@ -10,7 +10,7 @@ const SessionModel = Backbone.Model.extend({
     recentPlaces: [{},],
     profile: {
       usersName: '',
-      profilePic: '/assets/default_dog_large.png',
+      profilePic: ['/assets/default_dog_large.png'],
       images: ['/assets/default_dog_large.png',],
       usersAge: '',
       bio: '',

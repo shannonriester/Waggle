@@ -1,4 +1,6 @@
 #ToDo List
+- PLACEITEMPAGE REFRESH!!!
+
 - test:
   - matching shows up for sarah and shannon on test view...need to make sure matches are only seen by the user logged in
   - shows all the messages between everyone...

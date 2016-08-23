@@ -2,18 +2,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 97vw;
   height: 70px;
   margin: 1em auto;
 
   .searchbar {
     height: 100%;
+    width: 100%;
     font-size: 1.5em;
     outline: none;
     border: none;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
-    width: 75%;
     background: $border;
   }
 

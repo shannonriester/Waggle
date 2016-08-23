@@ -1,3 +1,8 @@
+.map-container {
+  margin-bottom: 2%;
+  border-bottom: solid $border 1px;
+}
+
 .map {
   height: 350px;
   width: 97%;
@@ -67,6 +72,17 @@
 
 }
 
+.search-heading {
+  text-align: center;
+  font-size: 35px;
+}
+
+.search-sub-heading {
+  text-align: center;
+  font-size: 17px;
+}
+
+
 #my-location {
   background-color: purple;
 }
@@ -92,8 +108,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
-    height: 5.5em;
-    width: 5.5em;
+    height: 6.5em;
+    width: 6.5em;
     margin: 0;
     background-size: cover;
     background-repeat: no-repeat;
