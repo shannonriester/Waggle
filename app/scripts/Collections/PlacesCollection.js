@@ -9,14 +9,11 @@ const PlacesCollection = Backbone.Collection.extend({
   model: PlaceModel,
   url: `https://api.yelp.com/v2/search`,
   getResults: function(city, query, range){
-    // console.log(range);
-    // range ? (range = range * 1600) : (range = range * 3)
     if (range) {
       range = range * 1600;
     } else {
       range = 8 * 1600;
     }
-    console.log(range);
     //have to convert range(miles) to meters bc Yelp's API search parameters only search in meters.
       //max range only up to 25 miles (40000 meters);
 

@@ -76,37 +76,6 @@ const SessionModel = Backbone.Model.extend({
           console.log('updateProfile ERROR: ', e);
       }
     });
-
-    // $.ajax({
-    //     url: `https://baas.kinvey.com/blob/kid_SkBnla5Y/`,
-    //     type: 'POST',
-    //     data: {
-    //       "_filename": bkgrndImgs,
-    //       "_public": true
-    //     },
-    //     success: (response) => {
-    //     // console.log('response ', response  );
-    //     $.ajax({
-    //       type: 'PUT',
-    //       url: response._uploadURL,
-    //       headers: response._requiredHeaders,
-    //       success: () => {
-    //         console.log('file response', response);
-    //         this.save({'bkgrndImgs': {_type:"KinveyFile", "_id": response._id}},{
-    //           success: (response1) => {
-    //             $.ajax({url: `https://baas.kinvey.com/blob/kid_SkBnla5Y/${response._id}`}).then(console.log.bind(console))
-    //             console.log('user save response', response1);
-    //           }
-    //         })
-    //
-    //     // this.trigger('change update');
-    //       },
-    //       error: (e) => {
-    //         console.log('updateProfile ERROR: ', e);
-    //       }
-    //     });
-    //   }
-    // })
   },
   // getLocation: function() {
   //     var promise = new Promise((resolve, reject) => {
@@ -127,7 +96,6 @@ const SessionModel = Backbone.Model.extend({
       type: 'GET',
       url: `https://freegeoip.net/json/`,
       success: (response) => {
-        // console.log('location reponse', response);
         let coordinates = [response.latitude, response.longitude]
         this.set({
             coordinates,
@@ -151,7 +119,6 @@ const SessionModel = Backbone.Model.extend({
   },
   parse: function(response) {
     if (response) {
-      // console.log(response);
       return {
         _id: response._id,
         username: response.username,
@@ -201,7 +168,6 @@ const SessionModel = Backbone.Model.extend({
         localStorage.removeItem('authtoken');
         localStorage.setItem('authtoken', response._kmd.authtoken);
         this.unset('password');
-        // this.unset('auth');
         this.trigger('change update');
 
         console.log('USER SIGNED UP!', newUsername);
@@ -211,21 +177,21 @@ const SessionModel = Backbone.Model.extend({
       },
     });
   },
-  logout: function(query){
+  logout: function(query, range){
+    this.unset('_id');
     this.save(null,
       { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/_logout`,
         success: (model, response) => {
           model.clear();
-          // localStorage.removeItem('authtoken');
           localStorage.clear();
-          // console.log(localStorage.au);
           this.set('query', query);
-          this.trigger('change');
+          this.set('range', range);
 
+          this.trigger('change');
           console.log('USER LOGGED OUT!');
       },
        error: function(model, response) {
-         throw new Error('LOGIN FAILED');
+         throw new Error('LOGOUT FAILED');
       },
     });
   },
@@ -234,7 +200,6 @@ const SessionModel = Backbone.Model.extend({
       url: `https://baas.kinvey.com/user/kid_SkBnla5Y/_me`,
       success: (model, response) => {
           this.trigger('change');
-
           // console.log('USER RETRIEVED: this ', this);
       },
       error: function(response) {

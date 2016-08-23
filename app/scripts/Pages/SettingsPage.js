@@ -1,4 +1,5 @@
 import React from 'react';
+import router from 'react-router';
 
 import store from '../store';
 import Nav from '../Components/Nav';
@@ -11,11 +12,14 @@ getInitialState: function() {
 },
 logout: function() {
     let prevQuery = store.session.get('query');
-    store.session.logout(prevQuery);
-  },
+    let prevRange = this.state.range;
+    store.session.logout(prevQuery, prevRange);
+    if (!localStorage.authtoken) {
+      browserHistory.push('/');
+    }
+},
 showRagneSetting: function() {
   // console.log(this.refs.range.value);
-  
   store.session.set('range', this.refs.range.value);
   this.updateState();
   store.session.updateUser();
@@ -31,15 +35,13 @@ componentWillUnmount: function() {
   store.session.off('change', this.updateState);
 },
 render: function() {
-console.log(store.session.get('range'));
-// this.state.
   return (
     <div className="settings-component">
       <Nav />
       <header className="user-settings">
         <form>
           <h3>About your pup</h3>
-          <button className="edit">Edit</button>
+          <button className="edit-dog-info">Edit</button>
           <ul>
             <li><label>Breed: </label></li>
             <li><label>Gender: </label></li>
@@ -47,7 +49,7 @@ console.log(store.session.get('range'));
           </ul>
 
           <h3>About you</h3>
-          <button className="edit">Edit</button>
+          <button className="edit-user-info">Edit</button>
           <ul>
             <li><label>First name: </label></li>
             <li><label>Last name: </label></li>

@@ -38,7 +38,7 @@ let GoogleMapPage = React.createClass({
         // apiKey={AIzaSyBGH9fSjS0D-dpIgVYpOUfg5F63Igifl7I} // set if you need stats etc ...
         center={[this.props.coordinates[0], this.props.coordinates[1]]}
         onClick={this.clickedMap}
-        zoom={11}>
+        zoom={13}>
         {myLocation}
         {placeMarker}
       </GoogleMap>

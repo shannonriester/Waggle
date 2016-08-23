@@ -1,6 +1,7 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
 import _ from 'underscore';
+import $ from 'jquery';
 
 import store from '../store';
 
@@ -58,6 +59,11 @@ export default React.createClass({
   },
   componentDidMount: function() {
     store.session.on('change', this.updateState);
+
+    // this.refs.birthday.datePicker({
+    //   changeMonth: true,
+    //   changeYear: true,
+    // });
   },
   componentWillUnmount: function() {
     store.session.off('change', this.updateState);
@@ -96,12 +102,24 @@ export default React.createClass({
             <input className="cancel-btn modal-btn" type="button" value="cancel" ref="cancel" role="button" tabIndex="0" onClick={this.hideModal}/>
           </header>
           <main className="modal-body">
+            <label htmlFor="input-username">Email</label>
+            <input className="user-info-input" type="text" placeholder="email" ref="email" role="textbox" tabIndex="" />
+
+            <label htmlFor="input-username">First name:</label>
+            <input className="user-info-input" type="text" placeholder="email" ref="firstName" role="textbox" tabIndex="" />
+
+            <label htmlFor="input-username">Last name:</label>
+            <input className="user-info-input" type="text" placeholder="email" ref="lastName" role="textbox" tabIndex="" />
+
+            <label htmlFor="input-username">Birthday</label>
+            <input className="user-info-input" type="text" placeholder="email" ref="birthday" role="textbox" tabIndex="" />
+
             <label htmlFor="input-username">username</label>
-            <input className="user-info-input" type="text" placeholder="username" ref="username" role="textbox" tabIndex="1" />
+            <input className="user-info-input" type="text" placeholder="username" ref="username" role="textbox" tabIndex="" />
             <label htmlFor="input-password">password</label>
-            <input className="user-info-input" type="password" placeholder="password" ref="password" role="textbox" tabIndex="2" />
+            <input className="user-info-input" type="password" placeholder="password" ref="password" role="textbox" tabIndex="" />
             <label htmlFor="input-confirm-password">confirm password</label>
-            <input className="user-info-input" type="password" placeholder="password" ref="password2" role="textbox" tabIndex="3" />
+            <input className="user-info-input" type="password" placeholder="password" ref="password2" role="textbox" tabIndex="" />
           </main>
           <footer className="modal-footer">
             <button className="modal-btn" role="button" tabIndex="3" onSubmit={this.signup} onClick={this.signup}>Sign up</button>
