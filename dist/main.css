@@ -83,13 +83,11 @@
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.3);
-  height: 100%;
-  width: 100%; }
+  height: 100vh;
+  width: 100vw; }
   .modal-component .modal-content {
     display: flex;
     background: #FFF;
-    height: 100vh;
-    width: 100vw;
     font-family: "Lato", sans-serif;
     overflow: scroll; }
   .modal-component form {
@@ -102,6 +100,9 @@
     width: 100%; }
     .modal-component form label {
       display: none; }
+  .modal-component .signup-form {
+    height: 100%;
+    width: 100%; }
   .modal-component .modal-header {
     display: flex;
     align-items: center;

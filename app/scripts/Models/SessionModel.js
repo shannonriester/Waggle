@@ -7,9 +7,10 @@ const SessionModel = Backbone.Model.extend({
   defaults: {
     username: '',
     isEditing: false,
+    editingDog: false,
+    editingSelf: false,
     recentPlaces: [{},],
     profile: {
-      usersName: '',
       profilePic: ['/assets/default_dog_large.png'],
       images: ['/assets/default_dog_large.png',],
       usersAge: '',
@@ -17,7 +18,7 @@ const SessionModel = Backbone.Model.extend({
     },
     dog: {
       dogName: '',
-      breed: '',
+      dogBreed: '',
       dogAge: '',
     },
     bkgrndImgs: [],
@@ -31,6 +32,10 @@ const SessionModel = Backbone.Model.extend({
     regionName: '',
     ip: '',
     country: '',
+    email: '',
+    firstName: '',
+    lastName: '',
+    age: '',
   },
   updateUser: function() {
     this.save(null,
@@ -60,10 +65,37 @@ const SessionModel = Backbone.Model.extend({
       }
     });
   },
+  updateDogInfo: function(dogName, dogBreed, dogAge) {
+    this.set('editingDog', false);
+    this.save(
+      {dog:{dogName:dogName, dogBreed:dogBreed, dogAge:dogAge}},
+      { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/${this.get('userId')}`,
+        type: 'PUT',
+        success: (model, response) => {
+        // console.log('USER UPDATED DOG ', response);
+        this.trigger('change update');
+      }, error: (e) => {
+          console.log('UPDATE DOG INFO ERROR: ', e);
+      }
+    });
+  },
+  updateUserInfo: function(email, firstName, lastName, age) {
+    this.set('editingSelf', false);
+    this.save(
+      {email: email, firstName: firstName, lastName: lastName, age: age},
+      { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/${this.get('userId')}`,
+        type: 'PUT',
+        success: (model, response) => {
+        // console.log('USER UPDATED SELF ', response);
+        this.trigger('change update');
+      }, error: (e) => {
+          console.log('UPDATE USER INFO ERROR: ', e);
+      }
+    });
+  },
   updateBkgrndImgs: function(bkgrndImgs) {
     console.log(bkgrndImgs);
     this.set('isEditing', false);
-
     this.save(
       {bkgrndImgs: bkgrndImgs},
       { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/${this.get('userId')}`,
@@ -77,20 +109,6 @@ const SessionModel = Backbone.Model.extend({
       }
     });
   },
-  // getLocation: function() {
-  //     var promise = new Promise((resolve, reject) => {
-  //       if ('geolocation' in navigator) {
-  //         window.navigator.geolocation.getCurrentPosition((position) => {
-  //           // console.log('position ', position);
-  //           this.set('coordinates',[position.coords.latitude,position.coords.longitude]);
-  //           resolve (position);
-  //         });
-  //       } else {
-  //           reject('This browser doesn\'t support geolocation...');
-  //       }
-  //     });
-  //   return promise;
-  // },
   apiGeoLocation: function() {
     return $.ajax({
       type: 'GET',
@@ -137,6 +155,10 @@ const SessionModel = Backbone.Model.extend({
         ip: response.ip,
         recentPlaces: response.recentPlaces,
         range: response.range,
+        email: response.email,
+        firstName: response.firstName,
+        lastName: response.lastName,
+        age: response.age,
       };
     }
   },
@@ -156,11 +178,15 @@ const SessionModel = Backbone.Model.extend({
       },
     });
   },
-  signup: function(username, password) {
+  signup: function(username, password, email, firstName, lastName, age) {
     let newUsername = username.toLowerCase();
     this.save({
       username: newUsername,
       password: password,
+      email: email,
+      firstName: firstName,
+      lastName: lastName,
+      age: age,
     },
     {
       url: `https://baas.kinvey.com/user/kid_SkBnla5Y/`,

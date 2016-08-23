@@ -1,7 +1,11 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
+import { DateField, Calendar, DecadeView } from 'react-date-picker';
+import moment from 'moment';
+
+import ReactWidgets from 'react-widgets';
 import _ from 'underscore';
-import $ from 'jquery';
+// import $ from 'jquery';
 
 import store from '../store';
 
@@ -10,6 +14,7 @@ export default React.createClass({
     return {
       username: null,
       shakeModal: false,
+      value0 : new Date(),
     }
   },
   login: function(e) {
@@ -22,14 +27,18 @@ export default React.createClass({
 
     if (this.state.username) {
       this.props.hideModal();
+      browserHistory.push({pathname:`/search/`, query:{category: store.session.get('query')} });
     }
-    browserHistory.push({pathname:`/search/`, query:{category: store.session.get('query')} });
   },
   signup: function(e) {
     e.preventDefault();
-
+    let email =this.refs.email.value;
+    let firstName = this.refs.firstName.value;
+    let lastName = this.refs.lastName.value;
+    let age = this.refs.age.value;
     let username = this.refs.username.value;
     username.toLowerCase();
+
     let password = this.refs.password.value;
     let password2 = this.refs.password2.value;
 
@@ -37,7 +46,7 @@ export default React.createClass({
       //do not let them login
       console.log('passwords don\'t match or you didn\'t enter a username!');
     } else {
-      store.session.signup(username, password);
+      store.session.signup(username, password, email, firstName, lastName, age);
     }
 
     if (this.state.username) {
@@ -60,10 +69,6 @@ export default React.createClass({
   componentDidMount: function() {
     store.session.on('change', this.updateState);
 
-    // this.refs.birthday.datePicker({
-    //   changeMonth: true,
-    //   changeYear: true,
-    // });
   },
   componentWillUnmount: function() {
     store.session.off('change', this.updateState);
@@ -94,6 +99,7 @@ export default React.createClass({
           </footer>
         </form>
       );
+
     } else if (this.props.content === 'sign up') {
       modalContent = (
         <form className="signup-form" onSubmit={this.signup}>
@@ -103,26 +109,28 @@ export default React.createClass({
           </header>
           <main className="modal-body">
             <label htmlFor="input-username">Email</label>
-            <input className="user-info-input" type="text" placeholder="email" ref="email" role="textbox" tabIndex="" />
+            <input className="user-info-input" type="text" placeholder="email" ref="email" role="textbox" tabIndex="1" />
 
             <label htmlFor="input-username">First name:</label>
-            <input className="user-info-input" type="text" placeholder="email" ref="firstName" role="textbox" tabIndex="" />
+            <input className="user-info-input" type="text" placeholder="First name" ref="firstName" role="textbox" tabIndex="2" />
 
             <label htmlFor="input-username">Last name:</label>
-            <input className="user-info-input" type="text" placeholder="email" ref="lastName" role="textbox" tabIndex="" />
+            <input className="user-info-input" type="text" placeholder="Last name" ref="lastName" role="textbox" tabIndex="3" />
 
-            <label htmlFor="input-username">Birthday</label>
-            <input className="user-info-input" type="text" placeholder="email" ref="birthday" role="textbox" tabIndex="" />
+            <label htmlFor="input-username">Age:</label>
+            <input className="user-info-input" type="text" placeholder="Age" ref="age" role="textbox" tabIndex="4" />
 
             <label htmlFor="input-username">username</label>
-            <input className="user-info-input" type="text" placeholder="username" ref="username" role="textbox" tabIndex="" />
+            <input className="user-info-input" type="text" placeholder="username" ref="username" role="textbox" tabIndex="5" />
+
             <label htmlFor="input-password">password</label>
-            <input className="user-info-input" type="password" placeholder="password" ref="password" role="textbox" tabIndex="" />
+            <input className="user-info-input" type="password" placeholder="password" ref="password" role="textbox" tabIndex="6" />
+
             <label htmlFor="input-confirm-password">confirm password</label>
-            <input className="user-info-input" type="password" placeholder="password" ref="password2" role="textbox" tabIndex="" />
+            <input className="user-info-input" type="password" placeholder="password" ref="password2" role="textbox" tabIndex="7" />
           </main>
           <footer className="modal-footer">
-            <button className="modal-btn" role="button" tabIndex="3" onSubmit={this.signup} onClick={this.signup}>Sign up</button>
+            <button className="modal-btn" role="button" tabIndex="8" onSubmit={this.signup} onClick={this.signup}>Sign up</button>
             <input className="submit-btn" type="submit" value="submit" role="button" onSubmit={this.signup} />
           </footer>
         </form>

@@ -6,14 +6,14 @@
   align-items: center;
   justify-content: center;
   background: rgba(#000, .3);
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
 
   .modal-content{
     display: flex;
     background: #FFF;
-    height: 100vh;
-    width: 100vw;
+    // height: 100%;
+    // width: 100%;
     font-family: $font-family;
     overflow: scroll;
   }
@@ -30,6 +30,10 @@
     label {
       display: none;
     }
+  }
+  .signup-form {
+    height: 100%;
+    width: 100%;
   }
 
  .modal-header {

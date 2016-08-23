@@ -4,6 +4,9 @@ const UserModel = Backbone.Model.extend({
   idAttribute: '_id',
   defaults: {
     username: '',
+    isEditing: false,
+    editinDog: false,
+    editingSelf: false,
     recentPlaces: [{},],
     profile: {
       usersName: '',
@@ -17,15 +20,21 @@ const UserModel = Backbone.Model.extend({
       breed: '',
       dogAge: '',
     },
+    bkgrndImgs: [],
     query: 'park',
+    range: 8,
     checkedin: false,
-    coordinates:[0,0],
+    coordinates: [],
     city: '',
     zipcode: '',
     regionCode: '',
     regionName: '',
     ip: '',
     country: '',
+    email: 'email',
+    firstName: 'firstName',
+    lastName: 'lastName',
+    age: 0,
   },
 });
 

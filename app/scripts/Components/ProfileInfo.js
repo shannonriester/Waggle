@@ -19,19 +19,17 @@ export default React.createClass({
       newProfilePic = this.state.profilePicSrc;
       console.log(newProfilePic);
     }
-    let newUserName = this.refs.userInfoName.value;
-    let newUserAge = this.refs.userInfoAge.value;
-    let newDogName = this.refs.dogInfoName.value;
-    let newDogAge = this.refs.dogInfoAge.value;
-    let newDogBreed = this.refs.dogInfoBreed.value;
-    let newAboutInfo = this.refs.aboutInfo.value;
+    // let newUserName = this.refs.userInfoName.value;
+    // let newUserAge = this.refs.userInfoAge.value;
+    // let newDogName = this.refs.dogInfoName.value;
+    // let newDogAge = this.refs.dogInfoAge.value;
+    // let newDogBreed = this.refs.dogInfoBreed.value;
+    // let newAboutInfo = this.refs.aboutInfo.value;
 
     store.session.updateProfile(newProfilePic, newUserName, newUserAge, newDogName, newDogAge, newDogBreed, newAboutInfo);
-
     if (this.state.files) {
       store.session.updateBkgrndImgs(this.state.files);
     }
-    // store.session.set('isEditing', false);
   },
   onDrop: function(files) {
     files.forEach((file, i) => {
