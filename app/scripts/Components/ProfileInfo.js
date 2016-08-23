@@ -6,7 +6,8 @@ import store from '../store';
 export default React.createClass({
   getInitialState: function() {
     return {
-      editing: store.session.get('isEditing'),
+      // editAbout: store.session.get('editAbout'),
+      editProfile: store.session.get('editProfile'),
       profilePicSrc: [],
       files: [],
     }
@@ -15,20 +16,15 @@ export default React.createClass({
     e.preventDefault();
     let newProfilePic = '/assets/default_dog_large.png';
 
+    let newBody = this.refs.aboutInfo.value;
+
     if (this.state.profilePicSrc[0]) {
       newProfilePic = this.state.profilePicSrc;
-      console.log(newProfilePic);
+      store.session.updateProfile(newProfilePic, newBody);
     }
-    // let newUserName = this.refs.userInfoName.value;
-    // let newUserAge = this.refs.userInfoAge.value;
-    // let newDogName = this.refs.dogInfoName.value;
-    // let newDogAge = this.refs.dogInfoAge.value;
-    // let newDogBreed = this.refs.dogInfoBreed.value;
-    // let newAboutInfo = this.refs.aboutInfo.value;
 
-    store.session.updateProfile(newProfilePic, newUserName, newUserAge, newDogName, newDogAge, newDogBreed, newAboutInfo);
-    if (this.state.files) {
-      store.session.updateBkgrndImgs(this.state.files);
+    if (this.state.files.length) {
+      store.session.updateBkgrndImgs(this.state.files, newBody);
     }
   },
   onDrop: function(files) {
@@ -59,106 +55,97 @@ export default React.createClass({
       reader.readAsDataURL(file);
   },
   updateState: function() {
-    store.userCollection.fetch();
     this.setState({
       session: store.session.toJSON(),
-      editing: store.session.get('isEditing'),
+      editProfile: store.session.get('editProfile'),
       users: store.userCollection.toJSON(),
   });
   },
   componentDidMount: function() {
+    store.userCollection.fetch();
     store.session.on('change', this.updateState);
-    store.userCollection.once('change update', this.updateState);
+    store.userCollection.on('change update', this.updateState);
   },
   componentWillUnmount: function() {
     store.session.off('change', this.updateState);
     store.userCollection.off('change update', this.updateState);
   },
   render: function() {
-    let content;
+    let bkgrndImgs;
+    let profilePic;
+    let profileBody;
+    let editImages;
+    let styles;
+
     let url = `${this.props.user.profile.profilePic}`;
-    let styles = {backgroundImage: 'url(' + url + ')'};
-    let backgroundImage;
-    console.log(this.props.user);
-    if (this.props.user.bkgrndImgs) {
-      backgroundImage = {backgroundImage: 'url(' + this.props.user.bkgrndImgs[0] + ')'};
+    let profilePicUrl = {backgroundImage: 'url(' + url + ')'};
+
+    if (this.props.user.bkgrndImgs.length) {
+      styles = {backgroundImage: 'url(' + this.props.user.bkgrndImgs[0] + ')'};
     }
 
-    if (!this.state.editing) {
-      content =(
-        <div>
-          <form className="profile-about-data">
-          <div className="profile-background-images" style={backgroundImage}>
-          <figure className="profile-pic" style={styles}></figure>
-          </div>
-            <ul className="ul-about-data">
-              <li>{this.props.user.profile.usersName}, {this.props.user.profile.usersAge}</li>
-              <li>{this.props.user.dog.dogName}, {this.props.user.dog.dogAge}, {this.props.user.dog.breed}</li>
-              <li>{this.props.user.city}, {this.props.user.regionName}</li>
-            </ul>
+    if (!this.state.editProfile) {
+        profileBody =(
+          <p className="about-bio">
+            {this.props.user.profile.bio}
+          </p>);
 
-            <p className="about-bio">
-              {this.props.user.profile.bio}
-            </p>
-          </form>
-        </div>
-      );
-    } else if (this.state.editing) {
-        content = (
-          <div className="profile-info-component">
-          <form  className="profile-image-form" onSubmit={this.handleImgChange}>
-            <input
+    } else if (this.state.editProfile) {
+        profilePic = (
+          <div className="file-container">
+            <input className="input-file"
               type="file"
               name="user[profilePic]"
               ref="file"
               accept="image/*"
               onChange={this.handleImgChange} />
-          </form>
+          </div>);
 
-          <form className="profile-about-data" onSubmit={this.saveEdits}>
+        bkgrndImgs = (
+          <form  className="profile-image-form" onSubmit={this.onDrop}>
+            <img className="profile-pic-preview" src={this.state.profilePicSrc}/>
             <figure className={this.state.profilePicSrc ? "profile-pic" : "default-profile-pic"} style={styles}></figure>
+
             <div className="dropzone-container">
-            <Dropzone className="dropzone" ref="dropzone" onDrop={this.onDrop}>
-              <i className="icon-camera fa fa-camera-retro" aria-hidden="true"></i>
-            </Dropzone>
-            <button type="button" onClick={this.onOpenClick}>
-                    Open Dropzone
-            </button>
+              <Dropzone className="dropzone" ref="dropzone" onDrop={this.onDrop}>
+                <i className="icon-camera fa fa-camera-retro" aria-hidden="true"></i>
+              </Dropzone>
+              <button type="button" onClick={this.onOpenClick}>Open Dropzone</button>
+              {this.state.files.length > 0 ? <div>
+                  <h2>Uploading {this.state.files.length} files...</h2>
+                  <div>{this.state.files.map((file, i) => <img key={i} src={file.preview} /> )}</div>
+                  </div> : null}
+            </div>
+          </form>);
 
-            {this.state.files.length > 0 ? <div>
-                <h2>Uploading {this.state.files.length} files...</h2>
-                <div>{this.state.files.map((file, i) => <img key={i} src={file.preview} /> )}</div>
-                </div> : null}
-
-          </div>
-          <img src={this.state.profilePicSrc} />
-
-            <ul className="ul-about-data">
-              <li>
-                <label>user's name</label><input type="text" defaultValue={this.props.user.profile.usersName} tabIndex="1" role="textbox" ref="userInfoName" />
-                <label>user's age</label><input type="text" defaultValue={this.props.user.profile.usersAge} tabIndex="2" role="textbox" ref="userInfoAge" />
-              </li>
-
-              <li>
-                <label>dog name</label><input type="text" defaultValue={this.props.user.dog.dogName} tabIndex="3" role="textbox" ref="dogInfoName" />
-                <label>dog age</label><input type="text" defaultValue={this.props.user.dog.dogAge} tabIndex="4" role="textbox" ref="dogInfoAge" />
-                <label>dog breed</label><input type="text" defaultValue={this.props.user.dog.dogBreed} tabIndex="5" role="textbox" ref="dogInfoBreed" />
-              </li>
-            </ul>
-
-            <textarea  className="about-bio" defaultValue={this.props.user.profile.bio} tabIndex="6" role="textbox" ref="aboutInfo" />
-
-            <input type="submit" value="submit" role="button" />
-            <button onClick={this.saveEdits} tabIndex="7">done</button>
-          </form>
-        </div>
-      );
-
+      profileBody = (
+        <form className="form-about" onSubmit={this.saveEdits}>
+          <textarea  className="bio-textarea" defaultValue={this.props.user.profile.bio} tabIndex="" role="textbox" ref="aboutInfo" />
+          <input className="submit-btn" type="submit" value="submit" role="button" />
+          <button onClick={this.saveEdits} tabIndex="">done</button>
+        </form>);
     }
     return (
-      <main className="profile-main">
-        {content}
-      </main>
+      <div className="profile-info-component">
+        <header>
+          <div className="profile-background-images" style={styles}>
+            <div className="profile-pic-container">
+              <figure className="profile-pic" style={profilePicUrl}>{profilePic}</figure>
+            </div>
+            {bkgrndImgs}
+          </div>
+        </header>
+
+        <main className="profile-main">
+          <ul className="ul-about-data">
+            <li>{this.props.user.firstName}, {this.props.user.age}</li>
+            <li>{this.props.user.dog.dogName}, {this.props.user.dog.dogAge}, {this.props.user.dog.dogBreed}</li>
+            <li>{this.props.user.city}, {this.props.user.regionName}</li>
+          </ul>
+          {profileBody}
+        </main>
+
+      </div>
     );
 
   }

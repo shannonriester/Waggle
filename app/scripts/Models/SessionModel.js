@@ -6,7 +6,8 @@ const SessionModel = Backbone.Model.extend({
   urlRoot:`https://baas.kinvey.com/user/kid_SkBnla5Y/`,
   defaults: {
     username: '',
-    isEditing: false,
+    editAbout: false,
+    editImages: false,
     editingDog: false,
     editingSelf: false,
     recentPlaces: [{},],
@@ -49,22 +50,6 @@ const SessionModel = Backbone.Model.extend({
       }
     });
   },
-  updateProfile: function(profilePic, userName, userAge, dogName, dogAge, dogBreed, aboutInfo) {
-    this.set('isEditing', false);
-    this.save(
-      {profile: {profilePic:profilePic, usersName:userName, usersAge:userAge, bio:aboutInfo},
-      dog:{dogName:dogName, breed:dogBreed, dogAge:dogAge}},
-      { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/${this.get('userId')}`,
-        type: 'PUT',
-        success: (model, response) => {
-        // console.log('USER UPDATED PROFILE ', response);
-        this.trigger('change update');
-
-      }, error: (e) => {
-          console.log('updateProfile ERROR: ', e);
-      }
-    });
-  },
   updateDogInfo: function(dogName, dogBreed, dogAge) {
     this.set('editingDog', false);
     this.save(
@@ -90,6 +75,22 @@ const SessionModel = Backbone.Model.extend({
         this.trigger('change update');
       }, error: (e) => {
           console.log('UPDATE USER INFO ERROR: ', e);
+      }
+    });
+  },
+  updateProfilePic: function(profilePic) {
+    this.set('editProfile', false);
+    this.save(
+      {profile: {profilePic:profilePic, usersName:userName, usersAge:userAge, bio:aboutInfo},
+      dog:{dogName:dogName, breed:dogBreed, dogAge:dogAge}},
+      { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/${this.get('userId')}`,
+        type: 'PUT',
+        success: (model, response) => {
+        // console.log('USER UPDATED PROFILE ', response);
+        this.trigger('change update');
+
+      }, error: (e) => {
+          console.log('updateProfile ERROR: ', e);
       }
     });
   },

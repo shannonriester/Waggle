@@ -5,7 +5,7 @@ const UserModel = Backbone.Model.extend({
   defaults: {
     username: '',
     isEditing: false,
-    editinDog: false,
+    editingDog: false,
     editingSelf: false,
     recentPlaces: [{},],
     profile: {

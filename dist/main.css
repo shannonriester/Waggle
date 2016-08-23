@@ -424,11 +424,20 @@
   background: #F55959; }
 
 .profile-pic {
+  position: relative;
   height: 5em;
   width: 5em;
   border-radius: 50%;
   background-size: cover;
   background-repeat: no-repeat; }
+
+.input-file {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0; }
 
 .default-profile-pic {
   background-position-x: -15px; }

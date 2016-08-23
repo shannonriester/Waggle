@@ -36,7 +36,7 @@ export default React.createClass({
     }
   },
   editProfile: function() {
-    store.session.set('isEditing', true);
+    store.session.set('editProfile', true);
   },
   toggleMatch: function() {
     store.matchCollection.toggleMatch(this.state.session.username, this.props.params.userId);
@@ -106,12 +106,13 @@ export default React.createClass({
     let newMessageModal;
     let heartIcon;
     let messageBtn;
+
     //talk about refactoring this in the readme
     if (this.state.session.username === this.props.params.userId) {
       sessionNav = (
         <ul className="nav-session">
           <li>
-            <button className="edit-btn" onClick={this.editProfile}>edit <i className="fa fa-pencil" aria-hidden="true"></i></button>
+            <button className="edit-btn" onClick={this.editProfile}>edit <i className="edit-icon fa fa-pencil" aria-hidden="true"></i></button>
           </li>
           <li>
             <button className="settings-btn" onClick={this.goToSettings}>settings <i className="fa fa-cog" aria-hidden="true"></i></button>
@@ -142,7 +143,6 @@ export default React.createClass({
         let placeIDArr = this.state.recentPlaces.map((place, i, arr) => {
           return place.place;
         });
-
         placeIDArr = _.sortBy(placeIDArr, (place) => {
           return moment(place.time).unix();
         }).reverse();
@@ -152,17 +152,13 @@ export default React.createClass({
             return true;
           }
         });
-
         if (fixedPlaces.length > 4) {
           fixedPlaces = fixedPlaces.slice(0,4);
         }
-
         userRecentPlaces = fixedPlaces.map((place, i, arr) => {
             return (<UserRecentPlaces key={i} place={place} updateState={this.updateSession} />);
         });
-
         myMatches = myMatches.concat(this.state.receivedMatch.likee);
-        // console.log(myMatches);
     }
 
 
