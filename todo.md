@@ -11,8 +11,7 @@
 
 - MAP:
   - animate: show bleeping if there are more than 3-5 users at one place!
-  - toggle infoBox
-  - make infoBox
+  - onHoverOverPlaceMarker ==> make that marker come to front
 
 - profilePage
   - reorganize their editing profile?

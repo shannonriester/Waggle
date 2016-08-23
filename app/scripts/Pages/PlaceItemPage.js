@@ -30,7 +30,7 @@ export default React.createClass({
       this.setState({
         checkedin: store.checkinCollection.where({
           place: this.props.params.placeId,
-          userCheckedin: store.session.get('username')
+          userCheckedin: store.session.get('username'),
         }),
 
       })

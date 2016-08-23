@@ -1,20 +1,55 @@
 #shake {
     animation: 300ms shake;
-    @keyframes shake {
-      0% {
-        transform: translateX(1%);
-      }
-      25% {
-        transform: translateX(-1%);
-      }
-      50% {
-        transform: translateX(1%);
-      }
-      75% {
-        transform: translateX(-1%);
-      }
-      100% {
-        transform: translateX(0%);
-      }
+  }
+
+  @keyframes shake {
+    0% {
+      transform: translateX(1%);
     }
+    25% {
+      transform: translateX(-1%);
+    }
+    50% {
+      transform: translateX(1%);
+    }
+    75% {
+      transform: translateX(-1%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+
+@keyframes border-pulse {
+  0% {
+    border-color: rgba($accent, .9);
+  }
+  50% {
+    border-color: rgba(purple, 0);
+  }
+  100% {
+    border-color: rgba($accent, .7);
+  }
+}
+
+// .paw-icon {
+.inner-pulse-radius {
+  animation: border-pulse 2s infinite;
+  height: 2em;
+  width: 2em;
+  padding: 6.5px;
+  border: 2px solid;
+  border-radius: 50%;
+}
+
+// .outer-pulse-radius {
+.outer-pulse-radius {
+  animation: border-pulse 2.2s infinite;
+  background: transparent;
+  height: 3.5em;
+  width: 3.5em;
+  border: solid black 2px;
+  padding: 6px;
+  border-radius: 50%;
+  position: fixed;
 }

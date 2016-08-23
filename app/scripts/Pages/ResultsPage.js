@@ -74,6 +74,7 @@ export default React.createClass({
             resultsList={resultsList}
             />
           </div>
+          <Searchbar />
         </div>
         <ul className="results-list">
           {resultsList}

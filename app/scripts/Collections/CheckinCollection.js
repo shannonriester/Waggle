@@ -20,7 +20,7 @@ export default Backbone.Collection.extend({
 
     if (!alreadyCheckedin[0]) {
       this.create(
-        {place:placeId, userCheckedin: username},
+        {place: placeId, userCheckedin: username},
         {success: (model, response) => {
           console.log('YOU CHECKED IN!');
           console.log('model', model);

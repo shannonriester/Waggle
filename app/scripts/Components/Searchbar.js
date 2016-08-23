@@ -15,13 +15,11 @@ export default React.createClass({
     );
 
     browserHistory.push({pathname:`/search/`, query:{category: query} });
-    // sessionStorage.searchTerm = query;
-    // console.log(store.session.get('query'));
   },
   render: function() {
     return (
       <form className="searchbar-component" onSubmit={this.searchHandler}>
-        <input className="searchbar" type="search" placeholder="dog parks" ref="searchbar" role="search" tabIndex="1"/>
+        <input className="searchbar" type="text" placeholder="dog parks" ref="searchbar" role="search" tabIndex="1"/>
         <input className="search-submit" type="submit" value="search" role="button" tabIndex="2"/>
         <i className="search-icon fa fa-search" aria-hidden="true" onClick={this.searchHandler}></i>
       </form>

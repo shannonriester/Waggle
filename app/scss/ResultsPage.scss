@@ -1,24 +1,21 @@
 .map {
   height: 350px;
-  width: 75%;
+  width: 97%;
   margin: 10px auto;
 }
 .place-marker {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   height: 2.5em;
   width: 2.5em;
-  // background-repeat: no-repeat;
-  // background-position: center center;
-  // background-position-y: 3px;
   background-color: $accent;
   border-radius: 50%;
   border: solid #FFF 1px;
 }
 .paw-icon {
   position: absolute;
-  top: 3px;
+  top: 4px;
   left: 4px;
   height: 2em;
   width: 2em;
@@ -30,9 +27,9 @@
   left: 10px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   background: white;
-  width: 40vw;
+  width: 50vw;
   height: 14vh;
   border-radius: 10px;
   z-index: 1;
@@ -57,13 +54,17 @@
     justify-content: space-around;
     line-height: 1.5;
 
+    a {
+      text-decoration: none;
+    }
+
     h3 {
       color: $accent;
       font-size: 16px;
       margin: 0;
     }
-
   }
+
 }
 
 #my-location {

@@ -6,47 +6,15 @@ import store from '../store';
 
 
 let GoogleMapPage = React.createClass({
-  // getInitialState: function() {
-  //   return {
-  //     places: store.placesCollection.toJSON(),
-  //   }
-  // },
   clickedMap: function() {
     store.placesCollection.forEach((model) => {
       model.set('infoBox', false);
     });
-    // this.updateState();
-    // this.setState({clickedMap: true});
   },
-  // updateState: function() {
-  //   this.setState({
-  //     places: store.placesCollection.toJSON(),
-  //     // hideInfoBox: false,
-  //   });
-  // },
-  // componendDidMount: function() {
-  //   // store.placeModel.get('infoBox');
-  //   store.placesCollection.on('change update', this.updateState);
-  // },
   render: function() {
-    console.log(this.props.resultsList);
-    // let infoBox;
     let placeMarker = this.props.resultsList.map((place, i) => {
       let lat = place.props.place.ll.latitude;
       let lng = place.props.place.ll.longitude;
-
-      // let hideInfoBox;
-      // console.log('hideInfoBox before true', hideInfoBox);
-      // if (this.state.hideInfoBox) {
-      //   hideInfoBox = true;
-      //   console.log('hideInfoBox', hideInfoBox);
-      // }
-      // console.log(this.state.infoBox);
-      // let infoBox;
-      // if (this.state.infoBox) {
-        // let infoBox = /
-      // }
-
       return (<PlaceMarker
                 key={i}
                 id={place.props.place.yelpID}
