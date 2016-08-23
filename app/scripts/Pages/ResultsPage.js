@@ -64,7 +64,6 @@ export default React.createClass({
     if (this.state.coordinates[0] !== 0 && this.state.coordinates[1] !== 0) {
       coordinates = store.session.get('coordinates');
     }
-    console.log(store.session);
 
     return (
       <div className="results-page-component">

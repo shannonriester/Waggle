@@ -49,7 +49,6 @@ export default React.createClass({
 
         if (allMyConversations.indexOf(convoWith) === -1) {
           allMyConversations.push(convoWith);
-          console.log('allMyConversations', allMyConversations);
           return true;
         }
       }
@@ -57,8 +56,6 @@ export default React.createClass({
     });
     messagesArr = messagesArr.map((curr, i, arr) => {
       let convoWith = curr.sender;
-      console.log('convoWith: ', convoWith);
-      console.log('curr.sender: ', curr.sender);
       if (this.state.session === curr.sender) {
         convoWith = curr.recipient;
       }

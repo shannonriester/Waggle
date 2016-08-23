@@ -106,7 +106,7 @@ export default React.createClass({
     let newMessageModal;
     let heartIcon;
     let messageBtn;
-
+    //talk about refactoring this in the readme 
     if (this.state.session.username === this.props.params.userId) {
       sessionNav = (
         <ul className="nav-session">

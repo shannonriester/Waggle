@@ -39,7 +39,6 @@ export default React.createClass({
       this.setState({
         fetched: true,
         interval: window.setInterval(() => {
-          console.log('pull request made for messagesCollection');
          store.messagesCollection.fetch();
          store.messagesCollection.findConversation(this.props.params.recipient)
         }, 1000),

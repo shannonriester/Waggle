@@ -7,6 +7,10 @@
   height: 350px;
   width: 97%;
   margin: 10px auto;
+  // border-radius: 2px;
+}
+.gm-style {
+  border-radius: 2px;
 }
 .place-marker {
   display: flex;
@@ -36,9 +40,9 @@
   background: white;
   width: 50vw;
   height: 14vh;
+  padding: 10px;
   border-radius: 10px;
   z-index: 1;
-  padding: 10px;
 
   .place-img-name {
     width: 50%;
