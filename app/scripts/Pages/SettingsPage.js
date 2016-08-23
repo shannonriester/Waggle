@@ -4,12 +4,35 @@ import store from '../store';
 import Nav from '../Components/Nav';
 
 export default React.createClass({
+getInitialState: function() {
+  return {
+    range: store.session.get('range'),
+  }
+},
 logout: function() {
     let prevQuery = store.session.get('query');
     store.session.logout(prevQuery);
   },
+showRagneSetting: function() {
+  // console.log(this.refs.range.value);
+  
+  store.session.set('range', this.refs.range.value);
+  this.updateState();
+  store.session.updateUser();
+},
+updateState: function() {
+  this.setState({range: store.session.get('range')});
+},
+componentDidMount: function() {
+  // store.session.get('range');
+  store.session.on('change', this.updateState);
+},
+componentWillUnmount: function() {
+  store.session.off('change', this.updateState);
+},
 render: function() {
-
+console.log(store.session.get('range'));
+// this.state.
   return (
     <div className="settings-component">
       <Nav />
@@ -38,11 +61,9 @@ render: function() {
       </header>
 
       <main className="discovery-settings">
-        <form>
-          location: my current location
-          max-distance
-          <input type="range" step="1" min="1" max="25" step="1" />
-        </form>
+          <label>set the range for your searchs: </label>
+          <input type="range" value={this.state.range} step="1" min="1" max="25" step="1" ref="range" onChange={this.showRagneSetting}/>
+          <label>{this.state.range} miles</label>
       </main>
 
       <footer className="logout-delete-section">

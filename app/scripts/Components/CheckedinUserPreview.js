@@ -6,22 +6,13 @@ import store from '../store';
 
 export default React.createClass({
   render: function() {
-    let profilePicUrl;
-    // let user;
-    // let url;
-    // let styles;
-
     let userImg = this.props.users.map((user, iterator) => {
       let url = user.profile.profilePic[0];
       let styles = {backgroundImage: 'url(' + url + ')'};
       return styles;
     });
 
-    console.log(userImg);
-
     let checkedinPreview = this.props.checkedin.map((model, i, arr) => {
-      // console.log(userImg);
-
       return (
         <div className="userpreview-container" key={i}>
           <Link className="link" to={`/user/shannon`}>

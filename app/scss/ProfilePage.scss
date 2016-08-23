@@ -14,10 +14,21 @@
 }
 
 .dropzone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 200px;
   width: 250px;
   border: dashed 2px #555;
+
+  .icon-camera {
+    font-size: 100px;
+    opacity: .7;
+  }
 }
+
+
+
 
 .profile-background-images {
   height: 400px;

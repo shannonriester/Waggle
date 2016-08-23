@@ -8,14 +8,18 @@ import PlaceModel from '../Models/PlaceModel';
 const PlacesCollection = Backbone.Collection.extend({
   model: PlaceModel,
   url: `https://api.yelp.com/v2/search`,
-  googleMapResult: function () {
-    // $.ajax({
-    //   url:`https://maps.googleapis.com/maps/api/js?key=${googleData.browserKey}&callback=initMap`,
-    //
-    // })
-  },
-  getResults: function(city, query){
-    // console.log(query);
+  getResults: function(city, query, range){
+    // console.log(range);
+    // range ? (range = range * 1600) : (range = range * 3)
+    if (range) {
+      range = range * 1600;
+    } else {
+      range = 8 * 1600;
+    }
+    console.log(range);
+    //have to convert range(miles) to meters bc Yelp's API search parameters only search in meters.
+      //max range only up to 25 miles (40000 meters);
+
     this.reset();
     let auth = {
       consumerKey : "HfA_mwIcjg6t1Lb2PlHySA",
@@ -29,7 +33,7 @@ const PlacesCollection = Backbone.Collection.extend({
     let terms = 'dogs allowed, ' + query;
     let near = city;
     let sort = 2;
-    // let radiusFilter = ;
+    let radiusFilter = range;
     let accessor = {
         consumerSecret : auth.consumerSecret,
         tokenSecret : auth.accessTokenSecret,
@@ -39,7 +43,7 @@ const PlacesCollection = Backbone.Collection.extend({
     parameters.push(['term', terms]);
     parameters.push(['sort', sort]);
     parameters.push(['location', near]);
-    // parameters.push(['radius_filter', radiusFilter]);
+    parameters.push(['radius_filter', radiusFilter]);
     parameters.push(['callback', 'cb']);
     parameters.push(['oauth_consumer_key', auth.consumerKey]);
     parameters.push(['oauth_consumer_secret', auth.consumerSecret]);

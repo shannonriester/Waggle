@@ -22,6 +22,7 @@ const SessionModel = Backbone.Model.extend({
     },
     bkgrndImgs: [],
     query: 'park',
+    range: 8,
     checkedin: false,
     coordinates: [],
     city: '',
@@ -168,6 +169,7 @@ const SessionModel = Backbone.Model.extend({
         country: response.countryName,
         ip: response.ip,
         recentPlaces: response.recentPlaces,
+        range: response.range,
       };
     }
   },
