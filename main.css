@@ -176,17 +176,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 97vw;
   height: 70px;
   margin: 1em auto; }
   .searchbar-component .searchbar {
     height: 100%;
+    width: 100%;
     font-size: 1.5em;
     outline: none;
     border: none;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
-    width: 75%;
     background: #ebebeb; }
   .searchbar-component .search-submit {
     display: none; }
@@ -201,6 +201,10 @@
     font-size: 2.5em;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px; }
+
+.map-container {
+  margin-bottom: 2%;
+  border-bottom: solid #ebebeb 1px; }
 
 .map {
   height: 350px;
@@ -258,6 +262,14 @@
       font-size: 16px;
       margin: 0; }
 
+.search-heading {
+  text-align: center;
+  font-size: 35px; }
+
+.search-sub-heading {
+  text-align: center;
+  font-size: 17px; }
+
 #my-location {
   background-color: purple; }
 
@@ -277,8 +289,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-end;
-    height: 5.5em;
-    width: 5.5em;
+    height: 6.5em;
+    width: 6.5em;
     margin: 0;
     background-size: cover;
     background-repeat: no-repeat;
@@ -391,7 +403,10 @@
     display: flex;
     display: column;
     align-items: center;
-    justify-content: center; }
+    justify-content: center;
+    height: 3em;
+    width: 3em;
+    background-size: cover; }
     .result-item-component .ulist-users-checkedin .userpreview-container h3 {
       margin: 0; }
   .result-item-component .ulist-users-checkedin .checkedin-user-image {
@@ -501,7 +516,7 @@
   background: transparent;
   height: 3.5em;
   width: 3.5em;
-  border: solid black 2px;
+  border: solid 1px;
   padding: 6px;
   border-radius: 50%;
   position: fixed; }
