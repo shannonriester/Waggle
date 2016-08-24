@@ -85,8 +85,6 @@ const SessionModel = Backbone.Model.extend({
     if (!profilePic.length) {
       profilePic = '/assets/default_dog_large.png';
     }
-
-
     this.set('profile', currProfile)
     this.save(
       {profile: {profilePic:profilePic, bio:bio}},

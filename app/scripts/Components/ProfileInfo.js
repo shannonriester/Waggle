@@ -2,12 +2,13 @@ import React from 'react';
 import Dropzone from 'react-dropzone';
 
 import store from '../store';
+import ProfileInteractive from './ProfileInteractive';
 
 export default React.createClass({
   getInitialState: function() {
     return {
-      editProfile: store.session.get('editProfile'),
       session: store.session.toJSON(),
+      editProfile: store.session.get('editProfile'),
       user: this.props.user,
       profilePicSrc: [],
       files: [],
@@ -17,7 +18,7 @@ export default React.createClass({
     e.preventDefault();
     let newBody = this.refs.aboutInfo.value;
       let newProfilePic = this.state.profilePicSrc;
-      
+
     if (this.state.files.length) {
       store.session.updateBkgrndImgs(this.state.files, newBody);
     }
@@ -36,6 +37,10 @@ export default React.createClass({
          })
        }.bind(this);
     });
+  },
+  editProfile: function(e) {
+    e.preventDefault();
+    store.session.set('editProfile', true);
   },
   cancelEdit: function() {
     store.session.set('editProfile', false);
@@ -59,7 +64,10 @@ export default React.createClass({
   });
   },
   componentWillReceiveProps: function(newProps) {
-    this.setState({user: newProps.user});
+    this.setState({
+      user: newProps.user,
+      sentMatch: newProps.sentMatch,
+    });
   },
   componentDidMount: function() {
     store.session.on('change', this.updateState);
@@ -68,14 +76,38 @@ export default React.createClass({
     store.session.off('change', this.updateState);
   },
   render: function() {
+    console.log(this);
     let bkgrndImgs;
+    let sessionNav;
+    let heartIcon;
+    let messageBtn;
+    let profileInteractive;
     let profilePic;
     let profileBody;
     let editImages;
     let styles;
 
-    let profilePicFile;
+    // console.log(this.state);
+    // if (this.state.session.username === this.state.user.username) {
+      // console.log(this);
+      // profileInteractive = (
+      //   <ul className="nav-session">
+      //     <li>
+      //       <button className="edit-btn" onClick={this.editProfile}>edit <i className="edit-icon fa fa-pencil" aria-hidden="true"></i></button>
+      //     </li>
+      //     <li>
+      //       <button className="settings-btn" onClick={this.goToSettings}>settings <i className="fa fa-cog" aria-hidden="true"></i></button>
+      //     </li>
+      //     <li>
+      //       <button className="new-message-btn" onClick={this.props.messageUser}>message<i className="message-icon sent-match fa fa-comments-o" aria-hidden="true"></i></button>
+      //     </li>
+      //     <li>
+      //       <button className="match-btn"><i className="message-icon fa fa-comments-o" aria-hidden="true" onClick={this.messageUser}></i></button>
+      //     </li>
+        // </ul>);
+    // }
 
+    let profilePicFile;
     let url = `${this.state.user.profile.profilePic}`;
     let profilePicUrl = {backgroundImage: 'url(' + url + ')'};
 
@@ -96,19 +128,19 @@ export default React.createClass({
             accept="image/*"
             onChange={this.handleImgChange} />);
 
-        bkgrndImgs = (
-          <form  className="profile-image-form" onSubmit={this.onDrop}>
-            <img className="profile-pic-preview" src={this.state.profilePicSrc}/>
-            <div className="dropzone-container">
-              <Dropzone className="dropzone" ref="dropzone" onDrop={this.onDrop} onClick={this.onOpenClick}>
-                <i className="icon-camera fa fa-camera-retro" aria-hidden="true"></i>
-              </Dropzone>
-              {this.state.files.length > 0 ? <div className="upload-status-container">
-                  <h2>Uploading {this.state.files.length} file(s)...</h2>
-                  <div>{this.state.files.map((file, i) => <img key={i} src={file.preview} /> )}</div>
-                  </div> : null}
-            </div>
-          </form>);
+      bkgrndImgs = (
+        <form  className="profile-image-form" onSubmit={this.onDrop}>
+          <img className="profile-pic-preview" src={this.state.profilePicSrc}/>
+          <div className="dropzone-container">
+            <Dropzone className="dropzone" ref="dropzone" onDrop={this.onDrop} onClick={this.onOpenClick}>
+              <i className="icon-camera fa fa-camera-retro" aria-hidden="true"></i>
+            </Dropzone>
+            {this.state.files.length > 0 ? <div className="upload-status-container">
+                <h2>Uploading {this.state.files.length} file(s)...</h2>
+                <div>{this.state.files.map((file, i) => <img key={i} src={file.preview} /> )}</div>
+                </div> : null}
+          </div>
+        </form>);
 
       profileBody = (
         <form className="form-about" onSubmit={this.saveEdits}>
@@ -120,18 +152,32 @@ export default React.createClass({
           </div>
         </form>);
     }
+
+    // <div className="profile-interaction-section">
+    //   {sessionNav}
+    //   <ul className="ul-match-section">
+    //     <li>{heartIcon}</li>
+    //     <li>{messageBtn}</li>
+    //   </ul>
+    // </div>
     return (
       <div className="profile-info-component">
-        <header>
+        <section className="header-section-prof-info">
           <div className="profile-background-images" style={styles}>
             {bkgrndImgs}
-            <div className="profile-pic-container">
-              {profilePicFile}
-              <figure className="profile-pic" style={profilePicUrl}></figure>
-            </div>
-
           </div>
-        </header>
+          <div className="profile-pic-container">
+            {profilePicFile}
+            <figure className="profile-pic" style={profilePicUrl}></figure>
+          </div>
+            <ProfileInteractive
+              session={this.state.session}
+              user={this.state.user}
+              message={this.props.messageUser}
+              toggleMatch={this.props.toggleMatch}
+              editProfile={this.editProfile}
+            />
+        </section>
 
         <main className="profile-main">
           <ul className="ul-about-data">

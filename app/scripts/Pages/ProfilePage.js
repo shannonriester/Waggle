@@ -35,9 +35,9 @@ export default React.createClass({
       this.setState({'recentPlaces': recentPlaces});
     }
   },
-  editProfile: function() {
-    store.session.set('editProfile', true);
-  },
+  // editProfile: function() {
+  //   store.session.set('editProfile', true);
+  // },
   toggleMatch: function() {
     store.matchCollection.toggleMatch(this.state.session.username, this.props.params.userId);
     this.setState({
@@ -93,35 +93,18 @@ export default React.createClass({
   },
   render: function() {
     let sessionNav;
-    let userProfileInfo;
+    let profileInfo;
     let newMessageModal;
-    let heartIcon;
-    let messageBtn;
-
     //talk about refactoring this in the readme
-    if (this.state.session.username === this.props.params.userId) {
-      sessionNav = (
-        <ul className="nav-session">
-          <li>
-            <button className="edit-btn" onClick={this.editProfile}>edit <i className="edit-icon fa fa-pencil" aria-hidden="true"></i></button>
-          </li>
-          <li>
-            <button className="settings-btn" onClick={this.goToSettings}>settings <i className="fa fa-cog" aria-hidden="true"></i></button>
-          </li>
-        </ul>
-      );
-    } else if (this.state.sentMatch) {
-        heartIcon = (<i className="icon-heart sent-match fa fa-heart" aria-hidden="true"></i>);
-        messageBtn = (<i className="message-icon sent-match fa fa-comments-o" aria-hidden="true" onClick={this.messageUser}></i>);
-    } else {
-        heartIcon = (<i className="icon-heart fa fa-heart-o" aria-hidden="true" onClick={this.toggleMatch}></i>);
-        messageBtn = (<i className="message-icon fa fa-comments-o" aria-hidden="true" onClick={this.messageUser}></i>);
-    }
-
-    userProfileInfo = this.state.users.map((user, i, arr) => {
+    profileInfo = this.state.users.map((user, i, arr) => {
       // console.log(user);
       if (this.props.params.userId === user.username) {
-        return (<ProfileInfo key={i} user={user} updateUsers={this.updateUsers} />);
+        return (<ProfileInfo
+          key={i}
+          user={user}
+          messageUser={this.messageUser}
+          toggleMatch={this.toggleMatch}
+          />);
       }
     });
 
@@ -159,21 +142,17 @@ export default React.createClass({
         <Nav />
           {newMessageModal}
         <header className="profile-header">
-          {userProfileInfo}
-          {sessionNav}
-          <ul className="ul-match-section">
-            <li>{heartIcon}</li>
-            <li>{messageBtn}</li>
-          </ul>
+          {profileInfo}
         </header>
 
         <footer className="profile-footer">
-          <ul className="ul-recent-places">
-            {userRecentPlaces}
-          </ul>
           <ul className="matched-wagglrs">
             {myMatches}
           </ul>
+          <ul className="ul-recent-places">
+            {userRecentPlaces}
+          </ul>
+
         </footer>
       </div>
     );
