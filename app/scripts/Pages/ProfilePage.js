@@ -5,8 +5,10 @@ import moment from 'moment';
 
 import store from '../store';
 import Nav from '../Components/Nav';
-import ProfileHeader from '../Components/ProfileHeader';
-import ProfileInfo from '../Components/ProfileInfo';
+import ProfileHeader from '../ProfileComponents/ProfileHeader';
+import ProfileMain from '../ProfileComponents/ProfileMain';
+import ProfileFooter from '../ProfileComponents/ProfileFooter';
+// import ProfileInfo from '../Components/ProfileInfo';
 import UserRecentPlaces from '../Components/UserRecentPlaces';
 import NewMessage from '../Components/NewMessage';
 
@@ -105,46 +107,16 @@ export default React.createClass({
     let sessionNav;
     let userProfileInfo;
     let newMessageModal;
-    let heartIcon;
-    let messageBtn;
-    let testyCake;
+    let userRecentPlaces;
 
     //talk about refactoring this in the readme
-    // if (this.state.session.username === this.props.params.userId) {
-    //   sessionNav = (
-    //     <ul className="nav-session">
-    //       <li>
-    //         <button className="edit-btn" onClick={this.editProfile}>edit <i className="edit-icon fa fa-pencil" aria-hidden="true"></i></button>
-    //       </li>
-    //       <li>
-    //         <button className="settings-btn" onClick={this.goToSettings}>settings <i className="fa fa-cog" aria-hidden="true"></i></button>
-    //       </li>
-    //     </ul>
-    //   );
-    // } else if (this.state.sentMatch) {
-    //     heartIcon = (<i className="icon-heart sent-match fa fa-heart" aria-hidden="true"></i>);
-    //     messageBtn = (<i className="message-icon sent-match fa fa-comments-o" aria-hidden="true" onClick={this.messageUser}></i>);
-    // } else {
-    //     heartIcon = (<i className="icon-heart fa fa-heart-o" aria-hidden="true" onClick={this.toggleMatch}></i>);
-    //     messageBtn = (<i className="message-icon fa fa-comments-o" aria-hidden="true" onClick={this.messageUser}></i>);
-    // }
-
-    // if (this.state.users)
-    // testyCake = this.state.user.map((user, i, arr) => {
-    //   // console.log(testycake);
-    //   if (this.props.params.userId === user.username) {
-    //       return user;
-    //       // return (<ProfileInfo key={i} user={user} updateState={this.updateState} />);
-    //   }
-    // });
-
     let sessionProps;
     if (this.state.session) {
       sessionProps = this.state.session;
     }
 
     let currUser;
-    currUser = this.state.userCollcetion.filter((user,i) => {
+    currUser = this.state.userCollcetion.filter((user, i) => {
       if (this.props.params.userId === user.username) {
           return user;
       }
@@ -155,11 +127,16 @@ export default React.createClass({
       sentMatch = this.state.sentMatch;
     }
 
-    // if (this.state.newMessage) {
-    //   newMessageModal = (<NewMessage recipient={this.props.params.userId} hideMessageModal={this.hideMessageModal}/>);
-    // }
+    if (this.state.newMessage) {
+      newMessageModal = (<NewMessage recipient={this.props.params.userId} hideMessageModal={this.hideMessageModal}/>);
+    }
 
-    // let userRecentPlaces;
+    // let users;
+    // allUsers = this.state.userCollcetion.filter((user,i) => {
+    //       console.log(user);
+    //       return user;
+    // });
+
 
     // let myMatches = [];
     // if (this.state.sentMatch && this.state.receivedMatch) {
@@ -211,7 +188,13 @@ export default React.createClass({
             route={this.props.params.userId}
             session={sessionProps}
             user={currUser}
-            sentMatch={sentMatch}/>
+            sentMatch={sentMatch}
+            toggleMatch={this.toggleMatch}
+            messageUser={this.messageUser}
+            />
+          <ProfileMain
+            user={currUser}
+            />
       </div>
     );
   }
