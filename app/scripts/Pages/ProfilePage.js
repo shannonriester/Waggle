@@ -5,6 +5,7 @@ import moment from 'moment';
 
 import store from '../store';
 import Nav from '../Components/Nav';
+import ProfileHeader from '../Components/ProfileHeader';
 import ProfileInfo from '../Components/ProfileInfo';
 import UserRecentPlaces from '../Components/UserRecentPlaces';
 import NewMessage from '../Components/NewMessage';
@@ -13,7 +14,7 @@ export default React.createClass({
   getInitialState: function() {
       return {
         session: store.session.toJSON(),
-        user: store.userCollection.toJSON(),
+        userCollcetion: store.userCollection.toJSON(),
         matchCollection: [],
         checkinCollection: [],
         placesCollection: [],
@@ -58,7 +59,7 @@ export default React.createClass({
   updateState: function() {
     this.setState({
       session: store.session.toJSON(),
-      user: store.userCollection.toJSON(),
+      userCollcetion: store.userCollection.toJSON(),
       checkinCollection: store.checkinCollection.toJSON(),
       placesCollection: store.placesCollection.toJSON(),
     });
@@ -67,7 +68,7 @@ export default React.createClass({
     store.userCollection.fetch();
     this.setState({
       session: store.session.toJSON(),
-      user: store.userCollection.toJSON(),
+      userCollcetion: store.userCollection.toJSON(),
     });
   },
   componentWillMount: function() {
@@ -106,83 +107,111 @@ export default React.createClass({
     let newMessageModal;
     let heartIcon;
     let messageBtn;
+    let testyCake;
 
     //talk about refactoring this in the readme
-    if (this.state.session.username === this.props.params.userId) {
-      sessionNav = (
-        <ul className="nav-session">
-          <li>
-            <button className="edit-btn" onClick={this.editProfile}>edit <i className="edit-icon fa fa-pencil" aria-hidden="true"></i></button>
-          </li>
-          <li>
-            <button className="settings-btn" onClick={this.goToSettings}>settings <i className="fa fa-cog" aria-hidden="true"></i></button>
-          </li>
-        </ul>
-      );
-    } else if (this.state.sentMatch) {
-        heartIcon = (<i className="icon-heart sent-match fa fa-heart" aria-hidden="true"></i>);
-        messageBtn = (<i className="message-icon sent-match fa fa-comments-o" aria-hidden="true" onClick={this.messageUser}></i>);
-    } else {
-        heartIcon = (<i className="icon-heart fa fa-heart-o" aria-hidden="true" onClick={this.toggleMatch}></i>);
-        messageBtn = (<i className="message-icon fa fa-comments-o" aria-hidden="true" onClick={this.messageUser}></i>);
+    // if (this.state.session.username === this.props.params.userId) {
+    //   sessionNav = (
+    //     <ul className="nav-session">
+    //       <li>
+    //         <button className="edit-btn" onClick={this.editProfile}>edit <i className="edit-icon fa fa-pencil" aria-hidden="true"></i></button>
+    //       </li>
+    //       <li>
+    //         <button className="settings-btn" onClick={this.goToSettings}>settings <i className="fa fa-cog" aria-hidden="true"></i></button>
+    //       </li>
+    //     </ul>
+    //   );
+    // } else if (this.state.sentMatch) {
+    //     heartIcon = (<i className="icon-heart sent-match fa fa-heart" aria-hidden="true"></i>);
+    //     messageBtn = (<i className="message-icon sent-match fa fa-comments-o" aria-hidden="true" onClick={this.messageUser}></i>);
+    // } else {
+    //     heartIcon = (<i className="icon-heart fa fa-heart-o" aria-hidden="true" onClick={this.toggleMatch}></i>);
+    //     messageBtn = (<i className="message-icon fa fa-comments-o" aria-hidden="true" onClick={this.messageUser}></i>);
+    // }
+
+    // if (this.state.users)
+    // testyCake = this.state.user.map((user, i, arr) => {
+    //   // console.log(testycake);
+    //   if (this.props.params.userId === user.username) {
+    //       return user;
+    //       // return (<ProfileInfo key={i} user={user} updateState={this.updateState} />);
+    //   }
+    // });
+
+    let sessionProps;
+    if (this.state.session) {
+      sessionProps = this.state.session;
     }
 
-    userProfileInfo = this.state.user.map((user, i, arr) => {
+    let currUser;
+    currUser = this.state.userCollcetion.filter((user,i) => {
       if (this.props.params.userId === user.username) {
-          return (<ProfileInfo key={i} user={user} updateState={this.updateState} />);
+          return user;
       }
     });
 
-    if (this.state.newMessage) {
-      newMessageModal = (<NewMessage recipient={this.props.params.userId} hideMessageModal={this.hideMessageModal}/>);
+    let sentMatch;
+    if (this.state.sentMatch) {
+      sentMatch = this.state.sentMatch;
     }
 
-    let userRecentPlaces;
-    let myMatches = [];
-    if (this.state.sentMatch && this.state.receivedMatch) {
-        let placeIDArr = this.state.recentPlaces.map((place, i, arr) => {
-          return place.place;
-        });
-        placeIDArr = _.sortBy(placeIDArr, (place) => {
-          return moment(place.time).unix();
-        }).reverse();
+    // if (this.state.newMessage) {
+    //   newMessageModal = (<NewMessage recipient={this.props.params.userId} hideMessageModal={this.hideMessageModal}/>);
+    // }
 
-        let fixedPlaces = this.state.placesCollection.filter((place) => {
-          if (placeIDArr.indexOf(place.yelpID) > -1) {
-            return true;
-          }
-        });
-        if (fixedPlaces.length > 4) {
-          fixedPlaces = fixedPlaces.slice(0,4);
-        }
-        userRecentPlaces = fixedPlaces.map((place, i, arr) => {
-            return (<UserRecentPlaces key={i} place={place} updateState={this.updateSession} />);
-        });
-        myMatches = myMatches.concat(this.state.receivedMatch.likee);
-    }
+    // let userRecentPlaces;
 
+    // let myMatches = [];
+    // if (this.state.sentMatch && this.state.receivedMatch) {
+    //     let placeIDArr = this.state.recentPlaces.map((place, i, arr) => {
+    //       return place.place;
+    //     });
+    //     placeIDArr = _.sortBy(placeIDArr, (place) => {
+    //       return moment(place.time).unix();
+    //     }).reverse();
+    //
+    //     let fixedPlaces = this.state.placesCollection.filter((place) => {
+    //       if (placeIDArr.indexOf(place.yelpID) > -1) {
+    //         return true;
+    //       }
+    //     });
+    //     if (fixedPlaces.length > 4) {
+    //       fixedPlaces = fixedPlaces.slice(0,4);
+    //     }
+    //     userRecentPlaces = fixedPlaces.map((place, i, arr) => {
+    //         return (<UserRecentPlaces key={i} place={place} updateState={this.updateSession} />);
+    //     });
+    //     myMatches = myMatches.concat(this.state.receivedMatch.likee);
+    // }
+
+
+    // <header className="profile-header">
+    //   {userProfileInfo}
+    //   {sessionNav}
+    //   <ul className="ul-match-section">
+    //     <li>{heartIcon}</li>
+    //     <li>{messageBtn}</li>
+    //   </ul>
+    // </header>
+
+    // <footer className="profile-footer">
+    //   <ul className="ul-recent-places">
+    //     {userRecentPlaces}
+    //   </ul>
+    //   <ul className="matched-wagglrs">
+    //     {myMatches}
+    //   </ul>
+    // </footer>
 
     return (
-      <div className="profile-component">
+      <div className="profile-container-component">
         <Nav />
           {newMessageModal}
-        <header className="profile-header">
-          {userProfileInfo}
-          {sessionNav}
-          <ul className="ul-match-section">
-            <li>{heartIcon}</li>
-            <li>{messageBtn}</li>
-          </ul>
-        </header>
-
-        <footer className="profile-footer">
-          <ul className="ul-recent-places">
-            {userRecentPlaces}
-          </ul>
-          <ul className="matched-wagglrs">
-            {myMatches}
-          </ul>
-        </footer>
+          <ProfileHeader
+            route={this.props.params.userId}
+            session={sessionProps}
+            user={currUser}
+            sentMatch={sentMatch}/>
       </div>
     );
   }

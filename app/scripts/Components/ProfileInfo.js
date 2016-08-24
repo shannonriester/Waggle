@@ -14,6 +14,7 @@ export default React.createClass({
   saveEdits: function(e) {
     e.preventDefault();
     let newProfilePic = '/assets/default_dog_large';
+      // if (this.props.refs.profilePic)
       console.log('profilePic BEFORE if statement', newProfilePic);
     let newBody = this.refs.aboutInfo.value;
 
