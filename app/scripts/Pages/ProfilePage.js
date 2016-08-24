@@ -13,10 +13,10 @@ export default React.createClass({
   getInitialState: function() {
       return {
         session: store.session.toJSON(),
-        user: store.userCollection.toJSON(),
-        matchCollection: [],
-        checkinCollection: [],
-        placesCollection: [],
+        users: store.userCollection.toJSON(),
+        checkinCollection: store.checkinCollection.toJSON(),
+        placesCollection: store.placesCollection.toJSON(),
+        placesCollection: store.placesCollection.toJSON(),
         recentPlaces: [],
         newMessage: false,
         fetch: true,
@@ -46,11 +46,11 @@ export default React.createClass({
     });
   },
   messageUser: function() {
-    this.setState({newMessage:true});
+    this.setState({newMessage: true});
     // browserHistory.push(`/messages/newMessage`)
   },
   hideMessageModal: function() {
-    this.setState({newMessage:false});
+    this.setState({newMessage: false});
   },
   goToSettings: function() {
     browserHistory.push('/settings');
@@ -58,35 +58,32 @@ export default React.createClass({
   updateState: function() {
     this.setState({
       session: store.session.toJSON(),
-      user: store.userCollection.toJSON(),
+      users: store.userCollection.toJSON(),
       checkinCollection: store.checkinCollection.toJSON(),
       placesCollection: store.placesCollection.toJSON(),
     });
   },
-  updateSession: function() {
+  updateUsers: function() {
     store.userCollection.fetch();
     this.setState({
       session: store.session.toJSON(),
-      user: store.userCollection.toJSON(),
+      users: store.userCollection.toJSON(),
     });
   },
   componentWillMount: function() {
     this.fetchPlaces();
-    store.userCollection.fetch();
-    store.checkinCollection.fetch();
 
     //be careful here! notice that the parameters are SWITCHED to see who sent the match and who received the match
     store.matchCollection.findMatch(this.state.session.username, this.props.params.userId).then((response) => {
       this.setState({sentMatch: response.toJSON()[0]});
     });
-
     store.matchCollection.findMatch(this.props.params.userId, this.state.session.username).then((response) => {
       this.setState({receivedMatch: response.toJSON()[0]});
     });
   },
   componentDidMount: function() {
     store.session.on('change', this.updateState);
-    store.userCollection.once('change update', this.updateSession);
+    store.userCollection.on('change update', this.updateSession);
     store.checkinCollection.on('change update', this.updateState);
     store.checkinCollection.on('change update', this.fetchPlaces);
     store.placesCollection.on('change update', this.updateState);
@@ -127,9 +124,10 @@ export default React.createClass({
         messageBtn = (<i className="message-icon fa fa-comments-o" aria-hidden="true" onClick={this.messageUser}></i>);
     }
 
-    userProfileInfo = this.state.user.map((user, i, arr) => {
+    console.log(this.state.users);
+    userProfileInfo = this.state.users.map((user, i, arr) => {
       if (this.props.params.userId === user.username) {
-          return (<ProfileInfo key={i} user={user} updateState={this.updateState} />);
+        return (<ProfileInfo key={i} user={user} updateUsers={this.updateUsers} />);
       }
     });
 

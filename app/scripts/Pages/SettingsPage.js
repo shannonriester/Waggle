@@ -18,8 +18,9 @@ getInitialState: function() {
 logout: function() {
     this.setState({authtoken:null});
     this.updateState();
-    console.log('in the logout function on settings');
+    // console.log('in the logout function on settings');
     let prevQuery = store.session.get('query');
+
     let prevRange = this.state.range;
     store.session.logout(prevQuery, prevRange);
 
@@ -85,7 +86,7 @@ componentWillUnmount: function() {
   store.session.off('change', this.updateState);
 },
 render: function() {
-  console.log(this.state.session);
+  // console.log(this.state.session);
   let dogInfo;
   let selfInfo;
   if (this.state.editingDog) {

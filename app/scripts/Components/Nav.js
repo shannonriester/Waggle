@@ -6,24 +6,27 @@ import store from '../store';
 export default React.createClass({
   getInitialState: function() {
     return {
+      checkins: store.checkinCollection.toJSON(),
+      matches: store.checkinCollection.toJSON(),
+      messages: store.messagesCollection.toJSON(),
+      // places: store.placesCollection.toJSON(),
+      users: store.userCollection.toJSON(),
+      session: store.session.toJSON(),
       authtoken: localStorage.authtoken,
       // currentRoute: this.props.params.
     }
   },
+  logout: function() {
+    // let prevQuery = store.session.get('query');
+    // store.session.logout(prevQuery);
+    // this.updateState();
+    // this.setState({authtoken:localStorage.authtoken})
+    // localStorage.removeItem('authtoken');
+    // this.updateState();
+    //the logout button should EVENTUALLY be moved to the settings part on the user's profile (once you make it)
+  },
   messages: function() {
     browserHistory.push(`/messages`)
-  },
-  logout: function() {
-    // console.log(this.state.authtoken);
-    let prevQuery = store.session.get('query');
-    store.session.logout(prevQuery);
-    // console.log(this.state.authtoken);
-    this.updateState();
-    this.setState({authtoken:localStorage.authtoken})
-    localStorage.removeItem('authtoken');
-    this.updateState();
-
-    //the logout button should EVENTUALLY be moved to the settings part on the user's profile (once you make it)
   },
   userProfile: function() {
     browserHistory.push(`/user/${store.session.get('username')}`);
@@ -35,7 +38,15 @@ export default React.createClass({
     if (!this.state.authtoken) {
       browserHistory.push('/');
     } else {
-      this.setState({authtoken: localStorage.authtoken});
+      this.setState({
+        checkins: store.checkinCollection.toJSON(),
+        matches: store.checkinCollection.toJSON(),
+        messages: store.messagesCollection.toJSON(),
+        // places: store.placesCollection.toJSON(),
+        users: store.userCollection.toJSON(),
+        session: store.session.toJSON(),
+        authtoken: localStorage.authtoken,
+      });
     }
   },
   componentWillMount: function() {
@@ -44,16 +55,25 @@ export default React.createClass({
     }
   },
   componentDidMount: function() {
-    store.session.on('change', this.updateState);
-    if (!this.state.authtoken) {
-      browserHistory.push('/');
-    }
+  if (!this.state.authtoken) {
+    browserHistory.push('/');
+  }
+  store.checkinCollection.fetch();
+  store.matchCollection.fetch();
+  store.messagesCollection.fetch();
+  store.userCollection.fetch();
+  store.session.on('change', this.updateState);
+
   },
   componentWillUnmount: function() {
+    // store.checkinCollection.off('change update', this.updateState);
+    // store.matchCollection.off('change update', this.updateState);
+    // store.messagesCollection.off('change update', this.updateState);
+    // store.userCollection.off('change update', this.updateState);
+    // store.placesCollection.off('change update', this.updateState);
     store.session.off('change', this.updateState);
   },
   render: function() {
-    // console.log(this.props);
     //<i className="nav-icon paw-icon fa fa-paw" aria-hidden="true" onClick={this.logout}></i>
 
     //potential icon <img className="nav-icon bone-icon" src="../../assets/bone.svg" alt="image of a cute dog-bone" role="button"/>

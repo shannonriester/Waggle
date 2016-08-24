@@ -27,6 +27,8 @@ export default React.createClass({
 
     store.session.set('editProfile', false);
     store.session.updateProfile(newProfilePic, newBody);
+    // store.session.updateUser();
+    this.props.updateUsers();
   },
   onDrop: function(files) {
     files.forEach((file, i) => {
@@ -60,19 +62,20 @@ export default React.createClass({
     this.setState({
       session: store.session.toJSON(),
       editProfile: store.session.get('editProfile'),
-      users: store.userCollection.toJSON(),
+      // users: store.userCollection.toJSON(),
   });
   },
   componentDidMount: function() {
-    store.userCollection.fetch();
+    // store.userCollection.fetch();
     store.session.on('change', this.updateState);
-    store.userCollection.on('change update', this.updateState);
+    // store.userCollection.on('change update', this.updateState);
   },
   componentWillUnmount: function() {
     store.session.off('change', this.updateState);
-    store.userCollection.off('change update', this.updateState);
+    // store.userCollection.off('change update', this.updateState);
   },
   render: function() {
+    console.log(this.props.user);
     let bkgrndImgs;
     let profilePic;
     let profileBody;

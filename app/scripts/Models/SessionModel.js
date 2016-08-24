@@ -23,7 +23,7 @@ const SessionModel = Backbone.Model.extend({
     },
     bkgrndImgs: [],
     query: 'park',
-    range: 8,
+    range: '8',
     checkedin: false,
     coordinates: [],
     city: '',
@@ -43,7 +43,7 @@ updateUser: function() {
         type: 'PUT',
         success: (model, response) => {
           this.trigger('change update');
-        // console.log('UPDATED USER ', response);
+        console.log('UPDATED USER ', response);
       }, error: (e) => {
           console.log('SESSION.UPDATEUSER ERROR: ', e);
       }
@@ -66,7 +66,7 @@ updateUser: function() {
   updateUserInfo: function(email, firstName, lastName, age) {
     this.set('editingSelf', false);
     this.save(
-      {email: email, firstName: firstName, lastName: lastName, age: age},
+      {email:email, firstName:firstName, lastName:lastName, age:age},
       { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/${this.get('userId')}`,
         type: 'PUT',
         success: (model, response) => {

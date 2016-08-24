@@ -9,7 +9,7 @@ const PlacesCollection = Backbone.Collection.extend({
   model: PlaceModel,
   url: `https://api.yelp.com/v2/search`,
   getResults: function(city, query, range, coordinates){
-    console.log(coordinates);
+    // console.log(coordinates);
 
     if (range) {
       range = range * 1600;
@@ -56,7 +56,6 @@ const PlacesCollection = Backbone.Collection.extend({
         'method' : 'GET',
         'parameters' : parameters,
     };
-    console.log(parameters);
 
     OAuth.setTimestampAndNonce(message);
     OAuth.SignatureMethod.sign(message, accessor);
