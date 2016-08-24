@@ -1,4 +1,5 @@
 import React from 'react';
+import { browserHistory } from 'react-router';
 import router from 'react-router';
 
 import store from '../store';
@@ -11,13 +12,18 @@ getInitialState: function() {
     editingSelf: store.session.get('editingSelf'),
     range: store.session.get('range'),
     session: store.session.toJSON(),
+    authtoken: localStorage.authtoken,
   }
 },
 logout: function() {
+    this.setState({authtoken:null});
+    this.updateState();
+    console.log('in the logout function on settings');
     let prevQuery = store.session.get('query');
     let prevRange = this.state.range;
     store.session.logout(prevQuery, prevRange);
-    if (!localStorage.authtoken) {
+
+    if (!this.state.authtoken) {
       browserHistory.push('/');
     }
 },
@@ -54,6 +60,9 @@ saveUserInfo: function(e) {
   store.session.updateUserInfo(newEmail, newFirstName, newLastName, newAge);
 },
 updateState: function() {
+  if (!this.state.authtoken) {
+    browserHistory.push('/');
+  }
   this.setState({
     editingDog: store.session.get('editingDog'),
     editingSelf: store.session.get('editingSelf'),
@@ -61,7 +70,15 @@ updateState: function() {
     session: store.session.toJSON(),
   });
 },
+componentWillMount: function() {
+  if (!this.state.authtoken) {
+    browserHistory.push('/');
+  }
+},
 componentDidMount: function() {
+  if (!this.state.authtoken) {
+    browserHistory.push('/');
+  }
   store.session.on('change', this.updateState);
 },
 componentWillUnmount: function() {

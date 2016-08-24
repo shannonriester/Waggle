@@ -93,7 +93,7 @@ updateUser: function() {
     });
   },
   updateBkgrndImgs: function(bkgrndImgs, bio) {
-    console.log(bkgrndImgs);
+    // console.log(bkgrndImgs);
     this.set('isEditing', false);
     this.save({bkgrndImgs: bkgrndImgs, profile: {bio: bio}},
       { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/${this.get('userId')}`,
@@ -112,7 +112,8 @@ updateUser: function() {
       type: 'GET',
       url: `https://freegeoip.net/json/`,
       success: (response) => {
-        let coordinates = [response.latitude, response.longitude]
+        let coordinates = [response.latitude, response.longitude];
+        // console.log('coordinates in geoLocation', coordinates);
         this.set({
             coordinates,
             city: response.city,
@@ -126,7 +127,6 @@ updateUser: function() {
           this.updateUser();
           // console.log('session in the geoLocation ', this);
         }
-        // this.updateUser();
       },
       error: (e) => {
         console.log('apiGeoLocation ERROR: ', e);
@@ -193,7 +193,6 @@ updateUser: function() {
         localStorage.setItem('authtoken', response._kmd.authtoken);
         this.unset('password');
         this.trigger('change update');
-
         console.log('USER SIGNED UP!', newUsername);
       },
       error: function(model, response) {
@@ -202,12 +201,14 @@ updateUser: function() {
     });
   },
   logout: function(query, range){
-    this.unset('_id');
+    this.clear();
+    console.log('logout on session');
     this.save(null,
       { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/_logout`,
         success: (model, response) => {
           model.clear();
           localStorage.clear();
+
           this.set('query', query);
           this.set('range', range);
 

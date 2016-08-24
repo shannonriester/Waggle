@@ -31,13 +31,23 @@ export default React.createClass({
 
       if (this.state.city && this.state.fetch) {
         browserHistory.push({pathname:`/search/`, query:{category: store.session.get('query')} });
-        store.placesCollection.getResults(store.session.get('city'), store.session.get('query'));
+        store.placesCollection.getResults(
+          store.session.get('city'),
+          store.session.get('query'),
+          store.session.get('range'),
+          store.session.get('coordinates')
+        );
         this.setState({fetch:false});
       }
       else {
         store.session.on('change: city', () => {
             browserHistory.push({pathname:`/search/`, query:{category: store.session.get('query')} });
-            store.placesCollection.getResults(store.session.get('city'), store.session.get('query'));
+            store.placesCollection.getResults(
+              store.session.get('city'),
+              store.session.get('query'),
+              store.session.get('range'),
+              store.session.get('coordinates')
+            );
           });
       }
   },

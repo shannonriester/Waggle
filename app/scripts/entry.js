@@ -7,6 +7,9 @@ import $ from 'jquery';
 import router from './router';
 import store from './store';
 
+store.session.apiGeoLocation();
+
+
 $(document).ajaxSend(function(e, xhrAjax, jqueryAjax) {
   if (jqueryAjax.url.indexOf('kinvey') !== -1) {
     if (localStorage.authtoken) {
@@ -21,7 +24,7 @@ $(document).ajaxSend(function(e, xhrAjax, jqueryAjax) {
 if (localStorage.authtoken) {
   store.session.retrieve();
 }
-store.session.apiGeoLocation();
+
 
 
 ReactDOM.render(router, document.getElementById('container'));

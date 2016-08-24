@@ -9,10 +9,12 @@ export default React.createClass({
     let query = this.refs.searchbar.value;
     store.session.set('query', query);
     console.log('range on searchbar ', store.session.get('range'));
+
     store.placesCollection.getResults(
       store.session.get('city'),
       store.session.get('query'),
-      store.session.get('range')
+      store.session.get('range'),
+      store.session.get('coordinates')
     );
 
     browserHistory.push({pathname:`/search/`, query:{category: query} });

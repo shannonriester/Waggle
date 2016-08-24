@@ -8,7 +8,9 @@ import PlaceModel from '../Models/PlaceModel';
 const PlacesCollection = Backbone.Collection.extend({
   model: PlaceModel,
   url: `https://api.yelp.com/v2/search`,
-  getResults: function(city, query, range){
+  getResults: function(city, query, range, coordinates){
+    console.log(coordinates);
+
     if (range) {
       range = range * 1600;
     } else {
@@ -29,6 +31,7 @@ const PlacesCollection = Backbone.Collection.extend({
     };
     let terms = 'dogs allowed, ' + query;
     let near = city;
+    let cll = `${coordinates[0]},${coordinates[1]}`;
     let sort = 2;
     let radiusFilter = range;
     let accessor = {
@@ -40,6 +43,7 @@ const PlacesCollection = Backbone.Collection.extend({
     parameters.push(['term', terms]);
     parameters.push(['sort', sort]);
     parameters.push(['location', near]);
+    parameters.push(['cll', cll]);
     parameters.push(['radius_filter', radiusFilter]);
     parameters.push(['callback', 'cb']);
     parameters.push(['oauth_consumer_key', auth.consumerKey]);
@@ -52,6 +56,7 @@ const PlacesCollection = Backbone.Collection.extend({
         'method' : 'GET',
         'parameters' : parameters,
     };
+    console.log(parameters);
 
     OAuth.setTimestampAndNonce(message);
     OAuth.SignatureMethod.sign(message, accessor);
