@@ -37,18 +37,18 @@ const SessionModel = Backbone.Model.extend({
     lastName: '',
     age: '',
   },
-updateUser: function() {
-    this.save(null,
-      { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/${this.get('userId')}`,
-        type: 'PUT',
-        success: (model, response) => {
-          this.trigger('change update');
-        console.log('UPDATED USER ', response);
-      }, error: (e) => {
-          console.log('SESSION.UPDATEUSER ERROR: ', e);
-      }
-    });
-  },
+// updateUser: function() {
+//     this.save(null,
+//       { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/${this.get('userId')}`,
+//         type: 'PUT',
+//         success: (model, response) => {
+//           this.trigger('change update');
+//         console.log('UPDATED USER ', response);
+//       }, error: (e) => {
+//           console.log('SESSION.UPDATEUSER ERROR: ', e);
+//       }
+//     });
+//   },
   updateDogInfo: function(dogName, dogBreed, dogAge) {
     this.set('editingDog', false);
     this.save(
@@ -79,9 +79,14 @@ updateUser: function() {
   },
   updateProfile: function(profilePic, bio) {
     this.set('editProfile', false);
-    // this.profile.bio = bio;
+
     let currProfile = this.get('profile');
     currProfile.bio = bio;
+    if (!profilePic.length) {
+      profilePic = '/assets/default_dog_large.png';
+    }
+
+
     this.set('profile', currProfile)
     this.save(
       {profile: {profilePic:profilePic, bio:bio}},
@@ -128,7 +133,7 @@ updateUser: function() {
             ip: response.ip,
         });
         if (this.get('username')) {
-          this.updateUser();
+          // this.updateUser();
           // console.log('session in the geoLocation ', this);
         }
       },

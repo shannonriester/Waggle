@@ -15,14 +15,9 @@ export default React.createClass({
   },
   saveEdits: function(e) {
     e.preventDefault();
-    let newProfilePic = '/assets/default_dog_large';
-      // console.log('profilePic BEFORE if statement', newProfilePic);
     let newBody = this.refs.aboutInfo.value;
-
-    if (this.state.profilePicSrc[0] !== newProfilePic) {
-        // console.log('profilePic INSIDE if statement ', newProfilePic);
-      newProfilePic = this.state.profilePicSrc;
-    }
+      let newProfilePic = this.state.profilePicSrc;
+      
     if (this.state.files.length) {
       store.session.updateBkgrndImgs(this.state.files, newBody);
     }
@@ -30,12 +25,6 @@ export default React.createClass({
     let userProfileUpdate = store.userCollection.get(this.state.user._id);
     userProfileUpdate.updateProfile(newProfilePic, newBody)
     store.session.updateProfile(newProfilePic, newBody);
-
-
-    // this.props.updateUsers();
-
-    // console.log(this.props);
-    // console.log(store.userCollection);
   },
   onDrop: function(files) {
     files.forEach((file, i) => {
@@ -64,28 +53,21 @@ export default React.createClass({
       reader.readAsDataURL(file);
   },
   updateState: function() {
-    // store.userCollection.fetch();
     this.setState({
       session: store.session.toJSON(),
-      // users: store.userCollection.toJSON(),
       editProfile: store.session.get('editProfile'),
   });
   },
   componentWillReceiveProps: function(newProps) {
-    // console.log('new props', newProps);
     this.setState({user: newProps.user});
   },
   componentDidMount: function() {
-    // store.userCollection.fetch();
     store.session.on('change', this.updateState);
-    // store.userCollection.on('change update', this.updateState);
   },
   componentWillUnmount: function() {
     store.session.off('change', this.updateState);
-    // store.userCollection.off('change update', this.updateState);
   },
   render: function() {
-    // console.log(this.state.user);
     let bkgrndImgs;
     let profilePic;
     let profileBody;

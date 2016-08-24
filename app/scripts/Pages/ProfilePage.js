@@ -64,18 +64,9 @@ export default React.createClass({
       users: store.userCollection.toJSON(),
       checkinCollection: store.checkinCollection.toJSON(),
       placesCollection: store.placesCollection.toJSON(),
-      // fetch: true,
-    });
-  },
-  updateUsers: function() {
-    store.userCollection.fetch();
-    this.setState({
-      session: store.session.toJSON(),
-      users: store.userCollection.toJSON(),
     });
   },
   componentWillMount: function() {
-    this.fetchPlaces();
     //be careful here! notice that the parameters are SWITCHED to see who sent the match and who received the match
     store.matchCollection.findMatch(this.state.session.username, this.props.params.userId).then((response) => {
       this.setState({sentMatch: response.toJSON()[0]});
@@ -85,8 +76,6 @@ export default React.createClass({
     });
   },
   componentDidMount: function() {
-    store.userCollection.fetch();
-
     store.session.on('change', this.updateState);
     store.userCollection.on('change update', this.updateState);
     store.checkinCollection.on('change update', this.updateState);
