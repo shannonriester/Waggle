@@ -1,5 +1,6 @@
 #ToDo List
-- PLACEITEMPAGE REFRESH!!!
+- CHECK LOGOUT!!! And all login/signup functionality
+
 
 - test:
   - matching shows up for sarah and shannon on test view...need to make sure matches are only seen by the user logged in

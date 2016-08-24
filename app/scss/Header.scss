@@ -1,5 +1,4 @@
 .header-component {
-  // height: 20vh;
   border-bottom: solid 1px $border;
   display: flex;
   flex-direction: column;
@@ -12,8 +11,6 @@
 }
 
 .nav-component {
-  // height: 8vh;
-  // margin: 0 0 10px 0;
   background: $background;
   ul {
     display: flex;
@@ -28,6 +25,6 @@
   }
   .nav-icon {
     font-size: 3.5em;
-    color: $icon;
+    color: rgba($accent, .8);
   }
 }
