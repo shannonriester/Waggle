@@ -27,13 +27,12 @@ export default React.createClass({
 
     store.session.set('editProfile', false);
     store.session.updateProfile(newProfilePic, newBody);
-    // store.session.updateUser();
+    store.session.updateUser();
     this.props.updateUsers();
   },
   onDrop: function(files) {
     files.forEach((file, i) => {
       let newReader = new FileReader();
-      console.log(newReader);
       let url = newReader.readAsDataURL(file);
       newReader.onloadend = function (e) {
          this.setState({
@@ -44,7 +43,6 @@ export default React.createClass({
   },
   cancelEdit: function() {
     store.session.set('editProfile', false);
-    // this.refs.dropzone.open();
   },
   handleImgChange: function(e) {
     e.preventDefault();
@@ -62,20 +60,18 @@ export default React.createClass({
     this.setState({
       session: store.session.toJSON(),
       editProfile: store.session.get('editProfile'),
-      // users: store.userCollection.toJSON(),
+      users: store.userCollection.toJSON(),
   });
   },
   componentDidMount: function() {
-    // store.userCollection.fetch();
     store.session.on('change', this.updateState);
-    // store.userCollection.on('change update', this.updateState);
+    store.userCollection.on('change update', this.updateState);
   },
   componentWillUnmount: function() {
     store.session.off('change', this.updateState);
-    // store.userCollection.off('change update', this.updateState);
+    store.userCollection.off('change update', this.updateState);
   },
   render: function() {
-    console.log(this.props.user);
     let bkgrndImgs;
     let profilePic;
     let profileBody;
@@ -123,8 +119,8 @@ export default React.createClass({
           <textarea  className="bio-textarea" defaultValue={this.props.user.profile.bio} tabIndex="1" role="textbox" ref="aboutInfo" />
           <input className="submit-btn" type="submit" value="submit" role="button" />
           <div className="edit-btn-container">
-            <button className="submit-edits" onClick={this.saveEdits} tabIndex="2">submit</button>
-            <button className="submit-edits" onClick={this.cancelEdit} tabIndex="3">cancel</button>
+            <button className="submit-edits" onClick={this.saveEdits} tabIndex="3">submit</button>
+            <button className="submit-edits" onClick={this.cancelEdit} tabIndex="4">cancel</button>
           </div>
         </form>);
     }

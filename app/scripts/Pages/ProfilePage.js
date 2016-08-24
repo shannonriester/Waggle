@@ -72,7 +72,6 @@ export default React.createClass({
   },
   componentWillMount: function() {
     this.fetchPlaces();
-
     //be careful here! notice that the parameters are SWITCHED to see who sent the match and who received the match
     store.matchCollection.findMatch(this.state.session.username, this.props.params.userId).then((response) => {
       this.setState({sentMatch: response.toJSON()[0]});
@@ -82,6 +81,8 @@ export default React.createClass({
     });
   },
   componentDidMount: function() {
+    store.userCollection.fetch();
+
     store.session.on('change', this.updateState);
     store.userCollection.on('change update', this.updateSession);
     store.checkinCollection.on('change update', this.updateState);
@@ -124,8 +125,8 @@ export default React.createClass({
         messageBtn = (<i className="message-icon fa fa-comments-o" aria-hidden="true" onClick={this.messageUser}></i>);
     }
 
-    console.log(this.state.users);
     userProfileInfo = this.state.users.map((user, i, arr) => {
+      console.log(user);
       if (this.props.params.userId === user.username) {
         return (<ProfileInfo key={i} user={user} updateUsers={this.updateUsers} />);
       }

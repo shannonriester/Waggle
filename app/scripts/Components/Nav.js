@@ -63,27 +63,18 @@ export default React.createClass({
   store.messagesCollection.fetch();
   store.userCollection.fetch();
   store.session.on('change', this.updateState);
-
   },
   componentWillUnmount: function() {
-    // store.checkinCollection.off('change update', this.updateState);
-    // store.matchCollection.off('change update', this.updateState);
-    // store.messagesCollection.off('change update', this.updateState);
-    // store.userCollection.off('change update', this.updateState);
-    // store.placesCollection.off('change update', this.updateState);
     store.session.off('change', this.updateState);
   },
   render: function() {
     //<i className="nav-icon paw-icon fa fa-paw" aria-hidden="true" onClick={this.logout}></i>
-
-    //potential icon <img className="nav-icon bone-icon" src="../../assets/bone.svg" alt="image of a cute dog-bone" role="button"/>
     return (
       <nav className="nav-component">
           <ul>
             <li className="li-third">
               <i className="nav-icon messages-icon fa fa-comments-o" aria-hidden="true" onClick={this.messages}></i>
             </li>
-
 
             <li className="li-first">
               <i className="nav-icon user-icon fa fa-user" aria-hidden="true" onClick={this.userProfile}></i>
