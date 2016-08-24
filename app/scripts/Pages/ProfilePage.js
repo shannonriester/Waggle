@@ -193,7 +193,6 @@ export default React.createClass({
             messageUser={this.messageUser}
             />
           <ProfileMain
-            user={currUser}
             />
       </div>
     );

@@ -8,71 +8,71 @@ export default React.createClass({
     console.log(this.props);
 
     return {
-      editProfile: store.session.get('editProfile'),
-      profilePicSrc: [],
-      files: [],
+      // editProfile: store.session.get('editProfile'),
+      // profilePicSrc: [],
+      // files: [],
     }
   },
   saveEdits: function(e) {
     e.preventDefault();
-    let newProfilePic = '/assets/default_dog_large';
+    // let newProfilePic = '/assets/default_dog_large';
       // console.log('profilePic BEFORE if statement', newProfilePic);
-    let newBody = this.refs.aboutInfo.value;
+    // let newBody = this.refs.aboutInfo.value;
 
-    if (this.state.profilePicSrc[0] !== newProfilePic) {
-        // console.log('profilePic INSIDE if statement ', newProfilePic);
-      newProfilePic = this.state.profilePicSrc;
-    }
-    if (this.state.files.length) {
-      store.session.updateBkgrndImgs(this.state.files, newBody);
-    }
-
-    store.session.set('editProfile', false);
-    store.session.updateProfile(newProfilePic, newBody);
+    // if (this.state.profilePicSrc[0] !== newProfilePic) {
+    //     // console.log('profilePic INSIDE if statement ', newProfilePic);
+    //   newProfilePic = this.state.profilePicSrc;
+    // }
+    // if (this.state.files.length) {
+    //   store.session.updateBkgrndImgs(this.state.files, newBody);
+    // }
+    //
+    // store.session.set('editProfile', false);
+    // store.session.updateProfile(newProfilePic, newBody);
   },
   onDrop: function(files) {
-    files.forEach((file, i) => {
-      let newReader = new FileReader();
-      console.log(newReader);
-      let url = newReader.readAsDataURL(file);
-      newReader.onloadend = function (e) {
-         this.setState({
-             files: [newReader.result]
-         })
-       }.bind(this);
-    });
+    // files.forEach((file, i) => {
+    //   let newReader = new FileReader();
+    //   console.log(newReader);
+    //   let url = newReader.readAsDataURL(file);
+    //   newReader.onloadend = function (e) {
+    //      this.setState({
+    //          files: [newReader.result]
+    //      })
+    //    }.bind(this);
+    // });
   },
   cancelEdit: function() {
-    store.session.set('editProfile', false);
+    // store.session.set('editProfile', false);
     // this.refs.dropzone.open();
   },
   handleImgChange: function(e) {
-    e.preventDefault();
-    let file = this.refs.file.files[0];
-    let reader = new FileReader();
-    let url = reader.readAsDataURL(file);
-   reader.onloadend = function (e) {
-      this.setState({
-          profilePicSrc: [reader.result]
-      })
-    }.bind(this);
-      reader.readAsDataURL(file);
+  //   e.preventDefault();
+  //   let file = this.refs.file.files[0];
+  //   let reader = new FileReader();
+  //   let url = reader.readAsDataURL(file);
+  //  reader.onloadend = function (e) {
+  //     this.setState({
+  //         profilePicSrc: [reader.result]
+  //     })
+  //   }.bind(this);
+  //     reader.readAsDataURL(file);
   },
   updateState: function() {
-    this.setState({
-      session: store.session.toJSON(),
-      editProfile: store.session.get('editProfile'),
-      users: store.userCollection.toJSON(),
-  });
+  //   this.setState({
+  //     session: store.session.toJSON(),
+  //     editProfile: store.session.get('editProfile'),
+  //     users: store.userCollection.toJSON(),
+  // });
   },
   componentDidMount: function() {
-    store.userCollection.fetch();
-    store.session.on('change', this.updateState);
-    store.userCollection.on('change update', this.updateState);
+    // store.userCollection.fetch();
+    // store.session.on('change', this.updateState);
+    // store.userCollection.on('change update', this.updateState);
   },
   componentWillUnmount: function() {
-    store.session.off('change', this.updateState);
-    store.userCollection.off('change update', this.updateState);
+    // store.session.off('change', this.updateState);
+    // store.userCollection.off('change update', this.updateState);
   },
   render: function() {
     let bkgrndImgs;
