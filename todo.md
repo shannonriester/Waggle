@@ -44,3 +44,10 @@
 
 ## fun puns
  - waggle-on wag-along
+
+
+ My dog, Auggie, is just the absolute CUTEST! He always has on ear flopped down, and the other pointing up. Idk why but I LOVE it.
+
+ Auggie is so great with other dogs. Any dog he meets, he will try to be their friend, play, sniff, and just have a great time with. He seriously plays until he drops.
+
+ I got Auggie from a German Shepherd rescue organization. Not sure what happened in the first four months of his life, but Auggie has always been weary of men or people he doesn't know very well. He never bites, but will "woof" and then walk away. So, I prefer to have dog-dates with women or in a open-area, where he can be off-leash and play with his new dog-date :)

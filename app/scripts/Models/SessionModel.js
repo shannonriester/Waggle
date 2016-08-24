@@ -37,7 +37,7 @@ const SessionModel = Backbone.Model.extend({
     lastName: '',
     age: '',
   },
-  updateUser: function() {
+updateUser: function() {
     this.save(null,
       { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/${this.get('userId')}`,
         type: 'PUT',
@@ -77,11 +77,10 @@ const SessionModel = Backbone.Model.extend({
       }
     });
   },
-  updateProfilePic: function(profilePic) {
+  updateProfile: function(profilePic, bio) {
     this.set('editProfile', false);
     this.save(
-      {profile: {profilePic:profilePic, usersName:userName, usersAge:userAge, bio:aboutInfo},
-      dog:{dogName:dogName, breed:dogBreed, dogAge:dogAge}},
+      {profile: {profilePic:profilePic, bio:bio}},
       { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/${this.get('userId')}`,
         type: 'PUT',
         success: (model, response) => {
@@ -93,11 +92,10 @@ const SessionModel = Backbone.Model.extend({
       }
     });
   },
-  updateBkgrndImgs: function(bkgrndImgs) {
+  updateBkgrndImgs: function(bkgrndImgs, bio) {
     console.log(bkgrndImgs);
     this.set('isEditing', false);
-    this.save(
-      {bkgrndImgs: bkgrndImgs},
+    this.save({bkgrndImgs: bkgrndImgs, profile: {bio: bio}},
       { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/${this.get('userId')}`,
         type: 'PUT',
         success: (model, response) => {

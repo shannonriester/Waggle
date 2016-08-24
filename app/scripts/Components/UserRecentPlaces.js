@@ -7,12 +7,13 @@ export default React.createClass({
   render: function() {
     let url = `${this.props.place.imageUrl}`;
     let styles = {backgroundImage: 'url(' + url + ')'};
+    console.log(this.props.place);
     return (
       <li className="user-recent-places-component">
         <Link className="link" to={`/places/${this.props.place.yelpID}`}>
-        <div className="recent-place-image" style={styles}></div>
-        <h3>{this.props.place.name}</h3>
-        <h4>{this.props.place.userCheckedin}</h4>
+          <h3>{this.props.place.name}</h3>
+          <div className="recent-place-image" style={styles}></div>
+          <p className="snippet-text">{this.props.place.snippetText}</p>
         </Link>
       </li>
     )
