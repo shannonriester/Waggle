@@ -7,6 +7,8 @@ export default React.createClass({
   getInitialState: function() {
     return {
       editProfile: store.session.get('editProfile'),
+      session: store.session.toJSON(),
+      user: this.props.user,
       profilePicSrc: [],
       files: [],
     }
@@ -14,21 +16,26 @@ export default React.createClass({
   saveEdits: function(e) {
     e.preventDefault();
     let newProfilePic = '/assets/default_dog_large';
-      console.log('profilePic BEFORE if statement', newProfilePic);
+      // console.log('profilePic BEFORE if statement', newProfilePic);
     let newBody = this.refs.aboutInfo.value;
 
     if (this.state.profilePicSrc[0] !== newProfilePic) {
-        console.log('profilePic INSIDE if statement ', newProfilePic);
+        // console.log('profilePic INSIDE if statement ', newProfilePic);
       newProfilePic = this.state.profilePicSrc;
     }
     if (this.state.files.length) {
       store.session.updateBkgrndImgs(this.state.files, newBody);
     }
 
-    store.session.set('editProfile', false);
+    let userProfileUpdate = store.userCollection.get(this.state.user._id);
+    userProfileUpdate.updateProfile(newProfilePic, newBody)
     store.session.updateProfile(newProfilePic, newBody);
-    store.session.updateUser();
-    this.props.updateUsers();
+
+
+    // this.props.updateUsers();
+
+    // console.log(this.props);
+    // console.log(store.userCollection);
   },
   onDrop: function(files) {
     files.forEach((file, i) => {
@@ -57,21 +64,28 @@ export default React.createClass({
       reader.readAsDataURL(file);
   },
   updateState: function() {
+    // store.userCollection.fetch();
     this.setState({
       session: store.session.toJSON(),
+      // users: store.userCollection.toJSON(),
       editProfile: store.session.get('editProfile'),
-      users: store.userCollection.toJSON(),
   });
   },
+  componentWillReceiveProps: function(newProps) {
+    // console.log('new props', newProps);
+    this.setState({user: newProps.user});
+  },
   componentDidMount: function() {
+    // store.userCollection.fetch();
     store.session.on('change', this.updateState);
-    store.userCollection.on('change update', this.updateState);
+    // store.userCollection.on('change update', this.updateState);
   },
   componentWillUnmount: function() {
     store.session.off('change', this.updateState);
-    store.userCollection.off('change update', this.updateState);
+    // store.userCollection.off('change update', this.updateState);
   },
   render: function() {
+    // console.log(this.state.user);
     let bkgrndImgs;
     let profilePic;
     let profileBody;
@@ -80,16 +94,16 @@ export default React.createClass({
 
     let profilePicFile;
 
-    let url = `${this.props.user.profile.profilePic}`;
+    let url = `${this.state.user.profile.profilePic}`;
     let profilePicUrl = {backgroundImage: 'url(' + url + ')'};
 
-    if (this.props.user.bkgrndImgs.length) {
-      styles = {backgroundImage: 'url(' + this.props.user.bkgrndImgs[0] + ')'};
+    if (this.state.user.bkgrndImgs.length) {
+      styles = {backgroundImage: 'url(' + this.state.user.bkgrndImgs[0] + ')'};
     }
     if (!this.state.editProfile) {
         profileBody =(
           <p className="about-bio">
-            {this.props.user.profile.bio}
+            {this.state.user.profile.bio}
           </p>);
     } else if (this.state.editProfile) {
       profilePicFile = (
@@ -116,7 +130,7 @@ export default React.createClass({
 
       profileBody = (
         <form className="form-about" onSubmit={this.saveEdits}>
-          <textarea  className="bio-textarea" defaultValue={this.props.user.profile.bio} tabIndex="1" role="textbox" ref="aboutInfo" />
+          <textarea  className="bio-textarea" defaultValue={this.state.user.profile.bio} tabIndex="1" role="textbox" ref="aboutInfo" />
           <input className="submit-btn" type="submit" value="submit" role="button" />
           <div className="edit-btn-container">
             <button className="submit-edits" onClick={this.saveEdits} tabIndex="3">submit</button>
@@ -139,9 +153,9 @@ export default React.createClass({
 
         <main className="profile-main">
           <ul className="ul-about-data">
-            <li>{this.props.user.firstName}, {this.props.user.age}</li>
-            <li>{this.props.user.dog.dogName}, {this.props.user.dog.dogAge}, {this.props.user.dog.dogBreed}</li>
-            <li>{this.props.user.city}, {this.props.user.regionName}</li>
+            <li>{this.state.user.firstName}, {this.state.user.age}</li>
+            <li>{this.state.user.dog.dogName}, {this.state.user.dog.dogAge}, {this.state.user.dog.dogBreed}</li>
+            <li>{this.state.user.city}, {this.state.user.regionName}</li>
           </ul>
           {profileBody}
         </main>

@@ -35,6 +35,25 @@ const UserModel = Backbone.Model.extend({
     lastName: '',
     age: '',
   },
+  updateProfile: function(profilePic, bio) {
+    this.set('editProfile', false);
+    // this.profile.bio = bio;
+    let currProfile = this.get('profile');
+    currProfile.bio = bio;
+    this.set('profile', currProfile)
+    // this.save(
+    //   {profile: {profilePic:profilePic, bio:bio}},
+    //   { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/${this.get('userId')}`,
+    //     type: 'PUT',
+    //     success: (model, response) => {
+    //     // console.log('USER UPDATED PROFILE ', response);
+    //     this.trigger('change update');
+    //
+    //   }, error: (e) => {
+    //       console.log('updateProfile ERROR: ', e);
+    //   }
+    // });
+  },
 });
 
 export default UserModel;

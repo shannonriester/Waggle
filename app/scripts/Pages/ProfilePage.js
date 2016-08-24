@@ -19,7 +19,7 @@ export default React.createClass({
         placesCollection: store.placesCollection.toJSON(),
         recentPlaces: [],
         newMessage: false,
-        fetch: true,
+        fetch: false,
         sentMatch: false,
         receivedMatch: false,
       }
@@ -56,11 +56,15 @@ export default React.createClass({
     browserHistory.push('/settings');
   },
   updateState: function() {
+    if (this.state.fetch) {
+      store.userCollection.fetch();
+    }
     this.setState({
       session: store.session.toJSON(),
       users: store.userCollection.toJSON(),
       checkinCollection: store.checkinCollection.toJSON(),
       placesCollection: store.placesCollection.toJSON(),
+      // fetch: true,
     });
   },
   updateUsers: function() {
@@ -84,7 +88,7 @@ export default React.createClass({
     store.userCollection.fetch();
 
     store.session.on('change', this.updateState);
-    store.userCollection.on('change update', this.updateSession);
+    store.userCollection.on('change update', this.updateState);
     store.checkinCollection.on('change update', this.updateState);
     store.checkinCollection.on('change update', this.fetchPlaces);
     store.placesCollection.on('change update', this.updateState);
@@ -126,7 +130,7 @@ export default React.createClass({
     }
 
     userProfileInfo = this.state.users.map((user, i, arr) => {
-      console.log(user);
+      // console.log(user);
       if (this.props.params.userId === user.username) {
         return (<ProfileInfo key={i} user={user} updateUsers={this.updateUsers} />);
       }
