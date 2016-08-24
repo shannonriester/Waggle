@@ -37,18 +37,18 @@ const SessionModel = Backbone.Model.extend({
     lastName: '',
     age: '',
   },
-// updateUser: function() {
-//     this.save(null,
-//       { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/${this.get('userId')}`,
-//         type: 'PUT',
-//         success: (model, response) => {
-//           this.trigger('change update');
-//         console.log('UPDATED USER ', response);
-//       }, error: (e) => {
-//           console.log('SESSION.UPDATEUSER ERROR: ', e);
-//       }
-//     });
-//   },
+updateUser: function() {
+    this.save(null,
+      { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/${this.get('userId')}`,
+        type: 'PUT',
+        success: (model, response) => {
+          this.trigger('change update');
+        console.log('UPDATED USER ', response);
+      }, error: (e) => {
+          console.log('SESSION.UPDATEUSER ERROR: ', e);
+      }
+    });
+  },
   updateDogInfo: function(dogName, dogBreed, dogAge) {
     this.set('editingDog', false);
     this.save(
@@ -81,9 +81,16 @@ const SessionModel = Backbone.Model.extend({
     this.set('editProfile', false);
 
     let currProfile = this.get('profile');
+    // this.set()
     currProfile.bio = bio;
-    if (!profilePic.length) {
-      profilePic = '/assets/default_dog_large.png';
+    console.log(profilePic);
+    console.log(currProfile.profilePic);
+    if (!profilePic.length || currProfile.profilePic === profilePic) {
+      console.log('if statement working');
+      profilePic = currProfile.profilePic;
+      // profilePic = this.profile.profilePic;
+    } else {
+      currProfile.profilePic = profilePic;
     }
     this.set('profile', currProfile)
     this.save(

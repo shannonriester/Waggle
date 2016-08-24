@@ -37,17 +37,20 @@ const UserModel = Backbone.Model.extend({
   },
   updateProfile: function(profilePic, bio) {
     this.set('editProfile', false);
-    console.log(profilePic);
-    // let profilePi
-    if (!profilePic.length) {
-      profilePic = '/assets/default_dog_large.png';
-    }
-    // this.profile.bio = bio;
+
     let currProfile = this.get('profile');
+    // this.set()
     currProfile.bio = bio;
-    currProfile.profilePic = profilePic;
-    console.log(currProfile);
-    
+    console.log(profilePic);
+    console.log(currProfile.profilePic);
+    if (!profilePic.length || currProfile.profilePic === profilePic) {
+      console.log('if statement working');
+      profilePic = currProfile.profilePic;
+      // profilePic = this.profile.profilePic;
+    } else {
+      currProfile.profilePic = profilePic;
+    }
+    console.log('before setting: ', currProfile.profilePic[0].slice(0, 10));
     this.set('profile', currProfile)
   },
 });

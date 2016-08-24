@@ -11,6 +11,7 @@ getInitialState: function() {
     editingDog: store.session.get('editingDog'),
     editingSelf: store.session.get('editingSelf'),
     range: store.session.get('range'),
+    gotUser: false,
     session: store.session.toJSON(),
     authtoken: localStorage.authtoken,
   }
@@ -27,9 +28,9 @@ logout: function() {
       browserHistory.push('/');
     }
 },
-showRagneSetting: function() {
+updateSlider: function() {
   store.session.set('range', this.refs.range.value);
-  this.updateState();
+  this.setState({range: this.refs.range.value});
   store.session.updateUser();
 },
 editDog: function(e) {
@@ -63,12 +64,19 @@ updateState: function() {
   if (!this.state.authtoken) {
     browserHistory.push('/');
   }
+  console.log(store.session.get('range'));
+
+  if (store.session.get('range') !== '8' && !this.state.gotUser) {
+    console.log('got user: ', store.session.get('range'));
+    this.setState({range: store.session.get('range'), gotUser: true});
+  }
+
   this.setState({
     editingDog: store.session.get('editingDog'),
     editingSelf: store.session.get('editingSelf'),
-    range: store.session.get('range'),
     session: store.session.toJSON(),
   });
+
 },
 componentWillMount: function() {
   if (!this.state.authtoken) {
@@ -149,7 +157,7 @@ render: function() {
 
       <main className="discovery-settings">
           <label>set the range for your searchs: </label>
-          <input type="range" value={this.state.range} step="1" min="1" max="25" step="1" ref="range" onChange={this.showRagneSetting}/>
+          <input type="range" value={this.state.range} step="1" min="1" max="25" step="1" ref="range" onChange={this.updateSlider}/>
           <label>{this.state.range} miles</label>
       </main>
 

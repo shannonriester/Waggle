@@ -76,7 +76,7 @@ export default React.createClass({
     store.session.off('change', this.updateState);
   },
   render: function() {
-    console.log(this);
+    // console.log(this);
     let bkgrndImgs;
     let sessionNav;
     let heartIcon;
@@ -86,26 +86,6 @@ export default React.createClass({
     let profileBody;
     let editImages;
     let styles;
-
-    // console.log(this.state);
-    // if (this.state.session.username === this.state.user.username) {
-      // console.log(this);
-      // profileInteractive = (
-      //   <ul className="nav-session">
-      //     <li>
-      //       <button className="edit-btn" onClick={this.editProfile}>edit <i className="edit-icon fa fa-pencil" aria-hidden="true"></i></button>
-      //     </li>
-      //     <li>
-      //       <button className="settings-btn" onClick={this.goToSettings}>settings <i className="fa fa-cog" aria-hidden="true"></i></button>
-      //     </li>
-      //     <li>
-      //       <button className="new-message-btn" onClick={this.props.messageUser}>message<i className="message-icon sent-match fa fa-comments-o" aria-hidden="true"></i></button>
-      //     </li>
-      //     <li>
-      //       <button className="match-btn"><i className="message-icon fa fa-comments-o" aria-hidden="true" onClick={this.messageUser}></i></button>
-      //     </li>
-        // </ul>);
-    // }
 
     let profilePicFile;
     let url = `${this.state.user.profile.profilePic}`;
@@ -130,7 +110,7 @@ export default React.createClass({
 
       bkgrndImgs = (
         <form  className="profile-image-form" onSubmit={this.onDrop}>
-          <img className="profile-pic-preview" src={this.state.profilePicSrc}/>
+
           <div className="dropzone-container">
             <Dropzone className="dropzone" ref="dropzone" onDrop={this.onDrop} onClick={this.onOpenClick}>
               <i className="icon-camera fa fa-camera-retro" aria-hidden="true"></i>
@@ -168,6 +148,7 @@ export default React.createClass({
           </div>
           <div className="profile-pic-container">
             {profilePicFile}
+            <div className="profile-pic-preview" style={{backgroundImage: `url(${this.state.profilePicSrc})`}}></div>
             <figure className="profile-pic" style={profilePicUrl}></figure>
           </div>
             <ProfileInteractive

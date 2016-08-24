@@ -10,7 +10,6 @@ const PlacesCollection = Backbone.Collection.extend({
   url: `https://api.yelp.com/v2/search`,
   getResults: function(city, query, range, coordinates){
     // console.log(coordinates);
-
     if (range) {
       range = range * 1600;
     } else {
@@ -42,8 +41,8 @@ const PlacesCollection = Backbone.Collection.extend({
     let parameters = [];
     parameters.push(['term', terms]);
     parameters.push(['sort', sort]);
-    parameters.push(['location', near]);
-    parameters.push(['cll', cll]);
+    // parameters.push(['location', near]);
+    parameters.push(['ll', cll]);
     parameters.push(['radius_filter', radiusFilter]);
     parameters.push(['callback', 'cb']);
     parameters.push(['oauth_consumer_key', auth.consumerKey]);

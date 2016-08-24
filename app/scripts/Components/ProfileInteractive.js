@@ -2,7 +2,7 @@ import React from 'react';
 
 export default React.createClass({
   render: function() {
-    console.log(this.props);
+    // console.log(this.props);
     let interactiveNav;
     if (this.props.session.username === this.props.user.username) {
       interactiveNav = (

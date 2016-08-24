@@ -11,18 +11,18 @@
 }
 
 .profile-image-form {
-  position: absolute;
+  position: relative;
   height: 400px;
   width: 100%;
 }
 
 .profile-pic-preview {
   position: absolute;
-  height: 129px;
-  width: 129px;
+  background-size: cover;
+  height: 130px;
+  width: 130px;
   border-radius: 50%;
-  top: 410px;
-  left: 195px;
+  bottom: 23.2%;
   z-index: 1;
 }
 
@@ -69,8 +69,8 @@
 
 .input-file {
   position: absolute;
-  top: 31%;
-  left: 5%;
+  top: 59%;
+  left: 37%;
   right: 0;
   bottom: 0;
   height: 20%;
