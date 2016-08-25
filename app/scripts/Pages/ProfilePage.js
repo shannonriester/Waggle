@@ -13,16 +13,15 @@ export default React.createClass({
   getInitialState: function() {
       return {
         session: store.session.toJSON(),
-        // users: store.userCollection.toJSON(),
         currentUser: {},
         checkinCollection: store.checkinCollection.toJSON(),
-        placesCollection: store.placesCollection.toJSON(),
         placesCollection: store.placesCollection.toJSON(),
         recentPlaces: [],
         newMessage: false,
         fetch: false,
         sentMatch: false,
         receivedMatch: false,
+        myMatches: []
       }
   },
   fetchPlaces: function() {
@@ -60,8 +59,18 @@ export default React.createClass({
       placesCollection: store.placesCollection.toJSON(),
     });
     if (!this.state.fetch && this.state.session.username) {
-        store.matchCollection.findMatch(this.state.session.username, this.props.params.userId).then((response)=> {
-        console.log(response.toJSON());
+      store.matchCollection.findMatch(this.state.session.username, this.props.params.userId).then((response)=> {
+        if (response.toJSON().length >= 2) {
+          response.toJSON().filter((item,i) => {
+            if (this.props.params.userId === item.likee) {
+              console.log(item.likee);
+              this.state.myMatches.push(item.likee);
+              return item.likee
+            }
+          });
+          // console.log(matchObj);
+          this.setState({matched: true});
+        }
       });
       this.setState({fetch: true});
     }
@@ -73,11 +82,7 @@ export default React.createClass({
   },
   componentDidMount: function() {
     store.userCollection.findUser(this.props.params.userId).then((response) => {
-      // console.log(response);
       this.setState({currentUser: response.toJSON()[0]});
-    })
-    .catch((error) => {
-      // console.log(error);
     })
 
     store.session.on('change', this.updateState);
@@ -100,29 +105,24 @@ export default React.createClass({
     let profileInfo;
     let newMessageModal;
     if (this.state.currentUser.username) {
-      console.log(this.state.currentUser);
-
-    // profileInfo = this.state.users.map((user, i, arr) => {
-      // if (this.props.params.userId === currentUser.username) {
-        // console.log(this.state.currentUser);
         profileInfo = (<ProfileInfo
           user={this.state.currentUser}
           messageUser={this.messageUser}
           toggleMatch={this.toggleMatch}
           matched={this.state.matched}
           />);
-      }
-    // });
+    }
 
     if (this.state.newMessage) {
       newMessageModal = (<NewMessage
         recipient={this.props.params.userId}
         hideMessageModal={this.hideMessageModal}/>);
     }
+
     let userRecentPlaces;
     let myMatches = [];
-
-    if (this.state.matched || this.state.session.username === this.props.params.userId) {
+    // console.log(this.state);
+    if (this.state.matched || this.props.params.userId === this.state.currentUser.username) {
         let placeIDArr = this.state.recentPlaces.map((place, i, arr) => {
           return place.place;
         });
@@ -144,12 +144,9 @@ export default React.createClass({
                       place={place}
                       updateState={this.updateSession} />);
         });
-
-        // console.log(this.state.receivedMatch);
-        myMatches = myMatches.concat(this.state.receivedMatch.likee);
+        myMatches = this.state.myMatches;
     }
-  // }
-  // console.log(myMatches);
+    // console.log(this.state.myMatches);
     return (
       <div className="profile-component">
         <Nav />
