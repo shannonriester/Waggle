@@ -163,7 +163,7 @@
   outline: none;
   border-radius: 50%;
   border: solid 1px #EBEBEB;
-  padding: 1%;
+  padding: 5px;
   background-color: rgba(255, 255, 255, 0.6);
   color: #FFF;
   font-size: 11px;
@@ -177,7 +177,7 @@
   position: absolute;
   z-index: 1;
   right: 0;
-  padding: 17px; }
+  padding: 16px; }
 
 .header-component {
   border-bottom: solid 1px #EBEBEB;
@@ -647,6 +647,13 @@
       color: rgba(85, 85, 85, 0.7);
       border-left: solid 2px #EBEBEB;
       padding-left: 5px; }
+
+.messages-container {
+  display: flex;
+  padding: 20px;
+  margin: 0; }
+  .messages-container li {
+    list-style-type: none; }
 
 .me {
   background: #8D5A97;
