@@ -148,6 +148,33 @@
   .modal-component .submit-btn {
     display: none; }
 
+.slider-container {
+  margin: 0 auto;
+  width: 100%; }
+  .slider-container img {
+    object-fit: cover;
+    height: 400px; }
+
+.slick-prev, .slick-next {
+  position: absolute;
+  z-index: 1;
+  top: 30%;
+  height: 5em;
+  outline: none;
+  border-radius: 50%;
+  border: solid 1px #EBEBEB;
+  padding: 1%;
+  background-color: rgba(255, 255, 255, 0.4);
+  color: #FFF;
+  font-size: 11px;
+  font-weight: bold; }
+
+.slick-next {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  padding: 17px; }
+
 .header-component {
   border-bottom: solid 1px #EBEBEB;
   display: flex;
@@ -424,20 +451,11 @@
   background: #F55959; }
 
 /*START OF PROFILE IMG EDITING SECTION*/
-.profile-background-images {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  height: 400px;
-  width: 100vw;
-  margin: 0;
-  background-size: cover; }
-
 .profile-image-form {
-  position: relative;
+  position: absolute;
   height: 400px;
-  width: 100%; }
+  width: 100%;
+  top: 7.2%; }
 
 .profile-pic-preview {
   position: absolute;
@@ -495,7 +513,7 @@
 
 .profile-pic, .default-profile-pic {
   position: relative;
-  bottom: 10px;
+  bottom: 50px;
   height: 8em;
   width: 8em;
   border-radius: 50%;
