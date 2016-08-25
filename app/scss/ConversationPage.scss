@@ -1,8 +1,21 @@
+.conversation-page-component {
+
+}
+
+.messages-container {
+  display: flex;
+  padding: 20px;
+  margin: 0;
+  li {
+    list-style-type: none;
+  }
+}
+
 .me {
   background: #8D5A97;
   color: #EFF1EF;
 }
 
 .not-me {
-  // background: red;
+
 }

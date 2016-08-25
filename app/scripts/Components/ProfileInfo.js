@@ -3,7 +3,7 @@ import Dropzone from 'react-dropzone';
 
 import store from '../store';
 import ProfileInteractive from './ProfileInteractive';
-import SimpleSlider from './SimpleSlider';
+import BackgroundSlider from './BackgroundSlider';
 
 export default React.createClass({
   getInitialState: function() {
@@ -130,7 +130,7 @@ export default React.createClass({
     return (
       <div className="profile-info-component">
         <section className="header-profile-section">
-          <SimpleSlider />
+          <BackgroundSlider />
             {bkgrndImgForm}
           <div className="profile-pic-container">
             {profilePicFile}
@@ -148,6 +148,7 @@ export default React.createClass({
         </section>
 
         <main className="profile-main">
+
           <ul className="ul-about-data">
             <li>
               <i className="about-user-icon fa fa-user" aria-hidden="true"></i> {this.state.user.firstName}, {this.state.user.age}

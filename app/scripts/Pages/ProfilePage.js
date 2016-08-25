@@ -5,6 +5,7 @@ import moment from 'moment';
 
 import store from '../store';
 import Nav from '../Components/Nav';
+import MyMatches from '../Components/MyMatches';
 import ProfileInfo from '../Components/ProfileInfo';
 import UserRecentPlaces from '../Components/UserRecentPlaces';
 import NewMessage from '../Components/NewMessage';
@@ -21,7 +22,7 @@ export default React.createClass({
         fetch: false,
         sentMatch: false,
         receivedMatch: false,
-        myMatches: []
+        allMyMatches: []
       }
   },
   fetchPlaces: function() {
@@ -60,17 +61,20 @@ export default React.createClass({
     });
     if (!this.state.fetch && this.state.session.username) {
       store.matchCollection.findMatch(this.state.session.username, this.props.params.userId).then((response)=> {
-        if (response.toJSON().length >= 2) {
-          response.toJSON().filter((item,i) => {
-            if (this.props.params.userId === item.likee) {
-              console.log(item.likee);
-              this.state.myMatches.push(item.likee);
-              return item.likee
-            }
-          });
-          // console.log(matchObj);
+        if (response.models.length >= 2) {
           this.setState({matched: true});
         }
+      });
+
+      store.matchCollection.allMyMatches(this.state.session.username).then((response) => {
+        console.log('response for findAllMatches', response);
+        // let matchedArr = resp
+        if (response) {console.log(response);}
+        let matchedArr = [];
+        matchedArr.push(response);
+        matchedArr = _.flatten(matchedArr)
+        console.log(matchedArr);
+        this.setState({allMyMatches: matchedArr});
       });
       this.setState({fetch: true});
     }
@@ -104,6 +108,7 @@ export default React.createClass({
     let sessionNav;
     let profileInfo;
     let newMessageModal;
+    let myMatchesComponent;
     if (this.state.currentUser.username) {
         profileInfo = (<ProfileInfo
           user={this.state.currentUser}
@@ -144,7 +149,12 @@ export default React.createClass({
                       place={place}
                       updateState={this.updateSession} />);
         });
-        myMatches = this.state.myMatches;
+    }
+
+    if (this.state.session.username === this.props.params.userId) {
+      // myMatches = this.state.myMatches;
+      console.log(this.state.myMatches);
+      myMatches = (<MyMatches myMatches={this.state.myMatches}/>);
     }
     // console.log(this.state.myMatches);
     return (
@@ -154,9 +164,9 @@ export default React.createClass({
           {profileInfo}
 
         <footer className="profile-footer">
-          <ul className="matched-wagglrs">
+          <div className="matched-wagglrs">
             {myMatches}
-          </ul>
+          </div>
           <ul className="ul-recent-places">
             {userRecentPlaces}
           </ul>

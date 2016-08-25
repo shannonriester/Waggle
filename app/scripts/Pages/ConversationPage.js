@@ -90,7 +90,7 @@ export default React.createClass({
 
     });
     return (
-      <div className="message-page-container">
+      <div className="conversation-page-component">
         <Nav/>
         <Link to={`/user/${this.props.params.recipient}`} className="link">
           <figure className="profile-pic" style={styles} alt="profile-picture of recipient"/>

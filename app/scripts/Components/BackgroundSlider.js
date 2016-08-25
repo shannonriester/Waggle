@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 var Slider = require('react-slick');
 
-var SimpleSlider = React.createClass({
+var BackgroundSlider = React.createClass({
   render: function() {
     let settings = {
       arrows: true,
@@ -37,4 +37,4 @@ var SimpleSlider = React.createClass({
   }
 });
 
-export default SimpleSlider;
+export default BackgroundSlider;
