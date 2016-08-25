@@ -7,7 +7,6 @@ export default React.createClass({
   render: function() {
     let url = `${this.props.place.imageUrl}`;
     let styles = {backgroundImage: 'url(' + url + ')'};
-    // console.log(this.props.place);
     return (
       <li className="user-recent-places-component">
         <Link className="link" to={`/places/${this.props.place.yelpID}`}>

@@ -83,9 +83,9 @@ export default React.createClass({
     let styles;
     let bkgrndImgForm;
 
-    if (this.state.user.bkgrndImgs.length) {
-      styles = {backgroundImage: 'url(' + this.state.user.bkgrndImgs[0] + ')'};
-    }
+    // if (this.state.user.bkgrndImgs.length) {
+    //   styles = {backgroundImage: 'url(' + this.state.user.bkgrndImgs[0] + ')'};
+    // }
     if (!this.state.editProfile) {
         profileBody =(
           <p className="about-bio">

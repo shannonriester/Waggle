@@ -59,9 +59,7 @@ export default React.createClass({
     browserHistory.push('/');
   }
   store.checkinCollection.fetch();
-  store.matchCollection.fetch();
   store.messagesCollection.fetch();
-  store.userCollection.fetch();
   store.session.on('change', this.updateState);
   },
   componentWillUnmount: function() {

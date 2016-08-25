@@ -27,13 +27,49 @@ const MatchCollection = Backbone.Collection.extend({
     // query = JSON.stringify(query);
     // console.log(query);
 
-    let sentMatch= this.where({sender:session, likee:likee});
-    let receiveMatch = this.where({sender:likee, likee:session});
-    if (sentMatch.length + receiveMatch.length === 2) {
-      return true;
-    }
+    // let query = [{sender:session},{likee:likee}];
+    // query = JSON.stringify(query);
+
+    //mongo: DOCUMENT DATA (not relational) database (just stores json data)
+    return new Promise((resolve, reject) => {
+      this.fetch({//url:`https://baas.kinvey.com/appdata/kid_SkBnla5Y/MatchCollection?query={"$or":${query}}`,
+      data: {query: JSON.stringify({
+        sender: session,
+        likee: likee,
+      })},
+      success: (response) => {
+        // console.log(response);
+        resolve(response);
+      }, error: function (response) {
+          console.error('FAILED TO FETCH MY MESSAGES ', response);
+          reject();
+      }});
+    });
+
+
+    // let sentMatch= this.where({sender:session, likee:likee});
+    // let receivedMatch = this.where({sender:likee, likee:session});
+    // if (sentMatch.length + receiveMatch.length === 2) {
+    //   console.log(sentMatch);
+    //   console.log(receivedMatch);
+    //   return true;
+    // }
   },
   findAllMyMatches: function() {
+    // let query = [{sender:session},{likee:likee}];
+    // query = JSON.stringify(query);
+    //
+    // return new Promise((resolve, reject) => {
+    //   this.fetch({url:`https://baas.kinvey.com/appdata/kid_SkBnla5Y/MatchCollection?query={"$or":${query}}`,
+    //   success: (response) => {
+    //     resolve(response);
+    //
+    //   }, error: function (response) {
+    //       console.error('FAILED TO FETCH MY MESSAGES ', response);
+    //       reject();
+    //   }});
+    // });
+
 
   },
 });
