@@ -7,15 +7,12 @@ import store from '../store';
 export default React.createClass({
   render: function() {
     let userImg = this.props.users.map((user, iterator) => {
-      let url = user.profile.profilePic[0];
-      let styles = {backgroundImage: 'url(' + url + ')'};
-      return styles;
+      return {backgroundImage:`url(${user.profile.profilePic[0]})`};
     });
-
     let checkedinPreview = this.props.checkedin.map((model, i, arr) => {
       return (
         <div className="userpreview-container" key={i}>
-          <Link className="link" to={`/user/shannon`}>
+          <Link className="link" to={`/user/{model.userCheckedin}`}>
             <figure key={i} className="userpreview-container" style={userImg[i]}></figure>
             <h3>{model.userCheckedin}</h3>
           </Link>

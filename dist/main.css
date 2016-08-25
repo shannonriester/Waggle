@@ -315,7 +315,7 @@
     height: 80%; }
     .results-list .about-preview h1 {
       margin: 0;
-      font-size: 1.1em;
+      font-size: 1.5em;
       color: #F55959;
       font-weight: 500;
       background: transparent; }
@@ -329,7 +329,7 @@
       text-align: center;
       font-weight: 100;
       opacity: .7; }
-  .results-list .star-rating {
+  .results-list .about-place {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -507,22 +507,34 @@
   background-position-x: -15px; }
 
 /*USER INTERACTIVE NAV SECTION*/
-.profile-interaction-section {
+.profile-interactive-component {
+  height: 15vh; }
+
+.profile-sub-nav {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 100%; }
-
-.nav-session, .ul-match-section {
-  margin: 0;
+  justify-content: space-around;
+  width: 95%;
+  height: 100%;
+  margin: 0 auto;
   padding: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start; }
-  .nav-session li, .ul-match-section li {
-    list-style-type: none;
-    width: 100%; }
+  border-top: solid 1px; }
+  .profile-sub-nav li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    list-style-type: none; }
+
+.connect-btn {
+  border: none;
+  background: none;
+  font-size: 40px;
+  color: #484848; }
+  .connect-btn i {
+    border: solid 2px #EBEBEB;
+    border-radius: 50%;
+    padding: 10px; }
 
 .edit-btn-container {
   display: flex;
@@ -537,23 +549,24 @@
   .ul-match-section i {
     font-size: 2em; }
 
-.about-bio {
-  line-height: 2em;
-  width: 90%;
-  border-bottom: solid 1px #EBEBEB; }
-
 /*PROFILE MAIN SECTION STARTS HERE*/
 .profile-main {
   padding: 3%; }
 
 .ul-about-data {
   margin: 10px 0;
-  padding: 0;
+  padding: 0 0 0 10px;
   border-bottom: solid 1px #EBEBEB; }
   .ul-about-data li {
     list-style-type: none;
     width: 100%;
     border-radius: 5px; }
+
+.about-bio {
+  line-height: 2em;
+  width: 90%;
+  border-bottom: solid 1px #EBEBEB;
+  padding-bottom: 10px; }
 
 .form-about {
   display: flex;
@@ -594,14 +607,14 @@
     list-style-type: none;
     text-align: center;
     width: 95%;
-    margin-bottom: 2em;
-    background-color: rgba(236, 238, 236, 0.1); }
+    margin-bottom: 2em; }
     .profile-footer .user-recent-places-component .recent-place-image {
       height: 20em;
       width: 100%;
       background-size: cover;
       background-repeat: no-repeat; }
     .profile-footer .user-recent-places-component h3 {
+      color: #F55959;
       width: 50%;
       font-size: 20px;
       width: 100%; }

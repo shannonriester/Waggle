@@ -10,6 +10,7 @@ export default React.createClass({
       session: store.session.toJSON(),
       editProfile: store.session.get('editProfile'),
       user: this.props.user,
+      matched: this.props.matched,
       profilePicSrc: [],
       files: [],
     }
@@ -18,12 +19,11 @@ export default React.createClass({
     e.preventDefault();
     let newBody = this.refs.aboutInfo.value;
       let newProfilePic = this.state.profilePicSrc;
+      let userProfileUpdate = store.userCollection.get(this.state.user._id);
 
     if (this.state.files.length) {
-      store.session.updateBkgrndImgs(this.state.files, newBody);
+      userProfileUpdate.updateProfile(newProfilePic, newBody)
     }
-
-    let userProfileUpdate = store.userCollection.get(this.state.user._id);
     userProfileUpdate.updateProfile(newProfilePic, newBody)
     store.session.updateProfile(newProfilePic, newBody);
   },
@@ -42,7 +42,8 @@ export default React.createClass({
     e.preventDefault();
     store.session.set('editProfile', true);
   },
-  cancelEdit: function() {
+  cancelEdit: function(e) {
+    e.preventDefault();
     store.session.set('editProfile', false);
   },
   handleImgChange: function(e) {
@@ -66,7 +67,7 @@ export default React.createClass({
   componentWillReceiveProps: function(newProps) {
     this.setState({
       user: newProps.user,
-      sentMatch: newProps.sentMatch,
+      matched: newProps.matched,
     });
   },
   componentDidMount: function() {
@@ -76,20 +77,10 @@ export default React.createClass({
     store.session.off('change', this.updateState);
   },
   render: function() {
-    // console.log(this);
-    let bkgrndImgs;
-    let sessionNav;
-    let heartIcon;
-    let messageBtn;
-    let profileInteractive;
-    let profilePic;
     let profileBody;
-    let editImages;
-    let styles;
-
     let profilePicFile;
-    let url = `${this.state.user.profile.profilePic}`;
-    let profilePicUrl = {backgroundImage: 'url(' + url + ')'};
+    let styles;
+    let bkgrndImgForm;
 
     if (this.state.user.bkgrndImgs.length) {
       styles = {backgroundImage: 'url(' + this.state.user.bkgrndImgs[0] + ')'};
@@ -108,7 +99,7 @@ export default React.createClass({
             accept="image/*"
             onChange={this.handleImgChange} />);
 
-      bkgrndImgs = (
+      bkgrndImgForm = (
         <form  className="profile-image-form" onSubmit={this.onDrop}>
 
           <div className="dropzone-container">
@@ -132,39 +123,38 @@ export default React.createClass({
           </div>
         </form>);
     }
-
-    // <div className="profile-interaction-section">
-    //   {sessionNav}
-    //   <ul className="ul-match-section">
-    //     <li>{heartIcon}</li>
-    //     <li>{messageBtn}</li>
-    //   </ul>
-    // </div>
     return (
       <div className="profile-info-component">
         <section className="header-section-prof-info">
           <div className="profile-background-images" style={styles}>
-            {bkgrndImgs}
+            {bkgrndImgForm}
           </div>
           <div className="profile-pic-container">
             {profilePicFile}
             <div className="profile-pic-preview" style={{backgroundImage: `url(${this.state.profilePicSrc})`}}></div>
-            <figure className="profile-pic" style={profilePicUrl}></figure>
+            <figure className="profile-pic" style={{backgroundImage: `url(${this.state.user.profile.profilePic})`}}></figure>
           </div>
             <ProfileInteractive
               session={this.state.session}
               user={this.state.user}
               message={this.props.messageUser}
               toggleMatch={this.props.toggleMatch}
+              matched={this.state.matched}
               editProfile={this.editProfile}
             />
         </section>
 
         <main className="profile-main">
           <ul className="ul-about-data">
-            <li>{this.state.user.firstName}, {this.state.user.age}</li>
-            <li>{this.state.user.dog.dogName}, {this.state.user.dog.dogAge}, {this.state.user.dog.dogBreed}</li>
-            <li>{this.state.user.city}, {this.state.user.regionName}</li>
+            <li>
+              <i className="about-user-icon fa fa-user" aria-hidden="true"></i> {this.state.user.firstName}, {this.state.user.age}
+            </li>
+            <li>
+              <i className="about-user-icon fa fa-paw" aria-hidden="true"></i> {this.state.user.dog.dogName}, {this.state.user.dog.dogAge}, {this.state.user.dog.dogBreed}
+            </li>
+            <li>
+              <i className="about-user-icon fa fa-globe" aria-hidden="true"></i> {this.state.user.city}, {this.state.user.regionName}
+            </li>
           </ul>
           {profileBody}
         </main>

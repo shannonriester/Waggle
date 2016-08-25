@@ -35,13 +35,9 @@ export default React.createClass({
       this.setState({'recentPlaces': recentPlaces});
     }
   },
-  // editProfile: function() {
-  //   store.session.set('editProfile', true);
-  // },
   toggleMatch: function() {
     store.matchCollection.toggleMatch(this.state.session.username, this.props.params.userId);
     this.setState({
-      matchBtn: !this.state.matchBtn,
       sentMatch: !this.state.sentMatch,
     });
   },
@@ -65,15 +61,11 @@ export default React.createClass({
       checkinCollection: store.checkinCollection.toJSON(),
       placesCollection: store.placesCollection.toJSON(),
     });
-  },
-  componentWillMount: function() {
-    //be careful here! notice that the parameters are SWITCHED to see who sent the match and who received the match
-    store.matchCollection.findMatch(this.state.session.username, this.props.params.userId).then((response) => {
-      this.setState({sentMatch: response.toJSON()[0]});
-    });
-    store.matchCollection.findMatch(this.props.params.userId, this.state.session.username).then((response) => {
-      this.setState({receivedMatch: response.toJSON()[0]});
-    });
+    if (!this.state.fetch && this.state.session.username) {
+      if (store.matchCollection.findMatch(this.state.session.username, this.props.params.userId)) {
+        this.setState({matched: true});
+      }
+    }
   },
   componentDidMount: function() {
     store.session.on('change', this.updateState);
@@ -95,26 +87,28 @@ export default React.createClass({
     let sessionNav;
     let profileInfo;
     let newMessageModal;
-    //talk about refactoring this in the readme
+
     profileInfo = this.state.users.map((user, i, arr) => {
-      // console.log(user);
       if (this.props.params.userId === user.username) {
         return (<ProfileInfo
           key={i}
           user={user}
           messageUser={this.messageUser}
           toggleMatch={this.toggleMatch}
+          matched={this.state.matched}
           />);
       }
     });
 
     if (this.state.newMessage) {
-      newMessageModal = (<NewMessage recipient={this.props.params.userId} hideMessageModal={this.hideMessageModal}/>);
+      newMessageModal = (<NewMessage
+        recipient={this.props.params.userId}
+        hideMessageModal={this.hideMessageModal}/>);
     }
 
     let userRecentPlaces;
     let myMatches = [];
-    if (this.state.sentMatch && this.state.receivedMatch) {
+    if (this.state.matched) {
         let placeIDArr = this.state.recentPlaces.map((place, i, arr) => {
           return place.place;
         });
@@ -131,19 +125,19 @@ export default React.createClass({
           fixedPlaces = fixedPlaces.slice(0,4);
         }
         userRecentPlaces = fixedPlaces.map((place, i, arr) => {
-            return (<UserRecentPlaces key={i} place={place} updateState={this.updateSession} />);
+            return (<UserRecentPlaces
+                      key={i}
+                      place={place}
+                      updateState={this.updateSession} />);
         });
         myMatches = myMatches.concat(this.state.receivedMatch.likee);
     }
-
 
     return (
       <div className="profile-component">
         <Nav />
           {newMessageModal}
-        <header className="profile-header">
           {profileInfo}
-        </header>
 
         <footer className="profile-footer">
           <ul className="matched-wagglrs">
@@ -152,7 +146,6 @@ export default React.createClass({
           <ul className="ul-recent-places">
             {userRecentPlaces}
           </ul>
-
         </footer>
       </div>
     );

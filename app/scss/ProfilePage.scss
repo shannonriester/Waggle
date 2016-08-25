@@ -7,13 +7,20 @@
 
 .ul-about-data {
   margin: 10px 0;
-  padding: 0;
+  padding: 0 0 0 10px;
   border-bottom: solid 1px $border;
   li {
     list-style-type: none;
     width: 100%;
     border-radius: 5px;
   }
+}
+
+.about-bio {
+  line-height: 2em;
+  width: 90%;
+  border-bottom: solid 1px $border;
+  padding-bottom: 10px;
 }
 
 .form-about {
@@ -62,7 +69,7 @@
     text-align: center;
     width: 95%;
     margin-bottom: 2em;
-    background-color: rgba(#ECEEEC,.1);
+    // background-color: rgba(#ECEEEC,.1);
 
     .recent-place-image {
       height: 20em;
@@ -72,6 +79,7 @@
     }
 
     h3 {
+      color: $accent;
       // margin: .5em 0 0 0;
       width: 50%;
       font-size: 20px;

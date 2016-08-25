@@ -94,32 +94,41 @@
   background-position-x: -15px;
 }
 
+
 /*USER INTERACTIVE NAV SECTION*/
-.profile-interaction-section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
+.profile-interactive-component {
+  height: 15vh;
 }
 
-
-.nav-session, .ul-match-section {
-  // height: 3em;
-  // position: absolute;
-  // bottom: 20em;
-  margin: 0;
-  padding: 0;
-  // left: 5em;
+.profile-sub-nav, {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: space-around;
+  width: 95%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0;
+  border-top: solid 1px;
   li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     list-style-type: none;
-    width: 100%;
   }
 }
 
+.connect-btn {
+  border: none;
+  background: none;
+  font-size: 40px;
+  color: $profileIcon;
+  i {
+    border: solid 2px $border;
+    border-radius: 50%;
+    padding: 10px;
+  }
+}
 
 .edit-btn-container {
   display: flex;
@@ -139,23 +148,4 @@
     // width: 30px;
     // border-radius: 2px;
   }
-}
-// .match-section-ul {
-//   padding: 0;
-//   margin: 10px 0;
-//   li {
-//     list-style-type: none;
-//   }
-// }
-
-// .like-btn {
-//   border: none;
-//   outline: none;
-//   background: none;
-// }
-
-.about-bio {
-  line-height: 2em;
-  width: 90%;
-  border-bottom: solid 1px $border;
 }

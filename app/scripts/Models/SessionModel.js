@@ -85,7 +85,7 @@ updateUser: function() {
     currProfile.bio = bio;
     console.log(profilePic);
     console.log(currProfile.profilePic);
-    if (!profilePic.length || currProfile.profilePic === profilePic) {
+    if (!profilePic.length) {
       console.log('if statement working');
       profilePic = currProfile.profilePic;
       // profilePic = this.profile.profilePic;

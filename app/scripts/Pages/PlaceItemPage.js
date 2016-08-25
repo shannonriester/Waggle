@@ -94,7 +94,6 @@ export default React.createClass({
         let styles = {backgroundImage: 'url(' + placeItem.imageUrl + ')'};
 
         let checkedinUserPreview;
-        // let userPreviewComponent;
         let users;
         let checkedinArr = [];
         let wagglrsArr = [];

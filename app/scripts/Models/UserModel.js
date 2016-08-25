@@ -7,7 +7,7 @@ const UserModel = Backbone.Model.extend({
     editProfile: false,
     editingDog: false,
     editingSelf: false,
-    recentPlaces: [{},],
+    recentPlaces: [],
     profile: {
       profilePic: ['/assets/default_dog_large.png'],
       images: ['/assets/default_dog_large.png',],
@@ -37,13 +37,9 @@ const UserModel = Backbone.Model.extend({
   },
   updateProfile: function(profilePic, bio) {
     this.set('editProfile', false);
-
     let currProfile = this.get('profile');
-    // this.set()
     currProfile.bio = bio;
-    console.log(profilePic);
-    console.log(currProfile.profilePic);
-    if (!profilePic.length || currProfile.profilePic === profilePic) {
+    if (!profilePic.length) {
       console.log('if statement working');
       profilePic = currProfile.profilePic;
       // profilePic = this.profile.profilePic;

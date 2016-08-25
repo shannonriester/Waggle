@@ -7,10 +7,10 @@ import Nav from './Nav';
 export default React.createClass({
     getDistance: function() {
       // store.session.getDistance();
+      console.log(this.props);
     },
     routeTo: function() {
       let placeID = store.placesCollection.where({yelpID: this.props.place.yelpID});
-      // console.log(placeID[0].attributes.yelpID);
       browserHistory.push(`/places/${placeID[0].attributes.yelpID}`);
     },
     render: function() {
@@ -30,12 +30,17 @@ export default React.createClass({
           <div className="result-content-container">
             <main className="about-preview">
               <h1>{this.props.place.name}</h1>
-              <p className="place-snippet">{this.props.place.snippetText}</p>
             </main>
-            <div className="star-rating">
-              <header className="caption">{category}</header>
-              <i className="star-icon fa fa-star" aria-hidden="true"></i>
-            </div>
+            <ul className="about-place">
+              <li>
+                <header className="caption">{category}</header>
+                <i className="place-icon fa fa-map-marker" aria-hidden="true"></i>
+              </li>
+              <li>
+                <header className="yelp-link">Yelp</header>
+                <i className="yelp-icon fa fa-yelp" aria-hidden="true"></i>
+              </li>
+            </ul>
           </div>
         </li>
       );

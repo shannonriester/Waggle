@@ -23,22 +23,18 @@ const MatchCollection = Backbone.Collection.extend({
     });
   },
   findMatch: function(session, likee) {
-    let query = [{sender:session},{likee:likee}];
-    query = JSON.stringify(query);
+    // let query = [{sender:session},{likee:likee}];
+    // query = JSON.stringify(query);
+    // console.log(query);
 
-    return new Promise((resolve, reject) => {
-      this.fetch({url:`https://baas.kinvey.com/appdata/kid_SkBnla5Y/MatchCollection?query={"$or":${query}}`,
-      success: (response) => {
-        resolve(response);
-
-      }, error: function (response) {
-          console.error('FAILED TO FETCH MY MESSAGES ', response);
-          reject();
-      }});
-    });
+    let sentMatch= this.where({sender:session, likee:likee});
+    let receiveMatch = this.where({sender:likee, likee:session});
+    if (sentMatch.length + receiveMatch.length === 2) {
+      return true;
+    }
   },
   findAllMyMatches: function() {
-    
+
   },
 });
 

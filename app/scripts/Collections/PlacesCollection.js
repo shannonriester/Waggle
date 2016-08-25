@@ -8,6 +8,9 @@ import PlaceModel from '../Models/PlaceModel';
 const PlacesCollection = Backbone.Collection.extend({
   model: PlaceModel,
   url: `https://api.yelp.com/v2/search`,
+  getDistance: function() {
+    
+  },
   getResults: function(city, query, range, coordinates){
     // console.log(coordinates);
     if (range) {
