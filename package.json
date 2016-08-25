@@ -66,8 +66,10 @@
     "normalize-scss": "^5.0.3",
     "react": "^15.3.0",
     "react-addons-css-transition-group": "^15.3.0",
+    "react-carousel": "^3.3.0",
     "react-dom": "^15.3.0",
     "react-dropzone": "^3.5.3",
-    "react-router": "^2.6.1"
+    "react-router": "^2.6.1",
+    "react-slick": "^0.13.2"
   }
 }

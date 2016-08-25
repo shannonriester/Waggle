@@ -3,6 +3,7 @@ import Dropzone from 'react-dropzone';
 
 import store from '../store';
 import ProfileInteractive from './ProfileInteractive';
+import SimpleSlider from './SimpleSlider';
 
 export default React.createClass({
   getInitialState: function() {
@@ -123,12 +124,14 @@ export default React.createClass({
           </div>
         </form>);
     }
+      //this was the <div> before using asset background images
+    // <div className="profile-background-images" style={styles}> {bkgrndImgForm}</div>
+
     return (
       <div className="profile-info-component">
-        <section className="header-section-prof-info">
-          <div className="profile-background-images" style={styles}>
+        <section className="header-profile-section">
+          <SimpleSlider />
             {bkgrndImgForm}
-          </div>
           <div className="profile-pic-container">
             {profilePicFile}
             <div className="profile-pic-preview" style={{backgroundImage: `url(${this.state.profilePicSrc})`}}></div>

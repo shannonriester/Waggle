@@ -1,0 +1,28 @@
+.slider-container {
+  margin: 0 auto;
+  width: 100%;
+  img {
+    object-fit: cover;
+    height: 400px;
+  }
+}
+.slick-prev, .slick-next {
+  position: absolute;
+  z-index: 1;
+  top: 30%;
+  height: 5em;
+  outline: none;
+  border-radius: 50%;
+  border: solid 1px $border;
+  padding: 1%;
+  background-color: rgba(#FFF, .4);
+  color: #FFF;
+  font-size: 11px;
+  font-weight: bold;
+}
+.slick-next {
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  padding: 17px;
+}
