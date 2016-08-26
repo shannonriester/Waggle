@@ -67,14 +67,13 @@ export default React.createClass({
       });
 
       store.matchCollection.allMyMatches(this.state.session.username).then((response) => {
-        console.log('response for findAllMatches', response);
-        // let matchedArr = resp
-        if (response) {console.log(response);}
         let matchedArr = [];
         matchedArr.push(response);
         matchedArr = _.flatten(matchedArr)
-        console.log(matchedArr);
-        this.setState({allMyMatches: matchedArr});
+        this.setState({
+          allMyMatches: matchedArr,
+          fetch: true,
+        });
       });
       this.setState({fetch: true});
     }
@@ -126,7 +125,6 @@ export default React.createClass({
 
     let userRecentPlaces;
     let myMatches = [];
-    // console.log(this.state);
     if (this.state.matched || this.props.params.userId === this.state.currentUser.username) {
         let placeIDArr = this.state.recentPlaces.map((place, i, arr) => {
           return place.place;
@@ -152,11 +150,8 @@ export default React.createClass({
     }
 
     if (this.state.session.username === this.props.params.userId) {
-      // myMatches = this.state.myMatches;
-      console.log(this.state.myMatches);
-      myMatches = (<MyMatches myMatches={this.state.myMatches}/>);
+      myMatches = (<MyMatches myMatches={this.state.allMyMatches}/>);
     }
-    // console.log(this.state.myMatches);
     return (
       <div className="profile-component">
         <Nav />

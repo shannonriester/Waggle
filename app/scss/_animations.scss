@@ -53,3 +53,17 @@
   border-radius: 50%;
   position: fixed;
 }
+
+#scroll-left {
+  animation: scroll-left 500ms ;
+}
+
+@keyframes scroll-left {
+  from {
+    left: 50%;
+  }
+  to {
+    left: -50%;
+    overflow-x: hidden;
+  }
+}

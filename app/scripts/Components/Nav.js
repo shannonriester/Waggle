@@ -42,7 +42,6 @@ export default React.createClass({
         checkins: store.checkinCollection.toJSON(),
         matches: store.checkinCollection.toJSON(),
         messages: store.messagesCollection.toJSON(),
-        // places: store.placesCollection.toJSON(),
         users: store.userCollection.toJSON(),
         session: store.session.toJSON(),
         authtoken: localStorage.authtoken,
@@ -59,7 +58,7 @@ export default React.createClass({
     browserHistory.push('/');
   }
   store.checkinCollection.fetch();
-  store.messagesCollection.fetch();
+  // store.messagesCollection.fetch();
   store.session.on('change', this.updateState);
   },
   componentWillUnmount: function() {

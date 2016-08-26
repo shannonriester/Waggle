@@ -22,7 +22,7 @@ export default React.createClass({
             <label>settings</label>
           </li>
           <li>
-            <button className="connect-btn new-message-btn" onClick={this.props.messageUser}><i className="message-icon sent-match fa fa-comments-o" aria-hidden="true"></i></button>
+            <button className="connect-btn new-message-btn" onClick={this.props.message}><i className="message-icon sent-match fa fa-comments-o" aria-hidden="true"></i></button>
             <label>message</label>
           </li>
         </ul>

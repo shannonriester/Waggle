@@ -32,13 +32,13 @@ export default React.createClass({
     this.setState({interval:interval});
   },
   heroModalToggle: function(content) {
-    this.setState({hero:!this.state.hero});
-    this.setState({modal:!this.state.modal});
-    this.setState({content:content})
+    this.setState({hero: !this.state.hero});
+    this.setState({modal: !this.state.modal});
+    this.setState({content: content})
   },
   updateState: function() {
-    this.setState({authtoken:localStorage.getItem('authtoken')});
-    this.setState({city:store.session.get('city')});
+    this.setState({authtoken: localStorage.getItem('authtoken')});
+    this.setState({city: store.session.get('city')});
     // console.log(this.state.authtoken);
     if (this.state.authtoken) {
       // console.log(this.state.authtoken);

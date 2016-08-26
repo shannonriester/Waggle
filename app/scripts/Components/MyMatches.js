@@ -1,46 +1,63 @@
-import React, { Component } from 'react';
+import React from 'react';
+import Transition from 'react-addons-css-transition-group';
 import { Link } from 'react-router';
-var Slider = require('react-slick');
 
 import store from '../store';
 
 export default React.createClass({
   getInitialState: function() {
     return {
-        user: {},
+        users: [],
         matches: [],
+        scroll: '',
+    }
+  },
+  scrollLeft: function(e) {
+    e.preventDefault();
+    this.setState({scroll:'scroll-left'});
+  },
+  updateState: function() {
+    if (this.state.users.length !== this.state.matches.length) {
+      this.props.myMatches.forEach((person, i) => {
+        store.userCollection.findUser(person).then((response) => {
+          this.setState({users: response.toJSON()});
+        })
+      });
     }
   },
   componentWillReceiveProps: function(newProps) {
-    this.setState({matches: newProps});
+    this.setState({matches: newProps.myMatches});
+    this.updateState();
   },
   componentDidMount: function() {
-    this.state.user.forEach((user, i) => {
-      store.userCollection.findUser(user.username).then((response) => {
-        this.setState({user: response.toJSON()[0]});
-      })
-    });
+
   },
   render: function() {
-    let settings = {
-      arrows: true,
-      accessability: true,
-      speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      swipe: true,
+    let matchPreview;
+    // console.log(this.state.users);
+    // let styles = {backgroundImage: `url(${store.entryImages[this.state.images]})`};
+    // <Link className="link" to={`/user/${person}`}><img src='#'/></Link>
+    // <Link className="link" to={`/user/${person}`}><h3>{person}</h3></Link>
+    if (this.state.users.length) {
+      matchPreview = this.state.users.map((person, i) => {
+        console.log(person);
+          return (
+            <div id={this.state.scroll} className="current-match-preview" key={person.userId}>
+              <Link className="link" to={`/user/${person.username}`}><h3>{person.username}</h3></Link>
+              <Link className="link" to={`/user/${person.username}`}><img className="match-preview-img" src={person.profile.profilePic}/></Link>
+            </div>
+          );
+
+      });
     }
-    // <Slider ref="slider" {...settings}>
-    //   <div className="match-preview-container">
-    //     <Link className="link" to={`/user/{this.state.user.username}`}><h3>{this.state.user.username}</h3></Link>
-    //     <Link className="link" to={`/user/{this.state.user.username}`}><img src={this.state.user.profile.profilePic[0]} /></Link>
-    //   </div>
-    // </Slider>
+
 
     return (
       <div className="my-matches-component">
         <h2>Your Matches</h2>
+        <div className="matches-container">{matchPreview}</div>
 
+        <button className="matches-next-btn" onClick={this.scrollLeft}>next</button>
       </div>
     );
   }

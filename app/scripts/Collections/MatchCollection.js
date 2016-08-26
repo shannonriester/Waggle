@@ -7,7 +7,7 @@ const MatchCollection = Backbone.Collection.extend({
   url: `https://baas.kinvey.com/appdata/kid_SkBnla5Y/MatchCollection`,
   toggleMatch: function(session, likee) {
     let matchRequest = this.findMatch(session, likee).then((response) => {
-      console.log(response.models);
+      // console.log(response.models);
       if (response.models.length > 1) {
         this.findWhere({sender: session}).destroy();
         console.log('UNMATCHED WITH USER: ', likee);
@@ -41,7 +41,6 @@ const MatchCollection = Backbone.Collection.extend({
     });
   },
   allMyMatches: function(session) {
-    // console.log(session);
     return new Promise((resolve, reject) => {
       this.fetch({
       data: {query: JSON.stringify({
@@ -54,7 +53,6 @@ const MatchCollection = Backbone.Collection.extend({
         // console.log(response);
       let allMatchesArr = response.toJSON().filter((matchModel, i, arr) => {
           if (matchModel.sender === session && this.findWhere({sender: matchModel.likee})) {
-            console.log(matchModel.likee);
             return true;
           }
         }).map((model) => {

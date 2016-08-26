@@ -65,6 +65,40 @@
     margin: 10px 0;
     width: 100%;
   }
+
+  .my-matches-component {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-araound;
+    flex-direction: column;
+    height: 35vh;
+    width: 100%;
+  }
+  .matches-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+  }
+  .current-match-preview {
+    position: absolute;
+    width: 200px;
+    height: 180px;
+    left: 33%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .match-preview-img {
+    height: 5em;
+  }
+
+
   .user-recent-places-component {
     list-style-type: none;
     text-align: center;
