@@ -44,6 +44,7 @@ export default React.createClass({
       this.props.myMatches.forEach((person, i) => {
         store.userCollection.findUser(person).then((response) => {
           newPersonArr.push(response.toJSON()[0]);
+          newPersonArr = newPersonArr.sort();
           this.setState({
             users: newPersonArr,
             fetch: false,
@@ -72,7 +73,7 @@ export default React.createClass({
       matchPreview = this.state.users.map((person, i) => {
           return (
             <div className={`current-match-preview`} key={i}>
-              <Link className="link" to={`/user/${person.username}`}><h3>{person.username}</h3></Link>
+              <Link className="link" to={`/user/${person.username}`}><h3 className="match-heading">{person.username}</h3></Link>
               <Link className="link" to={`/user/${person.username}`}><img className="match-preview-img" src={person.profile.profilePic}/></Link>
             </div>
           );
@@ -82,12 +83,13 @@ export default React.createClass({
 
 
     return (
-      <div className="my-matches-component">
+      <div>
         <h2>Your Matches</h2>
-        <div id={this.state.scroll} className="matches-container">{matchPreview}</div>
-
-        <button className="matches-next-btn" onClick={this.scrollLeft}>next</button>
-        <button className="matches-next-btn" onClick={this.scrollRight}>previous</button>
+        <div className="matches-container">
+          <button className="matches-btn" onClick={this.scrollRight}><i className="arrow-icon fa fa-arrow-left" aria-hidden="true"></i></button>
+          <div id={this.state.scroll} className="match-preview-container">{matchPreview}</div>
+          <button className="matches-btn" onClick={this.scrollLeft}><i className="arrow-icon fa fa-arrow-right" aria-hidden="true"></i></button>
+        </div>
       </div>
     );
   }
