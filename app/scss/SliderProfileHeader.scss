@@ -1,13 +1,13 @@
 .slider-container {
-  margin: 0 auto;
-  width: 100%;
+  overflow: hidden;
+  // margin: 0 auto;
+  // width: 100%;
   img {
     object-fit: cover;
     height: 400px;
   }
 }
 .slick-prev, .slick-next {
-
   position: absolute;
   z-index: 1;
   top: 30%;
@@ -20,7 +20,7 @@
   color: #FFF;
   font-size: 11px;
   font-weight: bold;
-  display: none !important;
+  // display: none !important;
   &:hover {
     transition: 1s;
     background-color: rgba(#FFF, 1);
@@ -28,10 +28,9 @@
   }
 }
 .slick-next {
-
   position: absolute;
   z-index: 1;
   right: 0;
   padding: 16px;
-  display: none !important;
+  // display: none !important;
 }
