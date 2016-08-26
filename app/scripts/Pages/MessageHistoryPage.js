@@ -72,7 +72,7 @@ export default React.createClass({
     return (
       <div className="message-history-page-container">
         <Nav />
-        <ul>
+        <ul className="message-list">
           {messagesArr}
         </ul>
       </div>

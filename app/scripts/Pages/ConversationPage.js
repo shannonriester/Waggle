@@ -74,15 +74,19 @@ export default React.createClass({
       curr = curr.toJSON();
       if (store.session.get('username') === curr.sender || store.session.get('username') === curr.recipient) {
         let whoSent = 'not-me';
-        name = this.props.params.recipient;
+        let meContainer;
+        name = this.props.params.recipient + ':';
         if (this.state.session === curr.sender) {
           whoSent = 'me';
-          name = this.state.session;
+          meContainer = 'me-container';
+          name = '';
         }
         let content = (
-          <li key={i} className={whoSent}>
-            <p className="message-body">{name}: {curr.body}</p>
+          <li key={i} className={meContainer}>
+            <div className={whoSent}>
+            <p className="message-body"><span className="convo-name">{name}</span> {curr.body}</p>
             <data>{curr.momentTime}</data>
+            </div>
           </li>
         );
         return content;
@@ -92,7 +96,7 @@ export default React.createClass({
     return (
       <div className="conversation-page-component">
         <Nav/>
-        <Link to={`/user/${this.props.params.recipient}`} className="link">
+        <Link to={`/user/${this.props.params.recipient}`} className="link convo-with-link">
           <figure className="profile-pic" style={styles} alt="profile-picture of recipient"/>
           <h2>{this.props.params.recipient}</h2>
         </Link>

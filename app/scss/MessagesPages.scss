@@ -1,0 +1,109 @@
+//MESSAGE HISTORY PAGE STARTS HERE
+.message-history-page-container {
+  .message-list {
+    display: flex;
+    justify-content: space-around;
+    height: 85vh;
+    padding: 30px;
+    margin: 0;
+  }
+  li {
+    list-style-type: none;
+    border-bottom: solid 1px $border;
+    height: 15%;
+    &:hover {
+      transition: .5s;
+      color: $accent;
+      border-bottom: solid 1px $accent;
+    }
+  }
+  data {
+    color: $icon;
+  }
+}
+
+// CONVERSATION PAGE STARTS HERE
+.convo-with-link {
+  position: relative;
+  top: 50px;
+  border-bottom: solid 2px $border;
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 40px;
+
+  figure {
+    margin: 0;
+  }
+  h2 {
+    margin: 0 0 0 0;
+  }
+}
+
+.messages-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 20px 10px 20px;
+  margin: 0;
+  .me {
+    align-items: flex-end;
+  }
+  li {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    list-style-type: none;
+    width: 100%;
+    margin: 10px 0;
+    // padding: 10px;
+    font-size: 20px;
+    line-height: 2;
+
+    .message-content-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      width: 80%;
+      // border-radius: 10px;
+      border: solid 1px $border;
+    }
+
+    p {
+      margin: 0 5px 0 0;
+    }
+    span {
+      color: $accent;
+    }
+    data {
+      font-size: 12px;
+    }
+  }
+  .me-container {
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .me {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    width: 80%;
+    color: #EFF1EF;
+    background: #8D5A97;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+  .not-me {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 80%;
+    border: solid 1px $border;
+    background: none;
+    border-radius: 10px;
+    padding: 10px;
+  }
+
+}
