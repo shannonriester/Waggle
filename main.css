@@ -628,27 +628,42 @@
     padding: 0;
     margin: 10px 0;
     width: 100%; }
-  .profile-footer .my-matches-component {
+  .profile-footer h2 {
+    text-align: center;
+    margin: 0; }
+  .profile-footer .matches-container {
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: space-araound;
-    flex-direction: column;
-    height: 35vh;
+    justify-content: space-around;
+    height: 30vh;
     width: 100%; }
-  .profile-footer .matches-container {
+  .profile-footer .match-preview-container {
     position: relative;
-    width: 100%;
+    width: 75%;
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-around; }
-  .profile-footer .current-match-preview h3 {
-    margin: 0 5px 0 0; }
+    justify-content: space-around;
+    border-bottom: solid 1px #EBEBEB; }
+  .profile-footer .match-heading {
+    margin: 0 5px 0 0;
+    font-size: 1em; }
   .profile-footer .match-preview-img {
     height: 5em;
     width: 5em;
     border-radius: 50%; }
+  .profile-footer .matches-btn {
+    color: #F55959;
+    background: none;
+    outline: none;
+    border-radius: 50%;
+    border: solid 1px #EBEBEB;
+    font-size: 25px; }
+    .profile-footer .matches-btn:hover {
+      transition: .5s;
+      background: #F55959;
+      color: #FFF; }
   .profile-footer .user-recent-places-component {
     list-style-type: none;
     text-align: center;
