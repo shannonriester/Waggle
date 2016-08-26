@@ -1,0 +1,106 @@
+.settings-content-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  ul {
+    padding: 0;
+    margin: 0;
+    li {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 2em;
+      margin: 10px 0;
+      list-style-type: none;
+    }
+  }
+
+  .header-settings, .discovery-settings, .footer-settings {
+    width: 100%;
+    border-bottom: solid 1px $border;
+    padding: 10px;
+  }
+
+  .header-settings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // justify-content: space-around;
+    height: 50%;
+    // width: 100%;
+    line-height: 2em;
+  }
+
+  .settings-headings {
+    text-align: center;
+    margin: 0 10px 0 0;
+  }
+
+  .settings-label {
+    flex: 25;
+    color: $accent;
+    font-weight: bold;
+  }
+
+  p {
+    flex: 75;
+  }
+
+  .about-dog-settings {
+    width: 70%;
+  }
+
+  .about-session-settings {
+    width: 70%;
+  }
+
+  .edit-settings-btn {
+    float: right;
+  }
+
+
+
+
+
+  .discovery-settings {
+    // height: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .input-range {
+    width: 30%;
+  }
+
+
+
+
+
+
+  .footer-settings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 25%;
+    border-bottom: none;
+    button {
+      height: 30px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      background: #F55959;
+      color: #FFF;
+      font-size: 20px;
+      margin: 10px 0;
+      width: 14em;
+    }
+    .hide-me {
+      display: none;
+    }
+  }
+}

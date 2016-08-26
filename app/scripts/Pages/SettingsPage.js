@@ -99,9 +99,9 @@ render: function() {
     dogInfo = (
       <form onSubmit={this.saveDogInfo}>
         <ul className="edit-dog-info">
-          <li><label>Name: </label><input type="text" defaultValue={this.state.session.dog.dogName} ref="dogName" /></li>
-          <li><label>Breed: </label><input type="text" defaultValue={this.state.session.dog.dogBreed} ref="dogBreed" /></li>
-          <li><label>Age: </label><input type="text" defaultValue={this.state.session.dog.dogAge} ref="dogAge" /></li>
+          <li><label className="settings-label">Name: </label><input type="text" defaultValue={this.state.session.dog.dogName} ref="dogName" /></li>
+          <li><label className="settings-label">Breed: </label><input type="text" defaultValue={this.state.session.dog.dogBreed} ref="dogBreed" /></li>
+          <li><label className="settings-label">Age: </label><input type="text" defaultValue={this.state.session.dog.dogAge} ref="dogAge" /></li>
           <li><button className="form-btn" onClick={this.saveDogInfo}>Done</button></li>
         </ul>
         <input className="submit-btn" type="submit" />
@@ -110,20 +110,20 @@ render: function() {
   } else {
     dogInfo = (
       <ul>
-        <li><label>Name: </label>{this.state.session.dog.dogName}</li>
-        <li><label>Breed: </label>{this.state.session.dog.dogBreed}</li>
-        <li><label>Age: </label>{this.state.session.dog.dogAge}</li>
+        <li><label className="settings-label">Name: </label><p>{this.state.session.dog.dogName}</p></li>
+        <li><label className="settings-label">Breed: </label><p>{this.state.session.dog.dogBreed}</p></li>
+        <li><label className="settings-label">Age: </label><p>{this.state.session.dog.dogAge}</p></li>
       </ul>
     );
   }
   if (this.state.editingSelf) {
     selfInfo = (
       <form onSubmit={this.saveUserInfo}>
-        <ul className="edit-dog-info">
-          <li><label>Email: </label><input type="text" defaultValue={this.state.session.email} ref="email" /></li>
-          <li><label>First name: </label><input type="text" defaultValue={this.state.session.firstName} ref="firstName" /></li>
-          <li><label>Last name: </label><input type="text" defaultValue={this.state.session.lastName} ref="lastName" /></li>
-          <li><label>Age: </label><input type="text" defaultValue={this.state.session.age} ref="age" /></li>
+        <ul className="edit-self-info">
+          <li><label className="settings-label">Email: </label><input type="text" defaultValue={this.state.session.email} ref="email" /></li>
+          <li><label className="settings-label">First name: </label><input type="text" defaultValue={this.state.session.firstName} ref="firstName" /></li>
+          <li><label className="settings-label">Last name: </label><input type="text" defaultValue={this.state.session.lastName} ref="lastName" /></li>
+          <li><label className="settings-label">Age: </label><input type="text" defaultValue={this.state.session.age} ref="age" /></li>
           <li><button className="form-btn" onClick={this.saveUserInfo}>Done</button></li>
         </ul>
         <input className="submit-btn" type="submit" />
@@ -132,10 +132,10 @@ render: function() {
   } else {
     selfInfo = (
       <ul>
-        <li><label>email: </label>{this.state.session.email}</li>
-        <li><label>First name: </label>{this.state.session.firstName}</li>
-        <li><label>Last name: </label>{this.state.session.lastName}</li>
-        <li><label>Age: </label>{this.state.session.age}</li>
+        <li><label className="settings-label">email: </label><p>{this.state.session.email}</p></li>
+        <li><label className="settings-label">First name: </label><p>{this.state.session.firstName}</p></li>
+        <li><label className="settings-label">Last name: </label><p>{this.state.session.lastName}</p></li>
+        <li><label className="settings-label">Age: </label><p>{this.state.session.age}</p></li>
       </ul>
     );
   }
@@ -144,29 +144,33 @@ render: function() {
   return (
     <div className="settings-component">
       <Nav />
-      <header className="user-settings">
-        <div>
-          <h3>About your pup</h3>
-          <button className="edit-dog-btn" onClick={this.editDog}>Edit</button>
-          {dogInfo}
-          <h3>About you</h3>
-          <button className="edit-user-info" onClick={this.editSelf}>Edit</button>
-          {selfInfo}
-        </div>
-      </header>
+      <div className="settings-content-container">
+        <header className="header-settings">
+          <div className="about-dog-settings">
+            <h3 className="settings-headings">About your pup</h3>
+            <button className="edit-settings-btn" onClick={this.editDog}>Edit</button>
+            {dogInfo}
+          </div>
+          <div className="about-session-settings">
+            <h3 className="settings-headings">About you</h3>
+            <button className="edit-settings-btn" onClick={this.editSelf}>Edit</button>
+            {selfInfo}
+          </div>
+        </header>
 
-      <main className="discovery-settings">
-          <label>set the range for your searchs: </label>
-          <input type="range" value={this.state.range} step="1" min="1" max="25" step="1" ref="range" onChange={this.updateSlider}/>
-          <label>{this.state.range} miles</label>
-      </main>
+        <main className="discovery-settings">
+            <label className="settings-label">Discovery </label>
+            <input className="input-range" type="range" value={this.state.range} step="1" min="1" max="25" step="1" ref="range" onChange={this.updateSlider}/>
+            <label>{this.state.range} miles</label>
+        </main>
 
-      <footer className="logout-delete-section">
-        <button className="logout-btn" onClick={this.logout}>Logout</button>
-        <section className="logo-version-section">Version 1.0.0</section>
-        <button className="delete-account-btn">Delete Entire Chat Histoy</button>
-        <button className="delete-account-btn">Delete Account</button>
-      </footer>
+        <footer className="footer-settings">
+          <h2 className="version-heading">Version 1.0.0</h2>
+          <button className="logout-btn" onClick={this.logout}>Logout</button>
+          <button className="delete-account-btn hide-me">Delete Entire Chat Histoy</button>
+          <button className="delete-account-btn hide-me">Delete Account</button>
+        </footer>
+      </div>
     </div>
   );
 }
