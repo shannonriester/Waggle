@@ -681,20 +681,21 @@
 
 .message-history-page-container .message-list {
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   height: 85vh;
   padding: 30px;
   margin: 0; }
-.message-history-page-container li {
-  list-style-type: none;
-  border-bottom: solid 1px #EBEBEB;
-  height: 15%; }
-  .message-history-page-container li:hover {
-    transition: .5s;
-    color: #F55959;
-    border-bottom: solid 1px #F55959; }
-.message-history-page-container data {
-  color: #BCBDC0; }
+  .message-history-page-container .message-list li {
+    list-style-type: none;
+    border-bottom: solid 1px #EBEBEB;
+    height: 15%; }
+    .message-history-page-container .message-list li:hover {
+      transition: .5s;
+      color: #F55959;
+      border-bottom: solid 1px #F55959; }
+  .message-history-page-container .message-list data {
+    color: #BCBDC0; }
 
 .convo-with-link {
   position: relative;
