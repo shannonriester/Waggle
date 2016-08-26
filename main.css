@@ -152,8 +152,7 @@
     display: none; }
 
 .slider-container {
-  margin: 0 auto;
-  width: 100%; }
+  overflow: hidden; }
   .slider-container img {
     object-fit: cover;
     height: 400px; }
@@ -170,8 +169,7 @@
   background-color: rgba(255, 255, 255, 0.6);
   color: #FFF;
   font-size: 11px;
-  font-weight: bold;
-  display: none !important; }
+  font-weight: bold; }
   .slick-prev:hover, .slick-next:hover {
     transition: 1s;
     background-color: white;
@@ -181,8 +179,7 @@
   position: absolute;
   z-index: 1;
   right: 0;
-  padding: 16px;
-  display: none !important; }
+  padding: 16px; }
 
 .header-component {
   border-bottom: solid 1px #EBEBEB;
@@ -645,20 +642,12 @@
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    flex-direction: column; }
-  .profile-footer .current-match-preview {
-    position: absolute;
-    width: 200px;
-    height: 180px;
-    left: 33%;
-    display: flex;
-    flex-direction: column;
-    align-items: center; }
-    .profile-footer .current-match-preview h3 {
-      margin: 0 5px 0 0; }
+    justify-content: space-around; }
+  .profile-footer .current-match-preview h3 {
+    margin: 0 5px 0 0; }
   .profile-footer .match-preview-img {
     height: 5em;
+    width: 5em;
     border-radius: 50%; }
   .profile-footer .user-recent-places-component {
     list-style-type: none;
@@ -803,15 +792,38 @@
   border-radius: 50%;
   position: fixed; }
 
-#scroll-left {
-  animation: scroll-left 500ms; }
+#slide-out-left {
+  animation: slide-out-left 500ms; }
 
-@keyframes scroll-left {
+@keyframes slide-out-left {
   from {
-    left: 50%; }
+    transform: translateX(0%); }
   to {
-    left: -50%;
-    overflow-x: hidden; } }
+    transform: translateX(-100%); } }
+#slide-out-right {
+  animation: slide-out-right 500ms; }
+
+@keyframes slide-out-right {
+  from {
+    transform: translateX(0%); }
+  to {
+    transform: translateX(100%); } }
+#slide-in-left {
+  animation: slide-in-left 500ms; }
+
+@keyframes slide-in-left {
+  from {
+    transform: translateX(-100%); }
+  to {
+    transform: translateX(0%); } }
+#slide-in-right {
+  animation: slide-in-right 500ms; }
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%); }
+  to {
+    transform: translateX(0%); } }
 body {
   margin: 0;
   font-family: sans-serif;
