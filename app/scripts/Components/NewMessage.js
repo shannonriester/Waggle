@@ -24,10 +24,10 @@ export default React.createClass({
   render: function() {
     return (
       <div className="modal-component">
-        <form className="message-content-container" onSubmit={this.sendNewMessage}>
+        <form id="new-message-container" onSubmit={this.sendNewMessage}>
           <button className="cancel-btn" onClick={this.cancel}>cancel</button>
           <h2>Send {this.props.recipient} a message!</h2>
-          <input type="text" className="new-message-textarea" ref="textarea" tabIndex="0" />
+          <textarea className="new-message-textarea" ref="textarea" tabIndex="0" />
           <input className="submit-btn" type="submit" value="submit" role="button" />
           <button className="send-message-btn" onClick={this.sendNewMessage} tabIndex="1">send</button>
         </form>

@@ -84,10 +84,13 @@
   justify-content: center;
   background: rgba(0, 0, 0, 0.3);
   height: 100vh;
-  width: 100vw; }
+  width: 100vw;
+  z-index: 2; }
   .modal-component .modal-content {
     display: flex;
     background: #FFF;
+    height: 100%;
+    width: 100%;
     font-family: "Lato", sans-serif;
     overflow: scroll; }
   .modal-component form {
@@ -685,6 +688,40 @@
       color: rgba(85, 85, 85, 0.7);
       border-left: solid 2px #EBEBEB;
       padding-left: 5px; }
+
+#new-message-container {
+  background: white;
+  height: 50%;
+  width: 60%;
+  border-radius: 5px; }
+  #new-message-container .cancel-btn {
+    color: #F55959;
+    outline: none;
+    border: none;
+    background: none;
+    font-size: 1em; }
+  #new-message-container h2 {
+    margin: 0; }
+
+.new-message-textarea {
+  height: 50%;
+  width: 90%;
+  outline: none;
+  font-size: 1em; }
+
+.send-message-btn {
+  width: 50%;
+  background: #F55959;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  font-size: 1.5em; }
+  .send-message-btn:hover {
+    transition: .5s;
+    color: #F55959;
+    background: #FFF;
+    border: solid 1px #EBEBEB; }
 
 .message-history-page-container .message-list {
   display: flex;

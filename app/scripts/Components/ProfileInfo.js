@@ -44,7 +44,7 @@ export default React.createClass({
   },
   editProfile: function(e) {
     e.preventDefault();
-    store.session.set('editProfile', true);
+    store.session.set('editProfile', !store.session.get('editProfile'));
   },
   cancelEdit: function(e) {
     e.preventDefault();

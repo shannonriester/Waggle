@@ -147,3 +147,50 @@
 
   }
 }
+
+
+// MESSAGE MODAL STARTS HERE
+
+
+#new-message-container {
+  background: white;
+  height: 50%;
+  width: 60%;
+  border-radius: 5px;
+
+  .cancel-btn {
+    color: $accent;
+    outline: none;
+    border: none;
+    background: none;
+    font-size: 1em;
+  }
+
+  h2 {
+    margin: 0;
+  }
+
+}
+
+.new-message-textarea {
+  height: 50%;
+  width: 90%;
+  outline: none;
+  font-size: 1em;
+}
+
+.send-message-btn {
+  width: 50%;
+  background: $accent;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  font-size: 1.5em;
+  &:hover {
+    transition: .5s;
+    color: $accent;
+    background: #FFF;
+    border: solid 1px $border;
+  }
+}
