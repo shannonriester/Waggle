@@ -11,9 +11,12 @@ export default React.createClass({
       session: store.session.toJSON(),
       editProfile: store.session.get('editProfile'),
       user: this.props.user,
+      sentMatch: this.props.sentMatch,
+      findingMatchStatus: this.props.findingMatchStatus,
       matched: this.props.matched,
       profilePicSrc: [],
       files: [],
+
     }
   },
   saveEdits: function(e) {
@@ -69,6 +72,8 @@ export default React.createClass({
     this.setState({
       user: newProps.user,
       matched: newProps.matched,
+      sentMatch: newProps.sentMatch,
+      findingMatchStatus: newProps.findingMatchStatus,
     });
   },
   componentDidMount: function() {
@@ -141,7 +146,9 @@ export default React.createClass({
               session={this.state.session}
               user={this.state.user}
               message={this.props.messageUser}
+              findingMatchStatus={this.state.findingMatchStatus}
               toggleMatch={this.props.toggleMatch}
+              sentMatch={this.state.sentMatch}
               matched={this.state.matched}
               editProfile={this.editProfile}
             />

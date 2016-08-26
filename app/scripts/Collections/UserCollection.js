@@ -7,7 +7,6 @@ const UserCollection = Backbone.Collection.extend({
   url: `https://baas.kinvey.com/user/kid_SkBnla5Y/`,
   findUser: function(username) {
     return new Promise((resolve, reject) => {
-      console.log('in findUser');
       this.fetch({
       data: {query: JSON.stringify({username: username})},
       success: (response) => {

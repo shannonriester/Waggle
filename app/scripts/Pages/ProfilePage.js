@@ -21,7 +21,7 @@ export default React.createClass({
         newMessage: false,
         fetch: false,
         sentMatch: false,
-        receivedMatch: false,
+        // receivedMatch: false,
         allMyMatches: [],
         matched: false,
       }
@@ -38,10 +38,38 @@ export default React.createClass({
     }
   },
   toggleMatch: function() {
-    store.matchCollection.toggleMatch(this.state.session.username, this.props.params.userId);
-    this.setState({
-      sentMatch: !this.state.sentMatch,
-    });
+    this.setState({findingMatchStatus: true});
+
+    store.matchCollection.toggleMatch(this.state.session.username, this.props.params.userId)
+      .then((toggleResponse) => {
+        store.matchCollection.findMatch(this.state.session.username, this.props.params.userId).then((response)=> {
+
+          console.log('response after then: ', response);
+
+          if (response.length > 1) {
+            this.setState({
+              matched: true,
+              sentMatch: true,
+              findingMatchStatus: false,
+            });
+          } else {
+            this.setState({
+              matched: false,
+              findingMatchStatus: false,
+            });
+
+            // console.log(this.state.sentMatch);
+            // console.log((response[0]);
+            if (this.state.sentMatch || response[0].get('sender') === this.state.session.username) {
+              console.log('setting sentmatch to: ', !this.state.sentMatch);
+              this.setState({
+                sentMatch: !this.state.sentMatch,
+                findingMatchStatus: false,
+              });
+            }
+          }
+        });
+      })
     // this.updateState();
   },
   messageUser: function() {
@@ -55,7 +83,6 @@ export default React.createClass({
     browserHistory.push('/settings');
   },
   updateState: function() {
-    // console.log('in update state');
     this.setState({
       session: store.session.toJSON(),
       users: store.userCollection.toJSON(),
@@ -64,7 +91,15 @@ export default React.createClass({
     });
 
     if (!this.state.fetch && this.state.session.username){
-      console.log('am i infinite?');
+
+        // store.matchCollection.findMatch(this.state.session.username, this.props.params.userId)
+        // .then((response) => {
+        //   let sentReq = _.where(response, {sender:this.state.session.username});
+        //   if (sentReq.length) {
+        //     this.setState({sentMatch: true});
+        //   }
+        // })
+
       store.matchCollection.allMyMatches(this.state.session.username).then((response) => {
         let matchedArr = [];
         matchedArr.push(response);
@@ -74,9 +109,16 @@ export default React.createClass({
           fetch: true
         });
         store.matchCollection.findMatch(this.state.session.username, this.props.params.userId).then((response)=> {
-          console.log(response);
+          // console.log(response);
           if (response.length > 1) {
             this.setState({matched: true});
+          }
+
+          let sentReq = store.matchCollection.where({sender:this.state.session.username, likee:this.props.params.userId})
+          // console.log(sentReq);
+          if (sentReq.length) {
+            // console.log('sucess!');
+            this.setState({sentMatch: true});
           }
         });
       })
@@ -117,12 +159,13 @@ export default React.createClass({
     let newMessageModal;
     let myMatchesComponent;
     if (this.state.currentUser.username) {
-      // console.log(this.state.matched);
-
+        // console.log(this.state.matched);
         profileInfo = (<ProfileInfo
           user={this.state.currentUser}
           messageUser={this.messageUser}
           toggleMatch={this.toggleMatch}
+          findingMatchStatus={this.state.findingMatchStatus}
+          sentMatch={this.state.sentMatch}
           matched={this.state.matched}
           />);
     }
@@ -135,7 +178,6 @@ export default React.createClass({
 
     let userRecentPlaces;
     let myMatches = [];
-    // console.log(this.state);
     if (this.state.matched || this.props.params.userId === this.state.currentUser.username) {
         let placeIDArr = this.state.recentPlaces.map((place, i, arr) => {
           return place.place;

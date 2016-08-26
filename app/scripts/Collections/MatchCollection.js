@@ -6,30 +6,63 @@ const MatchCollection = Backbone.Collection.extend({
   model: MatchModel,
   url: `https://baas.kinvey.com/appdata/kid_SkBnla5Y/MatchCollection`,
   toggleMatch: function(session, likee) {
-    let matchRequest = this.findMatch(session, likee).then((response) => {
-      console.log(response);
-      if (response.length > 1) {
-        this.findWhere({sender: session, likee:likee}).destroy();
-        console.log('UNMATCHED WITH USER: ', likee);
-        return false;
-      } else if (response.length === 1 && response[0].sender === session) {
-        this.findWhere({sender:session, likee:likee}).destroy();
-        return false;
-      }
-        else {
-        this.create({sender: session, likee:likee},{
-          success: (model, response) => {
-            console.log('YOU MATCHED A PERSON!', model);
-            console.log('SENT MATCH REQUEST TO: ', likee);
-            return true;
+    return new Promise((resolve,reject) => {
+      let matchRequest = this.findMatch(session, likee).then((response) => {
+        console.log('toggleMatch response: ', response);
+        if (response.length) {
+          if (response.length > 1) {
+            this.findWhere({sender: session, likee:likee}).destroy({
+              success: () => {
+                resolve('unmatched')
+                console.log('UNMATCHED WITH USER: ', likee);
+
+              },
+              error: (e) => {
+                reject(e)
+              }
+            });
+
+            // return false;
+          } else if (response[0].get('sender') === session) {
+            console.log('already sent request');
+            this.findWhere({sender: session, likee: likee}).destroy({
+              success: () => {
+                resolve('unmatched')
+              },
+              error: (e) => {
+                reject(e)
+              }
+            });
+            // resolve('unmatched')
+            // return false;
+          } else {
+              console.log('creating match');
+              this.create({sender: session, likee:likee},{
+                success: (model, response) => {
+                  console.log('YOU MATCHED A PERSON!', model);
+                  console.log('SENT MATCH REQUEST TO: ', likee);
+                  resolve('sent match')
+                  // return true;
+                }
+            });
           }
-        });
-      }
-    });
+        } else {
+          console.log('creating match');
+          this.create({sender: session, likee:likee},{
+            success: (model, response) => {
+              console.log('YOU MATCHED A PERSON!', model);
+              console.log('SENT MATCH REQUEST TO: ', likee);
+              resolve('sent match')
+              // return true;
+            }
+          });
+        }
+
+      });
+    })
   },
   findMatch: function(session, likee) {
     //mongo: DOCUMENT DATA (not relational) database (just stores json data)
-
     return new Promise((resolve, reject) => {
       this.fetch({
       data: {query: JSON.stringify({
@@ -39,16 +72,14 @@ const MatchCollection = Backbone.Collection.extend({
         ]
       })},
       success: (response) => {
-        // console.log(response);
         let findMatches = response.models.filter((model, i) => {
-          // console.log(model);
           if ((model.get('sender') === session && model.get('likee') === likee) || (model.get('sender') === likee && model.get('likee') === session)) {
             return true;
           } else {
             return false;
           }
         });
-        console.log(findMatches);
+        // console.log(findMatches);
         resolve (findMatches);
       },
       error: function (response) {
@@ -58,7 +89,6 @@ const MatchCollection = Backbone.Collection.extend({
     });
   },
   allMyMatches: function(session) {
-
     return new Promise((resolve, reject) => {
       this.fetch({
       data: {query: JSON.stringify({
@@ -68,7 +98,6 @@ const MatchCollection = Backbone.Collection.extend({
         ]
       })},
       success: (response) => {
-        // console.log(response);
       let allMatchesArr = response.toJSON().filter((matchModel, i, arr) => {
           if (matchModel.sender === session && this.findWhere({sender: matchModel.likee})) {
             return true;

@@ -26,11 +26,11 @@ export default React.createClass({
     // }
   },
   componentWillReceiveProps: function(newProps) {
-    console.log('receiving props');
+    // console.log('receiving props');
     this.setState({matches: newProps.myMatches});
 
-    console.log(newProps.myMatches);
-    console.log(this.state.users.length + '|' + newProps.myMatches.length);
+    // console.log(newProps.myMatches);
+    // console.log(this.state.users.length + '|' + newProps.myMatches.length);
     // if (this.state.users.length !== newProps.myMatches.length) {
     //   this.props.myMatches.forEach((person, i) => {
     //     store.userCollection.findUser(person).then((response) => {

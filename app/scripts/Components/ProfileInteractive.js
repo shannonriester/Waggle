@@ -7,11 +7,12 @@ export default React.createClass({
   },
   componentWillReceiveProps: function(newProps) {
     // console.log(newProps.matched);
+    // console.log(newProps);
   },
   render: function() {
     let interactiveNav;
-    let sentMatchBtn = (<i className="heart-icon fa fa-heart-o" aria-hidden="true"></i>);
-    let matchStatus = 'match with ';
+    let sentMatchBtn;
+    let matchStatus;
 
     if (this.props.session.username === this.props.user.username) {
       interactiveNav = (
@@ -31,14 +32,27 @@ export default React.createClass({
         </ul>
       );
     } else {
-      console.log(this.props.sentMatch);
-      if (this.props.matched) {
+      // console.log(this.props.sentMatch);
+      // console.log(this.props.findingMatchStatus);
+      if (this.props.findingMatchStatus) {
+        sentMatchBtn = (<i className="heart-icon fa fa-spinner fa-pulse fa-fw"></i>);
+
+        matchStatus = 'matching...'
+      } else if (this.props.matched) {
         sentMatchBtn = (<i className="heart-icon matched fa fa-heart" aria-hidden="true"></i>)
         matchStatus = 'matched with!'
       } else if (this.props.sentMatch) {
+        // console.log('sent match working');
         sentMatchBtn = (<i className="heart-icon sent-match fa fa-heart" aria-hidden="true"></i>);
         matchStatus = 'sent match...';
+      } else {
+         sentMatchBtn = (<i className="heart-icon fa fa-heart-o" aria-hidden="true"></i>);
+          matchStatus = 'match with ';
       }
+
+
+
+
       interactiveNav = (
         <ul className="profile-sub-nav">
           <li>
