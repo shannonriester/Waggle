@@ -2,24 +2,26 @@
 .message-history-page-container {
   .message-list {
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     height: 85vh;
     padding: 30px;
     margin: 0;
-  }
-  li {
-    list-style-type: none;
-    border-bottom: solid 1px $border;
-    height: 15%;
-    &:hover {
-      transition: .5s;
-      color: $accent;
-      border-bottom: solid 1px $accent;
+    li {
+      list-style-type: none;
+      border-bottom: solid 1px $border;
+      height: 15%;
+      &:hover {
+        transition: .5s;
+        color: $accent;
+        border-bottom: solid 1px $accent;
+      }
+    }
+    data {
+      color: $icon;
     }
   }
-  data {
-    color: $icon;
-  }
+
 }
 
 // CONVERSATION PAGE STARTS HERE
