@@ -652,8 +652,11 @@
     display: flex;
     flex-direction: column;
     align-items: center; }
+    .profile-footer .current-match-preview h3 {
+      margin: 0 5px 0 0; }
   .profile-footer .match-preview-img {
-    height: 5em; }
+    height: 5em;
+    border-radius: 50%; }
   .profile-footer .user-recent-places-component {
     list-style-type: none;
     text-align: center;
@@ -676,16 +679,86 @@
       border-left: solid 2px #EBEBEB;
       padding-left: 5px; }
 
+.message-history-page-container .message-list {
+  display: flex;
+  justify-content: space-around;
+  height: 85vh;
+  padding: 30px;
+  margin: 0; }
+.message-history-page-container li {
+  list-style-type: none;
+  border-bottom: solid 1px #EBEBEB;
+  height: 15%; }
+  .message-history-page-container li:hover {
+    transition: .5s;
+    color: #F55959;
+    border-bottom: solid 1px #F55959; }
+.message-history-page-container data {
+  color: #BCBDC0; }
+
+.convo-with-link {
+  position: relative;
+  top: 50px;
+  border-bottom: solid 2px #EBEBEB;
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 40px; }
+  .convo-with-link figure {
+    margin: 0; }
+  .convo-with-link h2 {
+    margin: 0 0 0 0; }
+
 .messages-container {
   display: flex;
-  padding: 20px;
+  flex-direction: column;
+  padding: 20px 20px 10px 20px;
   margin: 0; }
+  .messages-container .me {
+    align-items: flex-end; }
   .messages-container li {
-    list-style-type: none; }
-
-.me {
-  background: #8D5A97;
-  color: #EFF1EF; }
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    list-style-type: none;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 20px;
+    line-height: 2; }
+    .messages-container li .message-content-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      width: 80%;
+      border: solid 1px #EBEBEB; }
+    .messages-container li p {
+      margin: 0 5px 0 0; }
+    .messages-container li span {
+      color: #F55959; }
+    .messages-container li data {
+      font-size: 12px; }
+  .messages-container .me-container {
+    display: flex;
+    align-items: flex-end; }
+  .messages-container .me {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    width: 80%;
+    color: #EFF1EF;
+    background: #8D5A97;
+    border-radius: 10px;
+    padding: 10px; }
+  .messages-container .not-me {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 80%;
+    border: solid 1px #EBEBEB;
+    background: none;
+    border-radius: 10px;
+    padding: 10px; }
 
 #shake {
   animation: 300ms shake; }
