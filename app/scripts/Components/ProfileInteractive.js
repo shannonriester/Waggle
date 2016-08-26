@@ -5,6 +5,9 @@ export default React.createClass({
   goToSettings: function() {
     browserHistory.push('/settings');
   },
+  componentWillReceiveProps: function(newProps) {
+    // console.log(newProps.matched);
+  },
   render: function() {
     let interactiveNav;
     let sentMatchBtn = (<i className="heart-icon fa fa-heart-o" aria-hidden="true"></i>);
@@ -28,7 +31,7 @@ export default React.createClass({
         </ul>
       );
     } else {
-
+      console.log(this.props.sentMatch);
       if (this.props.matched) {
         sentMatchBtn = (<i className="heart-icon matched fa fa-heart" aria-hidden="true"></i>)
         matchStatus = 'matched with!'

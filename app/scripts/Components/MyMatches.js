@@ -17,16 +17,27 @@ export default React.createClass({
     this.setState({scroll:'scroll-left'});
   },
   updateState: function() {
-    if (this.state.users.length !== this.state.matches.length) {
-      this.props.myMatches.forEach((person, i) => {
-        store.userCollection.findUser(person).then((response) => {
-          this.setState({users: response.toJSON()});
-        })
-      });
-    }
+    // if (this.state.users.length !== this.state.matches.length) {
+    //   this.props.myMatches.forEach((person, i) => {
+    //     store.userCollection.findUser(person).then((response) => {
+    //       this.setState({users: response.toJSON()});
+    //     })
+    //   });
+    // }
   },
   componentWillReceiveProps: function(newProps) {
+    console.log('receiving props');
     this.setState({matches: newProps.myMatches});
+
+    console.log(newProps.myMatches);
+    console.log(this.state.users.length + '|' + newProps.myMatches.length);
+    // if (this.state.users.length !== newProps.myMatches.length) {
+    //   this.props.myMatches.forEach((person, i) => {
+    //     store.userCollection.findUser(person).then((response) => {
+    //       this.setState({users: response.toJSON()});
+    //     })
+    //   });
+    // }
     this.updateState();
   },
   componentDidMount: function() {
@@ -40,7 +51,7 @@ export default React.createClass({
     // <Link className="link" to={`/user/${person}`}><h3>{person}</h3></Link>
     if (this.state.users.length) {
       matchPreview = this.state.users.map((person, i) => {
-        console.log(person);
+        // console.log(person);
           return (
             <div id={this.state.scroll} className="current-match-preview" key={person.userId}>
               <Link className="link" to={`/user/${person.username}`}><h3>{person.username}</h3></Link>

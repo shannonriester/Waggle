@@ -61,10 +61,12 @@ export default React.createClass({
       }
     },
     componentWillMount: function() {
-      store.checkinCollection.fetch();
-      store.userCollection.fetch();
+
     },
     componentDidMount: function() {
+      store.checkinCollection.fetch();
+      store.userCollection.fetch();
+      
       if (store.placesCollection.findWhere({yelpID: this.props.params.placeId}) &&  store.checkinCollection.where({place:this.props.params.placeId})){
         this.setState({
           users: store.userCollection.toJSON(),

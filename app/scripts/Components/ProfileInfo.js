@@ -126,7 +126,7 @@ export default React.createClass({
     }
       //this was the <div> before using asset background images
     // <div className="profile-background-images" style={styles}> {bkgrndImgForm}</div>
-
+    // console.log(this.state.matched);
     return (
       <div className="profile-info-component">
         <section className="header-profile-section">

@@ -7,12 +7,16 @@ const MatchCollection = Backbone.Collection.extend({
   url: `https://baas.kinvey.com/appdata/kid_SkBnla5Y/MatchCollection`,
   toggleMatch: function(session, likee) {
     let matchRequest = this.findMatch(session, likee).then((response) => {
-      // console.log(response.models);
-      if (response.models.length > 1) {
-        this.findWhere({sender: session}).destroy();
+      console.log(response);
+      if (response.length > 1) {
+        this.findWhere({sender: session, likee:likee}).destroy();
         console.log('UNMATCHED WITH USER: ', likee);
         return false;
-      } else {
+      } else if (response.length === 1 && response[0].sender === session) {
+        this.findWhere({sender:session, likee:likee}).destroy();
+        return false;
+      }
+        else {
         this.create({sender: session, likee:likee},{
           success: (model, response) => {
             console.log('YOU MATCHED A PERSON!', model);
@@ -25,6 +29,7 @@ const MatchCollection = Backbone.Collection.extend({
   },
   findMatch: function(session, likee) {
     //mongo: DOCUMENT DATA (not relational) database (just stores json data)
+
     return new Promise((resolve, reject) => {
       this.fetch({
       data: {query: JSON.stringify({
@@ -33,7 +38,19 @@ const MatchCollection = Backbone.Collection.extend({
           {sender: likee, likee: session},
         ]
       })},
-      success: resolve,
+      success: (response) => {
+        // console.log(response);
+        let findMatches = response.models.filter((model, i) => {
+          // console.log(model);
+          if ((model.get('sender') === session && model.get('likee') === likee) || (model.get('sender') === likee && model.get('likee') === session)) {
+            return true;
+          } else {
+            return false;
+          }
+        });
+        console.log(findMatches);
+        resolve (findMatches);
+      },
       error: function (response) {
           console.error('FAILED TO FETCH MY MESSAGES ', response);
           reject();
@@ -41,6 +58,7 @@ const MatchCollection = Backbone.Collection.extend({
     });
   },
   allMyMatches: function(session) {
+
     return new Promise((resolve, reject) => {
       this.fetch({
       data: {query: JSON.stringify({

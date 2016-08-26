@@ -12,7 +12,7 @@ export default React.createClass({
     let checkedinPreview = this.props.checkedin.map((model, i, arr) => {
       return (
         <div className="userpreview-container" key={i}>
-          <Link className="link" to={`/user/{model.userCheckedin}`}>
+          <Link className="link" to={`/user/${model.userCheckedin}`}>
             <figure key={i} className="userpreview-container" style={userImg[i]}></figure>
             <h3>{model.userCheckedin}</h3>
           </Link>

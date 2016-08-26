@@ -19,8 +19,8 @@ export default React.createClass({
     store.checkinCollection.where({place: this.props.id});
   },
   componentDidMount: function() {
-    store.checkinCollection.fetch();
-    store.checkinCollection.where({place: this.props.id});
+    // store.checkinCollection.fetch();
+    // store.checkinCollection.where({place: this.props.id});
 
     store.checkinCollection.on('change update', this.updateState);
   },

@@ -22,7 +22,8 @@ export default React.createClass({
         fetch: false,
         sentMatch: false,
         receivedMatch: false,
-        allMyMatches: []
+        allMyMatches: [],
+        matched: false,
       }
   },
   fetchPlaces: function() {
@@ -41,6 +42,7 @@ export default React.createClass({
     this.setState({
       sentMatch: !this.state.sentMatch,
     });
+    // this.updateState();
   },
   messageUser: function() {
     this.setState({newMessage: true});
@@ -53,29 +55,35 @@ export default React.createClass({
     browserHistory.push('/settings');
   },
   updateState: function() {
+    // console.log('in update state');
     this.setState({
       session: store.session.toJSON(),
       users: store.userCollection.toJSON(),
       checkinCollection: store.checkinCollection.toJSON(),
       placesCollection: store.placesCollection.toJSON(),
     });
-    if (!this.state.fetch && this.state.session.username) {
-      store.matchCollection.findMatch(this.state.session.username, this.props.params.userId).then((response)=> {
-        if (response.models.length >= 2) {
-          this.setState({matched: true});
-        }
-      });
 
+    if (!this.state.fetch && this.state.session.username){
+      console.log('am i infinite?');
       store.matchCollection.allMyMatches(this.state.session.username).then((response) => {
         let matchedArr = [];
         matchedArr.push(response);
         matchedArr = _.flatten(matchedArr)
         this.setState({
           allMyMatches: matchedArr,
-          fetch: true,
+          fetch: true
         });
-      });
-      this.setState({fetch: true});
+        store.matchCollection.findMatch(this.state.session.username, this.props.params.userId).then((response)=> {
+          console.log(response);
+          if (response.length > 1) {
+            this.setState({matched: true});
+          }
+        });
+      })
+      .catch((e) => {
+        console.error(e);
+        this.setState({fetch: true});
+      }) ;
     }
   },
   componentWillReceiveProps: function(newProps) {
@@ -109,6 +117,8 @@ export default React.createClass({
     let newMessageModal;
     let myMatchesComponent;
     if (this.state.currentUser.username) {
+      // console.log(this.state.matched);
+
         profileInfo = (<ProfileInfo
           user={this.state.currentUser}
           messageUser={this.messageUser}
@@ -125,6 +135,7 @@ export default React.createClass({
 
     let userRecentPlaces;
     let myMatches = [];
+    // console.log(this.state);
     if (this.state.matched || this.props.params.userId === this.state.currentUser.username) {
         let placeIDArr = this.state.recentPlaces.map((place, i, arr) => {
           return place.place;
@@ -157,7 +168,6 @@ export default React.createClass({
         <Nav />
           {newMessageModal}
           {profileInfo}
-
         <footer className="profile-footer">
           <div className="matched-wagglrs">
             {myMatches}
