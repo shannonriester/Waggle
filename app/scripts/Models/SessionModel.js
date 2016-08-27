@@ -235,6 +235,7 @@ const SessionModel = Backbone.Model.extend({
     this.save(
       { username: newUsername, password: password},
       { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/login`,
+        type: 'POST',
         success: (model, response) => {
           localStorage.setItem('authtoken', response._kmd.authtoken);
           this.unset('password');
@@ -258,6 +259,7 @@ const SessionModel = Backbone.Model.extend({
     },
     {
       url: `https://baas.kinvey.com/user/kid_SkBnla5Y/`,
+      type: 'POST',
       success: (model, response) => {
         localStorage.removeItem('authtoken');
         localStorage.setItem('authtoken', response._kmd.authtoken);
@@ -271,13 +273,15 @@ const SessionModel = Backbone.Model.extend({
     });
   },
   logout: function(query, range){
-    this.clear();
-    console.log('logout on session');
+    // this.clear();
+    // console.log('logout on session');
     this.save(null,
       { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/_logout`,
+        type: 'POST',
         success: (model, response) => {
-          model.clear();
+          // model.clear();
           localStorage.clear();
+          this.unset('authtoken');
 
           this.set('query', query);
           this.set('range', range);

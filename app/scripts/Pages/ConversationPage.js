@@ -48,14 +48,14 @@ export default React.createClass({
   componentDidMount: function() {
     store.userCollection.fetch();
     store.messagesCollection.fetch();
-    // store.userCollection.where({username: this.props.params.recipient});
+
     store.session.on('change', this.updateState);
-    store.userCollection.on('change update', this.updateState);
+    store.userCollection.on('update', this.updateState);
     store.messagesCollection.on('change update', this.updateState);
   },
   componentWillUnmount: function() {
     store.session.off('change', this.updateState);
-    store.userCollection.off('change update', this.updateState);
+    store.userCollection.off('update', this.updateState);
     store.messagesCollection.off('change update', this.updateState);
     clearInterval(this.state.interval);
   },

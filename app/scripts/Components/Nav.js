@@ -54,18 +54,17 @@ export default React.createClass({
     }
   },
   componentDidMount: function() {
-  if (!this.state.authtoken) {
-    browserHistory.push('/');
-  }
-  store.checkinCollection.fetch();
-  // store.messagesCollection.fetch();
-  store.session.on('change', this.updateState);
+    if (!this.state.authtoken) {
+      browserHistory.push('/');
+    }
+    // store.checkinCollection.fetch();
+    // store.messagesCollection.fetch();
+    store.session.on('change', this.updateState);
   },
   componentWillUnmount: function() {
     store.session.off('change', this.updateState);
   },
   render: function() {
-    //<i className="nav-icon paw-icon fa fa-paw" aria-hidden="true" onClick={this.logout}></i>
     return (
       <nav className="nav-component">
           <ul>

@@ -29,7 +29,7 @@ export default Backbone.Collection.extend({
           session.set('recentPlaces', oldPlaces.concat(model.toJSON()));
           userModel.set('recentPlaces', oldPlaces.concat(model.toJSON()));
 
-          console.log('userModel recentPlaces', userModel.get('recentPlaces'));
+          // console.log('userModel recentPlaces', userModel.get('recentPlaces'));
 
         }, error: function(model, response) {
           throw new Error('FAILED TO CHECKIN');

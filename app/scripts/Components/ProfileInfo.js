@@ -14,7 +14,6 @@ export default React.createClass({
       sentMatch: this.props.sentMatch,
       findingMatchStatus: this.props.findingMatchStatus,
       matched: this.props.matched,
-      // kinveyFiles: [],
       profilePicSrc: '',
       files: [],
 
@@ -96,8 +95,6 @@ export default React.createClass({
     let styles;
     let previewStyles;
     let bkgrndImgForm;
-
-    // console.log(this.state.user.username);
 
     if (!this.state.editProfile && this.state.user.username) {
       styles = this.state.user.profile.profilePic;
