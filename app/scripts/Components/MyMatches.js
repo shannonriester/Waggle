@@ -36,25 +36,16 @@ export default React.createClass({
   },
   updateState: function() {
     let newPersonArr = [];
-    // console.log(this.state.matches);
-    // console.log(this.state.users);
     if (this.state.fetch && this.state.matches.length) {
-      // console.log(this.state);
-
       this.state.matches.forEach((person, i) => {
-        // console.log(person);
         store.userCollection.findUser(person).then((response) => {
-          // console.log(response);
           newPersonArr.push(response.toJSON());
-          // newPersonArr = newPersonArr.sort();
-
           this.setState({
             users: newPersonArr,
             fetch: false,
           });
-
-          // console.log(this.state.users);
         })
+
       });
     }
   },
@@ -81,7 +72,6 @@ export default React.createClass({
       });
       matchPreview = matchPreview.slice(this.state.viewing, this.state.viewing + 3);
     }
-
 
     return (
       <div>

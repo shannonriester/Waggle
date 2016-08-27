@@ -108,14 +108,14 @@ export default React.createClass({
   },
   componentWillReceiveProps: function(newProps) {
     store.userCollection.findMe(newProps.params.userId).then((response) => {
-      this.setState({currentUser: response[0], fetch: false});
+      this.setState({currentUser: response.toJSON(), fetch: false});
       this.updateState();
     });
   },
   componentDidMount: function() {
     store.userCollection.findMe(this.props.params.userId).then((response) => {
       console.log(response);
-      this.setState({currentUser: response[0]});
+      this.setState({currentUser: response.toJSON()});
     });
 
     store.session.on('change', this.updateState);
@@ -138,6 +138,7 @@ export default React.createClass({
     let profileInfo;
     let newMessageModal;
     let myMatchesComponent;
+    // console.log(this.state.currentUser);
     if (this.state.currentUser.username) {
         // console.log(this.state.currentUser);
         profileInfo = (<ProfileInfo
