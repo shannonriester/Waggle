@@ -21,7 +21,7 @@ export default ({
   settings: {
       appKey: 'kid_SkBnla5Y',
       appSecret: 'e7a59b1546d74c5e824901fbab190092',
-      basicAuth: btoa('kid_SkBnla5Y:e7a59b1546d74c5e824901fbab190092')
+      basicAuth: btoa('kid_SkBnla5Y:e7a59b1546d74c5e824901fbab190092'),
     },
   entryImages: [
     '/assets/BeachFun.jpeg',

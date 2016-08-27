@@ -14,7 +14,8 @@ export default React.createClass({
       sentMatch: this.props.sentMatch,
       findingMatchStatus: this.props.findingMatchStatus,
       matched: this.props.matched,
-      profilePicSrc: [],
+      // kinveyFiles: [],
+      profilePicSrc: '',
       files: [],
 
     }
@@ -22,16 +23,15 @@ export default React.createClass({
   saveEdits: function(e) {
     e.preventDefault();
     let newBody = this.refs.aboutInfo.value;
-      let newProfilePic = this.state.profilePicSrc;
+    // let newProfilePic = this.state.profilePicSrc;
 
-      let userProfileUpdate = store.userCollection.get(this.state.user._id);
+    let userProfileUpdate = store.userCollection.get(this.state.user._id);
 
-    if (this.state.files.length) {
-      console.log(this.state.files);
-      userProfileUpdate.updateProfile(newProfilePic, newBody)
-    }
-    userProfileUpdate.updateProfile(newProfilePic, newBody)
-    store.session.updateProfile(newProfilePic, newBody);
+    // if (this.state.files.length) {
+    //   userProfileUpdate.updateProfile(newProfilePic, newBody)
+    // }
+    userProfileUpdate.updateProfile(this.refs.file.files[0], newBody);
+    store.session.updateProfile(this.refs.file.files[0], newBody);
   },
   onDrop: function(files) {
     files.forEach((file, i) => {
@@ -45,7 +45,6 @@ export default React.createClass({
     });
   },
   editProfile: function(e) {
-    console.log('in the editProfile function', store.session.get('editProfile'));
     e.preventDefault();
     store.session.set('editProfile', !store.session.get('editProfile'));
   },
@@ -72,7 +71,6 @@ export default React.createClass({
   updateState: function() {
     this.setState({
       session: store.session.toJSON(),
-      user: store.userCollection.toJSON(),
       editProfile: store.session.get('editProfile'),
   });
   },
@@ -81,7 +79,7 @@ export default React.createClass({
       user: newProps.user,
       matched: newProps.matched,
       sentMatch: newProps.sentMatch,
-      profilePicSrc: newProps.user.profile.profilePic[0],
+      profilePicSrc: newProps.user.profile.profilePic,
       findingMatchStatus: newProps.findingMatchStatus,
     });
   },
@@ -98,6 +96,8 @@ export default React.createClass({
     let styles;
     let previewStyles;
     let bkgrndImgForm;
+
+    console.log(this.state.user.username);
 
     if (!this.state.editProfile && this.state.user.username) {
       styles = this.state.profilePicSrc;
@@ -218,7 +218,7 @@ export default React.createClass({
         </main>
       </div>);
   }
-
+  // console.log(this.state.profilePicSrc);
     return (
       <div className="profile-info-component">
         {content}

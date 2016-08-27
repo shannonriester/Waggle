@@ -11,7 +11,7 @@ store.session.apiGeoLocation();
 
 
 $(document).ajaxSend(function(e, xhrAjax, jqueryAjax) {
-  if (jqueryAjax.url.indexOf('kinvey') !== -1) {
+  if (jqueryAjax.url.indexOf('kinvey') !== -1 && jqueryAjax.url.indexOf('blob') === -1) {
     if (localStorage.authtoken) {
       xhrAjax.setRequestHeader('Authorization', `Kinvey ${localStorage.authtoken}`);
     } else {

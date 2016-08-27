@@ -119,18 +119,18 @@ export default React.createClass({
 
     store.session.on('change', this.updateState);
     store.userCollection.on('change update', this.updateState);
-    store.checkinCollection.on('change update', this.updateState);
-    store.checkinCollection.on('change update', this.fetchPlaces);
-    store.placesCollection.on('change update', this.updateState);
-    store.matchCollection.on('change update', this.updateState);
+    store.checkinCollection.on('update', this.updateState);
+    store.checkinCollection.on('update', this.fetchPlaces);
+    store.placesCollection.on('update', this.updateState);
+    store.matchCollection.on('update', this.updateState);
   },
   componentWillUnmount: function() {
     store.session.off('change', this.updateState);
     store.userCollection.off('change update', this.updateState);
-    store.checkinCollection.off('change update', this.updateState);
-    store.checkinCollection.off('change update', this.fetchPlaces);
-    store.placesCollection.off('change update', this.updateState);
-    store.matchCollection.off('change update', this.updateState);
+    store.checkinCollection.off('update', this.updateState);
+    store.checkinCollection.off('update', this.fetchPlaces);
+    store.placesCollection.off('update', this.updateState);
+    store.matchCollection.off('update', this.updateState);
   },
   render: function() {
     let sessionNav;
