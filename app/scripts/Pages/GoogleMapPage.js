@@ -12,6 +12,7 @@ let GoogleMapPage = React.createClass({
     });
   },
   render: function() {
+    let myLocation;
     let placeMarker = this.props.resultsList.map((place, i) => {
       let lat = place.props.place.ll.latitude;
       let lng = place.props.place.ll.longitude;
@@ -26,12 +27,15 @@ let GoogleMapPage = React.createClass({
                 />);
     });
 
-    let myLocation = (<PlaceMarker
-                      id="my-location"
-                      lat={this.props.coordinates[0]}
-                      lng={this.props.coordinates[1]}
-                      onClick={this.clickedMe}
-                      clickedMap={this.clickedMap}/>);
+    if (store.session.get('coordinates')) {
+      myLocation = (<PlaceMarker
+                        id="my-location"
+                        lat={this.props.coordinates[0]}
+                        lng={this.props.coordinates[1]}
+                        onClick={this.clickedMe}
+                        clickedMap={this.clickedMap}/>);
+    }
+
 
     return (
        <GoogleMap

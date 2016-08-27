@@ -40,10 +40,14 @@ export default React.createClass({
       this.state.matches.forEach((person, i) => {
         store.userCollection.findUser(person).then((response) => {
           newPersonArr.push(response.toJSON());
-          this.setState({
-            users: newPersonArr,
-            fetch: false,
-          });
+
+          if (newPersonArr.length === this.state.matches.length) {
+            this.setState({
+              users: newPersonArr,
+              fetch: false,
+            });
+          }
+
         })
 
       });

@@ -97,10 +97,11 @@ export default React.createClass({
     let previewStyles;
     let bkgrndImgForm;
 
-    console.log(this.state.user.username);
+    // console.log(this.state.user.username);
 
     if (!this.state.editProfile && this.state.user.username) {
-      styles = this.state.profilePicSrc;
+      styles = this.state.user.profile.profilePic;
+      console.log(this.state.user);
       textareaBio = null;
 
       content = (
