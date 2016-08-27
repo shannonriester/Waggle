@@ -83,14 +83,14 @@ export default React.createClass({
     store.session.off('change', this.updateState);
   },
   render: function() {
+    // console.log('newProps.matched on profileInfo', this.state.matched);
+
+
     let profileBody;
     let profilePicFile;
     let styles;
     let bkgrndImgForm;
 
-    // if (this.state.user.bkgrndImgs.length) {
-    //   styles = {backgroundImage: 'url(' + this.state.user.bkgrndImgs[0] + ')'};
-    // }
     if (!this.state.editProfile) {
         profileBody =(
           <p className="about-bio">
@@ -129,9 +129,7 @@ export default React.createClass({
           </div>
         </form>);
     }
-      //this was the <div> before using asset background images
-    // <div className="profile-background-images" style={styles}> {bkgrndImgForm}</div>
-    // console.log(this.state.matched);
+
     return (
       <div className="profile-info-component">
         <section className="header-profile-section">
@@ -140,7 +138,10 @@ export default React.createClass({
           <div className="profile-pic-container">
             {profilePicFile}
             <div className="profile-pic-preview" style={{backgroundImage: `url(${this.state.profilePicSrc})`}}></div>
-            <figure className="profile-pic" style={{backgroundImage: `url(${this.state.user.profile.profilePic})`}}></figure>
+            <section className="profile-pic-section">
+              <figure className="profile-pic" style={{backgroundImage: `url(${this.state.user.profile.profilePic})`}}></figure>
+              <figcaption className="profile-figcaption">{this.state.user.username}</figcaption>
+            </section>
           </div>
             <ProfileInteractive
               session={this.state.session}
@@ -155,7 +156,6 @@ export default React.createClass({
         </section>
 
         <main className="profile-main">
-
           <ul className="ul-about-data">
             <li>
               <i className="about-user-icon fa fa-user" aria-hidden="true"></i> {this.state.user.firstName}, {this.state.user.age}
@@ -169,7 +169,6 @@ export default React.createClass({
           </ul>
           {profileBody}
         </main>
-
       </div>
     );
 

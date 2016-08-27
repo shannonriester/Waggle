@@ -32,17 +32,18 @@ export default React.createClass({
         </ul>
       );
     } else {
+      // console.log('newProps.matched on profileInteractive', this.props.matched);
       // console.log(this.props.sentMatch);
       // console.log(this.props.findingMatchStatus);
+
       if (this.props.findingMatchStatus) {
         sentMatchBtn = (<i className="heart-icon fa fa-spinner fa-pulse fa-fw"></i>);
-
         matchStatus = 'matching...'
       } else if (this.props.matched) {
         sentMatchBtn = (<i className="heart-icon matched fa fa-heart" aria-hidden="true"></i>)
         matchStatus = 'matched with!'
       } else if (this.props.sentMatch) {
-        // console.log('sent match working');
+        console.log('sent match working');
         sentMatchBtn = (<i className="heart-icon sent-match fa fa-heart" aria-hidden="true"></i>);
         matchStatus = 'sent match...';
       } else {

@@ -7,6 +7,14 @@
     top: 7.2%;
 }
 
+.profile-figcaption {
+    position: relative;
+    bottom: 30px;
+    font-size: 2em;
+    color: $profileIcon;
+    text-align: center;
+}
+
 .profile-pic-preview {
   position: absolute;
   background-size: cover;

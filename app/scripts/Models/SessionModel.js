@@ -79,14 +79,9 @@ updateUser: function() {
   },
   updateProfile: function(profilePic, bio) {
     this.set('editProfile', false);
-
     let currProfile = this.get('profile');
-    // this.set()
     currProfile.bio = bio;
-    console.log(profilePic);
-    console.log(currProfile.profilePic);
     if (!profilePic.length) {
-      console.log('if statement working');
       profilePic = currProfile.profilePic;
       // profilePic = this.profile.profilePic;
     } else {
@@ -100,14 +95,12 @@ updateUser: function() {
         success: (model, response) => {
         // console.log('USER UPDATED PROFILE ', response);
         this.trigger('change update');
-
       }, error: (e) => {
           console.log('updateProfile ERROR: ', e);
       }
     });
   },
   updateBkgrndImgs: function(bkgrndImgs, bio) {
-    // console.log(bkgrndImgs);
     this.set('isEditing', false);
     this.save({bkgrndImgs: bkgrndImgs, profile: {bio: bio}},
       { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/${this.get('userId')}`,
@@ -115,7 +108,6 @@ updateUser: function() {
         success: (model, response) => {
         console.log('USER UPDATED BACKGROUND IMAGES ', response);
         this.trigger('change update');
-
       }, error: (e) => {
           console.log('updateProfile ERROR: ', e);
       }

@@ -39,13 +39,10 @@ export default React.createClass({
   },
   toggleMatch: function() {
     this.setState({findingMatchStatus: true});
-
     store.matchCollection.toggleMatch(this.state.session.username, this.props.params.userId)
       .then((toggleResponse) => {
         store.matchCollection.findMatch(this.state.session.username, this.props.params.userId).then((response)=> {
-
-          console.log('response after then: ', response);
-
+          // console.log('response after then: ', response);
           if (response.length > 1) {
             this.setState({
               matched: true,
@@ -57,9 +54,6 @@ export default React.createClass({
               matched: false,
               findingMatchStatus: false,
             });
-
-            // console.log(this.state.sentMatch);
-            // console.log((response[0]);
             if (this.state.sentMatch || response[0].get('sender') === this.state.session.username) {
               console.log('setting sentmatch to: ', !this.state.sentMatch);
               this.setState({
@@ -70,7 +64,6 @@ export default React.createClass({
           }
         });
       })
-    // this.updateState();
   },
   messageUser: function() {
     this.setState({newMessage: true});
@@ -90,16 +83,7 @@ export default React.createClass({
       placesCollection: store.placesCollection.toJSON(),
     });
 
-    if (!this.state.fetch && this.state.session.username){
-
-        // store.matchCollection.findMatch(this.state.session.username, this.props.params.userId)
-        // .then((response) => {
-        //   let sentReq = _.where(response, {sender:this.state.session.username});
-        //   if (sentReq.length) {
-        //     this.setState({sentMatch: true});
-        //   }
-        // })
-
+    if (!this.state.fetch && this.state.session.username) {
       store.matchCollection.allMyMatches(this.state.session.username).then((response) => {
         let matchedArr = [];
         matchedArr.push(response);
@@ -109,15 +93,11 @@ export default React.createClass({
           fetch: true
         });
         store.matchCollection.findMatch(this.state.session.username, this.props.params.userId).then((response)=> {
-          // console.log(response);
           if (response.length > 1) {
             this.setState({matched: true});
           }
-
-          let sentReq = store.matchCollection.where({sender:this.state.session.username, likee:this.props.params.userId})
-          // console.log(sentReq);
+          let sentReq = store.matchCollection.where({sender: this.state.session.username, likee: this.props.params.userId})
           if (sentReq.length) {
-            // console.log('sucess!');
             this.setState({sentMatch: true});
           }
         });
@@ -130,13 +110,15 @@ export default React.createClass({
   },
   componentWillReceiveProps: function(newProps) {
     store.userCollection.findUser(newProps.params.userId).then((response) => {
-      this.setState({currentUser: response.toJSON()[0]});
+      this.setState({currentUser: response.toJSON()[0], fetch: false});
+      this.updateState();
     });
   },
   componentDidMount: function() {
+    // this.updateState();
     store.userCollection.findUser(this.props.params.userId).then((response) => {
       this.setState({currentUser: response.toJSON()[0]});
-    })
+    });
 
     store.session.on('change', this.updateState);
     store.userCollection.on('change update', this.updateState);
@@ -159,7 +141,7 @@ export default React.createClass({
     let newMessageModal;
     let myMatchesComponent;
     if (this.state.currentUser.username) {
-        // console.log(this.state.matched);
+        // console.log('this.state.matched on profilePage', this.state.matched);
         profileInfo = (<ProfileInfo
           user={this.state.currentUser}
           messageUser={this.messageUser}
@@ -178,7 +160,7 @@ export default React.createClass({
 
     let userRecentPlaces;
     let myMatches = [];
-    if (this.state.matched || this.props.params.userId === this.state.currentUser.username) {
+    if (this.state.matched || this.props.params.userId === this.state.session.username) {
         let placeIDArr = this.state.recentPlaces.map((place, i, arr) => {
           return place.place;
         });

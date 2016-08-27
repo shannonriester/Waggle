@@ -9,7 +9,6 @@ let GoogleMapPage = React.createClass({
   clickedMap: function() {
     store.placesCollection.forEach((model) => {
       model.set('infoBox', false);
-      console.log(model.get('infoBox'));
     });
   },
   render: function() {

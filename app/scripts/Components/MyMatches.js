@@ -60,7 +60,7 @@ export default React.createClass({
     }
   },
   componentDidMount: function() {
-
+    this.updateState();
   },
   render: function() {
     let matchPreview;

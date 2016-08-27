@@ -466,6 +466,13 @@
   width: 100%;
   top: 7.2%; }
 
+.profile-figcaption {
+  position: relative;
+  bottom: 30px;
+  font-size: 2em;
+  color: #484848;
+  text-align: center; }
+
 .profile-pic-preview {
   position: absolute;
   background-size: cover;
@@ -650,7 +657,7 @@
     justify-content: space-around;
     border-bottom: solid 1px #EBEBEB; }
   .profile-footer .match-heading {
-    margin: 0 5px 0 0;
+    margin: 0;
     font-size: 1em; }
   .profile-footer .match-preview-img {
     height: 5em;
