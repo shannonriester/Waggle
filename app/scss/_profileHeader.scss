@@ -1,5 +1,6 @@
 /*START OF PROFILE IMG EDITING SECTION*/
 
+
 .profile-image-form {
     position: absolute;
     height: 400px;
@@ -15,14 +16,16 @@
     text-align: center;
 }
 
-.profile-pic-preview {
-  position: absolute;
-  background-size: cover;
-  height: 130px;
-  width: 130px;
-  border-radius: 50%;
-  bottom: 23.2%;
-  z-index: 1;
+.profile-pic-container {
+  .profile-pic-preview {
+    position: absolute;
+    background-size: cover;
+    height: 130px;
+    width: 130px;
+    border-radius: 50%;
+    bottom: 29.7%;
+    z-index: 1;
+  }
 }
 
 .dropzone-container {

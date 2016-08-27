@@ -42,7 +42,6 @@ export default React.createClass({
     store.matchCollection.toggleMatch(this.state.session.username, this.props.params.userId)
       .then((toggleResponse) => {
         store.matchCollection.findMatch(this.state.session.username, this.props.params.userId).then((response)=> {
-          // console.log('response after then: ', response);
           if (response.length > 1) {
             this.setState({
               matched: true,
@@ -55,7 +54,6 @@ export default React.createClass({
               findingMatchStatus: false,
             });
             if (this.state.sentMatch || response[0].get('sender') === this.state.session.username) {
-              console.log('setting sentmatch to: ', !this.state.sentMatch);
               this.setState({
                 sentMatch: !this.state.sentMatch,
                 findingMatchStatus: false,
@@ -109,15 +107,15 @@ export default React.createClass({
     }
   },
   componentWillReceiveProps: function(newProps) {
-    store.userCollection.findUser(newProps.params.userId).then((response) => {
-      this.setState({currentUser: response.toJSON()[0], fetch: false});
+    store.userCollection.findMe(newProps.params.userId).then((response) => {
+      this.setState({currentUser: response[0], fetch: false});
       this.updateState();
     });
   },
   componentDidMount: function() {
-    // this.updateState();
-    store.userCollection.findUser(this.props.params.userId).then((response) => {
-      this.setState({currentUser: response.toJSON()[0]});
+    store.userCollection.findMe(this.props.params.userId).then((response) => {
+      console.log(response);
+      this.setState({currentUser: response[0]});
     });
 
     store.session.on('change', this.updateState);
@@ -141,7 +139,7 @@ export default React.createClass({
     let newMessageModal;
     let myMatchesComponent;
     if (this.state.currentUser.username) {
-        // console.log('this.state.matched on profilePage', this.state.matched);
+        // console.log(this.state.currentUser);
         profileInfo = (<ProfileInfo
           user={this.state.currentUser}
           messageUser={this.messageUser}

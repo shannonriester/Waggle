@@ -77,16 +77,28 @@ updateUser: function() {
       }
     });
   },
+  // convertImgUploads: function() {
+  //
+  // },
   updateProfile: function(profilePic, bio) {
     this.set('editProfile', false);
+
     let currProfile = this.get('profile');
     currProfile.bio = bio;
     if (!profilePic.length) {
       profilePic = currProfile.profilePic;
-      // profilePic = this.profile.profilePic;
     } else {
       currProfile.profilePic = profilePic;
     }
+
+    postToKinveyFile(profilePic)
+      .then(putToGoogle)
+      .then(putToKinveyCollection)
+      .then(getFromKinveyCollection)
+      .then(putItOnThePage)
+
+
+
     this.set('profile', currProfile)
     this.save(
       {profile: {profilePic:profilePic, bio:bio}},
@@ -130,7 +142,6 @@ updateUser: function() {
             ip: response.ip,
         });
         if (this.get('username')) {
-          // this.updateUser();
           // console.log('session in the geoLocation ', this);
         }
       },

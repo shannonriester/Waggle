@@ -14,6 +14,7 @@ export default React.createClass({
       sentMatch: this.props.sentMatch,
       findingMatchStatus: this.props.findingMatchStatus,
       matched: this.props.matched,
+      // kinveyFile: {},
       profilePicSrc: [],
       files: [],
 
@@ -23,9 +24,14 @@ export default React.createClass({
     e.preventDefault();
     let newBody = this.refs.aboutInfo.value;
       let newProfilePic = this.state.profilePicSrc;
+      console.log(this.state.user._id);
+      let id = this.state.user._id
       let userProfileUpdate = store.userCollection.get(this.state.user._id);
+      console.log(store.userCollection);
+      console.log(userProfileUpdate);
 
     if (this.state.files.length) {
+      // console.log(newProfilePic);
       userProfileUpdate.updateProfile(newProfilePic, newBody)
     }
     userProfileUpdate.updateProfile(newProfilePic, newBody)
@@ -43,6 +49,7 @@ export default React.createClass({
     });
   },
   editProfile: function(e) {
+    console.log('in the editProfile function', store.session.get('editProfile'));
     e.preventDefault();
     store.session.set('editProfile', !store.session.get('editProfile'));
   },
@@ -52,6 +59,10 @@ export default React.createClass({
   },
   handleImgChange: function(e) {
     e.preventDefault();
+    //use this.state.profilePicSrc for the preview
+    //before the user decides to save/submit as the
+    //new profile picture
+
     let file = this.refs.file.files[0];
     let reader = new FileReader();
     let url = reader.readAsDataURL(file);
@@ -65,6 +76,7 @@ export default React.createClass({
   updateState: function() {
     this.setState({
       session: store.session.toJSON(),
+      user: store.userCollection.toJSON(),
       editProfile: store.session.get('editProfile'),
   });
   },
@@ -84,19 +96,17 @@ export default React.createClass({
   },
   render: function() {
     // console.log('newProps.matched on profileInfo', this.state.matched);
-
-
     let profileBody;
     let profilePicFile;
     let styles;
     let bkgrndImgForm;
 
-    if (!this.state.editProfile) {
+    if (!this.state.editProfile && this.state.user.username) {
         profileBody =(
           <p className="about-bio">
             {this.state.user.profile.bio}
           </p>);
-    } else if (this.state.editProfile) {
+    } else if (this.state.editProfile && this.state.user.username) {
       profilePicFile = (
           <input className="input-file"
             type="file"

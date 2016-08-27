@@ -43,6 +43,7 @@ export default React.createClass({
       // console.log(this.props.myMatches.length);
       this.props.myMatches.forEach((person, i) => {
         store.userCollection.findUser(person).then((response) => {
+          console.log(response);
           newPersonArr.push(response.toJSON()[0]);
           newPersonArr = newPersonArr.sort();
           this.setState({

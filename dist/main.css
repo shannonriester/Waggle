@@ -473,13 +473,13 @@
   color: #484848;
   text-align: center; }
 
-.profile-pic-preview {
+.profile-pic-container .profile-pic-preview {
   position: absolute;
   background-size: cover;
   height: 130px;
   width: 130px;
   border-radius: 50%;
-  bottom: 23.2%;
+  bottom: 29.7%;
   z-index: 1; }
 
 .dropzone-container {
