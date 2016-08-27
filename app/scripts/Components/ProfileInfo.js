@@ -95,13 +95,12 @@ export default React.createClass({
     store.session.off('change', this.updateState);
   },
   render: function() {
-    // console.log('newProps.matched on profileInfo', this.state.matched);
     let profileBody;
     let profilePicFile;
     let styles;
     let bkgrndImgForm;
 
-    if (!this.state.editProfile && this.state.user.username) {
+    if (!this.state.editProfile && this.state.user.profile) {
         profileBody =(
           <p className="about-bio">
             {this.state.user.profile.bio}

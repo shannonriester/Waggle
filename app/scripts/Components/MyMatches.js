@@ -35,21 +35,25 @@ export default React.createClass({
     }, 300);
   },
   updateState: function() {
-    // console.log(this.state.users.length + ' | ' + this.state.matches.length);
-    // console.log('this.state.users ', this.state.users);
-    // console.log('this.state.matches', this.state.matches);
     let newPersonArr = [];
-    if (this.state.fetch && (this.state.matches.length === this.state.matches.length)) {
-      // console.log(this.props.myMatches.length);
-      this.props.myMatches.forEach((person, i) => {
+    // console.log(this.state.matches);
+    // console.log(this.state.users);
+    if (this.state.fetch && this.state.matches.length) {
+      // console.log(this.state);
+
+      this.state.matches.forEach((person, i) => {
+        // console.log(person);
         store.userCollection.findUser(person).then((response) => {
-          console.log(response);
-          newPersonArr.push(response.toJSON()[0]);
-          newPersonArr = newPersonArr.sort();
+          // console.log(response);
+          newPersonArr.push(response.toJSON());
+          // newPersonArr = newPersonArr.sort();
+
           this.setState({
             users: newPersonArr,
             fetch: false,
           });
+
+          // console.log(this.state.users);
         })
       });
     }
@@ -65,11 +69,7 @@ export default React.createClass({
   },
   render: function() {
     let matchPreview;
-    // console.log(this.state.users);
-    // let styles = {backgroundImage: `url(${store.entryImages[this.state.images]})`};
-    // <Link className="link" to={`/user/${person}`}><img src='#'/></Link>
-    // <Link className="link" to={`/user/${person}`}><h3>{person}</h3></Link>
-    // console.log(this);
+
     if (this.state.users.length) {
       matchPreview = this.state.users.map((person, i) => {
           return (
@@ -90,7 +90,7 @@ export default React.createClass({
           <button className="matches-btn" onClick={this.scrollRight}><i className="arrow-icon fa fa-arrow-left" aria-hidden="true"></i></button>
           <div id={this.state.scroll} className="match-preview-container">{matchPreview}</div>
           <button className="matches-btn" onClick={this.scrollLeft}><i className="arrow-icon fa fa-arrow-right" aria-hidden="true"></i></button>
-        </div>
+          </div>
       </div>
     );
   }
