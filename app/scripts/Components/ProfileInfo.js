@@ -14,7 +14,6 @@ export default React.createClass({
       sentMatch: this.props.sentMatch,
       findingMatchStatus: this.props.findingMatchStatus,
       matched: this.props.matched,
-      // kinveyFile: {},
       profilePicSrc: [],
       files: [],
 
@@ -24,14 +23,11 @@ export default React.createClass({
     e.preventDefault();
     let newBody = this.refs.aboutInfo.value;
       let newProfilePic = this.state.profilePicSrc;
-      console.log(this.state.user._id);
-      let id = this.state.user._id
+
       let userProfileUpdate = store.userCollection.get(this.state.user._id);
-      console.log(store.userCollection);
-      console.log(userProfileUpdate);
 
     if (this.state.files.length) {
-      // console.log(newProfilePic);
+      console.log(this.state.files);
       userProfileUpdate.updateProfile(newProfilePic, newBody)
     }
     userProfileUpdate.updateProfile(newProfilePic, newBody)
@@ -85,6 +81,7 @@ export default React.createClass({
       user: newProps.user,
       matched: newProps.matched,
       sentMatch: newProps.sentMatch,
+      profilePicSrc: newProps.user.profile.profilePic[0],
       findingMatchStatus: newProps.findingMatchStatus,
     });
   },
@@ -95,60 +92,27 @@ export default React.createClass({
     store.session.off('change', this.updateState);
   },
   render: function() {
-    let profileBody;
+    let content;
+    let textareaBio;
     let profilePicFile;
     let styles;
+    let previewStyles;
     let bkgrndImgForm;
 
-    if (!this.state.editProfile && this.state.user.profile) {
-        profileBody =(
-          <p className="about-bio">
-            {this.state.user.profile.bio}
-          </p>);
-    } else if (this.state.editProfile && this.state.user.username) {
-      profilePicFile = (
-          <input className="input-file"
-            type="file"
-            name="user[profilePic]"
-            ref="file"
-            accept="image/*"
-            onChange={this.handleImgChange} />);
+    if (!this.state.editProfile && this.state.user.username) {
+      styles = this.state.profilePicSrc;
+      textareaBio = null;
 
-      bkgrndImgForm = (
-        <form  className="profile-image-form" onSubmit={this.onDrop}>
-
-          <div className="dropzone-container">
-            <Dropzone className="dropzone" ref="dropzone" onDrop={this.onDrop} onClick={this.onOpenClick}>
-              <i className="icon-camera fa fa-camera-retro" aria-hidden="true"></i>
-            </Dropzone>
-            {this.state.files.length > 0 ? <div className="upload-status-container">
-                <h2>Uploading {this.state.files.length} file(s)...</h2>
-                <div>{this.state.files.map((file, i) => <img key={i} src={file.preview} /> )}</div>
-                </div> : null}
-          </div>
-        </form>);
-
-      profileBody = (
-        <form className="form-about" onSubmit={this.saveEdits}>
-          <textarea  className="bio-textarea" defaultValue={this.state.user.profile.bio} tabIndex="1" role="textbox" ref="aboutInfo" />
-          <input className="submit-btn" type="submit" value="submit" role="button" />
-          <div className="edit-btn-container">
-            <button className="submit-edits" onClick={this.saveEdits} tabIndex="3">submit</button>
-            <button className="submit-edits" onClick={this.cancelEdit} tabIndex="4">cancel</button>
-          </div>
-        </form>);
-    }
-
-    return (
-      <div className="profile-info-component">
+      content = (
+      <div>
         <section className="header-profile-section">
           <BackgroundSlider />
             {bkgrndImgForm}
           <div className="profile-pic-container">
             {profilePicFile}
-            <div className="profile-pic-preview" style={{backgroundImage: `url(${this.state.profilePicSrc})`}}></div>
+            <div className="profile-pic-preview" style={{backgroundImage: `url(${styles})`}}></div>
             <section className="profile-pic-section">
-              <figure className="profile-pic" style={{backgroundImage: `url(${this.state.user.profile.profilePic})`}}></figure>
+              <figure className="profile-pic" style={{backgroundImage: `url(${styles})`}}></figure>
               <figcaption className="profile-figcaption">{this.state.user.username}</figcaption>
             </section>
           </div>
@@ -163,7 +127,6 @@ export default React.createClass({
               editProfile={this.editProfile}
             />
         </section>
-
         <main className="profile-main">
           <ul className="ul-about-data">
             <li>
@@ -176,8 +139,89 @@ export default React.createClass({
               <i className="about-user-icon fa fa-globe" aria-hidden="true"></i> {this.state.user.city}, {this.state.user.regionName}
             </li>
           </ul>
-          {profileBody}
+          {textareaBio}
+          <p className="about-bio">{this.state.user.profile.bio}</p>
         </main>
+      </div>);
+
+    } else if (this.state.editProfile && this.state.user.username) {
+    styles = this.state.profilePicSrc;
+    profilePicFile = (
+        <input className="input-file"
+          type="file"
+          name="user[profilePic]"
+          ref="file"
+          accept="image/*"
+          onChange={this.handleImgChange} />);
+
+    bkgrndImgForm = (
+      <form  className="profile-image-form" onSubmit={this.onDrop}>
+        <div className="dropzone-container">
+          <Dropzone className="dropzone" ref="dropzone" onDrop={this.onDrop} onClick={this.onOpenClick}>
+            <i className="icon-camera fa fa-camera-retro" aria-hidden="true"></i>
+          </Dropzone>
+          {this.state.files.length > 0 ? <div className="upload-status-container">
+              <h2>Uploading {this.state.files.length} file(s)...</h2>
+              <div>{this.state.files.map((file, i) => <img key={i} src={file.preview} /> )}</div>
+              </div> : null}
+        </div>
+      </form>);
+
+    textareaBio = (
+      <form className="form-about" onSubmit={this.saveEdits}>
+        <textarea  className="bio-textarea" defaultValue={this.state.user.profile.bio} tabIndex="1" role="textbox" ref="aboutInfo" />
+        <input className="submit-btn" type="submit" value="submit" role="button" />
+        <div className="edit-btn-container">
+          <button className="submit-edits" onClick={this.saveEdits} tabIndex="3">submit</button>
+          <button className="submit-edits" onClick={this.cancelEdit} tabIndex="4">cancel</button>
+        </div>
+      </form>);
+
+    content = (
+      <div>
+        <section className="header-profile-section">
+          <BackgroundSlider />
+            {bkgrndImgForm}
+          <div className="profile-pic-container">
+            {profilePicFile}
+            <div className="profile-pic-preview" style={{backgroundImage: `url(${styles})`}}></div>
+            <section className="profile-pic-section">
+              <figure className="profile-pic" style={{backgroundImage: `url(${styles})`}}></figure>
+              <figcaption className="profile-figcaption">{this.state.user.username}</figcaption>
+            </section>
+          </div>
+            <ProfileInteractive
+              session={this.state.session}
+              user={this.state.user}
+              message={this.props.messageUser}
+              findingMatchStatus={this.state.findingMatchStatus}
+              toggleMatch={this.props.toggleMatch}
+              sentMatch={this.state.sentMatch}
+              matched={this.state.matched}
+              editProfile={this.editProfile}
+            />
+        </section>
+        <main className="profile-main">
+          <ul className="ul-about-data">
+            <li>
+              <i className="about-user-icon fa fa-user" aria-hidden="true"></i> {this.state.user.firstName}, {this.state.user.age}
+            </li>
+            <li>
+              <i className="about-user-icon fa fa-paw" aria-hidden="true"></i> {this.state.user.dog.dogName}, {this.state.user.dog.dogAge}, {this.state.user.dog.dogBreed}
+            </li>
+            <li>
+              <i className="about-user-icon fa fa-globe" aria-hidden="true"></i> {this.state.user.city}, {this.state.user.regionName}
+            </li>
+          </ul>
+          {textareaBio}
+          <p className="about-bio">{this.state.user.profile.bio}</p>
+        </main>
+      </div>);
+  }
+
+    return (
+      <div className="profile-info-component">
+        {content}
       </div>
     );
 

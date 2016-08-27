@@ -114,7 +114,6 @@ export default React.createClass({
   },
   componentDidMount: function() {
     store.userCollection.findMe(this.props.params.userId).then((response) => {
-      console.log(response);
       this.setState({currentUser: response.toJSON()});
     });
 
