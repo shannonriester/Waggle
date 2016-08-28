@@ -44,10 +44,15 @@ export default React.createClass({
         }, 1000),
       });
     }
+    // let contentDiv = document.querySelector('messages-content');
+    // contentDiv.scrollTop = contentDiv.scrollHeight;
   },
   componentDidMount: function() {
     store.userCollection.fetch();
     store.messagesCollection.fetch();
+
+    // let contentDiv = document.querySelector('messages-content');
+    // contentDiv.scrollTop = contentDiv.scrollHeight;
 
     store.session.on('change', this.updateState);
     store.userCollection.on('update', this.updateState);
@@ -100,11 +105,13 @@ export default React.createClass({
           <figure className="profile-pic" style={styles} alt="profile-picture of recipient"/>
           <h2>{this.props.params.recipient}</h2>
         </Link>
-        <ul className="messages-container">
-          {convo}
-        </ul>
+        <div className="fixed-message-container">
+          <ul className="messages-content">
+            {convo}
+          </ul>
+        </div>
         <form className="chat-form-container" onSubmit={this.sendMessage}>
-          <input type="text" role="textbox" tabIndex="1" ref="textbox" />
+          <input className="chat-textbox" type="text" role="textbox" tabIndex="1" ref="textbox" />
           <input className="submit-btn" type="submit" role="button" tabIndex="2" />
           <button onClick={this.sendMessage}>send</button>
         </form>

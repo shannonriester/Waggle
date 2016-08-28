@@ -41,9 +41,18 @@
   }
 }
 
-.messages-container {
+.fixed-message-container {
+  height: 400px;
+  width: 95%;
+  padding: 3%;
+  overflow: auto;
+  margin-top: 5em;
+}
+
+.messages-content {
   display: flex;
   flex-direction: column;
+  overflow: auto;
   padding: 20px 20px 10px 20px;
   margin: 0;
   .me {
@@ -108,4 +117,17 @@
     padding: 10px;
   }
 
+}
+
+.chat-form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 4em;
+  background: #555;
+}
+
+.chat-textbox {
+  height: 100%;
+  width: 65%;
 }

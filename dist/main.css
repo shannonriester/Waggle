@@ -823,14 +823,22 @@
   .convo-with-link h2 {
     margin: 0 0 0 0; }
 
-.messages-container {
+.fixed-message-container {
+  height: 400px;
+  width: 95%;
+  padding: 3%;
+  overflow: auto;
+  margin-top: 5em; }
+
+.messages-content {
   display: flex;
   flex-direction: column;
+  overflow: auto;
   padding: 20px 20px 10px 20px;
   margin: 0; }
-  .messages-container .me {
+  .messages-content .me {
     align-items: flex-end; }
-  .messages-container li {
+  .messages-content li {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -839,22 +847,22 @@
     margin: 10px 0;
     font-size: 20px;
     line-height: 2; }
-    .messages-container li .message-content-container {
+    .messages-content li .message-content-container {
       display: flex;
       flex-direction: column;
       align-items: flex-end;
       width: 80%;
       border: solid 1px #EBEBEB; }
-    .messages-container li p {
+    .messages-content li p {
       margin: 0 5px 0 0; }
-    .messages-container li span {
+    .messages-content li span {
       color: #F55959; }
-    .messages-container li data {
+    .messages-content li data {
       font-size: 12px; }
-  .messages-container .me-container {
+  .messages-content .me-container {
     display: flex;
     align-items: flex-end; }
-  .messages-container .me {
+  .messages-content .me {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -864,7 +872,7 @@
     background: #8D5A97;
     border-radius: 10px;
     padding: 10px; }
-  .messages-container .not-me {
+  .messages-content .not-me {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -874,6 +882,17 @@
     background: none;
     border-radius: 10px;
     padding: 10px; }
+
+.chat-form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 4em;
+  background: #555; }
+
+.chat-textbox {
+  height: 100%;
+  width: 65%; }
 
 .settings-content-container {
   display: -webkit-box;
@@ -918,7 +937,7 @@
     -ms-flex-align: center;
     align-items: center;
     /* justify-content: space-around;*/
-    height: 50%;
+    height: 50vh;
     /* width: 100%;*/
     line-height: 2em; }
   .settings-content-container .settings-headings {
@@ -941,7 +960,7 @@
   .settings-content-container .edit-settings-btn {
     float: right; }
   .settings-content-container .discovery-settings {
-    /* height: 25%;*/
+    height: 10vh;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -971,7 +990,7 @@
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
-    height: 25%;
+    height: 25vh;
     border-bottom: none; }
     .settings-content-container .footer-settings button {
       height: 30px;
