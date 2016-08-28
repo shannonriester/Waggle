@@ -13,6 +13,7 @@
   border-radius: 2px;
 }
 .place-marker {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -88,7 +89,7 @@
 
 
 #my-location {
-  background-color: purple;
+  background-color: $secondary;
 }
 
 
@@ -103,8 +104,10 @@
     justify-content: space-around;
     height: 8em;
     margin: 0;
-    // padding: 20px 0px;
     list-style-type: none;
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   .result-image {
@@ -127,6 +130,14 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+    &:hover {
+      transition: .5s;
+      border-bottom: solid 1px $tertiary;
+      h1 {
+        transition: .5s;
+        color: $tertiary;
+      }
+    }
   }
 
   .about-preview {

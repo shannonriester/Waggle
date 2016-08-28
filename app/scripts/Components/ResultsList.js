@@ -14,8 +14,6 @@ export default React.createClass({
       browserHistory.push(`/places/${placeID[0].attributes.yelpID}`);
     },
     render: function() {
-      let backgroundImage = {backgroundImage: 'url(' + this.props.place.imageUrl + ')'};
-
       let category;
       if (this.props.place.categories[0][0].indexOf('/') !== -1) {
         category = this.props.place.categories[0][0].split('/').join(' ');
@@ -25,8 +23,7 @@ export default React.createClass({
 
       return (
         <li className="result-item-component" onClick={this.routeTo}>
-          <figure className="result-image" style={backgroundImage}>
-          </figure>
+          <figure className="result-image" style={{backgroundImage:`url(${this.props.place.imageUrl})`}}></figure>
           <div className="result-content-container">
             <main className="about-preview">
               <h1>{this.props.place.name}</h1>

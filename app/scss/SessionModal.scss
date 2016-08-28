@@ -20,21 +20,23 @@
   }
 
   form {
-    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
     height: 100%;
     width: 100%;
+    overflow: hidden;
+    font-family: $font-family;
 
     label {
       display: none;
     }
   }
   .login-form {
-    height: 100vh;
-    width: 100vw;
+    height: 90vh;
+    width: 95vw;
+    margin: 0 auto;
   }
 
   .signup-form {

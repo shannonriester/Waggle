@@ -37,17 +37,6 @@ export default React.createClass({
         );
         this.setState({fetch: false});
       }
-      // else if (!this.state.city && !this.state.fetch) {
-      //   store.session.on('change: city', () => {
-      //       browserHistory.push({ pathname:`/search/`, query: {category: store.session.get('query')} });
-      //       store.placesCollection.getResults(
-      //         store.session.get('city'),
-      //         store.session.get('query'),
-      //         store.session.get('range'),
-      //         store.session.get('coordinates')
-      //       );
-      //     });
-      // }
   },
   componentWillMount: function() {
     if (!localStorage.authtoken) {

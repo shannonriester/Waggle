@@ -19,9 +19,6 @@ export default React.createClass({
     store.checkinCollection.where({place: this.props.id});
   },
   componentDidMount: function() {
-    // store.checkinCollection.fetch();
-    // store.checkinCollection.where({place: this.props.id});
-
     store.checkinCollection.on('change update', this.updateState);
   },
   componentWillUnmount: function() {
@@ -35,18 +32,12 @@ export default React.createClass({
       me = 'my-location'
     }
 
-    // console.log(store.checkinCollection);
-    // console.log(this.state.checkedinWagglrs);
-    // let innerBorder;
-    // let outerBorder;
     let placeMarker;
     if (this.state.checkedinWagglrs.length < 3) {
       placeMarker = (<div className="icon-container"><img className="paw-icon" src="/assets/Icons/paw-white.svg" alt="dog-paw-print-icon" /></div>);
     } else if (this.state.checkedinWagglrs.length >= 3) {
       placeMarker = (<div className="outer-pulse-radius"><img className="inner-pulse-radius" src="/assets/Icons/paw-white.svg" alt="dog-paw-print-icon" /></div>);
     }
-    // if (this.props)
-    // console.log(this.props.id);
 
     let infoBox;
     if (this.props.showInfoBox) {

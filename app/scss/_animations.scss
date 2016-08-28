@@ -75,6 +75,7 @@
 
 /* .paw-icon {*/
 .inner-pulse-radius {
+  position: relative;
   -webkit-animation: border-pulse 2s infinite;
           animation: border-pulse 2s infinite;
   height: 2em;
@@ -84,7 +85,6 @@
   border-radius: 50%;
 }
 
-/* .outer-pulse-radius {*/
 .outer-pulse-radius {
   -webkit-animation: border-pulse 2.2s infinite;
           animation: border-pulse 2.2s infinite;
@@ -94,7 +94,7 @@
   border: solid 1px;
   padding: 6px;
   border-radius: 50%;
-  position: fixed;
+  position: relative;
 }
 
 #slide-out-left {
