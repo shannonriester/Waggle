@@ -820,7 +820,8 @@
     .message-history-page-container .message-list li:hover {
       transition: .5s;
       color: #F55959;
-      border-bottom: solid 1px #F55959; }
+      border-bottom: solid 1px #F55959;
+      cursor: pointer; }
   .message-history-page-container .message-list data {
     color: #BCBDC0; }
 
