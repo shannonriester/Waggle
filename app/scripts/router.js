@@ -17,6 +17,8 @@ const router = (
   <Router history={browserHistory}>
     <Route path="/" component={LandingPage}>
       <IndexRoute component={LandingPage}/>
+      <Route path="/login" component={LandingPage} />
+      <Route path="/signup" component={LandingPage} />
     </Route>
     <Route path="search" component={ResultsPage}/>
     <Route path="places/:placeId" component={PlaceItemPage}/>

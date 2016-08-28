@@ -33,8 +33,6 @@ const MatchCollection = Backbone.Collection.extend({
                 reject(e)
               }
             });
-            // resolve('unmatched')
-            // return false;
           } else {
               console.log('creating match');
               this.create({sender: session, likee:likee},{
@@ -42,7 +40,6 @@ const MatchCollection = Backbone.Collection.extend({
                   console.log('YOU MATCHED A PERSON!', model);
                   console.log('SENT MATCH REQUEST TO: ', likee);
                   resolve('sent match')
-                  // return true;
                 }
             });
           }

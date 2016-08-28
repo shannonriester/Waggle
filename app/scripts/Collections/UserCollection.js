@@ -8,9 +8,9 @@ const UserCollection = Backbone.Collection.extend({
   url: `https://baas.kinvey.com/user/kid_SkBnla5Y/`,
   findMe: function(username) {
     return new Promise((resolve, reject) => {
-      $.ajax(`https://baas.kinvey.com/user/kid_SkBnla5Y/?query={"username":"${username}"}`).then((r) => {
-        this.add(r[0]);
-        resolve(this.get(r[0]._id));
+      $.ajax(`https://baas.kinvey.com/user/kid_SkBnla5Y/?query={"username":"${username}"}`).then((response) => {
+        this.add(response[0]);
+        resolve(this.get(response[0]._id));
       });
     });
   },

@@ -46,6 +46,9 @@ export default React.createClass({
       store.session.set('city', store.session.get('city'));
       browserHistory.push({pathname:`/search/`, query:{category: store.session.get('query')} });
     }
+    if (!this.state.modal) {
+      browserHistory.push('/');
+    }
   },
   componentDidMount: function() {
     // if (localStorage.authtoken) {

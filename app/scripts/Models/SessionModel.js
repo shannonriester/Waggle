@@ -234,7 +234,7 @@ const SessionModel = Backbone.Model.extend({
         messages: response.messages,
         dog: response.dog,
         checkedin: false,
-        coordinates:response.coordinates,
+        coordinates: response.coordinates,
         city: response.city,
         regionCode: response.regionCode,
         regionName: response.regionName,
