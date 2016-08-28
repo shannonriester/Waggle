@@ -15,7 +15,7 @@ export default React.createClass({
       modal: false,
       content: 'login',
       city: '',
-      authtoken: localStorage.authtoken,
+      // authtoken: localStorage.authtoken,
     }
   },
   pauseSlider: function() {
@@ -24,39 +24,33 @@ export default React.createClass({
   startInterval: function() {
     let interval = setInterval(() => {
       if (this.state.images === store.entryImages.length - 1) {
-        this.setState({images:0});
+        this.setState({images: 0});
       } else {
         this.setState({images: this.state.images + 1});
       }
     }, 10000);
-    this.setState({interval:interval});
+    this.setState({interval: interval});
   },
   heroModalToggle: function(content) {
-    this.setState({hero: !this.state.hero});
-    this.setState({modal: !this.state.modal});
-    this.setState({content: content})
+    this.setState({
+      hero: !this.state.hero,
+      modal: !this.state.modal,
+      content: content,
+    });
   },
   updateState: function() {
-    this.setState({authtoken: localStorage.getItem('authtoken')});
     this.setState({city: store.session.get('city')});
-    // console.log(this.state.authtoken);
-    if (this.state.authtoken) {
-      // console.log(this.state.authtoken);
-      browserHistory.push({pathname:`/search/`, query:{category: store.session.get('query')} });
-    }
   },
   componentWillMount: function() {
-    // console.log(this.state.authtoken);
-    if (this.state.authtoken) {
-      store.session.retrieve();
+    if (localStorage.authtoken) {
       store.session.set('city', store.session.get('city'));
       browserHistory.push({pathname:`/search/`, query:{category: store.session.get('query')} });
     }
   },
   componentDidMount: function() {
-    if (!this.state.authtoken) {
-      store.session.set('city', store.session.get('city'));
-    }
+    // if (localStorage.authtoken) {
+    //   store.session.set('city', store.session.get('city'));
+    // }
     this.startInterval();
     store.session.on('change', this.updateState);
   },

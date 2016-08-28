@@ -1,3 +1,4 @@
+import { browserHistory } from 'react-router';
 import Backbone from 'backbone';
 import $ from 'jquery';
 
@@ -238,9 +239,11 @@ const SessionModel = Backbone.Model.extend({
         type: 'POST',
         success: (model, response) => {
           localStorage.setItem('authtoken', response._kmd.authtoken);
+          browserHistory.push({ pathname:`/search/`, query:{category: this.get('query')} });
+
           this.unset('password');
           this.trigger('change');
-          console.log('USER SIGNED IN', newUsername);
+          // console.log('USER SIGNED IN', newUsername);
       },
        error: function(model, response) {
          throw new Error('LOGIN FAILED');
@@ -265,7 +268,7 @@ const SessionModel = Backbone.Model.extend({
         localStorage.setItem('authtoken', response._kmd.authtoken);
         this.unset('password');
         this.trigger('change');
-        console.log('USER SIGNED UP!', newUsername);
+        // console.log('USER SIGNED UP!', newUsername);
       },
       error: function(model, response) {
         throw new Error('FAILED TO SIGN UP');
@@ -273,14 +276,13 @@ const SessionModel = Backbone.Model.extend({
     });
   },
   logout: function(query, range){
-    // this.clear();
-    // console.log('logout on session');
     this.save(null,
       { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/_logout`,
         type: 'POST',
         success: (model, response) => {
-          // model.clear();
           localStorage.clear();
+          browserHistory.push('/');
+
           this.unset('authtoken');
 
           this.set('query', query);
@@ -298,11 +300,8 @@ const SessionModel = Backbone.Model.extend({
     this.fetch({
       url: `https://baas.kinvey.com/user/kid_SkBnla5Y/_me`,
       success: (model, response) => {
-          this.trigger('change');
-          console.log('response in retrieve', response);
-          this.set('authtoken', response.authtoken);
-          localStorage.setItem('authtoken', response.authtoken);
-          // console.log('USER RETRIEVED: this ', this);
+          // this.trigger('change');
+          console.log('USER RETRIEVED: this ', this.toJSON());
       },
       error: function(response) {
         throw new Error('COULD NOT FETCH USER!');

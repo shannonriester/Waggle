@@ -76,7 +76,6 @@ export default React.createClass({
   updateState: function() {
     this.setState({
       session: store.session.toJSON(),
-      users: store.userCollection.toJSON(),
       checkinCollection: store.checkinCollection.toJSON(),
       placesCollection: store.placesCollection.toJSON(),
     });
@@ -103,7 +102,7 @@ export default React.createClass({
       .catch((e) => {
         console.error(e);
         this.setState({fetch: true});
-      }) ;
+      });
     }
   },
   componentWillReceiveProps: function(newProps) {
@@ -113,14 +112,12 @@ export default React.createClass({
     });
   },
   componentDidMount: function() {
-    if (store.session.get('username')){
       store.userCollection.findMe(this.props.params.userId).then((response) => {
         this.setState({currentUser: response.toJSON()});
       });
-    }
 
     store.session.on('change', this.updateState);
-    store.userCollection.on('change update', this.updateState);
+    store.userCollection.on('update', this.updateState);
     store.checkinCollection.on('update', this.updateState);
     store.checkinCollection.on('update', this.fetchPlaces);
     store.placesCollection.on('update', this.updateState);
@@ -128,7 +125,7 @@ export default React.createClass({
   },
   componentWillUnmount: function() {
     store.session.off('change', this.updateState);
-    store.userCollection.off('change update', this.updateState);
+    store.userCollection.off('update', this.updateState);
     store.checkinCollection.off('update', this.updateState);
     store.checkinCollection.off('update', this.fetchPlaces);
     store.placesCollection.off('update', this.updateState);

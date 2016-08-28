@@ -10,6 +10,7 @@ const UserCollection = Backbone.Collection.extend({
     return new Promise((resolve, reject) => {
       $.ajax(`https://baas.kinvey.com/user/kid_SkBnla5Y/?query={"username":"${username}"}`).then((r) => {
         this.add(r[0]);
+        // this.trigger('update');
         resolve(this.get(r[0]._id));
       });
     });
@@ -18,6 +19,7 @@ const UserCollection = Backbone.Collection.extend({
     return new Promise((resolve, reject) => {
       $.ajax(`https://baas.kinvey.com/user/kid_SkBnla5Y/?query={"username":"${username}"}`).then((r) => {
         this.add(r[0]);
+        // this.trigger('update');
         resolve(this.get(r[0]._id));
       });
     });

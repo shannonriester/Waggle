@@ -16,7 +16,6 @@ export default React.createClass({
       coordinates: [],
       query: store.session.get('query'),
       places: store.placesCollection.toJSON(),
-      authtoken: localStorage.authtoken,
       fetch: true,
     }
   },
@@ -26,7 +25,6 @@ export default React.createClass({
         coordinates: store.session.get('coordinates'),
         query: store.session.get('query'),
         places: store.placesCollection.toJSON(),
-        authtoken: store.session.get('authtoken')
       });
 
       if (this.state.city && this.state.fetch) {
@@ -37,22 +35,22 @@ export default React.createClass({
           store.session.get('range'),
           store.session.get('coordinates')
         );
-        this.setState({fetch:false});
+        this.setState({fetch: false});
       }
-      else {
-        store.session.on('change: city', () => {
-            browserHistory.push({pathname:`/search/`, query:{category: store.session.get('query')} });
-            store.placesCollection.getResults(
-              store.session.get('city'),
-              store.session.get('query'),
-              store.session.get('range'),
-              store.session.get('coordinates')
-            );
-          });
-      }
+      // else if (!this.state.city && !this.state.fetch) {
+      //   store.session.on('change: city', () => {
+      //       browserHistory.push({ pathname:`/search/`, query: {category: store.session.get('query')} });
+      //       store.placesCollection.getResults(
+      //         store.session.get('city'),
+      //         store.session.get('query'),
+      //         store.session.get('range'),
+      //         store.session.get('coordinates')
+      //       );
+      //     });
+      // }
   },
   componentWillMount: function() {
-    if (!this.state.authtoken) {
+    if (!localStorage.authtoken) {
       browserHistory.push('/');
     }
   },

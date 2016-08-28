@@ -32,8 +32,9 @@ export default React.createClass({
     store.messagesCollection.findMyMessages(this.state.session).then((response) => {
       this.setState({myMessages: response.toJSON() });
     });
-    store.messagesCollection.on('change update', this.updateState);
+    
     store.session.on('change', this.updateState);
+    store.messagesCollection.on('change update', this.updateState);
   },
   componentWillUnmount: function() {
     store.session.off('change', this.updateState);

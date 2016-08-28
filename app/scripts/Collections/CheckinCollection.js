@@ -23,7 +23,7 @@ export default Backbone.Collection.extend({
         {place: placeId, userCheckedin: username},
         {success: (model, response) => {
           console.log('YOU CHECKED IN!');
-          console.log('model', model);
+          // console.log('model', model);
 
           let oldPlaces = session.get('recentPlaces');
           session.set('recentPlaces', oldPlaces.concat(model.toJSON()));
@@ -36,16 +36,7 @@ export default Backbone.Collection.extend({
         }
       });
     } else {
-      console.log('checkedinModel', alreadyCheckedin[0].attributes._kmd.ect);
-      // let currTime = new Date();
-      // let currHour = currTime.getHours();
-      // let currMins = currTime.getMinutes();
-      // let thisTime = currHour + ':' + currMins;
-      // console.log(thisTime);
-      // if ()
-      //get most recent checkin Date
       let checkedinModel = this.get(alreadyCheckedin[0].attributes._id)
-      console.log(userModel.get('recentPlaces'));
       // session.unset('recentPlaces', alreadyCheckedin);
       // userModel.unset('recentPlaces', alreadyCheckedin);
       checkedinModel.destroy();

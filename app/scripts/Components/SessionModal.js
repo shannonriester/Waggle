@@ -5,7 +5,6 @@ import moment from 'moment';
 
 import ReactWidgets from 'react-widgets';
 import _ from 'underscore';
-// import $ from 'jquery';
 
 import store from '../store';
 
@@ -24,7 +23,6 @@ export default React.createClass({
 
     store.session.login(username, password);
     this.props.hideModal();
-    browserHistory.push({pathname:`/search/`, query:{category: store.session.get('query')} });
   },
   signup: function(e) {
     e.preventDefault();

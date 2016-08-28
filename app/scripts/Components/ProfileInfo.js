@@ -84,9 +84,11 @@ export default React.createClass({
   },
   componentDidMount: function() {
     store.session.on('change', this.updateState);
+    // store.userCollection.on('change', this.updateState);
   },
   componentWillUnmount: function() {
     store.session.off('change', this.updateState);
+    // store.userCollection.off('change', this.updateState);
   },
   render: function() {
     let content;

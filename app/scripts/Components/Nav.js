@@ -7,26 +7,11 @@ export default React.createClass({
   getInitialState: function() {
     return {
       checkins: store.checkinCollection.toJSON(),
-      matches: store.checkinCollection.toJSON(),
-      messages: store.messagesCollection.toJSON(),
-      // places: store.placesCollection.toJSON(),
-      users: store.userCollection.toJSON(),
-      session: store.session.toJSON(),
-      authtoken: localStorage.authtoken,
-      // currentRoute: this.props.params.
+      fetch: true,
     }
   },
-  logout: function() {
-    // let prevQuery = store.session.get('query');
-    // store.session.logout(prevQuery);
-    // this.updateState();
-    // this.setState({authtoken:localStorage.authtoken})
-    // localStorage.removeItem('authtoken');
-    // this.updateState();
-    //the logout button should EVENTUALLY be moved to the settings part on the user's profile (once you make it)
-  },
   messages: function() {
-    browserHistory.push(`/messages`)
+    browserHistory.push(`/messages`);
   },
   userProfile: function() {
     browserHistory.push(`/user/${store.session.get('username')}`);
@@ -35,30 +20,24 @@ export default React.createClass({
     browserHistory.push({pathname:`/search/`, query:{category: store.session.get('query')} });
   },
   updateState: function() {
-    if (!this.state.authtoken) {
-      browserHistory.push('/');
-    } else {
+    if (store.session.get('username') && this.state.fetch) {
+      store.checkinCollection.fetch();
       this.setState({
         checkins: store.checkinCollection.toJSON(),
-        matches: store.checkinCollection.toJSON(),
-        messages: store.messagesCollection.toJSON(),
-        users: store.userCollection.toJSON(),
-        session: store.session.toJSON(),
-        authtoken: localStorage.authtoken,
+        fetch: false,
       });
     }
   },
   componentWillMount: function() {
-    if (!this.state.authtoken) {
+    if (!localStorage.authtoken) {
       browserHistory.push('/');
     }
   },
   componentDidMount: function() {
-    if (!this.state.authtoken) {
-      browserHistory.push('/');
+    if (store.session.get('username')) {
+      store.checkinCollection.fetch();
     }
-    // store.checkinCollection.fetch();
-    // store.messagesCollection.fetch();
+
     store.session.on('change', this.updateState);
   },
   componentWillUnmount: function() {
