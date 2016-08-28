@@ -824,6 +824,9 @@
   .message-history-page-container .message-list data {
     color: #BCBDC0; }
 
+.conversation-page-component {
+  width: 100%; }
+
 .convo-with-link {
   position: relative;
   top: 50px;
@@ -831,6 +834,9 @@
   width: 90%;
   margin: 0 auto;
   margin-bottom: 40px; }
+  .convo-with-link:hover {
+    transition: .5s;
+    border-bottom: solid 2px #F55959; }
   .convo-with-link figure {
     margin: 0;
     position: static; }
@@ -883,7 +889,7 @@
     justify-content: center;
     width: 80%;
     color: #EFF1EF;
-    background: rgba(85, 85, 85, 0.7);
+    background: rgba(102, 51, 153, 0.7);
     border-radius: 10px;
     padding: 10px; }
   .messages-content .not-me {
@@ -901,12 +907,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 4em;
-  background: rgba(102, 51, 153, 0.9); }
+  height: 5em;
+  border: solid 2px #F55959;
+  border-radius: 8px; }
 
 .chat-textbox {
-  height: 60%;
-  width: 65%; }
+  height: 90%;
+  width: 90%;
+  outline: none;
+  border: none;
+  font-size: 1.4em; }
+
+.message-btn {
+  height: 100%;
+  width: 100px;
+  background: #F55959;
+  color: #FFF;
+  border: none;
+  font-size: 25px; }
 
 .settings-content-container {
   display: -webkit-box;
