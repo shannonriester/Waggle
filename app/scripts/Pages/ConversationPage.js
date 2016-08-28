@@ -113,7 +113,7 @@ export default React.createClass({
         <form className="chat-form-container" onSubmit={this.sendMessage}>
           <input className="chat-textbox" type="text" role="textbox" tabIndex="1" ref="textbox" />
           <input className="submit-btn" type="submit" role="button" tabIndex="2" />
-          <button onClick={this.sendMessage}>send</button>
+          <button className="message-btn" onClick={this.sendMessage}>send</button>
         </form>
       </div>
     );

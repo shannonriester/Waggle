@@ -25,6 +25,9 @@
 }
 
 // CONVERSATION PAGE STARTS HERE
+.conversation-page-component {
+  width: 100%;
+}
 .convo-with-link {
   position: relative;
   top: 50px;
@@ -32,6 +35,10 @@
   width: 90%;
   margin: 0 auto;
   margin-bottom: 40px;
+  &:hover {
+    transition: .5s;
+    border-bottom: solid 2px $accent;
+  }
 
   figure {
     margin: 0;
@@ -66,7 +73,6 @@
     list-style-type: none;
     width: 100%;
     margin: 10px 0;
-    // padding: 10px;
     font-size: 20px;
     line-height: 2;
 
@@ -75,7 +81,6 @@
       flex-direction: column;
       align-items: flex-end;
       width: 80%;
-      // border-radius: 10px;
       border: solid 1px $border;
     }
 
@@ -101,7 +106,7 @@
     justify-content: center;
     width: 80%;
     color: #EFF1EF;
-    background: rgba(#555, 0.7);
+    background: rgba($secondary, 0.7);
     border-radius: 10px;
     padding: 10px;
   }
@@ -124,11 +129,25 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 4em;
-  background: $secondary;
+  height: 5em;
+  // background: $secondary;
+  border: solid 2px $accent;
+  border-radius: 8px;
 }
 
 .chat-textbox {
-  height: 60%;
-  width: 65%;
+  height: 90%;
+  width: 90%;
+  outline: none;
+  border: none;
+  font-size: 1.4em;
+}
+
+.message-btn {
+  height: 100%;
+  width: 100px;
+  background: $accent;
+  color: #FFF;
+  border: none;
+  font-size: 25px;
 }
