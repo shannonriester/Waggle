@@ -6,7 +6,7 @@ var BackgroundSlider = React.createClass({
   let settings = {
     arrows: true,
     accessability: true,
-    // dots: true, 
+    // dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -19,12 +19,11 @@ var BackgroundSlider = React.createClass({
   return (
     <div className="slider-container">
       <Slider ref="slider" {...settings}>
-        <img src="/assets/profileImgs/dog1.jpeg" />
-        <img src="/assets/profileImgs/dog2.jpeg" />
+        <img src="/assets/profileImgs/dog6.jpeg" />
+        <img src="/assets/profileImgs/dog5.jpeg" />
         <img src="/assets/profileImgs/dog3.jpeg" />
         <img src="/assets/profileImgs/dog4.jpeg" />
-        <img src="/assets/profileImgs/dog5.jpeg" />
-        <img src="/assets/profileImgs/dog6.jpeg" />
+        <img src="/assets/profileImgs/dog1.jpeg" />
       </Slider>
       {//<div style={{textAlign: 'center'}}>
         //<button className="slider-btn prev-btn" onClick={this.previous}>Previous</button>

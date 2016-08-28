@@ -13,7 +13,7 @@ const SessionModel = Backbone.Model.extend({
     recentPlaces: [{},],
     profile: {
       profilePic: '/assets/default_dog_large.png',
-      images: ['/assets/default_dog_large.png',],
+      bkgrndImgs: ['/assets/default_dog_large.png',],
       usersAge: '',
       bio: '',
     },
@@ -87,7 +87,10 @@ const SessionModel = Backbone.Model.extend({
           this.putToGoogle(file, kinveyFile)
             .then(() => {
               this.getPicFromKinvey(fileId)
-                .then(resolve)
+                .then((downloadURL) => {
+                  resolve(downloadURL);
+                })
+
             })
         })
     })
@@ -118,7 +121,7 @@ const SessionModel = Backbone.Model.extend({
       contentType: false,
     })
   },
-  getPicFromKinvey: function(fileId){
+  getPicFromKinvey: function(fileId) {
     return new Promise((resolve, reject) => {
       $.ajax({
         url: `https://baas.kinvey.com/blob/kid_SkBnla5Y/${fileId}`,
@@ -127,10 +130,8 @@ const SessionModel = Backbone.Model.extend({
         },
       })
       .then((response) => {
-        let profile = this.get('profile');
-        profile.profilePic = response._downloadURL;
-        this.set('profile', profile);
-        resolve();
+
+        resolve(response._downloadURL);
       })
       .fail((e) => {
         console.error(e);
@@ -145,6 +146,10 @@ const SessionModel = Backbone.Model.extend({
 
     if (file) {
       this.convertImgFile(file).then(() => {
+        let profile = this.get('profile');
+        profile.profilePic = response._downloadURL;
+        this.set('profile', profile);
+
         this.save(null, {
           type: 'PUT',
           url: `https://baas.kinvey.com/user/kid_SkBnla5Y/${this.get('userId')}`,
@@ -169,15 +174,28 @@ const SessionModel = Backbone.Model.extend({
   },
   updateBkgrndImgs: function(bkgrndImgs, bio) {
     this.set('isEditing', false);
-    this.save({bkgrndImgs: bkgrndImgs, profile: {bio: bio}},
-      { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/${this.get('userId')}`,
-        type: 'PUT',
-        success: (model, response) => {
-        console.log('USER UPDATED BACKGROUND IMAGES ', response);
-        this.trigger('change update');
-      }, error: (e) => {
-          console.log('updateProfile ERROR: ', e);
-      }
+
+    let profile = this.get('profile');
+    profile.bkgrndImgs = [];
+    this.set('profile', profile);
+
+    bkgrndImgs.forEach((img, i) => {
+      this.convertImgFile(img)
+        .then((downloadURL) => {
+          profile.bkgrndImgs.push(downloadURL);
+          this.set('profile', profile);
+          if (profile.bkgrndImgs.length === bkgrndImgs.length) {
+            this.save(null, {
+              type: 'PUT',
+              url: `https://baas.kinvey.com/user/kid_SkBnla5Y/${this.get('userId')}`,
+              success: (response) => {
+                console.log(response);
+              }
+            });
+          }
+
+        })
+
     });
   },
   apiGeoLocation: function() {
@@ -301,7 +319,7 @@ const SessionModel = Backbone.Model.extend({
       url: `https://baas.kinvey.com/user/kid_SkBnla5Y/_me`,
       success: (model, response) => {
           // this.trigger('change');
-          console.log('USER RETRIEVED: this ', this.toJSON());
+          // console.log('USER RETRIEVED: this ', this.toJSON());
       },
       error: function(response) {
         throw new Error('COULD NOT FETCH USER!');

@@ -21,7 +21,6 @@ export default React.createClass({
         newMessage: false,
         fetch: false,
         sentMatch: false,
-        // receivedMatch: false,
         allMyMatches: [],
         matched: false,
       }

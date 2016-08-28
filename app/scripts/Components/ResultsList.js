@@ -7,7 +7,7 @@ import Nav from './Nav';
 export default React.createClass({
     getDistance: function() {
       // store.session.getDistance();
-      console.log(this.props);
+      // console.log(this.props);
     },
     routeTo: function() {
       let placeID = store.placesCollection.where({yelpID: this.props.place.yelpID});

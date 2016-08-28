@@ -15,33 +15,26 @@ export default React.createClass({
       findingMatchStatus: this.props.findingMatchStatus,
       matched: this.props.matched,
       profilePicSrc: '',
-      files: [],
+      backgroundImgs: [],
 
     }
   },
   saveEdits: function(e) {
     e.preventDefault();
     let newBody = this.refs.aboutInfo.value;
-    // let newProfilePic = this.state.profilePicSrc;
 
     let userProfileUpdate = store.userCollection.get(this.state.user._id);
 
-    // if (this.state.files.length) {
-    //   userProfileUpdate.updateProfile(newProfilePic, newBody)
-    // }
     userProfileUpdate.updateProfile(this.refs.file.files[0], newBody);
     store.session.updateProfile(this.refs.file.files[0], newBody);
+
+    if (this.state.backgroundImgs.length > 0) {
+      store.session.updateBkgrndImgs(this.state.backgroundImgs);
+      userProfileUpdate.updateBkgrndImgs(this.state.backgroundImgs);
+    }
   },
   onDrop: function(files) {
-    files.forEach((file, i) => {
-      let newReader = new FileReader();
-      let url = newReader.readAsDataURL(file);
-      newReader.onloadend = function (e) {
-         this.setState({
-             files: [newReader.result]
-         })
-       }.bind(this);
-    });
+    this.setState({backgroundImgs: files});
   },
   editProfile: function(e) {
     e.preventDefault();
@@ -57,7 +50,7 @@ export default React.createClass({
     //before the user decides to save/submit as the
     //new profile picture
 
-    let file = this.refs.file.files[0];
+    let file = this.refs.file.files[0]
     let reader = new FileReader();
     let url = reader.readAsDataURL(file);
    reader.onloadend = function (e) {
@@ -84,11 +77,9 @@ export default React.createClass({
   },
   componentDidMount: function() {
     store.session.on('change', this.updateState);
-    // store.userCollection.on('change', this.updateState);
   },
   componentWillUnmount: function() {
     store.session.off('change', this.updateState);
-    // store.userCollection.off('change', this.updateState);
   },
   render: function() {
     let content;
@@ -99,8 +90,7 @@ export default React.createClass({
     let bkgrndImgForm;
 
     if (!this.state.editProfile && this.state.user.username) {
-      styles = this.state.user.profile.profilePic;
-      console.log(this.state.user);
+      // styles = ;
       textareaBio = null;
 
       content = (
@@ -110,9 +100,8 @@ export default React.createClass({
             {bkgrndImgForm}
           <div className="profile-pic-container">
             {profilePicFile}
-            <div className="profile-pic-preview" style={{backgroundImage: `url(${styles})`}}></div>
             <section className="profile-pic-section">
-              <figure className="profile-pic" style={{backgroundImage: `url(${styles})`}}></figure>
+              <figure className="profile-pic" style={{backgroundImage:`url(${this.state.user.profile.profilePic})`}}></figure>
               <figcaption className="profile-figcaption">{this.state.user.username}</figcaption>
             </section>
           </div>
@@ -160,9 +149,9 @@ export default React.createClass({
           <Dropzone className="dropzone" ref="dropzone" onDrop={this.onDrop} onClick={this.onOpenClick}>
             <i className="icon-camera fa fa-camera-retro" aria-hidden="true"></i>
           </Dropzone>
-          {this.state.files.length > 0 ? <div className="upload-status-container">
-              <h2>Uploading {this.state.files.length} file(s)...</h2>
-              <div>{this.state.files.map((file, i) => <img key={i} src={file.preview} /> )}</div>
+          {this.state.backgroundImgs.length > 0 ? <div className="upload-status-container">
+              <h2>Uploading {this.state.backgroundImgs.length} file(s)...</h2>
+              <div>{this.state.backgroundImgs.map((file, i) => <img className="background-img-preview" key={i} src={file.preview} /> )}</div>
               </div> : null}
         </div>
       </form>);
@@ -184,7 +173,6 @@ export default React.createClass({
             {bkgrndImgForm}
           <div className="profile-pic-container">
             {profilePicFile}
-            <div className="profile-pic-preview" style={{backgroundImage: `url(${styles})`}}></div>
             <section className="profile-pic-section">
               <figure className="profile-pic" style={{backgroundImage: `url(${styles})`}}></figure>
               <figcaption className="profile-figcaption">{this.state.user.username}</figcaption>
