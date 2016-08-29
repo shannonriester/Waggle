@@ -23,13 +23,10 @@ export default Backbone.Collection.extend({
         {place: placeId, userCheckedin: username},
         {success: (model, response) => {
           console.log('YOU CHECKED IN!');
-          // console.log('model', model);
 
           let oldPlaces = session.get('recentPlaces');
           session.set('recentPlaces', oldPlaces.concat(model.toJSON()));
           userModel.set('recentPlaces', oldPlaces.concat(model.toJSON()));
-
-          // console.log('userModel recentPlaces', userModel.get('recentPlaces'));
 
         }, error: function(model, response) {
           throw new Error('FAILED TO CHECKIN');
@@ -42,5 +39,11 @@ export default Backbone.Collection.extend({
       checkedinModel.destroy();
       console.log('USER CHECKEDOUT');
     }
+  },
+  deleteOldCheckins: function() {
+    this.models.forEach((model) => {
+      console.log(model);
+      // if (model)
+    });
   },
 });

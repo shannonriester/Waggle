@@ -9,7 +9,7 @@ export default React.createClass({
   getInitialState: function() {
     return {
       placeModel: {},
-      // checkinList: null,
+      fetched: false,
       checkedinModels: [],
       intervalCheckout: false,
       users: store.userCollection.toJSON(),
@@ -59,10 +59,20 @@ export default React.createClass({
         }),
       });
     }
+
+    if (store.checkinCollection.models.length && !this.state.fetched) {
+      store.checkinCollection.models.forEach((checkinModel) => {
+        checkinModel = checkinModel.toJSON();
+        store.userCollection.findUser(checkinModel.userCheckedin);
+        this.setState({
+          fetched: true,
+        });
+      });
+    }
+
+
   },
   componentDidMount: function() {
-    store.checkinCollection.fetch();
-    store.userCollection.fetch();
 
     if (store.placesCollection.findWhere({yelpID: this.props.params.placeId}) &&  store.checkinCollection.where({place:this.props.params.placeId})){
       this.setState({
@@ -77,14 +87,14 @@ export default React.createClass({
     } else {
       store.placesCollection.getYelpResult(this.props.params.placeId, store.session.get('city'));
     }
-    store.placesCollection.on('change update', this.updateState);
-    store.checkinCollection.on('change update', this.updateState);
-    store.userCollection.on('change update', this.updateState);
+    store.placesCollection.on('update', this.updateState);
+    store.checkinCollection.on('update', this.updateState);
+    store.userCollection.on('update', this.updateState);
   },
   componentWillUnmount: function() {
-    store.placesCollection.off('change update', this.updateState);
-    store.checkinCollection.off('change update', this.updateState);
-    store.userCollection.off('change update', this.updateState);
+    store.placesCollection.off('update', this.updateState);
+    store.checkinCollection.off('update', this.updateState);
+    store.userCollection.off('update', this.updateState);
   },
   render: function() {
     let content;
