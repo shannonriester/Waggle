@@ -1058,6 +1058,21 @@
     .settings-content-container .footer-settings .hide-me {
       display: none; }
 
+.page-not-found-component {
+  text-align: center; }
+  .page-not-found-component h2 {
+    color: #F55959;
+    font-size: 2em;
+    line-height: 2em; }
+    .page-not-found-component h2:hover {
+      border-bottom: solid 2px #F55959; }
+
+.lost-background {
+  height: 400px;
+  width: 100%;
+  background-size: cover;
+  background-position: center center; }
+
 #shake {
   -webkit-animation: 300ms shake;
   animation: 300ms shake; }

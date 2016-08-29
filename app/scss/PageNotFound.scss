@@ -1,0 +1,23 @@
+.page-not-found-component {
+  text-align: center;
+
+  h2 {
+    color: $accent;
+    font-size: 2em;
+    line-height: 2em;
+    // width: 50%;
+    &:hover {
+      // transition: .5s;
+      // background: $accent;
+      // color: #FFF;
+      border-bottom: solid 2px $accent;
+    }
+  }
+}
+
+.lost-background {
+  height: 400px;
+  width: 100%;
+  background-size: cover;
+  background-position: center center;
+}

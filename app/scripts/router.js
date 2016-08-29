@@ -11,7 +11,7 @@ import EditProfilePage from './Pages/ProfilePage';
 import SettingsPage from './Pages/SettingsPage';
 import MessageHistoryPage from './Pages/MessageHistoryPage';
 import ConversationPage from './Pages/ConversationPage';
-// import MessagePage from './Pages/MessagePage';
+import PageNotFound from './Components/PageNotFound';
 
 const router = (
   <Router history={browserHistory}>
@@ -26,6 +26,7 @@ const router = (
     <Route path="messages" component={MessageHistoryPage}/>
     <Route path="messages/:recipient" component={ConversationPage}/>
     <Route path="settings" component={SettingsPage}/>
+    <Route path="*" component={PageNotFound}/>
   </Router>
 );
 

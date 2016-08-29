@@ -32,29 +32,20 @@ export default Backbone.Collection.extend({
     }
   },
   deleteOldCheckins: function() {
-    // $(document).ajaxSend(function(e, xhrAjax, jqueryAjax) {
-    //     if (jqueryAjax.url.indexOf('blob') === -1) {
-    //
-    //     }
-    // });
-
-
     this.models.forEach((model) => {
       model = model.toJSON();
 
       let maxTime = moment(model._kmd.ect).add(24, 'hours').unix();
 
       let timeNow = new Date();
-      console.log('maxTime', maxTime);
       timeNow = moment(timeNow).unix();
-      console.log('timeNow', timeNow);
+
       if (maxTime <= timeNow) {
-        // console.log(model._id);
         let oldModel = this.get(model._id);
-        oldModel.destroy();
+        // oldModel.destroy();
+        console.log('WOULD HAVE DESTROYED ' + model._id + 'BECAUSE IT\'S BEEN TOO LONG THEY ARE CHECKED IN');
       } else {
         let stillGoodModel = this.get(model._id);
-        console.log(stillGoodModel);
       }
 
     });
