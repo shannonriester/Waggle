@@ -15,7 +15,6 @@ export default React.createClass({
       modal: false,
       content: 'login',
       city: '',
-      // authtoken: localStorage.authtoken,
     }
   },
   pauseSlider: function() {

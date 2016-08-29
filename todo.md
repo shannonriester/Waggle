@@ -1,6 +1,15 @@
 #ToDo List
 - CHECK LOGOUT!!! And all login/signup functionality
 
+##Problem statement:
+  - Dogs bring people together. But who brings dogs together? I created Waggle to bring people together "in real life". As much as I love social media apps and technology, I wanted to make an app that made it easier to socialize as a human AND as a dog in real life! I wanted to simplify life and bring people together. Austin is a dog-obsessed city--the term "must love dogs" is in fact a very serious statement.  
+
+  More often than not, our needs aside to care for our loved ones.  Or, we So often, we are too tired to go home, give our pup the attention he deserves You may want to leave the park early bc there's no one there and your arm is tired from throwing the ball. You may want to meet up with your friends for happy hour instead. So you leave your pup at home to wait and go to the social event alone bc you don't know if dogs are allowed. I wanted to unite these problems and allow people to meet and socialize with other dog lovers so everybody wins.
+
+##Why does it matter?
+ - it makes life more fun. it brings people together. dogs are great ice breakers! Bring people in the now and off of their phones (all the time)
+
+
 
 - test:
   - matching shows up for sarah and shannon on test view...need to make sure matches are only seen by the user logged in

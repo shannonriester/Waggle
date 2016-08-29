@@ -268,7 +268,8 @@ const SessionModel = Backbone.Model.extend({
       },
     });
   },
-  signup: function(username, password, email, firstName, lastName, age) {
+  signup: function(username, password, email, firstName, lastName, age, dogName, dogAge, dogBreed) {
+    console.log('username on session', username);
     let newUsername = username.toLowerCase();
     this.save({
       username: newUsername,
@@ -277,14 +278,18 @@ const SessionModel = Backbone.Model.extend({
       firstName: firstName,
       lastName: lastName,
       age: age,
-    },
-    {
+      dogName: dogName,
+      dogAge: dogAge,
+      dogBreed: dogBreed,
+    },{
       url: `https://baas.kinvey.com/user/kid_SkBnla5Y/`,
       type: 'POST',
       success: (model, response) => {
         localStorage.removeItem('authtoken');
         localStorage.setItem('authtoken', response._kmd.authtoken);
         this.unset('password');
+        browserHistory.push({ pathname:`/search/`, query:{category: this.get('query')} });
+
         this.trigger('change');
         // console.log('USER SIGNED UP!', newUsername);
       },

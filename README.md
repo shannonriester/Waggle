@@ -3,6 +3,8 @@
 ##Elevator Pitch
 A location-based, social-media app that allows you to search for dog-friendly places, find cute dogs, and meet other local dog-lovers!
 
+
+
 ### MVP
 1. Functional login/signup for (new) users
 2. Getting user's current location

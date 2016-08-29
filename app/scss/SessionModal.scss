@@ -33,15 +33,20 @@
       display: none;
     }
   }
+
   .login-form {
-    height: 90vh;
-    width: 95vw;
+    height: 90%;
+    width: 95%;
     margin: 0 auto;
   }
 
   .signup-form {
-    height: 100%;
+    // height: 100%;
     width: 100%;
+  }
+
+  .signup1, .signup2, .signup3 {
+    height: 70%;
   }
 
  .modal-header {
@@ -49,7 +54,6 @@
    align-items: center;
    justify-content: space-around;
    width: 100%;
-  //  height: 30%;
 
    h2 {
      margin: 0;
@@ -67,7 +71,6 @@
  }
 
  .modal-body{
-  // height: 200px;
   width: 90%;
   margin: 0 auto;
    .user-info-input {
@@ -85,17 +88,11 @@
 
  .modal-footer {
    display: flex;
+   flex-direction: column;
    align-items: center;
-   justify-content: center;
+   justify-content: space-between;
    width: 100%;
-  //  height: 200px;
-
-  //  .submit-btn {
-  //   //  background: $accent;
-  //   //  color: #FFF;
-  //   //  padding: 2%;
-  //   //  width: 160px;
-  //  }
+   height: 20%;
  }
 
  .modal-btn {
