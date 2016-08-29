@@ -38,14 +38,17 @@ const SessionModel = Backbone.Model.extend({
     lastName: '',
     age: '',
     newCity: '',
+    newCoordinates: [],
   },
   updateUser: function() {
     this.save(null,
       { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/${this.get('userId')}`,
         type: 'PUT',
         success: (model, response) => {
-          this.trigger('change update');
+          this.trigger('change');
         console.log('UPDATED USER ', response);
+        // this.trigger('change');
+
       }, error: (e) => {
           console.log('SESSION.UPDATEUSER ERROR: ', e);
       }
@@ -59,7 +62,7 @@ const SessionModel = Backbone.Model.extend({
         type: 'PUT',
         success: (model, response) => {
         // console.log('USER UPDATED DOG ', response);
-        this.trigger('change update');
+        this.trigger('change');
       }, error: (e) => {
           console.log('UPDATE DOG INFO ERROR: ', e);
       }
@@ -73,7 +76,7 @@ const SessionModel = Backbone.Model.extend({
         type: 'PUT',
         success: (model, response) => {
         // console.log('USER UPDATED SELF ', response);
-        this.trigger('change update');
+        this.trigger('change');
       }, error: (e) => {
           console.log('UPDATE USER INFO ERROR: ', e);
       }
@@ -166,7 +169,7 @@ const SessionModel = Backbone.Model.extend({
           type: 'PUT',
           success: (model, response) => {
           // console.log('USER UPDATED PROFILE ', response);
-          this.trigger('change update');
+          this.trigger('change');
         }, error: (e) => {
             console.log('updateProfile ERROR: ', e);
         }

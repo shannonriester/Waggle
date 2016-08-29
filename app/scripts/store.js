@@ -29,5 +29,8 @@ export default ({
     '/assets/GroupAtPark.jpeg',
     '/assets/TwoGirlsWithSmallDogs.jpeg',
   ],
+  google: {
+    appKey: 'AIzaSyBGH9fSjS0D-dpIgVYpOUfg5F63Igifl7I',
+  }
 
 });

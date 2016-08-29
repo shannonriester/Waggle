@@ -12,10 +12,11 @@ import GoogleMapPage from './GoogleMapPage';
 export default React.createClass({
   getInitialState: function() {
     return {
-      city: store.session.get('city'),
       editCity: false,
-      newCity: store.session.get('newCity'),
+      city: store.session.get('city'),
       coordinates: [],
+      newCity: store.session.get('newCity'),
+      newCoordinates: store.session.get('newCoordinates'),
       query: store.session.get('query'),
       places: store.placesCollection.toJSON(),
       fetch: true,
@@ -34,39 +35,54 @@ export default React.createClass({
   updateCity: function(e) {
     e.preventDefault();
     let newCity = this.refs.newCity.value;
-    console.log(newCity);
-    store.session.set('newCity', newCity);
-    store.session.updateUser();
-    this.setState({
-      editCity: false,
-      newCity: newCity,
+
+    $.ajax({
+      url: `https://maps.googleapis.com/maps/api/geocode/json?address=${newCity}&key=${store.google.appKey}`,
+      success: (response) => {
+        console.log(response);
+        let lat = response.results[0].geometry.location.lat;
+        let lng = response.results[0].geometry.location.lng;
+        let newCoordinates = [lat, lng];
+
+        store.session.set('newCity', newCity);
+        store.session.set('newCoordinates', newCoordinates);
+        store.session.updateUser();
+
+        this.setState({
+          editCity: false,
+          newCity: newCity,
+          newCoordinates: newCoordinates
+        });
+      }
     });
+
     this.updateState();
   },
   updateState: function() {
       this.setState({
         city: store.session.get('city'),
-        newCity: store.session.get('newCity'),
         coordinates: store.session.get('coordinates'),
+        newCity: store.session.get('newCity'),
+        newCoordinates: store.session.get('newCoordinates'),
         query: store.session.get('query'),
         places: store.placesCollection.toJSON(),
       });
 
-      console.log('session in updateState()', store.session);
-
       if (this.state.newCity && this.state.fetch) {
         browserHistory.push({pathname:`/search/`, query:{category: store.session.get('query')} });
-        console.log('if statement working');
+        console.log('session in if(this.state.NEWCITY)', store.session);
         store.placesCollection.getResults(
           this.state.newCity,
           store.session.get('query'),
           store.session.get('range'));
         this.setState({fetch: false});
 
-      } else if (this.state.city && this.state.fetch) {
+      } else if (this.state.city && (this.state.city === this.state.newCity) && this.state.fetch) {
+        console.log(this.state.city);
         browserHistory.push({pathname:`/search/`, query:{category: store.session.get('query')} });
+        console.log('session in if(this.state.CITY)', store.session);
         store.placesCollection.getResults(
-          store.session.get('city'),
+          this.state.city,
           store.session.get('query'),
           store.session.get('range'),
           store.session.get('coordinates'));
@@ -85,7 +101,7 @@ export default React.createClass({
   },
   componentWillUnmount: function() {
     store.session.off('change', this.updateState);
-    store.placesCollection.off('update change', this.updateState);
+    store.placesCollection.off('change update', this.updateState);
   },
   render: function() {
     let city = this.state.city;
@@ -94,7 +110,9 @@ export default React.createClass({
     });
 
     let coordinates = [0,0];
-    if (this.state.coordinates[0] !== 0 && this.state.coordinates[1] !== 0) {
+    if (this.state.newCoordinates.length) {
+      coordinates = this.state.newCoordinates;
+    } else if (this.state.coordinates[0] !== 0 && this.state.coordinates[1] !== 0) {
       coordinates = store.session.get('coordinates');
     }
 
@@ -123,6 +141,7 @@ export default React.createClass({
         <div className="map-container">
           <div className="map">
             <GoogleMapPage
+            city={this.state.city}
             coordinates={coordinates}
             resultsList={resultsList}
             />

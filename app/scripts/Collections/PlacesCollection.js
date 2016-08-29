@@ -12,10 +12,12 @@ const PlacesCollection = Backbone.Collection.extend({
 
   },
   getResults: function(city, query, range, coordinates){
-    // console.log(coordinates);
+    console.log('city ', city);
+    console.log('coordinates ', coordinates);
     let cll;
-    if (!coordinates) {
-      coordinates = null;
+
+    if (city) {
+      city = city;
     } else if (coordinates.length) {
       cll = `${coordinates[0]},${coordinates[1]}`;
     }
@@ -45,12 +47,15 @@ const PlacesCollection = Backbone.Collection.extend({
         tokenSecret : auth.accessTokenSecret,
     };
 
-
-
     let parameters = [];
+
+    if (city) {
+      parameters.push(['location', near]);
+    } else {
+      parameters.push(['ll', cll]);
+    }
     parameters.push(['term', terms]);
     parameters.push(['sort', sort]);
-    parameters.push(['location', near]);
     parameters.push(['radius_filter', radiusFilter]);
     parameters.push(['callback', 'cb']);
     parameters.push(['oauth_consumer_key', auth.consumerKey]);
@@ -58,9 +63,6 @@ const PlacesCollection = Backbone.Collection.extend({
     parameters.push(['oauth_token', auth.accessToken]);
     parameters.push(['oauth_signature_method', 'HMAC-SHA1']);
 
-    if (coordinates.length) {
-      parameters.push(['ll', cll]);
-    }
 
     let message = {
         'action' : 'https://api.yelp.com/v2/search',
