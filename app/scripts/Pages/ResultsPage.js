@@ -15,7 +15,7 @@ export default React.createClass({
       editCity: false,
       city: store.session.get('city'),
       coordinates: [],
-      newCity: store.session.get('newCity'),
+      newCity: store.session.get('city'),
       newCoordinates: store.session.get('newCoordinates'),
       query: store.session.get('query'),
       places: store.placesCollection.toJSON(),

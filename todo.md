@@ -10,11 +10,6 @@
  - it makes life more fun. it brings people together. dogs are great ice breakers! Bring people in the now and off of their phones (all the time)
 
 
-
-- test:
-  - matching shows up for sarah and shannon on test view...need to make sure matches are only seen by the user logged in
-  - shows all the messages between everyone...
-
 - DATE MATH:
   - when it's been longer than a day, remove from placeItemPage
     - keep that place on their recently visited places though!
@@ -22,23 +17,20 @@
     - don't show places if over 3 months ago...
 
 - MAP:
-  - animate: show bleeping if there are more than 3-5 users at one place!
+  - animate: show bleeping if there are more than 3-5 users at one place! (fix on mobile view)
   - onHoverOverPlaceMarker ==> make that marker come to front
 
+- RESULTS Pages
+- re-render when user changes city search
+
 - profilePage
-  - reorganize their editing profile?
   - uploading photos
     - drag and drop
     - dog photos
-  <!-- - show all of the matches a user has received! -->
 
-- messaging
-  - double check that messages aren't viewable by other people
-  - what to do when message convo exceeds 20 models??
-
-- Features to add:  
-  - commenting on places
-
+STYLES
+- update placeMarker for 'me'
+- all responsive styles
 
 ##QUESTIONS:
   - router?

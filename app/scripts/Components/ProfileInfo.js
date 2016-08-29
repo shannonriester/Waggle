@@ -90,13 +90,12 @@ export default React.createClass({
     let bkgrndImgForm;
 
     if (!this.state.editProfile && this.state.user.username) {
-      // styles = ;
       textareaBio = null;
 
       content = (
       <div>
         <section className="header-profile-section">
-          <BackgroundSlider />
+          <BackgroundSlider profile={this.state.user.profile}/>
             {bkgrndImgForm}
           <div className="profile-pic-container">
             {profilePicFile}
@@ -151,7 +150,8 @@ export default React.createClass({
           </Dropzone>
           {this.state.backgroundImgs.length > 0 ? <div className="upload-status-container">
               <h2>Uploading {this.state.backgroundImgs.length} file(s)...</h2>
-              <div>{this.state.backgroundImgs.map((file, i) => <img className="background-img-preview" key={i} src={file.preview} /> )}</div>
+              <div>{this.state.backgroundImgs.map((file, i) => <img className="background-img-preview" key={i} src={file.preview} />)}
+              </div>
               </div> : null}
         </div>
       </form>);
@@ -169,7 +169,7 @@ export default React.createClass({
     content = (
       <div>
         <section className="header-profile-section">
-          <BackgroundSlider />
+          <BackgroundSlider profile={this.state.user.profile}/>
             {bkgrndImgForm}
           <div className="profile-pic-container">
             {profilePicFile}

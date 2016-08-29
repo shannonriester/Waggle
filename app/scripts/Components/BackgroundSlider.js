@@ -2,11 +2,39 @@ import React, { Component } from 'react';
 var Slider = require('react-slick');
 
 var BackgroundSlider = React.createClass({
+  getInitialState: function() {
+    return {
+      imgSrc: [],
+      defaultImgs: [],
+    }
+  },
+  componentWillReceiveProps: function(newProps) {
+    // console.log(newProps.profile.bkgrndImgs[0]);
+
+    if (newProps.profile.bkgrndImgs.length) {
+      let imgArr = newProps.profile.bkgrndImgs.map((imgSrc, i) => {
+        console.log(imgSrc);
+        return newProps.profile.bkgrndImgs[i];
+      });
+      this.setState({imgSrc: imgArr});
+      // this.setState({imgSrc: [newProps.profile.bkgrndImgs[0]]});
+    } else {
+      let assetsArr = [
+        '/assets/profileImgs/dog6.jpeg',
+        '/assets/profileImgs/dog5.jpeg',
+        '/assets/profileImgs/dog3.jpeg',
+        '/assets/profileImgs/dog4.jpeg',
+        '/assets/profileImgs/dog1.jpeg'
+      ];
+      this.setState({imgSrc: assetsArr});
+    }
+  },
   render: function() {
+
+
   let settings = {
     arrows: true,
     accessability: true,
-    // dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
@@ -16,20 +44,15 @@ var BackgroundSlider = React.createClass({
     swipe: true,
   }
 
+  let imgArr = this.state.imgSrc.map((source, i) => {
+    return (<img key={i} src={source} />)
+  });
+
   return (
     <div className="slider-container">
       <Slider ref="slider" {...settings}>
-        <img src="/assets/profileImgs/dog6.jpeg" />
-        <img src="/assets/profileImgs/dog5.jpeg" />
-        <img src="/assets/profileImgs/dog3.jpeg" />
-        <img src="/assets/profileImgs/dog4.jpeg" />
-        <img src="/assets/profileImgs/dog1.jpeg" />
+        {imgArr}
       </Slider>
-      {//<div style={{textAlign: 'center'}}>
-        //<button className="slider-btn prev-btn" onClick={this.previous}>Previous</button>
-      //  <button className="slider-btn next-btn" onClick={this.next}>Next</button>
-    //  </div>
-    }
     </div>
   );
 }
