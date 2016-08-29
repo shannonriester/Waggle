@@ -64,7 +64,7 @@ export default React.createClass({
   },
   messageUser: function() {
     this.setState({newMessage: true});
-    // browserHistory.push(`/messages/newMessage`)
+    // browserHistory.push(`newMessage`)
   },
   hideMessageModal: function() {
     this.setState({newMessage: false});

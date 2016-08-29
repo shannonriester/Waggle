@@ -205,7 +205,6 @@ export default React.createClass({
         </main>
       </div>);
   }
-  // console.log(this.state.profilePicSrc);
     return (
       <div className="profile-info-component">
         {content}
