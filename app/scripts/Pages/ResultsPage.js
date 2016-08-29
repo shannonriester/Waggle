@@ -56,7 +56,7 @@ export default React.createClass({
 
         this.setState({
           editCity: false,
-          newCity: newCity,
+          newCity: store.session.get('newCity'),
           city: newCity,
           newCoordinates: newCoordinates,
           changedCity: store.session.get('changedCity'),
@@ -72,7 +72,7 @@ export default React.createClass({
         });
       }
     });
-
+    // this.setState({newCity: store.session.get('newCity')});
   },
   updateState: function() {
       if (!this.state.newCity) {
@@ -101,10 +101,9 @@ export default React.createClass({
       browserHistory.push('/');
     }
   },
-  componentDidMount: function () {
-    this.updateState()
+  componentDidMount: function() {
+    this.updateState();
     store.session.on('change', this.updateState);
-
     store.placesCollection.on('change update', this.updateState);
   },
   componentWillUnmount: function() {
@@ -118,9 +117,21 @@ export default React.createClass({
 
     let coordinates;
     let city;
+
+    console.log(this.state.newCity);
+    console.log(store.session.toJSON().newCity);
+
     if (this.state.changedCity) {
       coordinates = this.state.newCoordinates;
-      city = this.state.newCity;
+      if (this.state.newCity
+        && store.session.toJSON().newCity
+        && this.state.newCity !== store.session.toJSON().newCity
+      ) {
+        city = this.state.newCity;
+      } else {
+        city = store.session.toJSON().newCity;
+      }
+
     } else if (this.state.coordinates[0] !== 0 && this.state.coordinates[1] !== 0) {
       coordinates = this.state.coordinates;
       city = this.state.city;
