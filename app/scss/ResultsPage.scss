@@ -3,15 +3,67 @@
   border-bottom: solid $border 1px;
 }
 
+.globe-icon {
+  text-align: center;
+  width: 100%;
+  &:hover {
+    cursor: pointer;
+    color: $secondary;
+    transition: .5s;
+    transform: scale(1.1);
+  }
+}
+
 .map {
   height: 350px;
   width: 97%;
   margin: 10px auto;
   // border-radius: 2px;
 }
+
+.new-city-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 75px;
+}
+
+.new-city-input {
+  // height: 75%;
+  width: 190px;
+  margin-bottom: 7px;
+  font-size: 1em;
+  padding: 1%;
+  outline: none;
+  border: none;
+  // border-bottom: solid 2px $secondary;
+  box-shadow: 3px 3px 3px 2px rgba(0, 0, 0, 0.2);
+}
+
+.edit-city-footer {
+  display: flex;
+  align-items: center;
+}
+
+.submit-edit-city-btn {
+  height: 100%;
+  color: $accent;
+  border: none;
+  border-radius: 5px;
+  background: none;
+  font-size: 1em;
+  &:hover {
+    transition: .5s;
+    background: $accent;
+    color: #FFF;
+  }
+}
+
 .gm-style {
   border-radius: 2px;
 }
+
 .place-marker {
   position: relative;
   display: flex;

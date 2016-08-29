@@ -9,17 +9,22 @@ const PlacesCollection = Backbone.Collection.extend({
   model: PlaceModel,
   url: `https://api.yelp.com/v2/search`,
   getDistance: function() {
-    
+
   },
   getResults: function(city, query, range, coordinates){
     // console.log(coordinates);
+    let cll;
+    if (!coordinates) {
+      coordinates = null;
+    } else if (coordinates.length) {
+      cll = `${coordinates[0]},${coordinates[1]}`;
+    }
+
     if (range) {
       range = range * 1600;
     } else {
       range = 8 * 1600;
     }
-    //have to convert range(miles) to meters bc Yelp's API search parameters only search in meters.
-      //max range only up to 25 miles (40000 meters);
 
     this.reset();
     let auth = {
@@ -33,7 +38,6 @@ const PlacesCollection = Backbone.Collection.extend({
     };
     let terms = 'dogs allowed, ' + query;
     let near = city;
-    let cll = `${coordinates[0]},${coordinates[1]}`;
     let sort = 2;
     let radiusFilter = range;
     let accessor = {
@@ -41,17 +45,22 @@ const PlacesCollection = Backbone.Collection.extend({
         tokenSecret : auth.accessTokenSecret,
     };
 
+
+
     let parameters = [];
     parameters.push(['term', terms]);
     parameters.push(['sort', sort]);
-    // parameters.push(['location', near]);
-    parameters.push(['ll', cll]);
+    parameters.push(['location', near]);
     parameters.push(['radius_filter', radiusFilter]);
     parameters.push(['callback', 'cb']);
     parameters.push(['oauth_consumer_key', auth.consumerKey]);
     parameters.push(['oauth_consumer_secret', auth.consumerSecret]);
     parameters.push(['oauth_token', auth.accessToken]);
     parameters.push(['oauth_signature_method', 'HMAC-SHA1']);
+
+    if (coordinates.length) {
+      parameters.push(['ll', cll]);
+    }
 
     let message = {
         'action' : 'https://api.yelp.com/v2/search',

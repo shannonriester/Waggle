@@ -37,6 +37,7 @@ const SessionModel = Backbone.Model.extend({
     firstName: '',
     lastName: '',
     age: '',
+    newCity: '',
   },
   updateUser: function() {
     this.save(null,
@@ -246,6 +247,7 @@ const SessionModel = Backbone.Model.extend({
         firstName: response.firstName,
         lastName: response.lastName,
         age: response.age,
+        newCity: response.newCity,
       };
     }
   },

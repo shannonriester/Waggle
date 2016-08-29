@@ -33,34 +33,6 @@ export default React.createClass({
     store.session.login(username, password);
     this.props.hideModal();
   },
-  // signup3: function(e) {
-  //   e.preventDefault();
-  //     store.session.signup(
-  //       this.state.username,
-  //       this.state.password,
-  //       this.state.email,
-  //       this.state.firstName,
-  //       this.state.lastName,
-  //       this.state.age,
-  //       this.state.dogName,
-  //       this.state.dogAge,
-  //       this.state.dogBreed
-  //     );
-  // },
-  handleChange: function(e) {
-    // this.setState({
-    //   username: this.refs.username.value,
-    //   email: this.refs.email.value,
-    //   password: this.refs.password.value,
-    //   dogName: this.refs.dogName.value,
-    //   dogAge: this.refs.dogAge.value,
-    //   dogBreed: this.refs.dogBreed.value,
-    //   firstName: this.refs.firstName.value,
-    //   lastName: this.refs.lastName.value,
-    //   age: this.refs.age.value,
-    //   // value: e.target.value,
-    // });
-  },
   back: function(e) {
     e.preventDefault();
     if (this.state.form === 'signup3') {
@@ -73,17 +45,11 @@ export default React.createClass({
     console.log('state in signup3', this.state);
   },
   signup3: function(email, username, password, ex) {
-    console.log('ex', ex);
-    console.log('email ', email);
-    console.log('username ', username);
-    console.log('password ', password);
-
     this.setState({
         email: email,
         username: username,
         password: password,
       });
-      // this.finalSignup();
       store.session.signup(
         username,
         password,
