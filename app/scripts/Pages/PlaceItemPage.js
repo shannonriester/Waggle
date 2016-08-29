@@ -35,18 +35,7 @@ export default React.createClass({
         userCheckedin: store.session.get('username'),
       }),
     });
-    // let interval = setTimeout(() => {
-    //   this.setState({intervalCheckout:!this.state.intervalCheckout});
-    // // }, 1800000);
-    // }, 5000);
-    //
-    // this.setState({intervalCheckout:interval});
-
-    // this.setState({checkout:false});
   },
-    // toggleCheckinList: function() {
-    //   this.setState({checkinList: !this.state.checkinList});
-    // },
   updateState: function() {
     if (store.placesCollection.findWhere({yelpID: this.props.params.placeId}) && store.checkinCollection.where({place:this.props.params.placeId})) {
       this.setState({
@@ -131,9 +120,6 @@ export default React.createClass({
         checkedin = "checked-in";
         checkBtn = (<button className="checkin-btn" id={checkedin} onClick={this.toggleCheckin}>Checked in!</button>);
       }
-      // if (this.state.intervalCheckout) {
-        // checkBtn = (<button className="checkin-btn" onClick={this.toggleCheckin}>Checkout?</button>);
-      // }
       content = (
         <div className="result-item-container">
           <header className="place-image" style={styles}><h1>{placeItem.name}</h1></header>
@@ -141,7 +127,6 @@ export default React.createClass({
             <main className="main-place-item-page"></main>
             <footer className="footer-users-checkedin">
               {checkedinUserPreview}
-              <button className="users-checkedin-btn" onClick={this.toggleCheckinList}>Who's here?</button>
               {checkBtn}
             </footer>
           </div>
