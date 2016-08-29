@@ -60,7 +60,6 @@ export default React.createClass({
           city: newCity,
           newCoordinates: newCoordinates,
           changedCity: store.session.get('changedCity'),
-          // fetch: true,
         });
         store.placesCollection.getResults(
           store.session.get('newCity'),
@@ -70,19 +69,15 @@ export default React.createClass({
             this.setState({
               places: store.placesCollection.toJSON(),
             });
-        // this.updateState();
         });
       }
     });
 
   },
   updateState: function() {
-      // this.updateCity();
-
       if (!this.state.newCity) {
         this.setState({
           city: store.session.get('city'),
-          // newCity: store.session.get('newCity'),
           newCoordinates: store.session.get('newCoordinates'),
           coordinates: store.session.get('coordinates'),
           changedCity: store.session.get('changedCity'),
@@ -91,21 +86,7 @@ export default React.createClass({
         });
       }
 
-      if (this.state.city && (this.state.changedCity) && this.state.fetch) {
-        browserHistory.push({pathname:`/search/`, query:{category: store.session.get('query')} });
-        console.log('store.session if(CHANGEDCITY)', store.session);
-        console.log('this.state if(CHANGEDCITY)', this.state);
-        store.placesCollection.getResults(
-          store.session.get('newCity'),
-          store.session.get('query'),
-          store.session.get('range'),
-          undefined);
-        this.setState({fetch: false});
-
-      } else if (this.state.city && (!this.state.changedCity) && this.state.fetch2) {
-        console.log('store.session if(!this.state.CHANGEDCITY)', store.session);
-        console.log('this.state if(!this.state.CHANGEDCITY)', this.state);
-
+      if (this.state.city && (!this.state.changedCity) && this.state.fetch2) {
         browserHistory.push({pathname:`/search/`, query:{category: store.session.get('query')} });
         store.placesCollection.getResults(
           undefined,
@@ -114,8 +95,6 @@ export default React.createClass({
           store.session.get('coordinates'));
         this.setState({fetch2: false});
       }
-
-      // if (this.state.city !== store.session.get('newCity'))
   },
   componentWillMount: function() {
     if (!localStorage.authtoken) {

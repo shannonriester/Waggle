@@ -465,7 +465,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 47vh;
+  height: 75vh;
   width: 100vw;
   color: #FFF; }
 .result-item-component h1 {
@@ -477,6 +477,8 @@
   background: rgba(0, 0, 0, 0.2);
   color: #FFF; }
 .result-item-component .checkin-btn {
+  position: fixed;
+  bottom: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -497,30 +499,30 @@
   background: rgba(255, 255, 255, 0.9); }
 .result-item-component .ulist-users-checkedin {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-around;
   padding: 0;
   margin: 0;
   width: 100%;
   height: 100%; }
-  .result-item-component .ulist-users-checkedin li {
+  .result-item-component .ulist-users-checkedin .checkedin-user-preview-component {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-around;
     width: 100%;
+    height: 55%;
     list-style-type: none;
     color: #F55959; }
   .result-item-component .ulist-users-checkedin .userpreview-container {
-    display: flex;
-    display: column;
-    align-items: center;
-    justify-content: center;
-    height: 3em;
-    width: 3em;
-    background-size: cover; }
+    height: 80%;
+    width: 30%;
+    background-size: cover;
+    margin: 0; }
     .result-item-component .ulist-users-checkedin .userpreview-container h3 {
       margin: 0; }
-  .result-item-component .ulist-users-checkedin .checkedin-user-image {
+  .result-item-component .ulist-users-checkedin .figure-profile {
     height: 5em;
     width: 5em;
     background-size: cover;
@@ -761,21 +763,6 @@
   .profile-footer h2 {
     text-align: center;
     margin: 0; }
-  .profile-footer .matches-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    height: 30vh;
-    width: 100%; }
-  .profile-footer .match-preview-container {
-    position: relative;
-    width: 75%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    border-bottom: solid 1px #EBEBEB; }
   .profile-footer .match-heading {
     margin: 0;
     font-size: 1em; }
@@ -783,17 +770,6 @@
     height: 5em;
     width: 5em;
     border-radius: 50%; }
-  .profile-footer .matches-btn {
-    color: #F55959;
-    background: none;
-    outline: none;
-    border-radius: 50%;
-    border: solid 1px #EBEBEB;
-    font-size: 25px; }
-    .profile-footer .matches-btn:hover {
-      transition: .5s;
-      background: #F55959;
-      color: #FFF; }
   .profile-footer .user-recent-places-component {
     list-style-type: none;
     text-align: center;
@@ -1153,6 +1129,35 @@
   padding: 6px;
   border-radius: 50%;
   position: relative; }
+
+.scroll-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 30vh;
+  width: 100%; }
+
+.preview-container {
+  position: relative;
+  width: 75%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-bottom: solid 1px #EBEBEB; }
+
+.scroll-btn {
+  color: #F55959;
+  background: none;
+  outline: none;
+  border-radius: 50%;
+  border: solid 1px #EBEBEB;
+  font-size: 25px; }
+  .scroll-btn:hover {
+    transition: .5s;
+    background: #F55959;
+    color: #FFF; }
 
 #slide-out-left {
   -webkit-animation: slide-out-left 500ms;

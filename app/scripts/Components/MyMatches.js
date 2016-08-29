@@ -80,11 +80,11 @@ export default React.createClass({
     return (
       <div>
         <h2>Your Matches</h2>
-        <div className="matches-container">
-          <button className="matches-btn" onClick={this.scrollRight}><i className="arrow-icon fa fa-arrow-left" aria-hidden="true"></i></button>
-          <div id={this.state.scroll} className="match-preview-container">{matchPreview}</div>
-          <button className="matches-btn" onClick={this.scrollLeft}><i className="arrow-icon fa fa-arrow-right" aria-hidden="true"></i></button>
-          </div>
+        <div className="scroll-container">
+          <button className="scroll-btn" onClick={this.scrollLeft}><i className="arrow-icon fa fa-arrow-left" aria-hidden="true"></i></button>
+          <div id={this.state.scroll} className="preview-container">{matchPreview}</div>
+          <button className="scroll-btn" onClick={this.scrollRight}><i className="arrow-icon fa fa-arrow-right" aria-hidden="true"></i></button>
+        </div>
       </div>
     );
   }

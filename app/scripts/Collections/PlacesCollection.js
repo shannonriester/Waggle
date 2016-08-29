@@ -13,10 +13,7 @@ const PlacesCollection = Backbone.Collection.extend({
   },
   getResults: function(city, query, range, coordinates){
     return new Promise((resolve, reject) => {
-      console.log('city ', city);
-      console.log('coordinates ', coordinates);
       let cll;
-
       if (city) {
         city = city;
       } else if (coordinates.length) {

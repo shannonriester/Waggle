@@ -1,5 +1,7 @@
 import React from 'react';
 
+import store from '../../store';
+
 export default React.createClass({
   getInitialState() {
     return {
@@ -8,6 +10,13 @@ export default React.createClass({
       age: undefined,
     }
   },
+  updateState() {
+    this.setState({
+      firstName: store.session.get('firstName'),
+      lastName: store.session.get('lastName'),
+      age: store.session.get('age'),
+    })
+  },
   signup1(e) {
     e.preventDefault();
 
@@ -15,7 +24,15 @@ export default React.createClass({
     let lastName = this.refs.lastName.value;
     let age = this.refs.age.value;
     this.props.signup1(firstName, lastName, age);
-    this.setState({firstName: firstName, lastName: lastName, age: age});
+    store.session.set('firstName', firstName);
+    store.session.set('lastName', lastName);
+    store.session.set('age', age);
+    this.updateState();
+    // this.setState({
+    //   firstName: firstName,
+    //   lastName: lastName,
+    //   age: age,
+    // });
   },
   render() {
     return (

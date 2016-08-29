@@ -70,23 +70,6 @@
     text-align: center;
     margin: 0;
   }
-  .matches-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    height: 30vh;
-    width: 100%;
-  }
-  .match-preview-container {
-    position: relative;
-    width: 75%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    border-bottom: solid 1px $border;
-  }
 
   .match-heading {
     margin: 0;
@@ -99,19 +82,6 @@
     border-radius: 50%;
   }
 
-  .matches-btn {
-    color: $accent;
-    background: none;
-    outline: none;
-    border-radius: 50%;
-    border: solid 1px $border;
-    font-size: 25px;
-    &:hover {
-      transition: .5s;
-      background: $accent;
-      color: #FFF;
-    }
-  }
 
 
 // RECENT PLACES STARTS HERE

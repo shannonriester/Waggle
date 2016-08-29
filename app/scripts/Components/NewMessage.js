@@ -1,13 +1,9 @@
 import React from 'react';
+import _ from 'underscore';
 
 import store from '../store';
 
 export default React.createClass({
-  getInitialState: function() {
-    return {
-      // session: store.session.get('username');
-    }
-  },
   sendNewMessage: function(e) {
     e.preventDefault();
     let message = this.refs.textarea.value;
@@ -16,10 +12,9 @@ export default React.createClass({
   },
   cancel: function(e) {
     e.preventDefault();
-    this.props.hideMessageModal();
-  },
-  componentDidMount: function() {
-
+    if (_.toArray(e.target.classList).indexOf('modal-component') !== -1 || _.toArray(e.target.classList).indexOf('cancel-btn') !== -1 ) {
+      this.props.hideMessageModal();
+    }
   },
   render: function() {
     return (
