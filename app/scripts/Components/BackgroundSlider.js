@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 var Slider = require('react-slick');
 
+import store from '../store';
+
 var BackgroundSlider = React.createClass({
   getInitialState: function() {
     return {
@@ -9,27 +11,14 @@ var BackgroundSlider = React.createClass({
     }
   },
   componentWillReceiveProps: function(newProps) {
-    // console.log(newProps.profile.bkgrndImgs[0]);
-
     if (newProps.profile.bkgrndImgs.length) {
       let imgArr = newProps.profile.bkgrndImgs.map((imgSrc, i) => {
         return newProps.profile.bkgrndImgs[i];
       });
       this.setState({imgSrc: imgArr});
-    } else {
-      let assetsArr = [
-        '/assets/profileImgs/dog6.jpeg',
-        '/assets/profileImgs/dog5.jpeg',
-        '/assets/profileImgs/dog3.jpeg',
-        '/assets/profileImgs/dog4.jpeg',
-        '/assets/profileImgs/dog1.jpeg'
-      ];
-      this.setState({imgSrc: assetsArr});
     }
   },
   render: function() {
-
-
   let settings = {
     arrows: true,
     accessability: true,

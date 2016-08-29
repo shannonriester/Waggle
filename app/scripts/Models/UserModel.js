@@ -1,4 +1,5 @@
 import Backbone from 'backbone';
+import $ from 'jquery';
 
 const UserModel = Backbone.Model.extend({
   idAttribute: '_id',
@@ -10,7 +11,13 @@ const UserModel = Backbone.Model.extend({
     recentPlaces: [],
     profile: {
       profilePic: '/assets/default_dog_large.png',
-      images: ['/assets/default_dog_large.png',],
+      bkgrndImgs: [
+        '/assets/profileImgs/dog6.jpeg',
+        '/assets/profileImgs/dog5.jpeg',
+        '/assets/profileImgs/dog3.jpeg',
+        '/assets/profileImgs/dog4.jpeg',
+        '/assets/profileImgs/dog1.jpeg'
+      ],
       usersAge: '',
       bio: '',
     },
@@ -19,7 +26,6 @@ const UserModel = Backbone.Model.extend({
       dogBreed: 'breed',
       dogAge: 'age',
     },
-    bkgrndImgs: [],
     query: 'park',
     range: '8',
     checkedin: false,
@@ -87,7 +93,6 @@ const UserModel = Backbone.Model.extend({
         },
       })
       .then((response) => {
-
         resolve(response._downloadURL);
       })
       .fail((e) => {
@@ -101,11 +106,14 @@ const UserModel = Backbone.Model.extend({
     currProfile.bio = bio;
     this.set('profile', currProfile)
 
+    // console.log('currProfile', currProfile);
+
     if (file) {
-      this.convertImgFile(file).then(() => {
+      this.convertImgFile(file).then((downloadURL) => {
         let profile = this.get('profile');
-        profile.profilePic = response._downloadURL;
+        profile.profilePic = downloadURL;
         this.set('profile', profile);
+        console.log(this.get('profile'));
 
         this.save(null, {
           type: 'PUT',

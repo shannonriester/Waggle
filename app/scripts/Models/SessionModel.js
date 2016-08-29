@@ -13,7 +13,13 @@ const SessionModel = Backbone.Model.extend({
     recentPlaces: [{},],
     profile: {
       profilePic: '/assets/default_dog_large.png',
-      bkgrndImgs: ['/assets/default_dog_large.png',],
+      bkgrndImgs: [
+        '/assets/profileImgs/dog6.jpeg',
+        '/assets/profileImgs/dog5.jpeg',
+        '/assets/profileImgs/dog3.jpeg',
+        '/assets/profileImgs/dog4.jpeg',
+        '/assets/profileImgs/dog1.jpeg'
+      ],
       usersAge: '',
       bio: '',
     },
@@ -22,7 +28,6 @@ const SessionModel = Backbone.Model.extend({
       dogBreed: 'breed',
       dogAge: 'age',
     },
-    bkgrndImgs: [],
     query: 'park',
     range: '8',
     checkedin: false,
@@ -47,8 +52,6 @@ const SessionModel = Backbone.Model.extend({
         success: (model, response) => {
           this.trigger('change');
         console.log('UPDATED USER ', response);
-        // this.trigger('change');
-
       }, error: (e) => {
           console.log('SESSION.UPDATEUSER ERROR: ', e);
       }
@@ -83,6 +86,7 @@ const SessionModel = Backbone.Model.extend({
     });
   },
   convertImgFile: function(file) {
+    console.log(file);
     let fileId;
     return new Promise((resolve, reject) => {
       this.postToKinveyFile(file)
@@ -134,7 +138,6 @@ const SessionModel = Backbone.Model.extend({
         },
       })
       .then((response) => {
-
         resolve(response._downloadURL);
       })
       .fail((e) => {
@@ -149,16 +152,16 @@ const SessionModel = Backbone.Model.extend({
     this.set('profile', currProfile)
 
     if (file) {
-      this.convertImgFile(file).then(() => {
+      this.convertImgFile(file).then((downloadURL) => {
         let profile = this.get('profile');
-        profile.profilePic = response._downloadURL;
+        profile.profilePic = downloadURL;
         this.set('profile', profile);
 
         this.save(null, {
           type: 'PUT',
           url: `https://baas.kinvey.com/user/kid_SkBnla5Y/${this.get('userId')}`,
           success: (response) => {
-            console.log(response);
+            // console.log(response);
           }
         });
       })
@@ -193,7 +196,7 @@ const SessionModel = Backbone.Model.extend({
               type: 'PUT',
               url: `https://baas.kinvey.com/user/kid_SkBnla5Y/${this.get('userId')}`,
               success: (response) => {
-                console.log(response);
+                // console.log(response);
               }
             });
           }
