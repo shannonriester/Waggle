@@ -13,11 +13,9 @@ var BackgroundSlider = React.createClass({
 
     if (newProps.profile.bkgrndImgs.length) {
       let imgArr = newProps.profile.bkgrndImgs.map((imgSrc, i) => {
-        console.log(imgSrc);
         return newProps.profile.bkgrndImgs[i];
       });
       this.setState({imgSrc: imgArr});
-      // this.setState({imgSrc: [newProps.profile.bkgrndImgs[0]]});
     } else {
       let assetsArr = [
         '/assets/profileImgs/dog6.jpeg',

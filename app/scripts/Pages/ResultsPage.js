@@ -1,5 +1,6 @@
 import React from 'react';
 import { browserHistory } from 'react-router';
+import $ from 'jquery';
 import GoogleMap from 'google-map-react';
 
 
@@ -13,17 +14,22 @@ export default React.createClass({
   getInitialState: function() {
     return {
       editCity: false,
+      changedCity: store.session.get('changedCity'),
       city: store.session.get('city'),
       coordinates: [],
-      newCity: store.session.get('city'),
-      newCoordinates: store.session.get('newCoordinates'),
+      newCity: undefined,
+      newCoordinates: [],
       query: store.session.get('query'),
       places: store.placesCollection.toJSON(),
       fetch: true,
+      fetch2: true,
     }
   },
   handleChange: function(event) {
-    this.setState({newCity: event.target.value});
+    this.setState({
+      city: event.target.value,
+      newCity: event.target.value,
+    });
   },
   editCity: function() {
     this.setState({editCity: true});
@@ -43,7 +49,7 @@ export default React.createClass({
         let lat = response.results[0].geometry.location.lat;
         let lng = response.results[0].geometry.location.lng;
         let newCoordinates = [lat, lng];
-
+        store.session.set('changedCity', true);
         store.session.set('newCity', newCity);
         store.session.set('newCoordinates', newCoordinates);
         store.session.updateUser();
@@ -51,43 +57,65 @@ export default React.createClass({
         this.setState({
           editCity: false,
           newCity: newCity,
-          newCoordinates: newCoordinates
+          city: newCity,
+          newCoordinates: newCoordinates,
+          changedCity: store.session.get('changedCity'),
+          // fetch: true,
+        });
+        store.placesCollection.getResults(
+          store.session.get('newCity'),
+          store.session.get('query'),
+          store.session.get('range'),
+          undefined).then(() => {
+            this.setState({
+              places: store.placesCollection.toJSON(),
+            });
+        // this.updateState();
         });
       }
     });
 
-    this.updateState();
   },
   updateState: function() {
-      this.setState({
-        city: store.session.get('city'),
-        coordinates: store.session.get('coordinates'),
-        newCity: store.session.get('newCity'),
-        newCoordinates: store.session.get('newCoordinates'),
-        query: store.session.get('query'),
-        places: store.placesCollection.toJSON(),
-      });
+      // this.updateCity();
 
-      if (this.state.newCity && this.state.fetch) {
+      if (!this.state.newCity) {
+        this.setState({
+          city: store.session.get('city'),
+          // newCity: store.session.get('newCity'),
+          newCoordinates: store.session.get('newCoordinates'),
+          coordinates: store.session.get('coordinates'),
+          changedCity: store.session.get('changedCity'),
+          query: store.session.get('query'),
+          places: store.placesCollection.toJSON(),
+        });
+      }
+
+      if (this.state.city && (this.state.changedCity) && this.state.fetch) {
         browserHistory.push({pathname:`/search/`, query:{category: store.session.get('query')} });
-        console.log('session in if(this.state.NEWCITY)', store.session);
+        console.log('store.session if(CHANGEDCITY)', store.session);
+        console.log('this.state if(CHANGEDCITY)', this.state);
         store.placesCollection.getResults(
-          this.state.newCity,
+          store.session.get('newCity'),
           store.session.get('query'),
-          store.session.get('range'));
+          store.session.get('range'),
+          undefined);
         this.setState({fetch: false});
 
-      } else if (this.state.city && (this.state.city === this.state.newCity) && this.state.fetch) {
-        console.log(this.state.city);
+      } else if (this.state.city && (!this.state.changedCity) && this.state.fetch2) {
+        console.log('store.session if(!this.state.CHANGEDCITY)', store.session);
+        console.log('this.state if(!this.state.CHANGEDCITY)', this.state);
+
         browserHistory.push({pathname:`/search/`, query:{category: store.session.get('query')} });
-        console.log('session in if(this.state.CITY)', store.session);
         store.placesCollection.getResults(
-          this.state.city,
+          undefined,
           store.session.get('query'),
           store.session.get('range'),
           store.session.get('coordinates'));
-        this.setState({fetch: false});
+        this.setState({fetch2: false});
       }
+
+      // if (this.state.city !== store.session.get('newCity'))
   },
   componentWillMount: function() {
     if (!localStorage.authtoken) {
@@ -97,6 +125,7 @@ export default React.createClass({
   componentDidMount: function () {
     this.updateState()
     store.session.on('change', this.updateState);
+
     store.placesCollection.on('change update', this.updateState);
   },
   componentWillUnmount: function() {
@@ -104,16 +133,18 @@ export default React.createClass({
     store.placesCollection.off('change update', this.updateState);
   },
   render: function() {
-    let city = this.state.city;
     let resultsList = this.state.places.map((place, i, arr) => {
       return (<ResultsList key={i} place={place} />);
     });
 
-    let coordinates = [0,0];
-    if (this.state.newCoordinates.length) {
+    let coordinates;
+    let city;
+    if (this.state.changedCity) {
       coordinates = this.state.newCoordinates;
+      city = this.state.newCity;
     } else if (this.state.coordinates[0] !== 0 && this.state.coordinates[1] !== 0) {
-      coordinates = store.session.get('coordinates');
+      coordinates = this.state.coordinates;
+      city = this.state.city;
     }
 
     let editCity;
@@ -131,17 +162,13 @@ export default React.createClass({
       editCity = (<i className="globe-icon fa fa-cog" aria-hidden="true" onClick={this.editCity}> Change city? </i>);
     }
 
-    if (this.state.newCity && (this.state.newCity !== ' ' || this.state.newCity !== '')) {
-     city = this.state.newCity;
-    }
-
     return (
       <div className="results-page-component">
         <Header />
         <div className="map-container">
           <div className="map">
             <GoogleMapPage
-            city={this.state.city}
+            city={city}
             coordinates={coordinates}
             resultsList={resultsList}
             />

@@ -37,7 +37,7 @@ const SessionModel = Backbone.Model.extend({
     firstName: '',
     lastName: '',
     age: '',
-    newCity: '',
+    changedCity: false,
     newCoordinates: [],
   },
   updateUser: function() {
