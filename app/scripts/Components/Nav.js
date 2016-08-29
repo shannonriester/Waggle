@@ -36,6 +36,7 @@ export default React.createClass({
   componentDidMount: function() {
     if (store.session.get('username')) {
       store.checkinCollection.fetch();
+      store.checkinCollection.deleteOldCheckins();
     }
 
     store.session.on('change', this.updateState);

@@ -16,7 +16,6 @@ export default React.createClass({
       matched: this.props.matched,
       profilePicSrc: '',
       backgroundImgs: [],
-
     }
   },
   saveEdits: function(e) {

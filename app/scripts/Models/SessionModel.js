@@ -277,7 +277,6 @@ const SessionModel = Backbone.Model.extend({
     });
   },
   signup: function(username, password, email, firstName, lastName, age, dogName, dogAge, dogBreed) {
-    console.log('username on session', username);
     let newUsername = username.toLowerCase();
     this.save({
       username: newUsername,

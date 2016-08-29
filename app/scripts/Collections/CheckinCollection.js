@@ -42,7 +42,9 @@ export default Backbone.Collection.extend({
   },
   deleteOldCheckins: function() {
     this.models.forEach((model) => {
-      console.log(model);
+      model = model.toJSON();
+      console.log(model._kmd.ect);
+      // console.log(model);
       // if (model)
     });
   },
