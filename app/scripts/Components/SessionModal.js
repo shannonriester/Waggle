@@ -44,12 +44,13 @@ export default React.createClass({
   finalSignup: function() {
     console.log('state in signup3', this.state);
   },
-  signup3: function(email, username, password, ex) {
-    this.setState({
-        email: email,
-        username: username,
-        password: password,
-      });
+  signup3: function(e, email, username, password, ex) {
+    e.preventDefault();
+    // this.setState({
+    //     email: email,
+    //     username: username,
+    //     password: password,
+    //   });
       store.session.signup(
         username,
         password,
@@ -133,7 +134,7 @@ export default React.createClass({
         form = (<Signup3 signup3={this.signup3} shakeModal={this.shakeModal}/>);
         footer = (
           <footer className="modal-footer">
-            <button className="modal-btn" role="button" tabIndex="4" onClick={this.signup3}>Next</button>
+            <button className="modal-btn" role="button" tabIndex="4" onClick={this.signup3}>Done</button>
             <button className="modal-btn" role="button" tabIndex="6" onClick={this.back}>Back</button>
           </footer>
         );

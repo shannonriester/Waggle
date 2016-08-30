@@ -1,15 +1,16 @@
 import React from 'react';
 
 export default React.createClass({
-  getInitialState() {
-    return {
-      email: undefined,
-      username: undefined,
-      password: undefined,
-    }
-  },
+  // getInitialState() {
+  //   return {
+  //     email: undefined,
+  //     username: undefined,
+  //     password: undefined,
+  //   }
+  // },
   signup3(e) {
     e.preventDefault();
+    // e.stopPropagation();
     let email = this.refs.email.value;
     let username = this.refs.username.value;
     username = username.toLowerCase();
@@ -22,7 +23,7 @@ export default React.createClass({
       this.props.shakeModal();
     } else {
 
-      this.props.signup3(email, username, password);
+      this.props.signup3(e, email, username, password);
       this.setState({email: email, username: username, password: password});
 
     }
