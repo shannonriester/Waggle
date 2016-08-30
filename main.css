@@ -255,10 +255,15 @@
   margin: 0; }
 
 .current-location {
-  color: #F55959; }
+  color: #9265BF; }
 
 .nav-component {
-  background: rgba(236, 238, 236, 0.8); }
+  background: #FFF;
+  box-shadow: 0px -4px 22px 0px rgba(0, 0, 0, 0.27);
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  top: 0; }
   .nav-component ul {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -272,19 +277,20 @@
     margin: 0 10px 0px 10px;
     padding: 0; }
   .nav-component li {
-    list-style-type: none;
-    width: calc(100/3); }
+    list-style-type: none; }
   .nav-component .nav-icon {
     font-size: 3.5em;
-    color: rgba(245, 89, 89, 0.8); }
+    color: #9265BF; }
 
 .searchbar-component {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 97vw;
+  width: 97%;
   height: 70px;
-  margin: 2% auto; }
+  margin: 0 auto;
+  border-bottom: solid 2px #EBEBEB;
+  padding: 30px 0; }
 
 .searchbar {
   height: 100%;
@@ -294,7 +300,8 @@
   border: none;
   border-top-left-radius: 2px;
   border-bottom-left-radius: 2px;
-  background: #EBEBEB;
+  border: solid 1px #EBEBEB;
+  background: #FFF;
   padding-left: 10px; }
 
 .search-submit {
@@ -319,17 +326,14 @@
   .search-icon {
     height: 72%;
     font-size: 2em; } }
-@media (min-width: 845px) {
+@media (min-width: 775px) {
   .searchbar-component {
-    width: 50vw; }
+    width: 50vw;
+    background: #EBEBEB; }
 
   .searchbar {
     width: 78%;
     height: 50px; } }
-.map-container {
-  margin-bottom: 2%;
-  border-bottom: solid #EBEBEB 1px; }
-
 .map {
   height: 350px;
   width: 97%;
@@ -357,7 +361,7 @@
   width: 2em; }
 
 #my-location {
-  background-color: rgba(102, 51, 153, 0.9); }
+  background-color: #9265BF; }
 
 .infobox-container {
   position: absolute;
@@ -403,7 +407,7 @@
   margin-top: 30px;
   height: 30px;
   width: 50px;
-  font-size: 2em !important; }
+  font-size: 2em; }
   .edit-city-icon:hover {
     cursor: pointer;
     color: #F55959;
@@ -416,14 +420,16 @@
   justify-content: center;
   height: 130px;
   width: 100%;
-  box-shadow: 1px -4px 3px 2px rgba(0, 0, 0, 0.2);
+  background: #EBEBEB;
+  box-shadow: 0px -6px 14px -7px rgba(0, 0, 0, 0.27);
   border-radius: 5px;
   background: white;
   margin: 0 auto; }
 
 h4 {
   font-size: 18px;
-  margin-bottom: 5px; }
+  margin: 0;
+  margin-top: 15px; }
 
 .new-city-input {
   height: 30px;
@@ -458,13 +464,14 @@ h4 {
 .search-heading {
   text-align: center;
   font-size: 35px;
-  color: #F55959; }
+  color: #F55959;
+  background: #EBEBEB; }
 
 .search-sub-heading {
   display: none; }
 
 .search-heading-section {
-  padding-bottom: 20px; }
+  background: #FFF; }
 
 .results-list {
   margin: 0;
@@ -561,11 +568,11 @@ h4 {
     height: 170px; }
 
   .search-heading {
-    margin: 0;
+    margin: 20px 0;
     height: 50px; }
 
   .new-city-form {
-    height: 70px; }
+    height: 160px; }
 
   .result-image {
     height: 7.5em;
@@ -577,7 +584,7 @@ h4 {
 
   .about-place {
     font-size: 20px; } }
-@media (min-width: 845px) {
+@media (min-width: 775px) {
   .results-page-container {
     display: flex; }
 
@@ -588,13 +595,24 @@ h4 {
   .map {
     height: 430px; }
 
+  .search-heading-section {
+    margin: 30px 0; }
+
+  .search-heading {
+    margin: 0;
+    height: 90px; }
+
   .new-city-form {
-    width: 101%; }
+    width: 100%;
+    height: 200px;
+    box-shadow: none;
+    background: #EBEBEB; }
 
   .results-list {
-    width: 50vw;
     position: relative;
+    top: 50px;
     left: 50%;
+    width: 50vw;
     box-shadow: -9px 0px 5px 0px rgba(0, 0, 0, 0.27); }
 
   .about-preview .results-h1 {
@@ -607,34 +625,35 @@ h4 {
     height: 6.5em;
     width: 6.5em;
     margin-top: 15px; } }
-.place-item-component .place-item-content {
+.place-item-content {
   background-size: contain;
   background-repeat: no-repeat;
   width: 100vw;
   text-align: center; }
-  .place-item-component .place-item-content .place-image {
+  .place-item-content .place-image {
     height: 46vh;
     width: 100vw;
     margin: 0 auto;
     background-repeat: no-repeat;
     background-size: cover; }
-.place-item-component .nav-component ul {
-  margin-bottom: 0; }
-.place-item-component .content-container {
+
+.content-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 75vh;
   width: 100vw;
   color: #FFF; }
-.place-item-component .place-item-h1 {
+
+.place-item-h1 {
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0;
   height: 100%;
   color: #FFF; }
-.place-item-component .checkin-btn {
+
+.checkin-btn {
   position: fixed;
   bottom: 0;
   display: flex;
@@ -647,7 +666,8 @@ h4 {
   background: rgba(255, 255, 255, 0.8);
   color: #F55959;
   font-size: 2em; }
-.place-item-component .footer-users-checkedin {
+
+.footer-users-checkedin {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -655,7 +675,8 @@ h4 {
   width: 100%;
   height: 100%;
   background: rgba(255, 255, 255, 0.9); }
-.place-item-component .ulist-users-checkedin {
+
+.ulist-users-checkedin {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -664,7 +685,8 @@ h4 {
   margin: 0;
   width: 100%;
   height: 100%; }
-.place-item-component .checkedin-user-preview-component {
+
+.checkedin-user-preview-component {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -673,23 +695,25 @@ h4 {
   height: 55%;
   list-style-type: none;
   color: #F55959; }
-.place-item-component .userpreview-container {
+
+.userpreview-container {
   height: 80%;
   width: 30%;
   background-size: cover;
   margin: 0; }
-  .place-item-component .userpreview-container .figure-profile {
+  .userpreview-container .figure-profile {
     height: 5em;
     width: 5em;
     background-size: cover;
     border-radius: 50%;
     background-position: left center; }
-  .place-item-component .userpreview-container .checkin-data {
+  .userpreview-container .checkin-data {
     font-size: 14px;
     display: flex;
     flex-wrap: wrap;
     width: 6em; }
-.place-item-component #checked-in {
+
+#checked-in {
   color: #FFF;
   background: #F55959; }
 
@@ -1071,7 +1095,7 @@ h4 {
     justify-content: center;
     width: 80%;
     color: #EFF1EF;
-    background: rgba(102, 51, 153, 0.7);
+    background: rgba(146, 101, 191, 0.7);
     border-radius: 10px;
     padding: 10px; }
   .messages-content .not-me {
@@ -1422,7 +1446,8 @@ body {
   color: #555;
   font-family: "Lato", sans-serif;
   line-height: 150%;
-  word-spacing: 3px; }
+  word-spacing: 3px;
+  background: #EBEBEB; }
 
 .link {
   display: -webkit-box;
