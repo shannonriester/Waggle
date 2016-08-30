@@ -176,6 +176,8 @@
   .modal-component .signup-form {
     width: 35em;
     margin: 0 auto; }
+  .modal-component .signup-input {
+    padding-top: 2%; }
   .modal-component .modal-footer {
     height: 20vh; } }
 @media (min-width: 720px) {
@@ -317,12 +319,12 @@
   .search-icon {
     height: 72%;
     font-size: 2em; } }
-@media (min-width: 900px) {
+@media (min-width: 845px) {
   .searchbar-component {
     width: 50vw; }
 
   .searchbar {
-    width: 80%;
+    width: 78%;
     height: 50px; } }
 .map-container {
   margin-bottom: 2%;
@@ -575,7 +577,7 @@ h4 {
 
   .about-place {
     font-size: 20px; } }
-@media (min-width: 900px) {
+@media (min-width: 845px) {
   .results-page-container {
     display: flex; }
 
@@ -585,6 +587,9 @@ h4 {
 
   .map {
     height: 430px; }
+
+  .new-city-form {
+    width: 101%; }
 
   .results-list {
     width: 50vw;
@@ -1286,6 +1291,7 @@ h4 {
   border-radius: 50%; }
 
 .outer-pulse-radius {
+  position: relative;
   -webkit-animation: border-pulse 2.2s infinite;
   animation: border-pulse 2.2s infinite;
   background: transparent;
@@ -1293,8 +1299,7 @@ h4 {
   width: 3.5em;
   border: solid 1px;
   padding: 6px;
-  border-radius: 50%;
-  position: relative; }
+  border-radius: 50%; }
 
 .scroll-container {
   position: relative;
