@@ -105,7 +105,7 @@ export default React.createClass({
     this.setState({shakeModal: true});
     window.setTimeout(() => {
       this.setState({shakeModal: false});
-    }, 1000);
+    }, 1500);
   },
   hideModal: function(e) {
     if (_.toArray(e.target.classList).indexOf('modal-content') !== -1 || _.toArray(e.target.classList).indexOf('cancel-btn') !== -1 ) {
