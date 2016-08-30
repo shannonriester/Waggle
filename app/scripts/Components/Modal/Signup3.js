@@ -1,16 +1,12 @@
 import React from 'react';
 
+import store from '../../store';
+
 export default React.createClass({
-  // getInitialState() {
-  //   return {
-  //     email: undefined,
-  //     username: undefined,
-  //     password: undefined,
-  //   }
-  // },
   signup3(e) {
     e.preventDefault();
-    // e.stopPropagation();
+    e.stopPropagation();
+
     let email = this.refs.email.value;
     let username = this.refs.username.value;
     username = username.toLowerCase();
@@ -22,10 +18,10 @@ export default React.createClass({
       console.log('passwords don\'t match or you didn\'t enter a username!');
       this.props.shakeModal();
     } else {
-
-      this.props.signup3(e, email, username, password);
-      this.setState({email: email, username: username, password: password});
-
+      store.session.set('email', email);
+      store.session.set('username', username);
+      store.session.set('password', password);
+      this.props.signup3();
     }
   },
   render() {
