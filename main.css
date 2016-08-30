@@ -287,6 +287,9 @@
   font-size: 17px;
   font-weight: 100; }
 
+.nav-icon-title {
+  display: none; }
+
 .current-location {
   color: #9265BF; }
 
@@ -311,18 +314,44 @@
     -ms-flex-pack: justify;
     justify-content: space-between;
     width: 55%;
-    margin: 0 10px 0px 10px;
+    margin: 0 15px 0px 10px;
     padding: 0; }
   .nav-component li {
     list-style-type: none; }
   .nav-component .nav-icon {
-    font-size: 2.5em;
+    font-size: 2em;
     color: #9265BF; }
     .nav-component .nav-icon:hover {
       transition: .5s;
       cursor: pointer;
       color: rgba(146, 101, 191, 0.8); }
 
+@media (min-width: 575px) {
+  .nav-ul {
+    width: 45%;
+    margin: 0 15px 0px 10px; }
+    .nav-ul li {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100px; }
+    .nav-ul .nav-icon-title {
+      display: block;
+      margin: 0;
+      color: #9265BF; } }
+@media (min-width: 775px) {
+  .nav-ul {
+    width: 45%;
+    margin: 0 15px 0px 10px; }
+    .nav-ul li {
+      display: flex;
+      flex-direction: column;
+      align-items: center; }
+
+  .nav-icon-title {
+    display: block;
+    margin: 0;
+    color: #9265BF; } }
 .searchbar-component {
   display: flex;
   align-items: center;
@@ -368,14 +397,18 @@
   .searchbar-component {
     width: 50vw;
     background: #EBEBEB;
-    padding: 10px 0; }
+    margin-top: 1em; }
 
   .searchbar {
-    width: 78%; } }
+    width: 75%; } }
+.map-container {
+  background: white; }
+
 .map {
-  height: 350px;
-  width: 97%;
-  margin: 10px auto; }
+  height: 400px;
+  width: 80%;
+  margin: 0 auto;
+  background: white; }
 
 .gm-style {
   border-radius: 2px; }
@@ -397,6 +430,8 @@
   left: 3px;
   height: 2em;
   width: 2em; }
+  .paw-icon:hover {
+    cursor: pointer; }
 
 #my-location {
   background-color: #9265BF; }
@@ -448,9 +483,7 @@
   width: 50px;
   font-size: 2em; }
   .edit-city-icon:hover {
-    cursor: pointer;
-    color: #FF5A5F;
-    transition: .5s; }
+    cursor: pointer; }
 
 .new-city-form {
   display: flex;
@@ -468,7 +501,6 @@
   display: flex;
   align-items: flex-start;
   height: 30px;
-  width: 52%;
   text-align: center; }
 
 h4 {
@@ -478,21 +510,22 @@ h4 {
 
 .new-city-input {
   height: 30px;
-  width: 85%;
+  width: 100%;
   font-size: 1em;
   padding: 0;
   outline: none;
   border: none;
   background: #EBEBEB;
   color: #555;
-  text-align: center;
-  border-radius: 2px; }
+  border-radius: 2px;
+  text-align: left;
+  padding-left: 6px; }
 
 .edit-city-footer {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  width: 55%;
+  justify-content: center;
+  width: 250px;
   font-size: 14px; }
 
 .submit-edit-city-btn {
@@ -504,7 +537,7 @@ h4 {
   background: none;
   font-size: 1em; }
   .submit-edit-city-btn:hover {
-    background: #FF5A5F; }
+    cursor: pointer; }
 
 .search-heading-section {
   background: #FFF;
@@ -543,8 +576,8 @@ h4 {
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  height: 6.5em;
-  width: 6.5em;
+  height: 4.5em;
+  width: 4.5em;
   margin: 0;
   background-size: cover;
   background-repeat: no-repeat;
@@ -610,7 +643,7 @@ h4 {
   text-align: center;
   overflow: scroll; }
 
-@media (min-width: 600px) {
+@media (min-width: 774px) {
   .map {
     height: 360px; }
 
@@ -628,9 +661,8 @@ h4 {
     height: 160px; }
 
   .result-image {
-    height: 7.5em;
-    width: 7.5em;
-    margin-top: 15px; }
+    height: 5em;
+    width: 5em; }
 
   .about-preview .results-h1 {
     font-size: 25px; }
@@ -643,28 +675,32 @@ h4 {
 
   .map-container {
     position: fixed;
-    top: 39%;
-    width: 48vw;
+    top: 40%;
+    left: 12px;
+    width: 45%;
     display: flex;
     align-items: center;
     justify-content: center;
     border: solid 10px white; }
 
   .map {
-    height: 430px; }
+    height: 430px;
+    width: 100%; }
 
   .search-heading-section {
     position: fixed;
     top: 80px;
     height: 170px;
-    margin: 0; }
-
-  .search-heading {
     margin: 0;
     background: #EBEBEB; }
 
+  .search-heading {
+    margin: 0;
+    background: #EBEBEB;
+    padding-top: 10px; }
+
   .heading-icon-container {
-    height: 140px;
+    height: 100px;
     padding: 20px 0; }
 
   .new-city-form {
@@ -674,14 +710,14 @@ h4 {
     background: #EBEBEB; }
 
   .new-city-input {
-    width: 50%;
-    height: 70px; }
+    width: 100%;
+    background: #FFF; }
 
   .edit-city-footer {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    width: 55%;
+    justify-content: center;
+    width: 100%;
     font-size: 14px; }
 
   .results-list {
@@ -702,12 +738,7 @@ h4 {
     font-size: 20px; }
 
   .about-place {
-    font-size: 15px; }
-
-  .result-image {
-    height: 6.5em;
-    width: 6.5em;
-    margin-top: 15px; } }
+    font-size: 15px; } }
 .place-item-content {
   background-size: contain;
   background-repeat: no-repeat;
