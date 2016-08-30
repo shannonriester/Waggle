@@ -60,7 +60,9 @@ export default React.createClass({
 
     return (
       <nav className="nav-component">
-          <ul>
+          <section className="header-title"><div className="logo-container" style={{backgroundImage:`url("/assets/dogHead_Red.svg")`}}></div><h1 className="waggle">Waggle</h1></section>
+
+          <ul className="nav-ul">
             <li className="li-third">
               <i className="nav-icon messages-icon fa fa-comments-o" aria-hidden="true" onClick={this.messages}></i>
             </li>

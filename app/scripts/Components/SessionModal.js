@@ -33,7 +33,7 @@ export default React.createClass({
     store.session.login(username, password);
     if (localStorage.authtoken) {
       this.props.hideModal();
-    } 
+    }
   },
   back: function(e) {
     e.preventDefault();

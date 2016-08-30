@@ -10,9 +10,7 @@ const MessagesCollection = Backbone.Collection.extend({
 
   },
   sendMessage: function(session, recipient, message) {
-    console.log(session);
-    console.log(recipient);
-    console.log(message);
+
     this.create({
       sender:session,
       recipient:recipient,

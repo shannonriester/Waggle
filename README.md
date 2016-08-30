@@ -166,6 +166,7 @@ allow message of matches
 2. [The Noun Project](https://thenounproject.com/)
   - Paw-print icon (filled) Created by YuguDesign, from the Noun Project
   - Paw-print icon (not filled) Created by Sergey Demushkin, from the Noun Project
+  - Waggle Logo Created by Carmen Marín Crespo from the Noun Project
 3. [Tinder](https://www.gotinder.com/)
   - Inspired from Tinder's mobile design
 

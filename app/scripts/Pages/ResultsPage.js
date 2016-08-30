@@ -136,9 +136,11 @@ export default React.createClass({
 
     let editCity = (
         <form className="new-city-form" onSubmit={this.updateCity}>
-          <h4>Change cities...</h4>
-          <input className="new-city-input" ref="newCity" type="text" role="textbox" tabIndex="1" onChange={this.handleChange} />
-          <input className="submit-btn" type="submit" />
+          <main className="new-city-main">
+            <h4>Change cities...</h4>
+            <input className="new-city-input" ref="newCity" type="text" role="textbox" tabIndex="1" onChange={this.handleChange} />
+            <input className="submit-btn" type="submit" />
+          </main>
           <footer className="edit-city-footer">
             <button className="submit-edit-city-btn" onClick={this.cancelEditCity}>Cancel</button>
             <button className="submit-edit-city-btn" onClick={this.updateCity}>Enter</button>

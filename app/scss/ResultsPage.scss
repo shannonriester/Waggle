@@ -86,7 +86,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 200px;
+  height: 110px;
+  padding-top: 2em;
 }
 
 .edit-city-icon {
@@ -106,29 +107,37 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 110px;
   width: 100%;
-  background: #EBEBEB;
-  box-shadow: 0px -6px 14px -7px rgba(0,0,0,0.27);
+  background: $background;
+  // box-shadow: 0px -6px 14px -7px rgba(0,0,0,0.27);
   border-radius: 5px;
   background: white;
-  margin: 0 auto;
+  margin: 15px auto;
+  margin-bottom: 0;
+}
+
+.new-city-main {
+  display: flex;
+  align-items: flex-start;
+  height: 30px;
+  width: 52%;
+  text-align: center;
 }
 
 h4 {
-  font-size: 18px;
-  margin: 10px 0;
+  font-size: 12px;
+  margin: 0;
+  width: 50%;
 }
 
 .new-city-input {
   height: 30px;
-  width: 75%;
-  margin-bottom: 15px;
+  width: 85%;
   font-size: 1em;
   padding: 0;
   outline: none;
   border: none;
-  border-bottom: solid 2px $border;
+  background: $border;
   color: $font-color;
   text-align: center;
   border-radius: 2px;
@@ -138,9 +147,9 @@ h4 {
 .edit-city-footer {
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  width: 90%;
-  height: 50px;
+  justify-content: flex-end;
+  width: 55%;
+  font-size: 14px;
 }
 
 .submit-edit-city-btn {
@@ -152,9 +161,9 @@ h4 {
   background: none;
   font-size: 1em;
   &:hover {
-    transition: .5s;
+    // transition: .5s;
     background: $accent;
-    color: #FFF;
+    // color: #FFF;
   }
 }
 
@@ -162,13 +171,14 @@ h4 {
   background: #FFF;
   position: relative;
   top: 50px;
-  height: 320px;
+  height: 300px;
 }
 
 .search-heading {
   text-align: center;
-  margin-bottom: 30px;
+  margin: 0px;
   font-size: 35px;
+  height: 30px;
   color: $accent;
   background: #FFF;
 }
@@ -361,6 +371,7 @@ height: 80%;
 
   .heading-icon-container {
     height: 140px;
+    padding: 20px 0;
   }
 
   .new-city-form {
@@ -373,11 +384,14 @@ height: 80%;
   .new-city-input {
     width: 50%;
     height: 70px;
-    margin-bottom: 8px;
   }
 
   .edit-city-footer {
-    width: 65%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 55%;
+    font-size: 14px;
   }
 
   .results-list {
