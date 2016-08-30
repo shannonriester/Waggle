@@ -58,11 +58,6 @@ export default React.createClass({
       this.state.dogBreed);
   },
   signup3: function() {
-    // this.setState({
-    //     email: email,
-    //     username: username,
-    //     password: password,
-    //   });
     let username = store.session.get('username');
     let email = store.session.get('email');
     let password = store.session.get('password');
@@ -102,7 +97,7 @@ export default React.createClass({
     // console.log('try to shake modal!');
   },
   hideModal: function(e) {
-    if (_.toArray(e.target.classList).indexOf('modal-component') !== -1 || _.toArray(e.target.classList).indexOf('cancel-btn') !== -1 ) {
+    if (_.toArray(e.target.classList).indexOf('modal-content') !== -1 || _.toArray(e.target.classList).indexOf('cancel-btn') !== -1 ) {
       this.props.hideModal();
       browserHistory.push('/');
     }
@@ -148,7 +143,7 @@ export default React.createClass({
       if (this.state.form === 'signup3') {
         form = (<Signup3 signup3={this.signup3} shakeModal={this.shakeModal}/>);
         footer = (
-          <footer className="modal-footer">
+          <footer className="modal-footer signup-footer">
             <button className="modal-btn" role="button" tabIndex="4" onClick={this.signupBtn}>Done</button>
             <button className="modal-btn" role="button" tabIndex="6" onClick={this.back}>Back</button>
           </footer>
@@ -156,7 +151,7 @@ export default React.createClass({
       } else if (this.state.form === 'signup2') {
         form = (<Signup2 signup2={this.signup2}/>);
         footer = (
-          <footer className="modal-footer">
+          <footer className="modal-footer signup-footer">
             <button className="modal-btn" role="button" tabIndex="4" onClick={this.signup2}>Next</button>
             <button className="modal-btn back-btn" role="button" tabIndex="4" onClick={this.back}>Back</button>
           </footer>
@@ -164,7 +159,7 @@ export default React.createClass({
       } else if (this.state.form === 'signup1') {
         form = (<Signup1 signup1={this.signup1} />);
         footer = (
-          <footer className="modal-footer">
+          <footer className="modal-footer signup-footer">
             <button className="modal-btn" role="button" tabIndex="5" onClick={this.signup1}>Next</button>
             <button className="modal-btn cancel-btn" role="button" tabIndex="5" onClick={this.hideModal}>Cancel</button>
           </footer>
@@ -173,9 +168,9 @@ export default React.createClass({
 
       modalContent = (
         <section className="signup-form">
-          <header className="modal-header">
-            <h2>Hi. Let's sign up!</h2>
+          <header className="modal-header signup-header">
             <input className="cancel-btn modal-btn" type="button" value="cancel" ref="cancel" role="button" tabIndex="0" onClick={this.hideModal}/>
+            <h2>Hi. Let's sign up!</h2>
           </header>
            {form}
            {footer}

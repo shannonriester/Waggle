@@ -26,13 +26,13 @@ export default React.createClass({
         <h3>Tell us a little about you</h3>
 
         <label htmlFor="input-username">First name</label>
-        <input className="user-info-input" type="text" placeholder="First name" ref="firstName" role="textbox" tabIndex="1" />
+        <input className="user-info-input signup-input" type="text" placeholder="First name" ref="firstName" role="textbox" tabIndex="1" />
 
         <label htmlFor="input-username">Last name</label>
-        <input className="user-info-input" type="text" placeholder="Last name" ref="lastName" role="textbox" tabIndex="2" />
+        <input className="user-info-input signup-input" type="text" placeholder="Last name" ref="lastName" role="textbox" tabIndex="2" />
 
         <label htmlFor="input-username">Age</label>
-        <input className="user-info-input" type="text"  placeholder="Age" ref="age" role="textbox" tabIndex="3" />
+        <input className="user-info-input signup-input" type="text"  placeholder="Age" ref="age" role="textbox" tabIndex="3" />
 
         <input className="submit-btn" type="submit" value="submit" role="button" onSubmit={this.signup1}/>
       </form>

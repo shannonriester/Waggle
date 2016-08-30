@@ -28,16 +28,16 @@ export default React.createClass({
     return (
       <form className="modal-body signup3" onSubmit={this.signup3}>
         <label htmlFor="input-username">Email</label>
-        <input className="user-info-input" type="text" placeholder="email" ref="email" role="textbox" tabIndex="1" />
+        <input className="user-info-input signup-input" type="text" placeholder="email" ref="email" role="textbox" tabIndex="1" />
 
         <label htmlFor="input-username">Username</label>
-        <input className="user-info-input" type="text" placeholder="username" ref="username" role="textbox" tabIndex="2" />
+        <input className="user-info-input signup-input" type="text" placeholder="username" ref="username" role="textbox" tabIndex="2" />
 
         <label htmlFor="input-password">Password</label>
-        <input className="user-info-input" type="password" placeholder="password" ref="password" role="textbox" tabIndex="3" />
+        <input className="user-info-input signup-input" type="password" placeholder="password" ref="password" role="textbox" tabIndex="3" />
 
         <label htmlFor="input-confirm-password">Confirm password</label>
-        <input className="user-info-input" type="password" placeholder="password" ref="password2" role="textbox" tabIndex="4" />
+        <input className="user-info-input signup-input" type="password" placeholder="password" ref="password2" role="textbox" tabIndex="4" />
 
         <input className="submit-btn" type="submit" value="submit" role="button" onSubmit={this.signup3} />
       </form>

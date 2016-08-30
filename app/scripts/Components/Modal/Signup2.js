@@ -21,13 +21,13 @@ export default React.createClass({
       <form className="modal-body signup2" onSubmit={this.signup2}>
         <h3>Tell us about your dog</h3>
         <label htmlFor="input-dogName">Name</label>
-        <input className="user-info-input" type="text" value={this.state.dogName} placeholder="your dog's name" ref="dogName" role="textbox" tabIndex="1" />
+        <input className="user-info-input signup-input" type="text" value={this.state.dogName} placeholder="your dog's name" ref="dogName" role="textbox" tabIndex="1" />
 
         <label htmlFor="input-dogAge">Age</label>
-        <input className="user-info-input" type="text" value={this.state.dogAge} placeholder="your dog's age" ref="dogAge" role="textbox" tabIndex="2" />
+        <input className="user-info-input signup-input" type="text" value={this.state.dogAge} placeholder="your dog's age" ref="dogAge" role="textbox" tabIndex="2" />
 
         <label htmlFor="input-dogBreed">Breed</label>
-        <input className="user-info-input" type="text" value={this.state.dogBreed} placeholder="what breed is your dog?" ref="dogBreed" role="textbox" tabIndex="3" />
+        <input className="user-info-input signup-input" type="text" value={this.state.dogBreed} placeholder="what breed is your dog?" ref="dogBreed" role="textbox" tabIndex="3" />
 
         <input className="submit-btn" type="submit" value="submit" role="button" onSubmit={this.signup2} />
       </form>
