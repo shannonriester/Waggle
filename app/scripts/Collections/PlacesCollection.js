@@ -78,7 +78,7 @@ const PlacesCollection = Backbone.Collection.extend({
           // 'jsonpCallback' : 'cb',
           'cache': true,
       }).then((places) => {
-        // console.log('YELP DATA: ', places);
+        console.log('YELP DATA: ', places);
         let placeList =  places.businesses.map((place) => {
           let imageUrl = place.image_url.replace('ms', 'l');
           return {
@@ -154,7 +154,7 @@ const PlacesCollection = Backbone.Collection.extend({
         'cache': true,
     }).then((place) => {
       let imageUrl = place.image_url.replace('ms', 'l');
-      // console.log('YELP DATA: ', place);
+      console.log('YELP DATA: ', place);
         this.add({
           name: place.name,
           yelpRating: place.rating,

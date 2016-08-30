@@ -59,10 +59,8 @@ export default React.createClass({
       });
     }
 
-
   },
   componentDidMount: function() {
-
     if (store.placesCollection.findWhere({yelpID: this.props.params.placeId}) &&  store.checkinCollection.where({place:this.props.params.placeId})){
       this.setState({
         users: store.userCollection.toJSON(),
@@ -86,12 +84,6 @@ export default React.createClass({
     store.userCollection.off('update', this.updateState);
   },
   render: function() {
-    // <li>
-    //   <header className="yelp-link">Yelp</header>
-    //   <i className="yelp-icon fa fa-yelp" aria-hidden="true"></i>
-    // </li>
-
-
     let content;
     if (this.state.placeModel.name) {
       let placeItem = this.state.placeModel;
@@ -127,7 +119,7 @@ export default React.createClass({
         checkBtn = (<button className="checkin-btn" id={checkedin} onClick={this.toggleCheckin}>Checked in!</button>);
       }
       content = (
-        <div className="result-item-container">
+        <div className="place-item-content">
           <header className="place-image" style={styles}><h1 className="place-item-h1">{placeItem.name}</h1></header>
           <div className="content-container">
             <main className="main-place-item-page"></main>
@@ -141,7 +133,7 @@ export default React.createClass({
     }
 
     return (
-      <div className="result-item-component">
+      <div className="place-item-component">
         <Nav />
         {content}
       </div>

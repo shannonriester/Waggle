@@ -42,7 +42,7 @@ export default React.createClass({
             <figure key={i} className="figure-profile" style={userImg[i]}></figure>
             <h3>{model.userCheckedin}</h3>
           </Link>
-          <data>{model.shortTime}</data>
+          <data className="checkin-data">{model.shortTime}</data>
         </div>
       );
     });
