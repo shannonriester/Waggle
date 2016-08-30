@@ -21,7 +21,7 @@ export default React.createClass({
   render: function() {
     return (
       <form className="searchbar-component" onSubmit={this.searchHandler}>
-        <input className="searchbar" type="text" placeholder="waggle on..." ref="searchbar" role="search" tabIndex="1"/>
+        <input className="searchbar" type="text" placeholder="search dog-friendly places..." ref="searchbar" role="search" tabIndex="1"/>
         <input className="search-submit" type="submit" value="search" role="button" tabIndex="2"/>
         <i className="search-icon fa fa-search" aria-hidden="true" onClick={this.searchHandler}></i>
       </form>

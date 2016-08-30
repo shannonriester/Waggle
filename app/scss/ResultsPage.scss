@@ -1,12 +1,14 @@
 .map-container {
+  background: white;
   // margin-bottom: 2%;
   // border-bottom: solid $border 1px;
 }
 
 .map {
-  height: 350px;
-  width: 97%;
-  margin: 10px auto;
+  height: 400px;
+  width: 80%;
+  margin: 0 auto;
+  background: white;
 }
 
 .gm-style {
@@ -30,6 +32,9 @@
   left: 3px;
   height: 2em;
   width: 2em;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 
@@ -97,8 +102,6 @@
   font-size: 2em;
   &:hover {
     cursor: pointer;
-    color: $accent;
-    transition: .5s;
   }
 }
 
@@ -120,7 +123,7 @@
   display: flex;
   align-items: flex-start;
   height: 30px;
-  width: 52%;
+  // margin-right: 5%;
   text-align: center;
 }
 
@@ -132,23 +135,24 @@ h4 {
 
 .new-city-input {
   height: 30px;
-  width: 85%;
+  width: 100%;
   font-size: 1em;
   padding: 0;
   outline: none;
   border: none;
   background: $border;
   color: $font-color;
-  text-align: center;
   border-radius: 2px;
+  text-align: left;
+  padding-left: 6px;
   // box-shadow: 3px 3px 3px 2px rgba(0, 0, 0, 0.2);
 }
 
 .edit-city-footer {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  width: 55%;
+  justify-content: center;
+  width: 250px;
   font-size: 14px;
 }
 
@@ -161,9 +165,7 @@ h4 {
   background: none;
   font-size: 1em;
   &:hover {
-    // transition: .5s;
-    background: $accent;
-    // color: #FFF;
+    cursor: pointer;
   }
 }
 
@@ -213,8 +215,8 @@ h4 {
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  height: 6.5em;
-  width: 6.5em;
+  height: 4.5em;
+  width: 4.5em;
   margin: 0;
   background-size: cover;
   background-repeat: no-repeat;
@@ -292,7 +294,7 @@ height: 80%;
 }
 
 
-@media(min-width: 600px) {
+@media(min-width: 774px) {
   // .result-item-component {}
   .map {
     height: 360px;
@@ -319,9 +321,8 @@ height: 80%;
   }
 
   .result-image {
-    height: 7.5em;
-    width: 7.5em;
-    margin-top: 15px;
+    height: 5em;
+    width: 5em;
   }
 
   .about-preview {
@@ -344,8 +345,9 @@ height: 80%;
 
   .map-container {
     position: fixed;
-    top: 39%;
-    width: 48vw;
+    top: 40%;
+    left: 12px;
+    width: 45%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -354,6 +356,7 @@ height: 80%;
 
   .map {
     height: 430px;
+    width: 100%;
   }
 
   .search-heading-section {
@@ -361,16 +364,17 @@ height: 80%;
     top: 80px;
     height: 170px;
     margin: 0;
+    background: $background;
   }
 
   .search-heading {
     margin: 0;
     background: $background;
-    // height: 90px;
+    padding-top: 10px;
   }
 
   .heading-icon-container {
-    height: 140px;
+    height: 100px;
     padding: 20px 0;
   }
 
@@ -382,15 +386,16 @@ height: 80%;
   }
 
   .new-city-input {
-    width: 50%;
-    height: 70px;
+    width: 100%;
+    background: #FFF;
+    // height: 70px;
   }
 
   .edit-city-footer {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    width: 55%;
+    justify-content: center;
+    width: 100%;
     font-size: 14px;
   }
 
@@ -418,12 +423,6 @@ height: 80%;
 
   .about-place {
     font-size: 15px;
-  }
-
-  .result-image {
-    height: 6.5em;
-    width: 6.5em;
-    margin-top: 15px;
   }
 
 }

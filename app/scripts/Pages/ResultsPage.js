@@ -137,8 +137,7 @@ export default React.createClass({
     let editCity = (
         <form className="new-city-form" onSubmit={this.updateCity}>
           <main className="new-city-main">
-            <h4>Change cities...</h4>
-            <input className="new-city-input" ref="newCity" type="text" role="textbox" tabIndex="1" onChange={this.handleChange} />
+            <input className="new-city-input" placeholder="change city..." ref="newCity" type="text" role="textbox" tabIndex="1" onChange={this.handleChange} />
             <input className="submit-btn" type="submit" />
           </main>
           <footer className="edit-city-footer">
@@ -155,7 +154,6 @@ export default React.createClass({
               <h2 className="search-heading">{city}, {store.session.get('regionName')}</h2>
               {editCity}
             </div>
-            <p className="search-sub-heading">Wag Along...</p>
             <Searchbar />
           </section>
 

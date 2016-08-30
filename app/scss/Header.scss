@@ -38,6 +38,10 @@
 
 }
 
+.nav-icon-title {
+  display: none;
+}
+
 .current-location {
   color: $secondary;
 }
@@ -64,7 +68,7 @@
         -ms-flex-pack: justify;
             justify-content: space-between;
     width: 55%;
-    margin: 0 10px 0px 10px;
+    margin: 0 15px 0px 10px;
     padding: 0;
   }
   li {
@@ -72,7 +76,7 @@
     // width: calc(100/3);
   }
   .nav-icon {
-    font-size: 2.5em;
+    font-size: 2em;
     color: $secondary;
     &:hover {
       transition: .5s;
@@ -83,17 +87,44 @@
 }
 
 
+@media(min-width: 575px) {
+  .nav-ul {
+    width: 45%;
+    margin: 0 15px 0px 10px;
+
+    li {
+      display: flex;
+      // flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100px;
+    }
+
+    .nav-icon-title {
+      display: block;
+      margin: 0;
+      color: $secondary;
+    }
+  }
+}
+
 @media(min-width: 775px) {
   // .header-component {
+  .nav-ul {
+    width: 45%;
+    margin: 0 15px 0px 10px;
 
-  .nav-component {
-    // position: fixed;
-    // width: 100%;
-    // z-index: 2;
-    // top: 0;
-    // opacity: 1;
-    // background: $secondary;
-    // color: white;
+    li {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      // justify-content: center;
+    }
+  }
+  .nav-icon-title {
+    display: block;
+    margin: 0;
+    color: $secondary;
   }
 
 }
