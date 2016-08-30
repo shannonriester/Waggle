@@ -163,6 +163,15 @@
     width: 89%; }
   .modal-component .submit-btn {
     display: none; }
+  .modal-component .check-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 3em;
+    margin: 0;
+    color: #F55959;
+    border-radius: 5px;
+    text-align: center; }
 
 @media (min-width: 620px) {
   .modal-component .modal-content {
@@ -193,7 +202,7 @@
     .modal-component .signup-form h3 {
       margin: 7%; }
   .modal-component .signup1, .modal-component .signup2, .modal-component .signup3 {
-    margin-bottom: 40px; }
+    margin-bottom: 20px; }
   .modal-component .signup-input {
     margin-bottom: 5%;
     padding-top: 30px; }
@@ -210,7 +219,7 @@
   .modal-component .modal-body {
     height: 50%; }
   .modal-component .modal-footer {
-    height: 10em; } }
+    height: 9em; } }
 .slider-container {
   overflow: hidden; }
   .slider-container img {
@@ -1288,6 +1297,9 @@ h4 {
   width: 100%;
   background-size: cover;
   background-position: center center; }
+
+#hide-me {
+  display: none; }
 
 #shake {
   -webkit-animation: 300ms shake;

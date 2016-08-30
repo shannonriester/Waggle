@@ -24,9 +24,9 @@ const SessionModel = Backbone.Model.extend({
       bio: '',
     },
     dog: {
-      dogName: 'name',
-      dogBreed: 'breed',
-      dogAge: 'age',
+      dogName: '',
+      dogBreed: '',
+      dogAge: '',
     },
     query: 'park',
     range: '8',

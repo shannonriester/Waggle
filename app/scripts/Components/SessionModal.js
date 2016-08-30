@@ -31,7 +31,11 @@ export default React.createClass({
     username.toLowerCase();
 
     store.session.login(username, password);
-    this.props.hideModal();
+    if (localStorage.authtoken) {
+      this.props.hideModal();
+    } else {
+      this.shakeModal();
+    }
   },
   back: function(e) {
     e.preventDefault();
@@ -41,30 +45,33 @@ export default React.createClass({
       this.setState({form: 'signup1'});
     }
   },
-  finalSignup: function() {
-    console.log('state in signup3', this.state);
-  },
   signupBtn: function(e) {
     e.preventDefault();
+    let firstName = store.session.get('firstName');
+    let lastName = store.session.get('lastName');
+    let age = store.session.get('age');
+
+    let dogName = store.session.get('dogName');
+    let dogAge = store.session.get('dogAge');
+    let dogBreed = store.session.get('dogBreed');
+
+
     let username = store.session.get('username');
     let email = store.session.get('email');
     let password = store.session.get('password');
 
-    store.session.signup(
-      username,
-      password,
-      email,
-      this.state.firstName,
-      this.state.lastName,
-      this.state.age,
-      this.state.dogName,
-      this.state.dogAge,
-      this.state.dogBreed);
+      store.session.signup(
+        username,
+        password,
+        email,
+        firstName,
+        lastName,
+        age,
+        dogName,
+        dogAge,
+        dogBreed);
   },
-  signup3: function() {
-    let username = store.session.get('username');
-    let email = store.session.get('email');
-    let password = store.session.get('password');
+  signup3: function(email, username, password) {
       store.session.signup(
         username,
         password,
@@ -85,7 +92,6 @@ export default React.createClass({
     });
   },
   signup1: function(firstName, lastName, age) {
-
     this.setState({
       form: 'signup2',
       firstName: firstName,
@@ -94,11 +100,12 @@ export default React.createClass({
     });
   },
   shakeModal: function() {
+    console.log('try to shake modal!');
+
     this.setState({shakeModal: true});
     window.setTimeout(() => {
       this.setState({shakeModal: false});
     }, 1000);
-    // console.log('try to shake modal!');
   },
   hideModal: function(e) {
     if (_.toArray(e.target.classList).indexOf('modal-content') !== -1 || _.toArray(e.target.classList).indexOf('cancel-btn') !== -1 ) {
@@ -107,27 +114,33 @@ export default React.createClass({
     }
   },
   updateState: function() {
-    // this.setState({username: store.session.get('username')});
+    this.setState({username: store.session.get('username')});
   },
   componentDidMount: function() {
-    // store.session.on('change', this.updateState);
+    store.session.on('change', this.updateState);
   },
   componentWillUnmount: function() {
-    // store.session.off('change', this.updateState);
+    store.session.off('change', this.updateState);
   },
   render: function() {
-    let animations = '';
-    if (this.state.shakeModal) {
-      animations = 'shake';
-    }
+    let animations;
     let form;
     let footer;
-
+    let checkInfo;
     let modalContent;
+    let hideMe;
+
+    if (this.state.shakeModal) {
+      animations = 'shake';
+      hideMe = 'hide-me';
+      checkInfo = (<h2 className="check-info">Check your password...?</h2>);
+    }
+
     if (this.props.content === 'login') {
       modalContent = (
-        <form className="login-form" onSubmit={this.login}>
-          <header className="modal-header">
+        <form id={animations} className="login-form" onSubmit={this.login}>
+          {checkInfo}
+          <header id={hideMe} className="modal-header">
             <input className="cancel-btn modal-btn" type="button" value="cancel" role="button" tabIndex="0" onClick={this.hideModal}/>
             <h2>Log in to Waggle</h2>
           </header>
@@ -145,34 +158,36 @@ export default React.createClass({
       );
     } else if (this.props.content === 'sign up') {
       if (this.state.form === 'signup3') {
-        form = (<Signup3 signup3={this.signup3} shakeModal={this.shakeModal}/>);
-        footer = (
-          <footer className="modal-footer signup-footer">
-            <button className="modal-btn" role="button" tabIndex="4" onClick={this.signupBtn}>Done</button>
-            <button className="modal-btn" role="button" tabIndex="6" onClick={this.back}>Back</button>
-          </footer>
-        );
+        form = (<Signup3
+              email={this.state.email}
+              username={this.state.username}
+              password={this.state.password}
+              signup3={this.signup3}
+              back={this.back}
+              shakeModal={this.shakeModal} />);
+
       } else if (this.state.form === 'signup2') {
-        form = (<Signup2 signup2={this.signup2}/>);
-        footer = (
-          <footer className="modal-footer signup-footer">
-            <button className="modal-btn" role="button" tabIndex="4" onClick={this.signup2}>Next</button>
-            <button className="modal-btn back-btn" role="button" tabIndex="4" onClick={this.back}>Back</button>
-          </footer>
-        );
+        form = (<Signup2
+          animations={animations}
+          dogName={this.state.dogName}
+          dogAge={this.state.dogAge}
+          dogBreed={this.state.dogBreed}
+          back={this.back}
+          signup2={this.signup2} />);
+
       } else if (this.state.form === 'signup1') {
-        form = (<Signup1 signup1={this.signup1} />);
-        footer = (
-          <footer className="modal-footer signup-footer">
-            <button className="modal-btn" role="button" tabIndex="5" onClick={this.signup1}>Next</button>
-            <button className="modal-btn cancel-btn" role="button" tabIndex="5" onClick={this.hideModal}>Cancel</button>
-          </footer>
-        );
+        form = (<Signup1
+              firstName={this.state.firstName}
+              lastName={this.state.lastName}
+              age={this.state.age}
+              hideModal={this.hideModal}
+              signup1={this.signup1} />);
       }
 
       modalContent = (
-        <section className="signup-form">
-          <header className="modal-header signup-header">
+        <section className="signup-form" id={animations}>
+          {checkInfo}
+          <header id={hideMe} className="modal-header signup-header">
             <input className="cancel-btn modal-btn" type="button" value="cancel" ref="cancel" role="button" tabIndex="0" onClick={this.hideModal}/>
             <h2>Hi. Let's sign up!</h2>
           </header>
@@ -183,7 +198,7 @@ export default React.createClass({
     }
     return (
       <div className="modal-component" onClick={this.hideModal}>
-          <div className="modal-content" id={animations}>
+          <div className="modal-content">
             {modalContent}
         </div>
       </div>
