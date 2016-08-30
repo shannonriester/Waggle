@@ -258,12 +258,12 @@
   color: #9265BF; }
 
 .nav-component {
-  background: #FFF;
-  box-shadow: 0px -4px 22px 0px rgba(0, 0, 0, 0.27);
   position: fixed;
-  width: 100%;
   z-index: 1;
-  top: 0; }
+  top: 0;
+  width: 100%;
+  background: #FFF;
+  border-bottom: solid 1px #EBEBEB; }
   .nav-component ul {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -287,10 +287,10 @@
   align-items: center;
   justify-content: center;
   width: 97%;
-  height: 70px;
+  height: 50px;
   margin: 0 auto;
   border-bottom: solid 2px #EBEBEB;
-  padding: 30px 0; }
+  padding: 0; }
 
 .searchbar {
   height: 100%;
@@ -320,20 +320,16 @@
   border-bottom-right-radius: 2px; }
 
 @media (min-width: 600px) {
-  .searchbar {
-    height: 70%; }
-
   .search-icon {
-    height: 72%;
     font-size: 2em; } }
 @media (min-width: 775px) {
   .searchbar-component {
     width: 50vw;
-    background: #EBEBEB; }
+    background: #EBEBEB;
+    padding: 10px 0; }
 
   .searchbar {
-    width: 78%;
-    height: 50px; } }
+    width: 78%; } }
 .map {
   height: 350px;
   width: 97%;
@@ -401,7 +397,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 220px; }
+  height: 200px; }
 
 .edit-city-icon {
   margin-top: 30px;
@@ -418,7 +414,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 130px;
+  height: 110px;
   width: 100%;
   background: #EBEBEB;
   box-shadow: 0px -6px 14px -7px rgba(0, 0, 0, 0.27);
@@ -428,29 +424,31 @@
 
 h4 {
   font-size: 18px;
-  margin: 0;
-  margin-top: 15px; }
+  margin: 10px 0; }
 
 .new-city-input {
   height: 30px;
   width: 75%;
   margin-bottom: 15px;
   font-size: 1em;
-  padding: 1%;
+  padding: 0;
   outline: none;
   border: none;
   border-bottom: solid 2px #EBEBEB;
   color: #555;
-  text-align: center; }
+  text-align: center;
+  border-radius: 2px; }
 
 .edit-city-footer {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  width: 90%; }
+  width: 90%;
+  height: 50px; }
 
 .submit-edit-city-btn {
   height: 100%;
+  width: 90px;
   color: #F55959;
   border: none;
   border-radius: 5px;
@@ -461,17 +459,21 @@ h4 {
     background: #F55959;
     color: #FFF; }
 
+.search-heading-section {
+  background: #FFF;
+  position: relative;
+  top: 50px;
+  height: 320px; }
+
 .search-heading {
   text-align: center;
+  margin-bottom: 30px;
   font-size: 35px;
   color: #F55959;
-  background: #EBEBEB; }
+  background: #FFF; }
 
 .search-sub-heading {
   display: none; }
-
-.search-heading-section {
-  background: #FFF; }
 
 .results-list {
   margin: 0;
@@ -564,12 +566,15 @@ h4 {
   .map {
     height: 360px; }
 
-  .heading-icon-container {
-    height: 170px; }
-
   .search-heading {
     margin: 20px 0;
-    height: 50px; }
+    height: 50px;
+    background: #FFF; }
+
+  .search-heading-section {
+    position: relative;
+    top: 40px;
+    height: 300px; }
 
   .new-city-form {
     height: 160px; }
@@ -589,31 +594,57 @@ h4 {
     display: flex; }
 
   .map-container {
-    width: 50vw;
-    position: fixed; }
+    position: fixed;
+    top: 39%;
+    width: 48vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: solid 10px white; }
 
   .map {
     height: 430px; }
 
   .search-heading-section {
-    margin: 30px 0; }
+    position: fixed;
+    top: 80px;
+    height: 170px;
+    margin: 0; }
 
   .search-heading {
     margin: 0;
-    height: 90px; }
+    background: #EBEBEB; }
+
+  .heading-icon-container {
+    height: 140px; }
 
   .new-city-form {
     width: 100%;
-    height: 200px;
+    height: 100px;
     box-shadow: none;
     background: #EBEBEB; }
+
+  .new-city-input {
+    width: 50%;
+    height: 70px;
+    margin-bottom: 8px; }
+
+  .edit-city-footer {
+    width: 65%; }
 
   .results-list {
     position: relative;
     top: 50px;
     left: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 50vw;
-    box-shadow: -9px 0px 5px 0px rgba(0, 0, 0, 0.27); }
+    box-shadow: -1px 0px 14px 0px rgba(0, 0, 0, 0.27); }
+
+  .result-item-component {
+    width: 95%; }
 
   .about-preview .results-h1 {
     font-size: 20px; }

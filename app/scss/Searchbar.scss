@@ -3,10 +3,10 @@
   align-items: center;
   justify-content: center;
   width: 97%;
-  height: 70px;
+  height: 50px;
   margin: 0 auto;
   border-bottom: solid 2px $border;
-  padding: 30px 0;
+  padding: 0;
 }
 .searchbar {
   height: 100%;
@@ -40,11 +40,11 @@
 
 @media(min-width: 600px) {
   .searchbar {
-    height: 70%;
+    // height: 70%;
   }
 
   .search-icon {
-    height: 72%;
+    // height: 72%;
     font-size: 2em;
   }
 
@@ -54,9 +54,11 @@
   .searchbar-component {
     width: 50vw;
     background: $background;
+    padding: 10px 0;
+    // height: 100%;
   }
   .searchbar {
     width: 78%;
-    height: 50px;
+    // height: 50px;
   }
 }

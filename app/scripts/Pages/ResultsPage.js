@@ -148,6 +148,15 @@ export default React.createClass({
       <div className="results-page-component">
         <Header />
         <div className="results-page-container">
+          <section className="search-heading-section">
+            <div className="heading-icon-container">
+              <h2 className="search-heading">{city}, {store.session.get('regionName')}</h2>
+              {editCity}
+            </div>
+            <p className="search-sub-heading">Wag Along...</p>
+            <Searchbar />
+          </section>
+
           <div className="map-container">
             <div className="map">
               <GoogleMapPage
@@ -156,14 +165,7 @@ export default React.createClass({
               resultsList={resultsList}
               />
             </div>
-            <section className="search-heading-section">
-              <div className="heading-icon-container">
-                <h2 className="search-heading">{city}, {store.session.get('regionName')}</h2>
-                {editCity}
-              </div>
-              <p className="search-sub-heading">Wag Along...</p>
-              <Searchbar />
-            </section>
+
           </div>
           <ul className="results-list">
             {resultsList}
