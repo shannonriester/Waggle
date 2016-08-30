@@ -42,11 +42,10 @@ export default React.createClass({
   },
   componentWillMount: function() {
     if (localStorage.getItem('authtoken')) {
-      console.log('running localStorage if statement ');
       store.session.set('city', store.session.get('city'));
       browserHistory.push({pathname:`search/`, query:{category: store.session.get('query')} });
     }
-    if (!this.state.modal) {
+    if (!this.state.modal && !localStorage.getItem('authtoken')) {
       browserHistory.push('/');
     }
   },

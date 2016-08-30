@@ -46,6 +46,10 @@ export default React.createClass({
   },
   signupBtn: function(e) {
     e.preventDefault();
+    let username = store.session.get('username');
+    let email = store.session.get('email');
+    let password = store.session.get('password');
+
     store.session.signup(
       username,
       password,

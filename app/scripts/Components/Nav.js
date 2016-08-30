@@ -8,6 +8,7 @@ export default React.createClass({
     return {
       checkins: store.checkinCollection.toJSON(),
       fetch: true,
+      ipadView: false,
     }
   },
   messages: function() {
@@ -18,6 +19,11 @@ export default React.createClass({
   },
   searchResults: function() {
     browserHistory.push({pathname:`/search/`, query:{category: store.session.get('query')} });
+  },
+  changeNav: function() {
+    if (window.innerWidth >= 775) {
+      this.setState({ipadView: true});
+    }
   },
   updateState: function() {
     if (store.session.get('username') && this.state.fetch) {
@@ -39,12 +45,19 @@ export default React.createClass({
       store.checkinCollection.deleteOldCheckins();
     }
 
+    // window.addEventListener('resize', this.changeNav)
     store.session.on('change', this.updateState);
   },
   componentWillUnmount: function() {
     store.session.off('change', this.updateState);
   },
   render: function() {
+
+    if (this.state.ipadView) {
+
+    }
+
+
     return (
       <nav className="nav-component">
           <ul>
