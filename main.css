@@ -198,9 +198,11 @@
     background: rgba(255, 255, 255, 0.93);
     border-radius: 6px; }
   .modal-component .signup-form {
-    height: 40em; }
+    height: 43em; }
     .modal-component .signup-form h3 {
       margin: 7%; }
+    .modal-component .signup-form .check-modal {
+      height: 14%; }
   .modal-component .signup1, .modal-component .signup2, .modal-component .signup3 {
     margin-bottom: 20px; }
   .modal-component .signup-input {
