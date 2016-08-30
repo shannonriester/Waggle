@@ -108,9 +108,9 @@
     .modal-component form label {
       display: none; }
   .modal-component .login-form {
-    height: 90%;
+    height: 80%;
     width: 95%;
-    margin: 0 auto; }
+    margin: 50px auto; }
   .modal-component .signup-form {
     width: 100%; }
   .modal-component .signup1, .modal-component .signup2, .modal-component .signup3 {
@@ -119,7 +119,8 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    width: 100%; }
+    width: 100%;
+    height: 20%; }
     .modal-component .modal-header h2 {
       margin: 0;
       font-size: 1.8em;
@@ -132,17 +133,18 @@
       width: 5em; }
   .modal-component .modal-body {
     width: 90%;
-    margin: 0 auto; }
-    .modal-component .modal-body .user-info-input {
-      width: 100%;
-      margin-bottom: 10%;
-      outline: none;
-      border: none;
-      font-size: 1.5em;
-      padding-top: 10%;
-      background: transparent;
-      border-bottom: 1px solid #EBEBEB;
-      border-radius: none; }
+    margin: 0 auto;
+    height: 55%; }
+  .modal-component .user-info-input {
+    width: 100%;
+    margin-bottom: 10%;
+    outline: none;
+    border: none;
+    font-size: 1.5em;
+    padding-top: 10%;
+    background: transparent;
+    border-bottom: 1px solid #EBEBEB;
+    border-radius: none; }
   .modal-component .modal-footer {
     display: flex;
     flex-direction: column;
@@ -162,6 +164,51 @@
   .modal-component .submit-btn {
     display: none; }
 
+@media (min-width: 620px) {
+  .modal-component .modal-content {
+    align-items: center; }
+  .modal-component .modal-header {
+    height: 6em; }
+  .modal-component .login-form {
+    width: 35em;
+    height: 40em;
+    margin: 0 auto; }
+  .modal-component .signup-form {
+    width: 35em;
+    margin: 0 auto; }
+  .modal-component .modal-footer {
+    height: 20vh; } }
+@media (min-width: 720px) {
+  .modal-component .modal-content {
+    height: 100vh;
+    width: 100vw;
+    background: rgba(0, 0, 0, 0.01); }
+  .modal-component .login-form, .modal-component .signup-form {
+    background: rgba(255, 255, 255, 0.93);
+    border-radius: 6px; }
+  .modal-component .signup-form {
+    height: 40em; }
+    .modal-component .signup-form h3 {
+      margin: 7%; }
+  .modal-component .signup1, .modal-component .signup2, .modal-component .signup3 {
+    margin-bottom: 40px; }
+  .modal-component .signup-input {
+    margin-bottom: 5%;
+    padding-top: 30px; }
+  .modal-component .modal-header {
+    height: 20%;
+    display: flex;
+    align-items: center; }
+  .modal-component .signup-header {
+    height: 6em;
+    display: flex;
+    align-items: center; }
+    .modal-component .signup-header .cancel-btn {
+      margin: 0; }
+  .modal-component .modal-body {
+    height: 50%; }
+  .modal-component .modal-footer {
+    height: 10em; } }
 .slider-container {
   overflow: hidden; }
   .slider-container img {
