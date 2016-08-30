@@ -41,7 +41,7 @@ export default React.createClass({
         store.userCollection.findUser(person).then((response) => {
           newPersonArr.push(response.toJSON());
 
-          if (newPersonArr.length === this.state.matches.length) {
+          if (newPersonArr.length !== this.state.matches.length) {
             this.setState({
               users: newPersonArr,
               fetch: false,
@@ -65,10 +65,14 @@ export default React.createClass({
   render: function() {
     let matchPreview;
 
+    console.log(this.state.users);
+    // console.log(this.state.matches);
+
     if (this.state.users.length) {
+      // console.log(this.state.users);
       matchPreview = this.state.users.map((person, i) => {
           return (
-            <div className={`current-match-preview`} key={i}>
+            <div className="current-match-preview" key={i}>
               <Link className="link" to={`/user/${person.username}`}><h3 className="match-heading">{person.username}</h3></Link>
               <Link className="link" to={`/user/${person.username}`}><img className="match-preview-img" src={person.profile.profilePic}/></Link>
             </div>
