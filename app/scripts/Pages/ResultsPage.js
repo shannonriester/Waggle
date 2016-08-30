@@ -34,9 +34,11 @@ export default React.createClass({
   editCity: function() {
     this.setState({editCity: true});
   },
-  hideEditCity: function(e) {
+  cancelEditCity: function(e) {
     e.preventDefault();
     this.setState({editCity: false});
+    this.setState({city: store.session.get('city')});
+    this.refs.newCity.value = '';
   },
   updateCity: function(e) {
     e.preventDefault();
@@ -138,7 +140,7 @@ export default React.createClass({
           <input className="new-city-input" ref="newCity" type="text" role="textbox" tabIndex="1" onChange={this.handleChange} />
           <input className="submit-btn" type="submit" />
           <footer className="edit-city-footer">
-            <button className="submit-edit-city-btn" onClick={this.hideEditCity}>Cancel</button>
+            <button className="submit-edit-city-btn" onClick={this.cancelEditCity}>Cancel</button>
             <button className="submit-edit-city-btn" onClick={this.updateCity}>Enter</button>
           </footer>
         </form>);

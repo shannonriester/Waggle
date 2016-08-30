@@ -310,7 +310,7 @@ height: 80%;
 
 }
 
-@media (min-width: 900px) {
+@media (min-width: 845px) {
 
   .results-page-container{
     display: flex;
@@ -323,6 +323,10 @@ height: 80%;
 
   .map {
     height: 430px;
+  }
+
+  .new-city-form {
+    width: 101%;
   }
 
   .results-list {
