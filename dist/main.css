@@ -270,6 +270,13 @@
   .search-icon {
     height: 72%;
     font-size: 2em; } }
+@media (min-width: 900px) {
+  .searchbar-component {
+    width: 50vw; }
+
+  .searchbar {
+    width: 80%;
+    height: 50px; } }
 .map-container {
   margin-bottom: 2%;
   border-bottom: solid #EBEBEB 1px; }
@@ -521,6 +528,33 @@ h4 {
 
   .about-place {
     font-size: 20px; } }
+@media (min-width: 900px) {
+  .results-page-container {
+    display: flex; }
+
+  .map-container {
+    width: 50vw;
+    position: fixed; }
+
+  .map {
+    height: 430px; }
+
+  .results-list {
+    width: 50vw;
+    position: relative;
+    left: 50%;
+    box-shadow: -9px 0px 5px 0px rgba(0, 0, 0, 0.27); }
+
+  .about-preview .results-h1 {
+    font-size: 20px; }
+
+  .about-place {
+    font-size: 15px; }
+
+  .result-image {
+    height: 6.5em;
+    width: 6.5em;
+    margin-top: 15px; } }
 .result-item-component .result-item-container {
   background-size: contain;
   background-repeat: no-repeat;

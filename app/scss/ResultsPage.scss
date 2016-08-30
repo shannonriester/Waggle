@@ -309,3 +309,43 @@ height: 80%;
   }
 
 }
+
+@media (min-width: 900px) {
+
+  .results-page-container{
+    display: flex;
+  }
+
+  .map-container {
+    width: 50vw;
+    position: fixed;
+  }
+
+  .map {
+    height: 430px;
+  }
+
+  .results-list {
+    width: 50vw;
+    position: relative;
+    left: 50%;
+    box-shadow: -9px 0px 5px 0px rgba(0,0,0,0.27);
+  }
+
+  .about-preview {
+    .results-h1 {
+      font-size: 20px;
+    }
+  }
+
+  .about-place {
+    font-size: 15px;
+  }
+
+  .result-image {
+    height: 6.5em;
+    width: 6.5em;
+    margin-top: 15px;
+  }
+
+}

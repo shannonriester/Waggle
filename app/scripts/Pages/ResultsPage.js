@@ -145,26 +145,28 @@ export default React.createClass({
     return (
       <div className="results-page-component">
         <Header />
-        <div className="map-container">
-          <div className="map">
-            <GoogleMapPage
-            city={city}
-            coordinates={coordinates}
-            resultsList={resultsList}
-            />
-          </div>
-          <section className="search-heading-section">
-            <div className="heading-icon-container">
-              <h2 className="search-heading">{city}, {store.session.get('regionName')}</h2>
-              {editCity}
+        <div className="results-page-container">
+          <div className="map-container">
+            <div className="map">
+              <GoogleMapPage
+              city={city}
+              coordinates={coordinates}
+              resultsList={resultsList}
+              />
             </div>
-            <p className="search-sub-heading">Wag Along...</p>
-            <Searchbar />
-          </section>
+            <section className="search-heading-section">
+              <div className="heading-icon-container">
+                <h2 className="search-heading">{city}, {store.session.get('regionName')}</h2>
+                {editCity}
+              </div>
+              <p className="search-sub-heading">Wag Along...</p>
+              <Searchbar />
+            </section>
+          </div>
+          <ul className="results-list">
+            {resultsList}
+          </ul>
         </div>
-        <ul className="results-list">
-          {resultsList}
-        </ul>
       </div>
     );
   }

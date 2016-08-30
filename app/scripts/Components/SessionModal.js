@@ -64,11 +64,8 @@ export default React.createClass({
     //     password: password,
     //   });
     let username = store.session.get('username');
-    console.log(username);
     let email = store.session.get('email');
-    console.log(email);
     let password = store.session.get('password');
-    console.log(password);
       store.session.signup(
         username,
         password,

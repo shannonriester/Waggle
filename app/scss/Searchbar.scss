@@ -45,5 +45,14 @@
     font-size: 2em;
   }
 
+}
 
+@media (min-width: 900px) {
+  .searchbar-component {
+    width: 50vw;
+  }
+  .searchbar {
+    width: 80%;
+    height: 50px;
+  }
 }
