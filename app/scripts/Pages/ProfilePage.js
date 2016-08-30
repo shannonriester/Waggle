@@ -116,7 +116,7 @@ export default React.createClass({
       });
 
     store.session.on('change', this.updateState);
-    store.userCollection.on('update', this.updateState);
+    store.userCollection.on('change update', this.updateState);
     store.checkinCollection.on('update', this.updateState);
     store.checkinCollection.on('update', this.fetchPlaces);
     store.placesCollection.on('update', this.updateState);
@@ -124,7 +124,7 @@ export default React.createClass({
   },
   componentWillUnmount: function() {
     store.session.off('change', this.updateState);
-    store.userCollection.off('update', this.updateState);
+    store.userCollection.off('change update', this.updateState);
     store.checkinCollection.off('update', this.updateState);
     store.checkinCollection.off('update', this.fetchPlaces);
     store.placesCollection.off('update', this.updateState);

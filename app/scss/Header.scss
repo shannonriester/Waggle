@@ -13,11 +13,16 @@
 }
 
 .current-location {
-  color: $accent;
+  color: $secondary;
 }
 
 .nav-component {
-  background: $background;
+  background: #FFF;
+  box-shadow: 0px -4px 22px 0px rgba(0,0,0,0.27);
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  top: 0;
   ul {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -33,10 +38,26 @@
   }
   li {
     list-style-type: none;
-    width: calc(100/3);
+    // width: calc(100/3);
   }
   .nav-icon {
     font-size: 3.5em;
-    color: rgba($accent, .8);
+    color: $secondary;
   }
+}
+
+
+@media(min-width: 775px) {
+  // .header-component {
+
+  .nav-component {
+    // position: fixed;
+    // width: 100%;
+    // z-index: 2;
+    // top: 0;
+    // opacity: 1;
+    // background: $secondary;
+    // color: white;
+  }
+
 }

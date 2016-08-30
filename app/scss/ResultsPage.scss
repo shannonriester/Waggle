@@ -1,6 +1,6 @@
 .map-container {
-  margin-bottom: 2%;
-  border-bottom: solid $border 1px;
+  // margin-bottom: 2%;
+  // border-bottom: solid $border 1px;
 }
 
 .map {
@@ -93,7 +93,7 @@
   margin-top: 30px;
   height: 30px;
   width: 50px;
-  font-size: 2em !important;
+  font-size: 2em;
   &:hover {
     cursor: pointer;
     color: $accent;
@@ -108,7 +108,8 @@
   justify-content: center;
   height: 130px;
   width: 100%;
-  box-shadow: 1px -4px 3px 2px rgba(0, 0, 0, 0.2);
+  background: #EBEBEB;
+  box-shadow: 0px -6px 14px -7px rgba(0,0,0,0.27);
   border-radius: 5px;
   background: white;
   margin: 0 auto;
@@ -116,7 +117,8 @@
 
 h4 {
   font-size: 18px;
-  margin-bottom: 5px;
+  margin: 0;
+  margin-top: 15px;
 }
 
 .new-city-input {
@@ -158,6 +160,7 @@ h4 {
   text-align: center;
   font-size: 35px;
   color: $accent;
+  background: $background;
 }
 
 .search-sub-heading {
@@ -168,7 +171,7 @@ h4 {
 }
 
 .search-heading-section {
-  padding-bottom: 20px;
+  background: #FFF;
 }
 
 .results-list {
@@ -284,12 +287,12 @@ height: 80%;
   }
 
   .search-heading {
-    margin: 0;
+    margin: 20px 0;
     height: 50px;
   }
 
   .new-city-form {
-    height: 70px;
+    height: 160px;
   }
 
   .result-image {
@@ -310,7 +313,7 @@ height: 80%;
 
 }
 
-@media (min-width: 845px) {
+@media (min-width: 775px) {
 
   .results-page-container{
     display: flex;
@@ -325,14 +328,27 @@ height: 80%;
     height: 430px;
   }
 
+  .search-heading-section {
+    margin: 30px 0;
+  }
+
+  .search-heading {
+    margin: 0;
+    height: 90px;
+  }
+
   .new-city-form {
-    width: 101%;
+    width: 100%;
+    height: 200px;
+    box-shadow: none;
+    background: $background;
   }
 
   .results-list {
-    width: 50vw;
     position: relative;
+    top: 50px;
     left: 50%;
+    width: 50vw;
     box-shadow: -9px 0px 5px 0px rgba(0,0,0,0.27);
   }
 
