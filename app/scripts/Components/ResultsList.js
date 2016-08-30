@@ -26,16 +26,12 @@ export default React.createClass({
           <figure className="result-image" style={{backgroundImage:`url(${this.props.place.imageUrl})`}}></figure>
           <div className="result-content-container">
             <main className="about-preview">
-              <h1>{this.props.place.name}</h1>
+              <h1 className="results-h1">{this.props.place.name}</h1>
             </main>
             <ul className="about-place">
               <li>
                 <header className="caption">{category}</header>
                 <i className="place-icon fa fa-map-marker" aria-hidden="true"></i>
-              </li>
-              <li>
-                <header className="yelp-link">Yelp</header>
-                <i className="yelp-icon fa fa-yelp" aria-hidden="true"></i>
               </li>
             </ul>
           </div>

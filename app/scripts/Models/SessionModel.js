@@ -305,6 +305,7 @@ const SessionModel = Backbone.Model.extend({
     });
   },
   logout: function(query, range){
+    this.unset('newCity');
     this.save(null,
       { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/_logout`,
         type: 'POST',
@@ -313,6 +314,7 @@ const SessionModel = Backbone.Model.extend({
           browserHistory.push('/');
 
           this.unset('authtoken');
+          this.unset('newCity');
 
           this.set('query', query);
           this.set('range', range);

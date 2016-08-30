@@ -86,6 +86,12 @@ export default React.createClass({
     store.userCollection.off('update', this.updateState);
   },
   render: function() {
+    // <li>
+    //   <header className="yelp-link">Yelp</header>
+    //   <i className="yelp-icon fa fa-yelp" aria-hidden="true"></i>
+    // </li>
+
+
     let content;
     if (this.state.placeModel.name) {
       let placeItem = this.state.placeModel;
@@ -122,7 +128,7 @@ export default React.createClass({
       }
       content = (
         <div className="result-item-container">
-          <header className="place-image" style={styles}><h1>{placeItem.name}</h1></header>
+          <header className="place-image" style={styles}><h1 className="place-item-h1">{placeItem.name}</h1></header>
           <div className="content-container">
             <main className="main-place-item-page"></main>
             <footer className="footer-users-checkedin">

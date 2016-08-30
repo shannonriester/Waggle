@@ -45,7 +45,6 @@ export default React.createClass({
     $.ajax({
       url: `https://maps.googleapis.com/maps/api/geocode/json?address=${newCity}&key=${store.google.appKey}`,
       success: (response) => {
-        console.log(response);
         let lat = response.results[0].geometry.location.lat;
         let lng = response.results[0].geometry.location.lng;
         let newCoordinates = [lat, lng];
@@ -72,7 +71,6 @@ export default React.createClass({
         });
       }
     });
-    // this.setState({newCity: store.session.get('newCity')});
   },
   updateState: function() {
       if (!this.state.newCity) {
@@ -97,7 +95,7 @@ export default React.createClass({
       }
   },
   componentWillMount: function() {
-    if (!localStorage.authtoken) {
+    if (!localStorage.getItem('authtoken')) {
       browserHistory.push('/');
     }
   },
@@ -118,9 +116,6 @@ export default React.createClass({
     let coordinates;
     let city;
 
-    console.log(this.state.newCity);
-    console.log(store.session.toJSON().newCity);
-
     if (this.state.changedCity) {
       coordinates = this.state.newCoordinates;
       if (this.state.newCity
@@ -137,10 +132,9 @@ export default React.createClass({
       city = this.state.city;
     }
 
-    let editCity;
-    if (this.state.editCity) {
-      editCity = (
+    let editCity = (
         <form className="new-city-form" onSubmit={this.updateCity}>
+          <h4>Change cities...</h4>
           <input className="new-city-input" ref="newCity" type="text" role="textbox" tabIndex="1" onChange={this.handleChange} />
           <input className="submit-btn" type="submit" />
           <footer className="edit-city-footer">
@@ -148,10 +142,6 @@ export default React.createClass({
             <button className="submit-edit-city-btn" onClick={this.updateCity}>Enter</button>
           </footer>
         </form>);
-    } else {
-      editCity = (<i className="globe-icon fa fa-cog" aria-hidden="true" onClick={this.editCity}> Change city? </i>);
-    }
-
     return (
       <div className="results-page-component">
         <Header />
@@ -164,9 +154,11 @@ export default React.createClass({
             />
           </div>
           <section className="search-heading-section">
-            <h2 className="search-heading">{city}, {store.session.get('regionName')}</h2>
-            {editCity}
-            <p className="search-sub-heading">Waggle On, Wag Along...</p>
+            <div className="heading-icon-container">
+              <h2 className="search-heading">{city}, {store.session.get('regionName')}</h2>
+              {editCity}
+            </div>
+            <p className="search-sub-heading">Wag Along...</p>
             <Searchbar />
           </section>
         </div>

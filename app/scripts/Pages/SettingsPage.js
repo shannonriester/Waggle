@@ -64,10 +64,8 @@ updateState: function() {
   if (!this.state.authtoken) {
     browserHistory.push('/');
   }
-  console.log(store.session.get('range'));
 
   if (store.session.get('range') !== '8' && !this.state.gotUser) {
-    console.log('got user: ', store.session.get('range'));
     this.setState({range: store.session.get('range'), gotUser: true});
   }
 
