@@ -50,7 +50,7 @@
   align-items: center;
   justify-content: space-between;
   background: white;
-  width: 50vw;
+  width: 22em;
   height: 14vh;
   padding: 10px;
   border-radius: 10px;
@@ -58,9 +58,10 @@
 
   .place-img-name {
     width: 50%;
+    height: 100%;
     img {
-      height: 100px;
-      width: 100px;
+      height: 100%;
+      max-width: 100px;
       border-radius: 4px;
     }
   }

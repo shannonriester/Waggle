@@ -63,6 +63,7 @@
   .h2-checkin, .h3-checkin {
     background: none;
     margin: none;
+    text-align: center;
   }
 
   .checkin-address-links-container {
@@ -163,11 +164,13 @@
 
   .checkin-preview-container {
     padding-bottom: 25px;
+    display: flex;
+    width: 80vw;
   }
 
   .userpreview-container{
     height: 70%;
-    width: 30%;
+    width: 100%;
     background-size: cover;
     margin: 0;
     display: flex;
