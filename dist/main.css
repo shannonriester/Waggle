@@ -907,6 +907,30 @@ h4 {
   .place-image {
     height: 500px;
     width: 100%; } }
+@media (min-width: 775px) {
+  .place-image {
+    height: 500px;
+    width: 42em; }
+
+  .place-heading-container {
+    width: 50em; }
+
+  .checkin-address-links-container {
+    width: 40em; } }
+@media (min-width: 1100px) {
+  .place-image {
+    height: 40em;
+    width: 90%;
+    margin: 0 auto; }
+
+  .place-heading-container {
+    width: 65em; }
+
+  .checkin-address-links-container {
+    width: 55em; }
+
+  .scroll-container {
+    width: 40em; } }
 /*START OF PROFILE IMG EDITING SECTION*/
 .profile-image-form {
   position: absolute;

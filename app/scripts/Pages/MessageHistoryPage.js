@@ -32,7 +32,7 @@ export default React.createClass({
     store.messagesCollection.findMyMessages(this.state.session).then((response) => {
       this.setState({myMessages: response.toJSON() });
     });
-    
+
     store.session.on('change', this.updateState);
     store.messagesCollection.on('change update', this.updateState);
   },
@@ -52,8 +52,16 @@ export default React.createClass({
           allMyConversations.push(convoWith);
           return true;
         }
-      }
+      } else if (this.state.session === curr.recipient) {
+        convoWith = curr.sender;
 
+        if (allMyConversations.indexOf(convoWith) === -1) {
+          allMyConversations.push(convoWith);
+          return true;
+        }
+      } else {
+        return false
+      }
     });
     messagesArr = messagesArr.map((curr, i, arr) => {
       let convoWith = curr.sender;
