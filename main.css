@@ -451,16 +451,17 @@
   align-items: center;
   justify-content: space-between;
   background: white;
-  width: 50vw;
+  width: 22em;
   height: 14vh;
   padding: 10px;
   border-radius: 10px;
   z-index: 1; }
   .infobox-container .place-img-name {
-    width: 50%; }
+    width: 50%;
+    height: 100%; }
     .infobox-container .place-img-name img {
-      height: 100px;
-      width: 100px;
+      height: 100%;
+      max-width: 100px;
       border-radius: 4px; }
   .infobox-container .address-section {
     width: 50%;
@@ -799,7 +800,8 @@ h4 {
 
 .h2-checkin, .h3-checkin {
   background: none;
-  margin: none; }
+  margin: none;
+  text-align: center; }
 
 .checkin-address-links-container {
   width: 75%;
@@ -880,11 +882,13 @@ h4 {
   color: #FF5A5F; }
 
 .checkin-preview-container {
-  padding-bottom: 25px; }
+  padding-bottom: 25px;
+  display: flex;
+  width: 80vw; }
 
 .userpreview-container {
   height: 70%;
-  width: 30%;
+  width: 100%;
   background-size: cover;
   margin: 0;
   display: flex;
