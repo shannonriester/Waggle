@@ -41,7 +41,7 @@ export default React.createClass({
         store.userCollection.findUser(person).then((response) => {
           newPersonArr.push(response.toJSON());
 
-          if (newPersonArr.length !== this.state.matches.length) {
+          if (newPersonArr.length === this.state.matches.length) {
             this.setState({
               users: newPersonArr,
               fetch: false,

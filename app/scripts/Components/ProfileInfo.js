@@ -45,11 +45,8 @@ export default React.createClass({
   },
   handleImgChange: function(e) {
     e.preventDefault();
-    //use this.state.profilePicSrc for the preview
-    //before the user decides to save/submit as the
-    //new profile picture
 
-    let file = this.refs.file.files[0]
+    let file = this.refs.file.files[0];
     let reader = new FileReader();
     let url = reader.readAsDataURL(file);
    reader.onloadend = function (e) {
@@ -94,7 +91,7 @@ export default React.createClass({
       content = (
       <div>
         <section className="header-profile-section">
-          <BackgroundSlider profile={this.state.user.profile}/>
+          <BackgroundSlider profile={this.state.user.profile} />
             {bkgrndImgForm}
           <div className="profile-pic-container">
             {profilePicFile}

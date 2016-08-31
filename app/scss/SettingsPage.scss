@@ -143,3 +143,10 @@
     }
   }
 }
+
+@media (min-width: 900px) {
+  .settings-content-container {
+    width: 46em;
+    margin: 0 auto;
+  }
+}

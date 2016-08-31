@@ -29,22 +29,22 @@ export default Backbone.Collection.extend({
     }
   },
   deleteOldCheckins: function() {
-    this.models.forEach((model) => {
-      model = model.toJSON();
-
-      let maxTime = moment(model._kmd.ect).add(24, 'hours').unix();
-
-      let timeNow = new Date();
-      timeNow = moment(timeNow).unix();
-
-      if (maxTime <= timeNow) {
-        let oldModel = this.get(model._id);
-        // oldModel.destroy();
-        console.log('WOULD HAVE DESTROYED ' + model._id + 'BECAUSE IT\'S BEEN TOO LONG THEY ARE CHECKED IN');
-      } else {
-        let stillGoodModel = this.get(model._id);
-      }
-
-    });
+    // this.models.forEach((model) => {
+    //   model = model.toJSON();
+    //
+    //   let maxTime = moment(model._kmd.ect).add(24, 'hours').unix();
+    //
+    //   let timeNow = new Date();
+    //   timeNow = moment(timeNow).unix();
+    //
+    //   if (maxTime <= timeNow) {
+    //     let oldModel = this.get(model._id);
+    //     // oldModel.destroy();
+    //     console.log('WOULD HAVE DESTROYED ' + model._id + 'BECAUSE IT\'S BEEN TOO LONG THEY ARE CHECKED IN');
+    //   } else {
+    //     let stillGoodModel = this.get(model._id);
+    //   }
+    //
+    // });
   },
 });

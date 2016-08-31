@@ -41,6 +41,7 @@ export default React.createClass({
     store.matchCollection.toggleMatch(this.state.session.username, this.props.params.userId)
       .then((toggleResponse) => {
         store.matchCollection.findMatch(this.state.session.username, this.props.params.userId).then((response)=> {
+          console.log(response);
           if (response.length > 1) {
             this.setState({
               matched: true,
@@ -155,7 +156,7 @@ export default React.createClass({
 
     let userRecentPlaces;
     let myMatches = [];
-    if (this.state.matched || this.props.params.userId === this.state.session.username) {
+    if (this.state.matched || (this.props.params.userId === this.state.session.username)) {
         let placeIDArr = this.state.recentPlaces.map((place, i, arr) => {
           return place.place;
         });
