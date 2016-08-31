@@ -1467,7 +1467,7 @@ h3 {
     padding: 10px; }
   .settings-content-container .header-settings {
     position: relative;
-    top: 6em;
+    top: 10em;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
