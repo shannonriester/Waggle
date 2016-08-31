@@ -40,7 +40,7 @@ export default React.createClass({
         <div className="userpreview-container" key={i}>
           <Link className="link" to={`/user/${model.userCheckedin}`}>
             <figure key={i} className="figure-profile" style={userImg[i]}></figure>
-            <h3>{model.userCheckedin}</h3>
+            <h3 className="h3-checkin">{model.userCheckedin}</h3>
           </Link>
           <data className="checkin-data">{model.shortTime}</data>
         </div>
@@ -51,7 +51,7 @@ export default React.createClass({
 
     return (
       <li className="checkedin-user-preview-component">
-        <h2>Checkins</h2>
+        <h2 className="h2-checkin">Checkins</h2>
         <div className="scroll-container">
           <button className="scroll-btn" onClick={this.scrollLeft}><i className="arrow-icon fa fa-arrow-left" aria-hidden="true"></i></button>
           <div id={this.state.scroll} className="preview-container">{checkedinPreview}</div>

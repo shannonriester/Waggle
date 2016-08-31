@@ -295,7 +295,7 @@
 
 .nav-component {
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   top: 0;
   width: 100%;
   background: #FFF;
@@ -333,12 +333,17 @@
     .nav-ul li {
       display: flex;
       align-items: center;
-      justify-content: center;
-      width: 100px; }
+      justify-content: space-around;
+      width: 80px; }
+      .nav-ul li:hover {
+        cursor: pointer; }
+        .nav-ul li:hover p {
+          text-decoration: underline; }
     .nav-ul .nav-icon-title {
       display: block;
       margin: 0;
-      color: #9265BF; } }
+      color: #9265BF;
+      margin-left: 5px; } }
 @media (min-width: 775px) {
   .nav-ul {
     width: 45%;
@@ -744,20 +749,23 @@ h4 {
   background-repeat: no-repeat;
   width: 100vw;
   text-align: center; }
-  .place-item-content .place-image {
-    height: 46vh;
-    width: 100vw;
-    margin: 0 auto;
-    background-repeat: no-repeat;
-    background-size: cover; }
 
-.content-container {
+.place-image {
+  height: 400px;
+  width: 100vw;
+  margin: 0 auto;
+  background-repeat: no-repeat;
+  background-size: cover; }
+
+.place-item-content-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 75vh;
+  height: 90vh;
   width: 100vw;
-  color: #FFF; }
+  color: #EFEFEF;
+  background: #FFF;
+  text-align: left; }
 
 .place-item-h1 {
   display: flex;
@@ -765,7 +773,67 @@ h4 {
   justify-content: center;
   margin: 0;
   height: 100%;
-  color: #FFF; }
+  color: #2EC0F9;
+  line-height: 1.5; }
+
+.main-place-item-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 65vh;
+  color: #555;
+  background: #FFF;
+  border-left: solid 2px;
+  margin: 20px auto; }
+
+.snippet-text-checkin {
+  width: 70%;
+  margin: 25px auto;
+  padding-left: 30px;
+  border-left: solid 2px #EBEBEB; }
+
+.h2-checkin, .h3-checkin {
+  background: none;
+  margin: none; }
+
+.checkin-address-links-container {
+  width: 75%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: solid 1px #EBEBEB; }
+
+.checkin-links-ul, .checkin-address-ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 140px;
+  padding: 0;
+  line-height: 1.9; }
+  .checkin-links-ul li, .checkin-address-ul li {
+    list-style-type: none; }
+
+.address-heading {
+  text-decoration: underline;
+  color: #FF5A5F; }
+
+.yelp-link {
+  flex-direction: row;
+  text-decoration: none; }
+  .yelp-link a {
+    color: #555;
+    text-decoration: none; }
+  .yelp-link:hover {
+    transition: .5s;
+    cursor: pointer;
+    color: #FF5A5F;
+    text-decoration: underline; }
+
+.checkin-link-icon {
+  color: #FF5A5F;
+  margin: 0 10px; }
 
 .checkin-btn {
   position: fixed;
@@ -787,7 +855,7 @@ h4 {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 100%;
+  height: 75vh;
   background: rgba(255, 255, 255, 0.9); }
 
 .ulist-users-checkedin {
@@ -797,7 +865,6 @@ h4 {
   justify-content: space-around;
   padding: 0;
   margin: 0;
-  width: 100%;
   height: 100%; }
 
 .checkedin-user-preview-component {
@@ -806,31 +873,40 @@ h4 {
   align-items: center;
   justify-content: space-around;
   width: 100%;
-  height: 55%;
   list-style-type: none;
   color: #FF5A5F; }
 
+.preview-container {
+  padding-bottom: 25px; }
+
 .userpreview-container {
-  height: 80%;
+  height: 70%;
   width: 30%;
   background-size: cover;
-  margin: 0; }
-  .userpreview-container .figure-profile {
-    height: 5em;
-    width: 5em;
-    background-size: cover;
-    border-radius: 50%;
-    background-position: left center; }
-  .userpreview-container .checkin-data {
-    font-size: 14px;
-    display: flex;
-    flex-wrap: wrap;
-    width: 6em; }
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; }
+
+.figure-profile {
+  height: 5em;
+  width: 5em;
+  background-size: cover;
+  border-radius: 50%;
+  background-position: left center; }
+
+.checkin-data {
+  text-align: center; }
 
 #checked-in {
   color: #FFF;
   background: #FF5A5F; }
 
+@media (min-width: 575px) {
+  .place-image {
+    height: 500px;
+    width: 100%; } }
 /*START OF PROFILE IMG EDITING SECTION*/
 .profile-image-form {
   position: absolute;
@@ -1452,7 +1528,7 @@ h4 {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  height: 30vh;
+  height: 45vh;
   width: 100%; }
 
 .preview-container {

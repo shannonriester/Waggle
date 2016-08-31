@@ -63,18 +63,18 @@ export default React.createClass({
           <section className="header-title"><div className="logo-container" style={{backgroundImage:`url("/assets/dogHead_Red.svg")`}}></div><h1 className="waggle">Waggle</h1></section>
 
           <ul className="nav-ul">
-            <li className="li-third">
-              <i className="nav-icon messages-icon fa fa-comments-o" aria-hidden="true" onClick={this.messages}></i>
+            <li className="li-third" onClick={this.messages}>
+              <i className="nav-icon messages-icon fa fa-comments-o" aria-hidden="true"></i>
               <p className="nav-icon-title">Messages</p>
             </li>
 
-            <li className="li-first">
-              <i className="nav-icon user-icon fa fa-user" aria-hidden="true" onClick={this.userProfile}></i>
+            <li className="li-first" onClick={this.userProfile}>
+              <i className="nav-icon user-icon fa fa-user" aria-hidden="true"></i>
               <p className="nav-icon-title">Profile</p>
             </li>
 
-            <li className="li-second">
-              <i className="nav-icon fa fa-bullseye" aria-hidden="true" onClick={this.searchResults}></i>
+            <li className="li-second" onClick={this.searchResults}>
+              <i className="nav-icon fa fa-bullseye" aria-hidden="true"></i>
               <p className="nav-icon-title">Search</p>
             </li>
 

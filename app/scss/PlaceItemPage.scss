@@ -6,24 +6,26 @@
     // height: 100vh;
     width: 100vw;
     text-align: center;
-
-    .place-image {
-      height: 46vh;
-      width: 100vw;
-      margin: 0 auto;
-      background-repeat: no-repeat;
-      background-size: cover;
-    }
   }
 
-  .content-container {
+  .place-image {
+    height: 400px;
+    width: 100vw;
+    margin: 0 auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .place-item-content-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     // justify-content: space-between;
-    height: 75vh;
+    height: 90vh;
     width: 100vw;
-    color: #FFF;
+    color: #EFEFEF;
+    background: #FFF;
+    text-align: left;
   }
 
   .place-item-h1 {
@@ -33,7 +35,84 @@
     margin: 0;
     height: 100%;
     // width: 100%;
-    color: #FFF;
+    color: $tertiary;
+    line-height: 1.5;
+  }
+
+  .main-place-item-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 65vh;
+    color: #555;
+    background: #FFF;
+    border-left: solid 2px;
+    // padding-left: 20px;
+    margin: 20px auto;
+  }
+
+  .snippet-text-checkin {
+    width: 70%;
+    margin: 25px auto;
+    padding-left: 30px;
+    border-left: solid 2px $border;
+  }
+
+  .h2-checkin, .h3-checkin {
+    background: none;
+    margin: none;
+  }
+
+  .checkin-address-links-container {
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: solid 1px $border;
+  }
+
+  .checkin-links-ul, .checkin-address-ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 140px;
+    padding: 0;
+    line-height: 1.9;
+    // text-align: left;
+    li {
+      list-style-type: none;
+    }
+  }
+
+  .address-heading {
+    text-decoration: underline;
+    color: $accent;
+  }
+
+  .yelp-link {
+    flex-direction: row;
+    text-decoration: none;
+    a {
+        color: $font-color;
+        text-decoration: none;
+      }
+    &:hover {
+      transition: .5s;
+      cursor: pointer;
+      color: $accent;
+      text-decoration: underline;
+    }
+  }
+
+  .checkin-link-icon {
+    color: $accent;
+    margin: 0 10px;
+  }
+
+  .checkin-address-ul {
+
   }
 
   .checkin-btn {
@@ -57,7 +136,7 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 100%;
+    height: 75vh;
     background: rgba(white, .9);
   }
 
@@ -68,7 +147,7 @@
     justify-content: space-around;
     padding: 0;
     margin: 0;
-    width: 100%;
+    // width: 100%;
     height: 100%;
   }
   .checkedin-user-preview-component {
@@ -77,19 +156,25 @@
     align-items: center;
     justify-content: space-around;
     width: 100%;
-    height: 55%;
+    // height: 50vh;
     list-style-type: none;
     color: $accent;
   }
 
+  .preview-container {
+    padding-bottom: 25px;
+  }
+
   .userpreview-container{
-    height: 80%;
+    height: 70%;
     width: 30%;
     background-size: cover;
     margin: 0;
-    // h3 {
-    //   margin: 0;
-    // }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 
   .figure-profile {
     height: 5em;
@@ -100,12 +185,7 @@
   }
 
   .checkin-data {
-    font-size: 14px;
-    display: flex;
-    flex-wrap: wrap;
-    width: 6em;
-  }
-
+    text-align: center;
   }
   #checked-in {
     color: #FFF;
@@ -113,3 +193,9 @@
   }
 
 // }
+@media(min-width:575px) {
+  .place-image {
+    height: 500px;
+    width: 100%;
+  }
+}

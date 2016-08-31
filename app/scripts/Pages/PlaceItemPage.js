@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import _ from 'underscore';
 
 import store from '../store';
@@ -85,6 +86,7 @@ export default React.createClass({
   },
   render: function() {
     let content;
+    let snippetText;
     if (this.state.placeModel.name) {
       let placeItem = this.state.placeModel;
       let styles = {backgroundImage: 'url(' + placeItem.imageUrl + ')'};
@@ -118,11 +120,29 @@ export default React.createClass({
         checkedin = "checked-in";
         checkBtn = (<button className="checkin-btn" id={checkedin} onClick={this.toggleCheckin}>Checked in!</button>);
       }
+      console.log(this.state.placeModel);
       content = (
         <div className="place-item-content">
-          <header className="place-image" style={styles}><h1 className="place-item-h1">{placeItem.name}</h1></header>
-          <div className="content-container">
-            <main className="main-place-item-page"></main>
+          <header className="place-image" style={styles}></header>
+          <div className="place-item-content-container">
+            <main className="main-place-item-page">
+              <div className="place-heading-container">
+                <h1 className="place-item-h1">{placeItem.name}</h1>
+                <p className="snippet-text-checkin">{this.state.placeModel.snippetText}</p>
+              </div>
+              <div className="checkin-address-links-container">
+                <ul className="checkin-address-ul">
+                  <li><h4 className="address-heading">Address</h4></li>
+                  <li>{this.state.placeModel.address[0]}</li>
+                  <li>{this.state.placeModel.address[1]}</li>
+                </ul>
+                <ul className="checkin-links-ul">
+                  <li className="yelp-link"><Link to={this.state.placeModel.yelpMobileUrl}><i className="yelp-icon checkin-link-icon fa fa-yelp" aria-hidden="true"></i> yelp</Link></li>
+                  <li><i className="compass-icon checkin-link-icon fa fa-compass" aria-hidden="true"></i> {this.state.placeModel.neighborhoods[0]}</li>
+                  <li><i className="checkin-link-icon fa fa-map-marker" aria-hidden="true"></i>{this.state.placeModel.categories[0]}</li>
+                </ul>
+              </div>
+            </main>
             <footer className="footer-users-checkedin">
               {checkedinUserPreview}
               {checkBtn}
@@ -131,6 +151,8 @@ export default React.createClass({
         </div>
       );
     }
+
+    // console.log(this.state.placeModel.snippetText);
 
     return (
       <div className="place-item-component">
