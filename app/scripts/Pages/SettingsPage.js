@@ -107,7 +107,7 @@ render: function() {
     );
   } else {
     dogInfo = (
-      <ul>
+      <ul className="dog-info-settings">
         <li><label className="settings-label">Name: </label><p>{this.state.session.dog.dogName}</p></li>
         <li><label className="settings-label">Breed: </label><p>{this.state.session.dog.dogBreed}</p></li>
         <li><label className="settings-label">Age: </label><p>{this.state.session.dog.dogAge}</p></li>
