@@ -649,8 +649,7 @@ h4 {
 
 .caption {
   color: #FF5A5F;
-  text-align: center;
-  overflow: scroll; }
+  text-align: center; }
 
 @media (min-width: 774px) {
   .map {
