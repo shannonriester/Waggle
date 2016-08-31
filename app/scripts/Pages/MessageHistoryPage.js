@@ -10,7 +10,6 @@ export default React.createClass({
     return {
       session: store.session.get('username'),
       messages: store.messagesCollection.toJSON(),
-      // allMyConversations: [],
       fetched: false,
     }
   },
@@ -70,8 +69,8 @@ export default React.createClass({
       }
 
       let messagePreview = (
-        <li key={i} onClick={this.viewChatMessage.bind(null, convoWith)}>
-          <h2>{convoWith}</h2>
+        <li className="message-history-message-preview" key={i} onClick={this.viewChatMessage.bind(null, convoWith)}>
+          <h2 className="h2-convo-with">{convoWith}</h2>
           <data>{curr.momentTime}</data>
         </li>
       );

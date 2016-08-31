@@ -4,13 +4,22 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    align-items: flex-start;
     height: 85vh;
     padding: 30px;
     margin: 0;
-    li {
+    position: relative;
+    top: 5em;
+    .message-history-message-preview {
       list-style-type: none;
-      border-bottom: solid 1px $border;
+      border-bottom: solid 1px #BCBDC0;
       height: 15%;
+      width: 90%;
+      text-align: left;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-around;
+      flex-direction: column;
       &:hover {
         transition: .5s;
         color: $accent;
@@ -23,6 +32,10 @@
     }
   }
 
+  .h2-convo-with {
+    text-align: left;
+  }
+
 }
 
 // CONVERSATION PAGE STARTS HERE
@@ -31,9 +44,10 @@
 }
 .convo-with-link {
   position: relative;
-  top: 50px;
-  border-bottom: solid 2px $border;
-  width: 90%;
+  top: 6em;
+  border-bottom: solid 2px $font-color;
+  background: $background;
+  width: 95%;
   margin: 0 auto;
   margin-bottom: 40px;
   &:hover {
@@ -62,8 +76,9 @@
   display: flex;
   flex-direction: column;
   overflow: auto;
-  padding: 20px 20px 10px 20px;
-  margin: 0;
+  width: 90%;
+  margin: 0 auto;
+  // border-top: solid 2px $font-color;
   .me {
     align-items: flex-end;
   }
@@ -82,7 +97,7 @@
       flex-direction: column;
       align-items: flex-end;
       width: 80%;
-      border: solid 1px $border;
+      // border: solid 1px $border;
     }
 
     p {
@@ -118,7 +133,7 @@
     align-items: flex-start;
     justify-content: center;
     width: 80%;
-    border: solid 1px $border;
+    border: solid 2px #FFF;
     background: none;
     border-radius: 10px;
     padding: 10px;
@@ -131,9 +146,9 @@
   align-items: center;
   justify-content: center;
   height: 5em;
-  // background: $secondary;
   border: solid 2px $accent;
   border-radius: 8px;
+  margin-top: 3%;
 }
 
 .chat-textbox {

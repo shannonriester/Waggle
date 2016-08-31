@@ -18,10 +18,8 @@ const UserCollection = Backbone.Collection.extend({
     });
   },
   findUser: function(username) {
-    console.log(username);
     return new Promise((resolve, reject) => {
       $.ajax(`https://baas.kinvey.com/user/kid_SkBnla5Y/?query={"username":"${username}"}`).then((r) => {
-        // console.log(r);
         if (r.length) {
           this.add(r[0]);
           resolve(this.get(r[0]._id));

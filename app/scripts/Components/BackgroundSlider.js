@@ -32,7 +32,7 @@ var BackgroundSlider = React.createClass({
   }
 
   let imgArr = this.state.imgSrc.map((source, i) => {
-    return (<img key={i} src={source} />)
+    return (<img className="background-profile-image" key={i} src={source} />)
   });
 
   return (

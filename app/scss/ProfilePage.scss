@@ -13,7 +13,13 @@
     list-style-type: none;
     width: 100%;
     border-radius: 5px;
+    color: rgba($font-color, 0.8);
   }
+}
+
+.about-user-icon {
+  color: $accent;
+  margin-right: 2%;
 }
 
 .about-bio {
@@ -56,6 +62,7 @@
 .profile-footer {
   // display: flex;
   width: 100vw;
+}
 
   ul {
     display: flex;
@@ -85,38 +92,36 @@
 
 
 // RECENT PLACES STARTS HERE
-  .user-recent-places-component {
-    list-style-type: none;
-    text-align: center;
-    width: 95%;
-    margin-bottom: 2em;
-    // background-color: rgba(#ECEEEC,.1);
-
-    .recent-place-image {
-      height: 20em;
-      width: 100%;
-      background-size: cover;
-      background-repeat: no-repeat;
-    }
-
-    h3 {
-      color: $accent;
-      // margin: .5em 0 0 0;
-      width: 50%;
-      font-size: 20px;
-      width: 100%;
-    }
-
-    .snippet-text {
-      width: 90%;
-      text-align: left;
-      color: rgba($font-color, .7);
-      border-left: solid 2px $border;
-      padding-left: 5px;
-    }
-
-  }
+.user-recent-places-component {
+  list-style-type: none;
+  text-align: center;
+  width: 95%;
+  margin-bottom: 2em;
+  // background-color: rgba(#ECEEEC,.1);
 }
+  .recent-place-image {
+    height: 20em;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  h3 {
+    color: $accent;
+    // margin: .5em 0 0 0;
+    width: 50%;
+    font-size: 20px;
+    width: 100%;
+  }
+
+  .snippet-text {
+    width: 90%;
+    text-align: left;
+    color: rgba($font-color, .7);
+    border-left: solid 2px $border;
+    padding-left: 5px;
+  }
+
 
 
 // MESSAGE MODAL STARTS HERE
@@ -162,5 +167,71 @@
     color: $accent;
     background: #FFF;
     border: solid 1px $border;
+  }
+}
+
+
+@media(min-width: 700px) {
+  .background-profile-image {
+    height: 480px;
+    object-fit: cover;
+  }
+
+  .profile-sub-nav {
+    width: 55em;
+  }
+
+  .ul-about-data {
+    width: 48em;
+    margin: 0 auto;
+  }
+
+  .about-bio {
+    width: 50em;
+  }
+
+  .profile-main {
+    padding-bottom: 10px;
+  }
+
+  .matched-wagglrs {
+    .scroll-container {
+      height: 30vh;
+      // border-bottom: solid 1px #FFF;
+    }
+  }
+
+  .background-profile-image {
+    height: 35em;
+  }
+
+  .recent-place-image {
+    height: 30em;
+    width: 80%;
+  }
+
+  .snippet-text {
+    width: 35em;
+    border-left: solid 1px rgba($font-color, 0.5);
+    padding-left: 4%;
+  }
+}
+
+@media(min-width: 750px) {
+  .background-profile-image {
+    object-fit: cover;
+    height: 70vh;
+  }
+
+  .recent-place-image {
+    height: 30em;
+    width: 49em;
+  }
+
+  .slider-container img {
+    object-fit: cover;
+    // height: 500px;
+    object-fit: cover;
+    height: 35em;
   }
 }

@@ -65,11 +65,7 @@ export default React.createClass({
   render: function() {
     let matchPreview;
 
-    console.log(this.state.users);
-    // console.log(this.state.matches);
-
     if (this.state.users.length) {
-      // console.log(this.state.users);
       matchPreview = this.state.users.map((person, i) => {
           return (
             <div className="current-match-preview" key={i}>

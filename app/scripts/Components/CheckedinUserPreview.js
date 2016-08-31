@@ -54,7 +54,7 @@ export default React.createClass({
         <h2 className="h2-checkin">Checkins</h2>
         <div className="scroll-container">
           <button className="scroll-btn" onClick={this.scrollLeft}><i className="arrow-icon fa fa-arrow-left" aria-hidden="true"></i></button>
-          <div id={this.state.scroll} className="preview-container">{checkedinPreview}</div>
+          <div id={this.state.scroll} className="checkin-preview-container">{checkedinPreview}</div>
           <button className="scroll-btn" onClick={this.scrollRight}><i className="arrow-icon fa fa-arrow-right" aria-hidden="true"></i></button>
         </div>
       </li>

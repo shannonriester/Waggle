@@ -10,19 +10,20 @@
 .slick-prev, .slick-next {
   position: absolute;
   z-index: 1;
-  top: 30%;
-  height: 5em;
+  bottom: 420px;
+  height: 3em;
+  width: 7em;
   outline: none;
-  border-radius: 50%;
-  border: solid 1px $border;
-  padding: 5px;
-  background-color: rgba(#FFF, .6);
-  color: #FFF;
-  font-size: 11px;
-  font-weight: bold;
-  // display: none !important;
+  border: solid 1px #FFF;
+  padding: 2px 17px;
+  background: rgba(#FFF, 0.9);
+  color: $accent;
+  font-size: 12px;
+  border-radius: 2px;
+  margin: 2%;
+  text-align: center;
   &:hover {
-    transition: 1s;
+    transition: .5s;
     background-color: rgba(#FFF, 1);
     color: $accent;
   }
@@ -31,6 +32,6 @@
   position: absolute;
   z-index: 1;
   right: 0;
-  padding: 16px;
+  padding: 2px 22px;
   // display: none !important;
 }
