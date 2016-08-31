@@ -1542,6 +1542,10 @@ h3 {
     .settings-content-container .footer-settings .hide-me {
       display: none; }
 
+@media (min-width: 900px) {
+  .settings-content-container {
+    width: 46em;
+    margin: 0 auto; } }
 .page-not-found-component {
   text-align: center; }
   .page-not-found-component h2 {
