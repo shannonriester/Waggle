@@ -1457,6 +1457,8 @@ h3 {
     border-bottom: solid 1px #EBEBEB;
     padding: 10px; }
   .settings-content-container .header-settings {
+    position: relative;
+    top: 6em;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1491,6 +1493,8 @@ h3 {
   .settings-content-container .edit-settings-btn {
     float: right; }
   .settings-content-container .discovery-settings {
+    position: relative;
+    top: 10em;
     height: 10vh;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -1508,6 +1512,8 @@ h3 {
   .settings-content-container .input-range {
     width: 30%; }
   .settings-content-container .footer-settings {
+    position: relative;
+    top: 7em;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
