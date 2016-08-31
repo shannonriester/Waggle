@@ -1166,7 +1166,12 @@ h4 {
 .profile-footer {
   width: 100vw; }
 
-ul {
+.current-match-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.ul-recent-places {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

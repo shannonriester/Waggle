@@ -107,6 +107,7 @@ export default React.createClass({
   },
   componentWillReceiveProps: function(newProps) {
     store.userCollection.findMe(newProps.params.userId).then((response) => {
+      this.fetchPlaces();
       this.setState({currentUser: response.toJSON(), fetch: false});
       this.updateState();
     });

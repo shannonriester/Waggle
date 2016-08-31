@@ -120,7 +120,13 @@ export default React.createClass({
         checkedin = "checked-in";
         checkBtn = (<button className="checkin-btn" id={checkedin} onClick={this.toggleCheckin}>Checked in!</button>);
       }
-      console.log(this.state.placeModel);
+
+
+      let neighborhoods;
+        if (this.state.placeModel.neighborhoods) {
+          neighborhoods = <li><i className="compass-icon checkin-link-icon fa fa-compass" aria-hidden="true"></i> {this.state.placeModel.neighborhoods[0]}</li>
+        }
+      // console.log(this.state.placeModel);
       content = (
         <div className="place-item-content">
           <header className="place-image" style={styles}></header>
@@ -138,7 +144,7 @@ export default React.createClass({
                 </ul>
                 <ul className="checkin-links-ul">
                   <li className="yelp-link"><Link to={this.state.placeModel.yelpMobileUrl}><i className="yelp-icon checkin-link-icon fa fa-yelp" aria-hidden="true"></i> yelp</Link></li>
-                  <li><i className="compass-icon checkin-link-icon fa fa-compass" aria-hidden="true"></i> {this.state.placeModel.neighborhoods[0]}</li>
+                  {neighborhoods}
                   <li><i className="checkin-link-icon fa fa-map-marker" aria-hidden="true"></i>{this.state.placeModel.categories[0]}</li>
                 </ul>
               </div>
