@@ -329,33 +329,32 @@
       color: rgba(146, 101, 191, 0.8); }
 
 @media (min-width: 575px) {
-  .nav-ul {
+  .nav-component .nav-ul {
     width: 45%;
     margin: 0 15px 0px 10px; }
-    .nav-ul li {
+    .nav-component .nav-ul li {
       display: flex;
       align-items: center;
       justify-content: space-around;
       width: 80px; }
-      .nav-ul li:hover {
+      .nav-component .nav-ul li:hover {
         cursor: pointer; }
-        .nav-ul li:hover p {
+        .nav-component .nav-ul li:hover p {
           text-decoration: underline; }
-    .nav-ul .nav-icon-title {
+    .nav-component .nav-ul .nav-icon-title {
       display: block;
       margin: 0;
       color: #9265BF;
       margin-left: 5px; } }
 @media (min-width: 775px) {
-  .nav-ul {
+  .nav-component .nav-ul {
     width: 45%;
     margin: 0 15px 0px 10px; }
-    .nav-ul li {
+    .nav-component .nav-ul li {
       display: flex;
       flex-direction: column;
       align-items: center; }
-
-  .nav-icon-title {
+  .nav-component .nav-icon-title {
     display: block;
     margin: 0;
     color: #9265BF; } }
@@ -684,7 +683,7 @@ h4 {
   .map-container {
     position: fixed;
     top: 40%;
-    left: 12px;
+    left: 1.6%;
     width: 45%;
     display: flex;
     align-items: center;
@@ -940,9 +939,9 @@ h4 {
 /*START OF PROFILE IMG EDITING SECTION*/
 .profile-image-form {
   position: absolute;
-  height: 400px;
+  height: 63%;
   width: 100%;
-  top: 7.2%; }
+  top: 11.5%; }
 
 .profile-figcaption {
   position: relative;
@@ -983,23 +982,34 @@ h4 {
     opacity: .7; }
 
 .background-img-preview {
-  height: 5em; }
+  height: 5em;
+  margin: 3%; }
 
 .upload-status-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  flex-direction: column;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  position: absolute;
-  top: 1em;
-  left: 35%;
-  color: #555;
-  margin: 0; }
+  position: relative;
+  height: 90%;
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
+  top: -475px;
+  left: 0em; }
+
+.img-preview-container {
+  display: flex;
+  flex-wrap: wrap;
+  height: 90%;
+  width: 70%;
+  justify-content: center; }
 
 /*PROFILE PICTURE SECTION*/
 .profile-pic-container {
@@ -1272,9 +1282,6 @@ h3 {
     height: 480px;
     object-fit: cover; }
 
-  .profile-sub-nav {
-    width: 55em; }
-
   .ul-about-data {
     width: 48em;
     margin: 0 auto; }
@@ -1422,6 +1429,9 @@ h3 {
     padding: 10px; }
 
 .chat-form-container {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1459,8 +1469,13 @@ h3 {
   -ms-flex-pack: distribute;
   justify-content: space-around; }
   .settings-content-container ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     padding: 0;
-    margin: 0; }
+    margin: 0;
+    width: 100%; }
     .settings-content-container ul li {
       display: -webkit-box;
       display: -ms-flexbox;
@@ -1470,15 +1485,20 @@ h3 {
       align-items: center;
       width: 100%;
       height: 2em;
-      margin: 10px 0;
       list-style-type: none; }
+  .settings-content-container input {
+    margin-left: 3%;
+    border: none;
+    width: 200px;
+    padding: 3%;
+    outline: none; }
   .settings-content-container .header-settings, .settings-content-container .discovery-settings, .settings-content-container .footer-settings {
     width: 100%;
-    border-bottom: solid 1px #EBEBEB;
+    border-bottom: solid 1px #FFF;
     padding: 10px; }
   .settings-content-container .header-settings {
     position: relative;
-    top: 10em;
+    top: 5em;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1490,32 +1510,53 @@ h3 {
     -ms-flex-align: center;
     align-items: center;
     /* justify-content: space-around;*/
-    height: 50vh;
     /* width: 100%;*/
-    line-height: 2em; }
+    line-height: 1.5; }
   .settings-content-container .settings-headings {
     text-align: center;
-    margin: 0 10px 0 0; }
+    text-decoration: underline;
+    margin: 0 10px 0 0;
+    color: rgba(85, 85, 85, 0.8); }
   .settings-content-container .settings-label {
-    -webkit-box-flex: 25;
-    -ms-flex: 25;
-    flex: 25;
+    width: 50%;
+    line-height: 1.2;
     color: #FF5A5F;
-    font-weight: bold; }
+    font-weight: bold;
+    text-align: right; }
+  .settings-content-container .edit-settings-label {
+    width: 50%; }
   .settings-content-container p {
-    -webkit-box-flex: 75;
-    -ms-flex: 75;
-    flex: 75; }
-  .settings-content-container .about-dog-settings {
-    width: 70%; }
-  .settings-content-container .about-session-settings {
-    width: 70%; }
-  .settings-content-container .edit-settings-btn {
-    float: right; }
+    width: 50%;
+    margin: 0;
+    margin-left: 3%; }
+  .settings-content-container .about-dog-settings, .settings-content-container .about-session-settings {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; }
+  .settings-content-container .edit-settings-btn, .settings-content-container .form-btn {
+    width: 15%;
+    align-self: center;
+    font-size: 13px;
+    padding: 0;
+    margin: 10px 0;
+    background: white;
+    border: none;
+    border-radius: 3px;
+    color: #FF5A5F; }
+    .settings-content-container .edit-settings-btn:hover, .settings-content-container .form-btn:hover {
+      cursor: pointer; }
+  .settings-content-container .form-btn {
+    margin: 0 auto;
+    background: #FF5A5F;
+    color: #FFF;
+    width: 30%; }
   .settings-content-container .discovery-settings {
     position: relative;
-    top: 10em;
-    height: 10vh;
+    top: 4em;
+    margin: 3% 0;
+    height: 100px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1529,11 +1570,17 @@ h3 {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center; }
+  .settings-content-container .discovery-label {
+    text-align: center;
+    color: #FF5A5F; }
   .settings-content-container .input-range {
-    width: 30%; }
+    width: 30%;
+    height: 25px; }
+    .settings-content-container .input-range:hover {
+      cursor: pointer; }
   .settings-content-container .footer-settings {
     position: relative;
-    top: 7em;
+    top: 3em;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1547,8 +1594,8 @@ h3 {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
-    height: 25vh;
-    border-bottom: none; }
+    border-bottom: none;
+    margin: 5% 0; }
     .settings-content-container .footer-settings button {
       height: 30px;
       border: none;
@@ -1559,6 +1606,8 @@ h3 {
       font-size: 20px;
       margin: 10px 0;
       width: 14em; }
+      .settings-content-container .footer-settings button:hover {
+        cursor: pointer; }
     .settings-content-container .footer-settings .hide-me {
       display: none; }
 

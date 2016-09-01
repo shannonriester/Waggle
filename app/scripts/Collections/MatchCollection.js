@@ -14,7 +14,7 @@ const MatchCollection = Backbone.Collection.extend({
             this.findWhere({sender: session, likee:likee}).destroy({
               success: () => {
                 resolve('unmatched')
-                console.log('UNMATCHED WITH USER: ', likee);
+                // console.log('UNMATCHED WITH USER: ', likee);
 
               },
               error: (e) => {
@@ -24,7 +24,6 @@ const MatchCollection = Backbone.Collection.extend({
 
             // return false;
           } else if (response[0].get('sender') === session) {
-            console.log('already sent request');
             this.findWhere({sender: session, likee: likee}).destroy({
               success: () => {
                 resolve('unmatched')
@@ -37,18 +36,17 @@ const MatchCollection = Backbone.Collection.extend({
               console.log('creating match');
               this.create({sender: session, likee:likee},{
                 success: (model, response) => {
-                  console.log('YOU MATCHED A PERSON!', model);
-                  console.log('SENT MATCH REQUEST TO: ', likee);
+                  // console.log('YOU MATCHED A PERSON!', model);
+                  // console.log('SENT MATCH REQUEST TO: ', likee);
                   resolve('sent match')
                 }
             });
           }
         } else {
-          console.log('creating match');
           this.create({sender: session, likee:likee},{
             success: (model, response) => {
-              console.log('YOU MATCHED A PERSON!', model);
-              console.log('SENT MATCH REQUEST TO: ', likee);
+              // console.log('YOU MATCHED A PERSON!', model);
+              // console.log('SENT MATCH REQUEST TO: ', likee);
               resolve('sent match')
               // return true;
             }
