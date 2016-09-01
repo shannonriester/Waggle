@@ -93,12 +93,12 @@
 
 .input-file {
   position: absolute;
-  top: 59%;
-  left: 37%;
+  top: 49%;
+  left: 33%;
   right: 0;
   bottom: 0;
   height: 20%;
-  width: 25%;
+  width: 12em;
   opacity: 0;
   z-index: 2;
 }
@@ -202,10 +202,29 @@
   }
 }
 
+@media(min-width: 500px) {
+  .input-form {
+    left: 36%;
+  }
+}
 
 @media(min-width: 550px) {
-
   .background-profile-image {
     height: 60vh;
+  }
+
+  .input-form {
+    left: 38%;
+  }
+}
+
+@media(min-width: 700px) {
+  .input-form {
+    left: 41%;
+  }
+}
+@media(min-width: 750px) {
+  .input-form {
+    left: 41%;
   }
 }
