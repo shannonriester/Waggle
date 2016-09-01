@@ -319,7 +319,7 @@ const SessionModel = Backbone.Model.extend({
           this.set('range', range);
 
           this.trigger('change');
-          console.log('USER LOGGED OUT!');
+          // console.log('USER LOGGED OUT!');
       },
        error: function(model, response) {
          throw new Error('LOGOUT FAILED');

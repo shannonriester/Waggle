@@ -8,7 +8,7 @@ const MatchCollection = Backbone.Collection.extend({
   toggleMatch: function(session, likee) {
     return new Promise((resolve,reject) => {
       let matchRequest = this.findMatch(session, likee).then((response) => {
-        console.log('toggleMatch response: ', response);
+        // console.log('toggleMatch response: ', response);
         if (response.length) {
           if (response.length > 1) {
             this.findWhere({sender: session, likee:likee}).destroy({
@@ -33,7 +33,6 @@ const MatchCollection = Backbone.Collection.extend({
               }
             });
           } else {
-              console.log('creating match');
               this.create({sender: session, likee:likee},{
                 success: (model, response) => {
                   // console.log('YOU MATCHED A PERSON!', model);

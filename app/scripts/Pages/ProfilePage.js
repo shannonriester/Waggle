@@ -41,7 +41,7 @@ export default React.createClass({
     store.matchCollection.toggleMatch(this.state.session.username, this.props.params.userId)
       .then((toggleResponse) => {
         store.matchCollection.findMatch(this.state.session.username, this.props.params.userId).then((response)=> {
-          console.log(response);
+          // console.log(response);
           if (response.length > 1) {
             this.setState({
               matched: true,

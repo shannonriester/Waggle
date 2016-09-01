@@ -99,18 +99,17 @@
  }
 
  .modal-btn {
+   width: 89%;
+   padding: 15px;
+   margin: 3%;
+   background: $accent;
    font-size: 1.5em;
    outline: none;
    border: none;
-   background: $accent;
    color: #FFF;
    border-radius: 5px;
-   padding: 15px;
-   width: 89%;
    &:hover {
-    //  transition: 1s;
-    //
-    //  color: #FFF;
+    cursor: pointer;
    }
  }
 

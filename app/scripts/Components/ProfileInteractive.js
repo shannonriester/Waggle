@@ -43,7 +43,6 @@ export default React.createClass({
         sentMatchBtn = (<i className="heart-icon matched fa fa-heart" aria-hidden="true"></i>)
         matchStatus = 'matched with!'
       } else if (this.props.sentMatch) {
-        console.log('sent match working');
         sentMatchBtn = (<i className="heart-icon sent-match fa fa-heart" aria-hidden="true"></i>);
         matchStatus = 'sent match...';
       } else {
