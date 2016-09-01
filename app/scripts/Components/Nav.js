@@ -40,11 +40,10 @@ export default React.createClass({
     }
   },
   componentDidMount: function() {
-    if (store.session.get('username')) {
+    if (store.session.get('username') && localStorage.authtoken) {
       store.checkinCollection.fetch();
       store.checkinCollection.deleteOldCheckins();
     }
-
     // window.addEventListener('resize', this.changeNav)
     store.session.on('change', this.updateState);
   },
