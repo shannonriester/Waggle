@@ -51,7 +51,7 @@ const SessionModel = Backbone.Model.extend({
         type: 'PUT',
         success: (model, response) => {
           this.trigger('change');
-        console.log('UPDATED USER ', response);
+        // console.log('UPDATED USER ', response);
       }, error: (e) => {
           console.log('SESSION.UPDATEUSER ERROR: ', e);
       }

@@ -84,7 +84,7 @@ export default React.createClass({
       store.matchCollection.allMyMatches(this.state.session.username).then((response) => {
         let matchedArr = [];
         matchedArr.push(response);
-        matchedArr = _.flatten(matchedArr)
+        matchedArr = _.flatten(matchedArr);
         this.setState({
           allMyMatches: matchedArr,
           fetch: true

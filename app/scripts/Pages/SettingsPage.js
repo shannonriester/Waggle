@@ -97,9 +97,9 @@ render: function() {
     dogInfo = (
       <form onSubmit={this.saveDogInfo}>
         <ul className="edit-dog-info">
-          <li><label className="settings-label">Name: </label><input type="text" defaultValue={this.state.session.dog.dogName} ref="dogName" /></li>
-          <li><label className="settings-label">Breed: </label><input type="text" defaultValue={this.state.session.dog.dogBreed} ref="dogBreed" /></li>
-          <li><label className="settings-label">Age: </label><input type="text" defaultValue={this.state.session.dog.dogAge} ref="dogAge" /></li>
+          <li><label className="settings-label edit-settings-label">Name: </label><input type="text" defaultValue={this.state.session.dog.dogName} ref="dogName" /></li>
+          <li><label className="settings-label edit-settings-label">Breed: </label><input type="text" defaultValue={this.state.session.dog.dogBreed} ref="dogBreed" /></li>
+          <li><label className="settings-label edit-settings-label">Age: </label><input type="text" defaultValue={this.state.session.dog.dogAge} ref="dogAge" /></li>
           <li><button className="form-btn" onClick={this.saveDogInfo}>Done</button></li>
         </ul>
         <input className="submit-btn" type="submit" />
@@ -118,10 +118,10 @@ render: function() {
     selfInfo = (
       <form onSubmit={this.saveUserInfo}>
         <ul className="edit-self-info">
-          <li><label className="settings-label">Email: </label><input type="text" defaultValue={this.state.session.email} ref="email" /></li>
-          <li><label className="settings-label">First name: </label><input type="text" defaultValue={this.state.session.firstName} ref="firstName" /></li>
-          <li><label className="settings-label">Last name: </label><input type="text" defaultValue={this.state.session.lastName} ref="lastName" /></li>
-          <li><label className="settings-label">Age: </label><input type="text" defaultValue={this.state.session.age} ref="age" /></li>
+          <li><label className="settings-label edit-settings-label">Email: </label><input type="text" defaultValue={this.state.session.email} ref="email" /></li>
+          <li><label className="settings-label edit-settings-label">First name: </label><input type="text" defaultValue={this.state.session.firstName} ref="firstName" /></li>
+          <li><label className="settings-label edit-settings-label">Last name: </label><input type="text" defaultValue={this.state.session.lastName} ref="lastName" /></li>
+          <li><label className="settings-label edit-settings-label">Age: </label><input type="text" defaultValue={this.state.session.age} ref="age" /></li>
           <li><button className="form-btn" onClick={this.saveUserInfo}>Done</button></li>
         </ul>
         <input className="submit-btn" type="submit" />
@@ -157,7 +157,7 @@ render: function() {
         </header>
 
         <main className="discovery-settings">
-            <label className="settings-label">Discovery </label>
+            <label className="discovery-label">Discovery </label>
             <input className="input-range" type="range" value={this.state.range} step="1" min="1" max="25" step="1" ref="range" onChange={this.updateSlider}/>
             <label>{this.state.range} miles</label>
         </main>

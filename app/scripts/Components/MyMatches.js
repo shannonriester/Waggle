@@ -8,7 +8,7 @@ export default React.createClass({
   getInitialState: function() {
     return {
         users: [],
-        matches: this.props.myMatches,
+        matches: [],
         scroll: '',
         fetch: true,
         viewing: 0,
@@ -57,6 +57,7 @@ export default React.createClass({
     this.setState({matches: newProps.myMatches});
     if (newProps.myMatches !== this.state.matches) {
       this.updateState();
+
     }
   },
   componentDidMount: function() {
@@ -64,7 +65,6 @@ export default React.createClass({
   },
   render: function() {
     let matchPreview;
-
     if (this.state.users.length) {
       matchPreview = this.state.users.map((person, i) => {
           return (
