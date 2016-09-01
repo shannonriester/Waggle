@@ -154,7 +154,7 @@ const UserModel = Backbone.Model.extend({
               type: 'PUT',
               url: `https://baas.kinvey.com/user/kid_SkBnla5Y/${this.get('userId')}`,
               success: (response) => {
-                console.log(response);
+                // console.log(response);
               }
             });
           }

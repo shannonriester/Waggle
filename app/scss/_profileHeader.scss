@@ -1,4 +1,15 @@
 /*START OF PROFILE IMG EDITING SECTION*/
+
+.profile-image-form {
+    position: absolute;
+    height: 42%;
+    width: 100%;
+    top: 11.4%;
+  // position: absolute;
+  // height: 63%;
+  // width: 100%;
+  // top: 11.5%;
+}
 .profile-figcaption {
     position: relative;
     bottom: 30px;
@@ -21,7 +32,7 @@
 
 .dropzone-container {
   height: 99%;
-  width: 99.5%;
+  width: 99.6%;
 }
 
 
@@ -215,15 +226,15 @@
     top: -315px;
   }
 
-  .input-form {
+  .input-file {
     left: 36%;
   }
 }
 
 @media(min-width: 550px) {
-  // .profile-image-form {
-  //   height: 42%;
-  // }
+  .background-profile-image {
+    object-position: 50% 40%;
+  }
 
   .background-profile-image {
     height: 60vh;
@@ -233,19 +244,24 @@
     top: -315px;
   }
 
-  .input-form {
-    left: 38%;
+  .input-file {
+    left: 39%;
   }
 }
 
 @media(min-width: 700px) {
-  .input-form {
+  .input-file {
     left: 41%;
   }
 }
 @media(min-width: 750px) {
-  .input-form {
-    left: 41%;
+  .background-profile-image {
+    object-position: 50% 40%;
+  }
+
+  .input-file {
+    left: 42%;
+    top: 71%;
   }
   .profile-image-form {
     position: absolute;
@@ -253,4 +269,11 @@
     width: 100%;
     top: 11.4%;
   }
+}
+@media(min-width: 1050px) {
+  .input-file {
+    left: 45%;
+    top: 71%;
+  }
+
 }

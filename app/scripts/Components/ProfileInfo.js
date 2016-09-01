@@ -130,6 +130,7 @@ export default React.createClass({
 
     } else if (this.state.editProfile && this.state.user.username) {
     styles = this.state.profilePicSrc;
+    
     profilePicFile = (
         <input className="input-file"
           type="file"

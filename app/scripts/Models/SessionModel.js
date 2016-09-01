@@ -86,7 +86,6 @@ const SessionModel = Backbone.Model.extend({
     });
   },
   convertImgFile: function(file) {
-    console.log(file);
     let fileId;
     return new Promise((resolve, reject) => {
       this.postToKinveyFile(file)
