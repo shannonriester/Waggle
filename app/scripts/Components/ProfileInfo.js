@@ -145,8 +145,8 @@ export default React.createClass({
             <i className="icon-camera fa fa-camera-retro" aria-hidden="true"></i>
           </Dropzone>
           {this.state.backgroundImgs.length > 0 ? <div className="upload-status-container">
-              <h2>Uploading {this.state.backgroundImgs.length} file(s)...</h2>
-              <div>{this.state.backgroundImgs.map((file, i) => <img className="background-img-preview" key={i} src={file.preview} />)}
+              <h2>To be uploaded {this.state.backgroundImgs.length}...</h2>
+              <div className="img-preview-container">{this.state.backgroundImgs.map((file, i) => <img className="background-img-preview" key={i} src={file.preview} />)}
               </div>
               </div> : null}
         </div>
