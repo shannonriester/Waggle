@@ -937,6 +937,12 @@ h4 {
   .scroll-container {
     width: 40em; } }
 /*START OF PROFILE IMG EDITING SECTION*/
+.profile-image-form {
+  position: absolute;
+  height: 42%;
+  width: 100%;
+  top: 11.4%; }
+
 .profile-figcaption {
   position: relative;
   bottom: 30px;
@@ -955,7 +961,7 @@ h4 {
 
 .dropzone-container {
   height: 99%;
-  width: 99.5%; }
+  width: 99.6%; }
 
 .dropzone {
   display: -webkit-box;
@@ -1121,29 +1127,40 @@ h4 {
   .upload-status-container {
     top: -315px; }
 
-  .input-form {
+  .input-file {
     left: 36%; } }
 @media (min-width: 550px) {
+  .background-profile-image {
+    object-position: 50% 40%; }
+
   .background-profile-image {
     height: 60vh; }
 
   .upload-status-container {
     top: -315px; }
 
-  .input-form {
-    left: 38%; } }
+  .input-file {
+    left: 39%; } }
 @media (min-width: 700px) {
-  .input-form {
+  .input-file {
     left: 41%; } }
 @media (min-width: 750px) {
-  .input-form {
-    left: 41%; }
+  .background-profile-image {
+    object-position: 50% 40%; }
+
+  .input-file {
+    left: 42%;
+    top: 71%; }
 
   .profile-image-form {
     position: absolute;
     height: 64%;
     width: 100%;
     top: 11.4%; } }
+@media (min-width: 1050px) {
+  .input-file {
+    left: 45%;
+    top: 71%; } }
 /*PROFILE MAIN SECTION STARTS HERE*/
 .profile-main {
   padding: 3%; }
