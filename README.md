@@ -1,4 +1,4 @@
-#WAGGLR
+#WAGGLE
 
 ##Elevator Pitch
 A location-based, social-media app that allows you to search for dog-friendly places, find cute dogs, and meet other local dog-lovers!
@@ -6,11 +6,12 @@ A location-based, social-media app that allows you to search for dog-friendly pl
 ### MVP
 1. Functional login/signup for (new) users
 2. Getting user's current location
-3. list of nearby locations - foursquare search results (map is secondary)
+3. list of nearby locations - yelp search results (map is secondary)
 4. click to view an individual location
   - url ex: `waggle.com/locations?name=AuditoriumShoresDogPark&lat=30.22&long=-97.75`
   - User can check-in (mark themselves as there)
   - Show users who checked-in at location within the last hour
+5. User can checkin to place
 
 #### Server-Side Collections
 - Users
@@ -20,22 +21,10 @@ A location-based, social-media app that allows you to search for dog-friendly pl
 
 ##Data Modeling
   - Connecting session-user with other user IF MATCHED
-
-#### Future features
-map to show locations
-list of popular times to checkin at this place
-mutual matching (double swipe right)
-show total number of checkins regardless of match status
-only showing names of checkins for matches
-showing user profiles of matches
-allow message of matches
+  - Connecting checkins with individual places
 
 ##Building Tools & Libraries
 1. React
-2. React-router
-3. React-DOM
-4. React Transitions (animations)
-  - `react-addons-css-transition-group`
 5. Babel Preset React
 6. Backbone
 7. Underscore
@@ -59,7 +48,6 @@ allow message of matches
   - Search results give detailed view/description of the place
     - Also show's who was checked in there and since when
     - Only shows who was there for that day (sorted from most recent checkins)
-
 3. Matching/Friending
   - Only matched users are allowed to message each other
   - User can delete entire message history, but not edit messages in any other way
@@ -69,29 +57,25 @@ allow message of matches
     - Use file uploads
   - Users can edit their profile to be a short bio about themselves or their dog
     - User will specify (if they so choose) why they are on the app (meet new people, romantic interests, new in town and his/her dog needs new friends too!)
-<!-- 5. Login
-  - Uses Facebook o-auth to create account -->
 
-##APIs and other Operating Systems
-1. [RandomUser Generator](https://randomuser.me/)
-<!-- 2. Dog-breed API (for specifying breed) -->
+
+##APIs and other Resources
+1. [Yelp](https://www.yelp.com/developers/manage_api_keys)
 2. [FreeGeoIP](https://freegeoip.net/?q=70.112.11.58)
 3. [Google Maps API](https://developers.google.com/maps/documentation/javascript/)
 4. Backend as a Service (BaaS) [Kinvey](https://www.kinvey.com/)
-<!-- 5. [Mozilla Drag & Drop API](https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API) -->
-6. [Mozilla Touch Events](https://developer.mozilla.org/en-US/docs/Web/API/Touch_events)
-8. [Yelp](https://www.yelp.com/developers/manage_api_keys)
+  - Kinvey is powered by MongoDB's powerful query search
 
 
 ##Routes
-1. Home (must log in to view match potentials)
-  - User will be directed to Swipe Page after successfully logging in/signing up
-    - login
-    - sign up
-2. User profile
-  - Short bio about User/Dog
-  - User/Dog Images
-3. Map (around user)
+1. Landing Page: `/`
+  - User must log in to access the site
+2. Search Results Page: `/search/?category=park`
+  - Contains map view, list of yelp results of dog-friendly places nearby
+  - Initial search query is set by default to "parks"
+3. User's profile: `/user/<username>`
+  - User can upload background image photos
+  - User can change profile-pic by clicking on default image (while editing)
 4. Settings
   - Dog-breed searching parameters
   - location range preferences (limited to up to 25 miles)
