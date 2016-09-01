@@ -939,9 +939,9 @@ h4 {
 /*START OF PROFILE IMG EDITING SECTION*/
 .profile-image-form {
   position: absolute;
-  height: 400px;
+  height: 63%;
   width: 100%;
-  top: 7.2%; }
+  top: 11.5%; }
 
 .profile-figcaption {
   position: relative;
@@ -982,23 +982,34 @@ h4 {
     opacity: .7; }
 
 .background-img-preview {
-  height: 5em; }
+  height: 5em;
+  margin: 3%; }
 
 .upload-status-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  flex-direction: column;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
-  position: absolute;
-  top: 1em;
-  left: 35%;
-  color: #555;
-  margin: 0; }
+  position: relative;
+  height: 90%;
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
+  top: -475px;
+  left: 0em; }
+
+.img-preview-container {
+  display: flex;
+  flex-wrap: wrap;
+  height: 90%;
+  width: 70%;
+  justify-content: center; }
 
 /*PROFILE PICTURE SECTION*/
 .profile-pic-container {
@@ -1112,9 +1123,27 @@ h4 {
     /* width: 30px;*/
     /* border-radius: 2px;*/ }
 
+@media (max-width: 549px) {
+  .profile-image-form {
+    height: 42%; }
+
+  .upload-status-container {
+    top: -315px; } }
 @media (min-width: 550px) {
+  .upload-status-container {
+    top: -315px; }
+
   .background-profile-image {
-    height: 60vh; } }
+    height: 60vh; }
+
+  .profile-image-form {
+    height: 42%; } }
+@media (min-width: 750px) {
+  .upload-status-container {
+    top: -475px; }
+
+  .profile-image-form {
+    height: 64%; } }
 /*PROFILE MAIN SECTION STARTS HERE*/
 .profile-main {
   padding: 3%; }
