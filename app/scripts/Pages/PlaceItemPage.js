@@ -127,6 +127,13 @@ export default React.createClass({
           neighborhoods = <li><i className="compass-icon checkin-link-icon fa fa-compass" aria-hidden="true"></i> {this.state.placeModel.neighborhoods[0]}</li>
         }
       // console.log(this.state.placeModel);
+      let yelpLink;
+      if (this.state.placeModel.yelpMobileUrl) {
+        yelpLink = this.state.placeModel.yelpMobileUrl;
+        yelpLink.slice(0,1);
+        let urlLength = yelpLink.length;
+        yelpLink.slice(urlLength);
+      }
       content = (
         <div className="place-item-content">
           <header className="place-image" style={styles}></header>
@@ -143,7 +150,7 @@ export default React.createClass({
                   <li>{this.state.placeModel.address[1]}</li>
                 </ul>
                 <ul className="checkin-links-ul">
-                  <li className="yelp-link"><Link to={this.state.placeModel.yelpMobileUrl}><i className="yelp-icon checkin-link-icon fa fa-yelp" aria-hidden="true"></i> yelp</Link></li>
+                  <li className="yelp-link"><a href={yelpLink}><i className="yelp-icon checkin-link-icon fa fa-yelp" aria-hidden="true"></i> yelp</a></li>
                   {neighborhoods}
                   <li><i className="checkin-link-icon fa fa-map-marker" aria-hidden="true"></i>{this.state.placeModel.categories[0]}</li>
                 </ul>
