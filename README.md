@@ -1,6 +1,13 @@
 #WAGGLE
 http://_waggle.surge.sh/
 
+##About
+Have you ever noticed a group of friends at a restaurant and everyone is lost on their smart phones, not engaging with each other at all? As much as I love technology and social-media, I feel that it's more important to be present and engaged in the moment. Waggle is designed to use technology to lose technology, so to speak.
+
+As "man's best friend," it's safe to say that dogs make us feel more connected with each other (dog and human alike). Dog-people really do love all things dog, so I wanted to simplify the process of finding dog-friendly places with dog-friendly people.
+
+Waggle creates the opportunity to bring people together, connecting on a deeper level. Its simplified search & checkin features make it easy for the user to explore dog-allowed places nearby. Checking-in is important in that if there are more than 3 people checked in to a location, a _hot spot_ is created: so the user can decide to get out and go make some new friends or meet up with some cool dogs. I hope that Wagglrs (Waggle-users) experience and appreciate this different approach to using technology to lose technology, if only for a short amount of time. 
+
 ##Elevator Pitch
 A location-based, social-media app that allows you to search for dog-friendly places, find cute dogs, and meet other local dog-lovers!
 
@@ -76,20 +83,17 @@ A location-based, social-media app that allows you to search for dog-friendly pl
 ##Routes
 1. Landing Page: `/`
   - User must log in to access the site
-2. Search Results Page: `/search/?category=park`
+2. Search Results Page: `_waggle/search/?category=park`
   - Contains map view, list of yelp results of dog-friendly places nearby
   - Initial search query is set by default to "parks"
-3. User's profile: `/user/<username>`
+3. User's profile: `_waggle/user/<username>`
   - User can upload background image photos
   - User can change profile-pic by clicking on default image (while editing)
-4. Settings
-  - Dog-breed searching parameters
+4. Settings `_waggle.surge.sh/settings`
   - location range preferences (limited to up to 25 miles)
-  - push notifications
-  <!-- - Human preferences (male/female) -->
-5. Messages
+5. Message History (All messages) `_waggle.surge.sh/messages`
   - list of all messages from each match
-  - user can view/edit
+6. Conversation page `_waggle.surge.sh/messages/<otherUser>`
 6. Search nearby Users/Dog-Places
 
 ##Special Features
