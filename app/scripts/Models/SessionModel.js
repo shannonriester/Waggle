@@ -160,7 +160,7 @@ const SessionModel = Backbone.Model.extend({
           type: 'PUT',
           url: `https://baas.kinvey.com/user/kid_SkBnla5Y/${this.get('userId')}`,
           success: (response) => {
-            // console.log(response);
+            console.log(response);
           }
         });
       })
@@ -170,7 +170,7 @@ const SessionModel = Backbone.Model.extend({
         { url: `https://baas.kinvey.com/user/kid_SkBnla5Y/${this.get('userId')}`,
           type: 'PUT',
           success: (model, response) => {
-          // console.log('USER UPDATED PROFILE ', response);
+          console.log('USER UPDATED PROFILE ', response);
           this.trigger('change');
         }, error: (e) => {
             console.log('updateProfile ERROR: ', e);
@@ -195,7 +195,7 @@ const SessionModel = Backbone.Model.extend({
               type: 'PUT',
               url: `https://baas.kinvey.com/user/kid_SkBnla5Y/${this.get('userId')}`,
               success: (response) => {
-                // console.log(response);
+                console.log(response);
               }
             });
           }

@@ -113,7 +113,7 @@ const UserModel = Backbone.Model.extend({
         let profile = this.get('profile');
         profile.profilePic = downloadURL;
         this.set('profile', profile);
-        console.log(this.get('profile'));
+        // console.log(this.get('profile'));
 
         this.save(null, {
           type: 'PUT',

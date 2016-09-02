@@ -11,7 +11,7 @@ export default React.createClass({
         scroll: '',
     }
   },
-  scrollLeft: function(e) {
+  scrollRight: function(e) {
     e.preventDefault();
     this.setState({scroll:'slide-out-left'});
     window.setTimeout(() => {
@@ -21,7 +21,7 @@ export default React.createClass({
       });
     }, 300);
   },
-  scrollRight: function(e) {
+  scrollLeft: function(e) {
     e.preventDefault();
     this.setState({scroll: 'slide-out-right'});
     window.setTimeout(() => {

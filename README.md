@@ -1,21 +1,25 @@
 #WAGGLE
+**_waggleon.surge.sh_**
 
 ##Elevator Pitch
 A location-based, social-media app that allows you to search for dog-friendly places, find cute dogs, and meet other local dog-lovers!
 
-### MVP
+## MVP
 1. Functional login/signup for (new) users
 2. Getting user's current location
-3. list of nearby locations - yelp search results (map is secondary)
-4. click to view an individual location
-  - url ex: `waggle.com/locations?name=AuditoriumShoresDogPark&lat=30.22&long=-97.75`
+3. List of nearby locations - yelp search results (map is secondary)
+4. Click to view an individual location
+  - url ex: `/search/?category=restaurant`
   - User can check-in (mark themselves as there)
   - Show users who checked-in at location within the last hour
 5. User can checkin to place
 
-#### Server-Side Collections
+## Server-Side Collections
 - Users
-- Checkins - join between users and locations (which are on foursquare)
+- Matches
+  - Join matches between users and matches
+- Checkins
+  - join between users and locations
   - Include user id, location id, time it was made
 - PlacesCollection
 
@@ -65,6 +69,8 @@ A location-based, social-media app that allows you to search for dog-friendly pl
 3. [Google Maps API](https://developers.google.com/maps/documentation/javascript/)
 4. Backend as a Service (BaaS) [Kinvey](https://www.kinvey.com/)
   - Kinvey is powered by MongoDB's powerful query search
+5. [Trello](https://trello.com/b/PhBKfGhn/waggle)
+  - Check out some of my process and wireframes
 
 
 ##Routes
@@ -87,11 +93,13 @@ A location-based, social-media app that allows you to search for dog-friendly pl
 6. Search nearby Users/Dog-Places
 
 ##Special Features
-1. Swiping! Full mobile functionality and view
-2. Unique Web App view (different from mobile)
-3. Location
-  - Set your location to only find people near you!
-    - If you only want humans/dogs within a 3 mile range, those are the only users you will view
+1. Swiping background images on profile
+2. Image uploading:
+  - React Dropzone
+  - JS File Reader
+3. Search Results:
+  - Change what city you're currently searching in and see what dog-friendly places are there
+  - Update your discovery range (in settings)
 4. Funny dog puns
   - "Bow-WOW! You matched!" -- after matching
   - "Throw me a bone, why don't ya?" --message preview
