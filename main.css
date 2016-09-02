@@ -154,8 +154,8 @@
     height: 20%; }
   .modal-component .modal-btn {
     width: 89%;
-    padding: 15px;
-    margin: 3%;
+    padding: 6px;
+    margin: 3% 0;
     background: #FF5A5F;
     font-size: 1.5em;
     outline: none;
