@@ -1,5 +1,5 @@
 #WAGGLE
-**_waggleon.surge.sh_**
+http://_waggle.surge.sh/
 
 ##Elevator Pitch
 A location-based, social-media app that allows you to search for dog-friendly places, find cute dogs, and meet other local dog-lovers!
@@ -153,14 +153,12 @@ A location-based, social-media app that allows you to search for dog-friendly pl
         - use `''`s
 
 ## Credits
-1. Bone icon
-  - `<div>Icons made by <a href="http://www.flaticon.com/authors/metropolicons" title="Metropolicons">Metropolicons</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>`
-2. [The Noun Project](https://thenounproject.com/)
+1. [The Noun Project](https://thenounproject.com/)
   - Paw-print icon (filled) Created by YuguDesign, from the Noun Project
   - Paw-print icon (not filled) Created by Sergey Demushkin, from the Noun Project
   - Waggle Logo Created by Carmen Marín Crespo from the Noun Project
-3. [Tinder](https://www.gotinder.com/)
-  - Inspired from Tinder's mobile design
+2. [Tinder](https://www.gotinder.com/) and [Air BnB](https://www.airbnb.com/)
+  - Design inspirations
 
 ## Installation
   - Clone this repo (or fork then clone, if you prefer)
