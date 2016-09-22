@@ -131,7 +131,7 @@ export default React.createClass({
     if (this.state.shakeModal) {
       animations = 'shake';
       hideMe = 'hide-me';
-      checkInfo = (<h2 className="check-info">Check your password...?</h2>);
+      checkInfo = (<h2 className="check-info">Incomplete info!</h2>);
     }
 
     if (this.props.content === 'login') {

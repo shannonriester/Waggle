@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import GoogleMap from 'google-map-react';
 import { browserHistory } from 'react-router';
 import $ from 'jquery';
 

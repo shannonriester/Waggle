@@ -11,7 +11,7 @@ import MatchModel from './Models/MessageModel';
 export default ({
   session: new SessionModel(),
   placeModel: new PlaceModel(),
-  placeModel: new MessageModel(),
+  messageModel: new MessageModel(),
   matchModel: new MatchModel(),
   placesCollection: new PlacesCollection(),
   userCollection: new UserCollection(),

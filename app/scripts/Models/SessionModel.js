@@ -312,8 +312,16 @@ const SessionModel = Backbone.Model.extend({
           localStorage.clear();
           browserHistory.push('/');
 
-          this.unset('authtoken');
-          this.unset('newCity');
+          this.set('authtoken', '');
+          this.set('newCity', '');
+          this.set('firstName', '');
+          this.set('lastName', '');
+          this.set('age', '');
+          this.set('dogName', '');
+          this.set('dogAge', '');
+          this.set('dogBreed', '');
+          this.set('username', '');
+          this.set('email', '');
 
           this.set('query', query);
           this.set('range', range);

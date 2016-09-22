@@ -8,21 +8,17 @@ const MatchCollection = Backbone.Collection.extend({
   toggleMatch: function(session, likee) {
     return new Promise((resolve,reject) => {
       let matchRequest = this.findMatch(session, likee).then((response) => {
-        // console.log('toggleMatch response: ', response);
         if (response.length) {
           if (response.length > 1) {
             this.findWhere({sender: session, likee:likee}).destroy({
               success: () => {
                 resolve('unmatched')
                 // console.log('UNMATCHED WITH USER: ', likee);
-
               },
               error: (e) => {
                 reject(e)
               }
             });
-
-            // return false;
           } else if (response[0].get('sender') === session) {
             this.findWhere({sender: session, likee: likee}).destroy({
               success: () => {

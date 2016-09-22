@@ -1,7 +1,6 @@
 import Backbone from 'backbone';
 import $ from 'jQuery';
 import OAuth from '../OAuth';
-// import googleData from 'Google';
 
 import PlaceModel from '../Models/PlaceModel';
 
