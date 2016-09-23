@@ -30,9 +30,11 @@ export default React.createClass({
   componentDidMount: function() {
     this.refs.firstName.value = store.session.get('firstName');
     this.refs.lastName.value = store.session.get('lastName');
-    this.refs.age.value = store.session.get('age');
+    // this.refs.age.value = store.session.get('age');
   },
   render() {
+    // <label htmlFor="input-username">Age</label>
+    // <input className="user-info-input signup-input" onChange={this.updateRefs} type="text"  placeholder="Age" ref="age" role="textbox" tabIndex="3" />
     return (
       <div>
         <form className="modal-body signup1" onSubmit={this.signup1}>
@@ -44,8 +46,7 @@ export default React.createClass({
           <label htmlFor="input-username">Last name</label>
           <input className="user-info-input signup-input" onChange={this.updateRefs} type="text" placeholder="Last name" ref="lastName" role="textbox" tabIndex="2" />
 
-          <label htmlFor="input-username">Age</label>
-          <input className="user-info-input signup-input" onChange={this.updateRefs} type="text"  placeholder="Age" ref="age" role="textbox" tabIndex="3" />
+
           <BirthdateDropdown ref="birthdate" userBirthday={this.userBirthday} />
 
           <input className="submit-btn" type="submit" />

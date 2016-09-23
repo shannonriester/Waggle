@@ -57,26 +57,29 @@ export default React.createClass({
 
     return (
       <div className="birthday-dropdown-component">
-        <select className="select-birthday select-month" ref="month" onChange={this.getBirthdate}>
-          <option className="option-birthday month" value="01">January</option>
-          <option className="option-birthday month" value="02">February</option>
-          <option className="option-birthday month" value="03">March</option>
-          <option className="option-birthday month" value="04">April</option>
-          <option className="option-birthday month" value="05">May</option>
-          <option className="option-birthday month" value="06">June</option>
-          <option className="option-birthday month" value="07">July</option>
-          <option className="option-birthday month" value="08">August</option>
-          <option className="option-birthday month" value="09">September</option>
-          <option className="option-birthday month" value="10">October</option>
-          <option className="option-birthday month" value="11">November</option>
-          <option className="option-birthday month" value="12">December</option>
-        </select>
-        <select className="select-birthday select-day" ref="day" onChange={this.getBirthdate}>
-          {day}
-        </select>
-        <select className="select-birthday select-year" ref="year" onChange={this.getBirthdate}>
-          {year}
-        </select>
+        <label className="birthday-label">Birthday</label>
+        <div className="selection-container">
+          <select className="select-birthday select-month" ref="month" onChange={this.getBirthdate}>
+            <option className="option-birthday month" value="01">January</option>
+            <option className="option-birthday month" value="02">February</option>
+            <option className="option-birthday month" value="03">March</option>
+            <option className="option-birthday month" value="04">April</option>
+            <option className="option-birthday month" value="05">May</option>
+            <option className="option-birthday month" value="06">June</option>
+            <option className="option-birthday month" value="07">July</option>
+            <option className="option-birthday month" value="08">August</option>
+            <option className="option-birthday month" value="09">September</option>
+            <option className="option-birthday month" value="10">October</option>
+            <option className="option-birthday month" value="11">November</option>
+            <option className="option-birthday month" value="12">December</option>
+          </select>
+          <select className="select-birthday select-day" ref="day" onChange={this.getBirthdate}>
+            {day}
+          </select>
+          <select className="select-birthday select-year" ref="year" onChange={this.getBirthdate}>
+            {year}
+          </select>
+        </div>
       </div>
     )
   }

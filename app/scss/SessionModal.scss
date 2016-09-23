@@ -129,14 +129,31 @@
  }
 
  .birthday-dropdown-component {
-   display: flex;
-  align-items: center;
-  justify-content: space-around;
-  width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 5%;
+    padding: 30px 0 5px 0px;
+    border-bottom: solid 1px $border;
+ }
+
+ .selection-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 70%;
  }
 
  .select-birthday {
    font-size: 20px;
+ }
+
+ .birthday-label {
+   display: block;
+   font-size: 1.5em;
+   color: #A9A9A9;
+   font-weight: 100;
  }
 
 }
