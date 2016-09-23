@@ -57,7 +57,6 @@ export default React.createClass({
     this.setState({matches: newProps.myMatches});
     if (newProps.myMatches !== this.state.matches) {
       this.updateState();
-
     }
   },
   componentDidMount: function() {
@@ -79,7 +78,7 @@ export default React.createClass({
 
     return (
       <div>
-        <h2>Your Matches</h2>
+        <h2 className="h2-matches">Your Matches</h2>
         <div className="scroll-container">
           <button className="scroll-btn" onClick={this.scrollLeft}><i className="arrow-icon fa fa-arrow-left" aria-hidden="true"></i></button>
           <div id={this.state.scroll} className="preview-container">{matchPreview}</div>

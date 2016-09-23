@@ -35,8 +35,6 @@
   width: 99.6%;
 }
 
-
-
 .dropzone {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -138,6 +136,9 @@
 /*USER INTERACTIVE NAV SECTION*/
 .profile-interactive-component {
   height: 15vh;
+  width: 90%;
+  border-top: solid 1px;
+  margin: 0 auto;
 }
 
 .profile-sub-nav, {
@@ -153,7 +154,7 @@
   height: 100%;
   margin: 0 auto;
   padding: 0;
-  border-top: solid 1px;
+  // border-top: solid 1px;
   li {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -254,6 +255,7 @@
     left: 41%;
   }
 }
+
 @media(min-width: 750px) {
   .background-profile-image {
     object-position: 50% 40%;
@@ -270,10 +272,27 @@
     top: 10.75%;
   }
 }
+
 @media(min-width: 1050px) {
   .input-file {
     left: 45%;
     top: 71%;
   }
+}
 
+
+@media(min-width: 1000px) {
+  .profile-sub-nav {
+    width: 65%;
+  }
+}
+
+@media(min-width: 1200px) {
+  .bio-textarea {
+    width: 50%;
+    height: 100%;
+    outline: none;
+    font-size: 1em;
+    margin: 0 auto;
+  }
 }
