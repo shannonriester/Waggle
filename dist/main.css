@@ -175,6 +175,13 @@
     color: #FF5A5F;
     border-radius: 5px;
     text-align: center; }
+  .modal-component .birthday-dropdown-component {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%; }
+  .modal-component .select-birthday {
+    font-size: 20px; }
 
 @media (min-width: 620px) {
   .modal-component .modal-content {

@@ -4,15 +4,25 @@ import store from '../../store';
 import BirthdateDropdown from './BirthdateDropdown';
 
 export default React.createClass({
+  getInitialState: function() {
+    return {
+      age: null
+    }
+  },
+  userBirthday: function(age) {
+    this.setState({age: age});
+  },
   signup1(e) {
     e.preventDefault();
 
     let firstName = this.refs.firstName.value;
     let lastName = this.refs.lastName.value;
-    let age = this.refs.age.value;
+    let age = this.state.age;
 
     store.session.set('firstName', firstName);
     store.session.set('lastName', lastName);
+    // store.session.set('birthday', [this.state.month, this.state.day, this.state.year]);
+
     store.session.set('age', age);
 
     this.props.signup1(firstName, lastName, age);
@@ -36,7 +46,7 @@ export default React.createClass({
 
           <label htmlFor="input-username">Age</label>
           <input className="user-info-input signup-input" onChange={this.updateRefs} type="text"  placeholder="Age" ref="age" role="textbox" tabIndex="3" />
-          <BirthdateDropdown />
+          <BirthdateDropdown ref="birthdate" userBirthday={this.userBirthday} />
 
           <input className="submit-btn" type="submit" />
         </form>
