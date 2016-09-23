@@ -23,7 +23,7 @@
 }
 
 .about-bio {
-  line-height: 2em;
+  line-height: 1.5;
   width: 90%;
   border-bottom: solid 1px $border;
   padding: 15px 0;
@@ -131,12 +131,16 @@ h2 {
 .h2-matches {
   width: 90%;
   margin: 0 auto;
-  margin-top: 10%;
+  // margin-top: 10%;
   border-top: solid 1px;
   padding-top: 5%;
 }
 
 // RECENT PLACES STARTS HERE
+.h2-recent-places {
+  margin: 3rem 0;
+}
+
 .user-recent-places-component {
   list-style-type: none;
   text-align: center;
@@ -146,7 +150,7 @@ h2 {
 }
   .recent-place-image {
     height: 20em;
-    width: 80%;
+    width: 95%;
     margin: 0 auto;
     background-size: cover;
     background-repeat: no-repeat;
@@ -167,8 +171,8 @@ h2 {
     width: 80%;
     text-align: left;
     color: rgba($font-color, .7);
-    border-left: solid 2px $border;
-    padding-left: 5px;
+    border-left: solid 1px rgba(85, 85, 85, 0.5);
+    padding-left: 4%;
   }
 
 
@@ -216,27 +220,23 @@ h2 {
   }
 }
 
-@media(min-width: 650px) {
-  .scroll-container {
-    width: 75%;
-    margin: 0 auto;
+@media(min-width: 500px) {
+  .recent-place-image {
+    height: 25rem;
+    width: 30rem;
   }
 }
 
+@media(min-width: 650px) {
+  .scroll-container {
+    // width: 75%;
+    // margin: 0 auto;
+  }
+}
 
-@media(min-width: 700px) {
-  // .background-profile-image {
-  //   height: 480px;
-  //   object-fit: cover;
-  // }
-
-  // .ul-about-data {
-  //   width: 48em;
-  //   margin: 0 auto;
-  // }
-
+@media(min-width: 750px) {
   .about-bio {
-    width: 50em;
+    width: 85%;
   }
 
   .profile-main {
@@ -245,8 +245,7 @@ h2 {
 
   .matched-wagglrs {
     .scroll-container {
-      height: 30vh;
-      // border-bottom: solid 1px #FFF;
+      // height: 20vh;
     }
   }
 
@@ -254,21 +253,15 @@ h2 {
     height: 35em;
   }
 
-  .recent-place-image {
-    height: 30em;
-    width: 80%;
+  .user-recent-places-component {
+    width: 40%;
   }
 
   .snippet-text {
-    width: 18rem;
-    border-left: solid 1px rgba($font-color, 0.5);
+    width: 80%;
     padding-left: 4%;
-  }
-}
-
-@media(min-width: 750px) {
-  .user-recent-places-component {
-    width: 50%;
+    margin-bottom: 0;
+    border-left: solid 1px rgba($font-color, 0.5);
   }
 
   .background-profile-image {
@@ -277,8 +270,8 @@ h2 {
   }
 
   .recent-place-image {
-    height: 18em;
-    width: 22em;
+    height: 15em;
+    width: 20em;
     background-size: cover;
   }
 
@@ -291,10 +284,10 @@ h2 {
 }
 
 @media(min-width: 900px) {
-  .recent-place-image {
-    height: 25em;
-    width: 25em;
-  }
+  // .recent-place-image {
+  //   height: 25em;
+  //   width: 25em;
+  // }
 
   .scroll-container {
     height: 25vh;
@@ -302,5 +295,26 @@ h2 {
 
   .snippet-text {
     width: 20rem;
+  }
+}
+
+@media(min-width: 1000px) {
+  .profile-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    margin: 0 auto;
+    height: 30vh;
+  }
+
+  .ul-about-data {
+    width: 30%;
+    height: 100%;
+  }
+
+  .about-bio {
+    width: 35rem;
+    height: 100%;
   }
 }

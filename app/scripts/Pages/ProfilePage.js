@@ -192,6 +192,7 @@ export default React.createClass({
           <div className="matched-wagglrs">
             {myMatches}
           </div>
+          <h2 className="h2-recent-places">Recent Places</h2>
           <ul className="ul-recent-places">
             {userRecentPlaces}
           </ul>
