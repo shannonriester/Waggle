@@ -1,26 +1,9 @@
 import React from 'react';
 
 import store from '../../store';
+import BirthdateDropdown from './BirthdateDropdown';
 
 export default React.createClass({
-  // getInitialState: function() {
-  //   return {
-  //     firstName: undefined,
-  //     lastName: undefined,
-  //     age: undefined,
-  //   }
-  // },
-  // updateRefs: function() {
-  //   let firstName = this.refs.firstName.value;
-  //   let lastName = this.refs.lastName.value;
-  //   let age = this.refs.age.value;
-  //
-  //   this.setState({
-  //     firstName: firstName,
-  //     lastName: lastName,
-  //     age: age,
-  //   });
-  // },
   signup1(e) {
     e.preventDefault();
 
@@ -53,6 +36,7 @@ export default React.createClass({
 
           <label htmlFor="input-username">Age</label>
           <input className="user-info-input signup-input" onChange={this.updateRefs} type="text"  placeholder="Age" ref="age" role="textbox" tabIndex="3" />
+          <BirthdateDropdown />
 
           <input className="submit-btn" type="submit" />
         </form>
