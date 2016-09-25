@@ -79,9 +79,10 @@ export default React.createClass({
   },
   render: function() {
     let content;
-    let textareaBio;
+    let textareaBio = (<p className="about-bio">{this.state.user.profile.bio}</p>);
     let profilePicFile;
     let styles;
+    let hidden;
     let previewStyles;
     let bkgrndImgForm;
 
@@ -130,7 +131,8 @@ export default React.createClass({
 
     } else if (this.state.editProfile && this.state.user.username) {
     styles = this.state.profilePicSrc;
-    
+    hidden = 'none';
+
     profilePicFile = (
         <input className="input-file"
           type="file"
@@ -199,7 +201,6 @@ export default React.createClass({
             </li>
           </ul>
           {textareaBio}
-          <p className="about-bio">{this.state.user.profile.bio}</p>
         </main>
       </div>);
   }

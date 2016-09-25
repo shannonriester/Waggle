@@ -1232,7 +1232,10 @@ h4 {
   width: 100%;
   height: 100%;
   outline: none;
-  font-size: 1em; }
+  font-size: 1em;
+  border: none;
+  padding: 2%;
+  line-height: 1.5; }
 
 .submit-edits {
   width: 5em;
@@ -1427,7 +1430,7 @@ h3 {
     justify-content: center;
     width: 90%;
     margin: 0 auto;
-    height: 30vh; }
+    height: 35vh; }
 
   .ul-about-data {
     width: 30%;
@@ -1435,7 +1438,18 @@ h3 {
 
   .about-bio {
     width: 35rem;
-    height: 100%; } }
+    height: 100%; }
+
+  .bio-textarea {
+    width: 85%;
+    margin: 0 auto; }
+
+  .edit-btn-container {
+    justify-content: flex-start;
+    width: 30%;
+    position: relative;
+    right: 103%;
+    bottom: 45%; } }
 .message-history-page-container .message-list {
   display: flex;
   flex-direction: column;

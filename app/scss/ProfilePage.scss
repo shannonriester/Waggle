@@ -43,6 +43,9 @@
   height: 100%;
   outline: none;
   font-size: 1em;
+  border: none;
+  padding: 2%;
+  line-height: 1.5;
 }
 
 .submit-edits {
@@ -305,7 +308,7 @@ h2 {
     justify-content: center;
     width: 90%;
     margin: 0 auto;
-    height: 30vh;
+    height: 35vh;
   }
 
   .ul-about-data {
@@ -316,5 +319,18 @@ h2 {
   .about-bio {
     width: 35rem;
     height: 100%;
+  }
+
+  .bio-textarea {
+    width: 85%;
+    margin: 0 auto;
+  }
+
+  .edit-btn-container {
+    justify-content: flex-start;
+    width: 30%;
+    position: relative;
+    right: 103%;
+    bottom: 45%;
   }
 }
