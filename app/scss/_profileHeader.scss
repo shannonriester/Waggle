@@ -19,6 +19,8 @@
 }
 
 .profile-pic-container {
+  position: relative;
+  top: 4rem;
   .profile-pic-preview {
     position: absolute;
     background-size: cover;

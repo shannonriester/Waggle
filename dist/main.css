@@ -246,13 +246,13 @@
   .modal-component .modal-footer {
     height: 9em; } }
 .slider-container {
-  overflow: hidden; }
+  overflow: hidden;
+  height: 50vh;
+  position: relative;
+  top: 5rem; }
   .slider-container img {
-    object-fit: contain;
+    object-fit: cover;
     height: 370px; }
-
-.slick-list {
-  height: 40vh; }
 
 .slick-prev, .slick-next {
   position: absolute;
@@ -972,14 +972,17 @@ h4 {
   color: #484848;
   text-align: center; }
 
-.profile-pic-container .profile-pic-preview {
-  position: absolute;
-  background-size: cover;
-  height: 130px;
-  width: 130px;
-  border-radius: 50%;
-  bottom: 29.7%;
-  z-index: 1; }
+.profile-pic-container {
+  position: relative;
+  top: 4rem; }
+  .profile-pic-container .profile-pic-preview {
+    position: absolute;
+    background-size: cover;
+    height: 130px;
+    width: 130px;
+    border-radius: 50%;
+    bottom: 29.7%;
+    z-index: 1; }
 
 .dropzone-container {
   height: 99%;
@@ -1198,7 +1201,10 @@ h4 {
     margin: 0 auto; } }
 /*PROFILE MAIN SECTION STARTS HERE*/
 .profile-main {
-  padding: 3%; }
+  padding: 3%;
+  padding-top: 0;
+  position: relative;
+  top: 4rem; }
 
 .ul-about-data {
   margin: 8% 0 0 0;
