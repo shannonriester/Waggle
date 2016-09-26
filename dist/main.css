@@ -730,8 +730,8 @@ h4 {
     padding-top: 10px; }
 
   .heading-icon-container {
-    height: 100px;
-    padding: 20px 0; }
+    height: 120px;
+    padding-top: 20px; }
 
   .new-city-form {
     width: 100%;
@@ -967,8 +967,6 @@ h4 {
   top: 10.7%; }
 
 .profile-figcaption {
-  position: relative;
-  bottom: 30px;
   font-size: 2em;
   color: #484848;
   text-align: center; }
@@ -1036,17 +1034,17 @@ h4 {
 
 /*PROFILE PICTURE SECTION*/
 .profile-pic-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  width: 100vw;
+  justify-content: space-around;
   background-size: cover; }
+
+.profile-pic-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%; }
 
 .input-file {
   position: absolute;
@@ -1062,10 +1060,9 @@ h4 {
     cursor: pointer; }
 
 .profile-pic, .default-profile-pic {
-  position: relative;
-  bottom: 50px;
   height: 8em;
   width: 8em;
+  margin: 0;
   border-radius: 50%;
   background-size: cover;
   background-repeat: no-repeat;
@@ -1076,9 +1073,6 @@ h4 {
 
 /*USER INTERACTIVE NAV SECTION*/
 .profile-interactive-component {
-  height: 15vh;
-  width: 90%;
-  border-top: solid 1px;
   margin: 0 auto; }
 
 .profile-sub-nav {
@@ -1090,7 +1084,6 @@ h4 {
   align-items: center;
   -ms-flex-pack: distribute;
   justify-content: space-around;
-  width: 95%;
   height: 100%;
   margin: 0 auto;
   padding: 0; }
@@ -1108,12 +1101,13 @@ h4 {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
-    list-style-type: none; }
+    list-style-type: none;
+    font-size: 11px; }
 
 .connect-btn {
   border: transparent;
   background: none;
-  font-size: 40px;
+  font-size: 30px;
   border-radius: 50%;
   color: #555; }
   .connect-btn:hover {
@@ -1122,6 +1116,8 @@ h4 {
     border-radius: 50%;
     color: #FF5A5F;
     cursor: pointer; }
+  .connect-btn label {
+    font-size: 15px; }
 
 .edit-btn-container {
   display: -webkit-box;
@@ -1203,9 +1199,9 @@ h4 {
   padding: 3%; }
 
 .ul-about-data {
-  margin: 10px 0;
-  padding: 0 0 0 10px;
-  border-bottom: solid 1px #EBEBEB; }
+  margin: 0;
+  padding: 0;
+  width: 50%; }
   .ul-about-data li {
     list-style-type: none;
     width: 100%;
@@ -1436,9 +1432,11 @@ h2 {
     height: 22rem; }
 
   .slider-container img {
-    object-fit: cover;
-    object-fit: cover;
-    height: 35em; } }
+    object-fit: contain;
+    height: 370px; }
+
+  .scroll-container {
+    width: 70%; } }
 @media (min-width: 900px) {
   .scroll-container {
     height: 25vh; }

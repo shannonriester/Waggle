@@ -11,8 +11,8 @@
   // top: 11.5%;
 }
 .profile-figcaption {
-    position: relative;
-    bottom: 30px;
+    // position: relative;
+    // bottom: 50px;
     font-size: 2em;
     color: $profileIcon;
     text-align: center;
@@ -92,17 +92,18 @@
 /*PROFILE PICTURE SECTION*/
 
 .profile-pic-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  width: 100vw;
+  align-items: center;
+  justify-content: space-around;
   background-size: cover;
+}
+
+.profile-pic-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
 }
 
 .input-file {
@@ -121,10 +122,11 @@
 }
 
 .profile-pic, .default-profile-pic {
-  position: relative;
-  bottom: 50px;
+  // position: relative;
+  // bottom: 50px;
   height: 8em;
   width: 8em;
+  margin: 0;
   border-radius: 50%;
   background-size: cover;
   background-repeat: no-repeat;
@@ -138,10 +140,12 @@
 
 /*USER INTERACTIVE NAV SECTION*/
 .profile-interactive-component {
-  height: 15vh;
-  width: 90%;
-  border-top: solid 1px;
+  // height: 15vh;
+  // width: 90%;
+  // border-top: solid 1px;
   margin: 0 auto;
+  // position: relative;
+  // bottom: 40px;
 }
 
 .profile-sub-nav, {
@@ -153,7 +157,7 @@
           align-items: center;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  width: 95%;
+  // width: 95%;
   height: 100%;
   margin: 0 auto;
   padding: 0;
@@ -173,13 +177,14 @@
         -ms-flex-pack: center;
             justify-content: center;
     list-style-type: none;
+    font-size: 11px;
   }
 }
 
 .connect-btn {
   border: transparent;
   background: none;
-  font-size: 40px;
+  font-size: 30px;
   border-radius: 50%;
   color: $font-color;
     &:hover {
@@ -189,6 +194,10 @@
       color: $accent;
       cursor: pointer;
     }
+
+  label {
+    font-size: 15px;
+  }
 }
 
 .edit-btn-container {

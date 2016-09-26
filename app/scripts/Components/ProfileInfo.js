@@ -101,6 +101,20 @@ export default React.createClass({
               </figure>
               <figcaption className="profile-figcaption">{this.state.user.username}</figcaption>
             </section>
+            <ul className="ul-about-data">
+              <li>
+                <i className="about-user-icon fa fa-user" aria-hidden="true"></i> {this.state.user.firstName}, {this.state.user.age}
+              </li>
+              <li>
+                <i className="about-user-icon fa fa-paw" aria-hidden="true"></i> {this.state.user.dog.dogName}, {this.state.user.dog.dogAge}
+              </li>
+              <li>
+                <i className="about-user-icon fa fa-paw" aria-hidden="true"></i> {this.state.user.dog.dogBreed}
+              </li>
+              <li>
+                <i className="about-user-icon fa fa-globe" aria-hidden="true"></i> {this.state.user.city}, {this.state.user.regionName}
+              </li>
+            </ul>
           </div>
             <ProfileInteractive
               session={this.state.session}
@@ -114,17 +128,6 @@ export default React.createClass({
             />
         </section>
         <main className="profile-main">
-          <ul className="ul-about-data">
-            <li>
-              <i className="about-user-icon fa fa-user" aria-hidden="true"></i> {this.state.user.firstName}, {this.state.user.age}
-            </li>
-            <li>
-              <i className="about-user-icon fa fa-paw" aria-hidden="true"></i> {this.state.user.dog.dogName}, {this.state.user.dog.dogAge}, {this.state.user.dog.dogBreed}
-            </li>
-            <li>
-              <i className="about-user-icon fa fa-globe" aria-hidden="true"></i> {this.state.user.city}, {this.state.user.regionName}
-            </li>
-          </ul>
           {textareaBio}
           <p className="about-bio">{this.state.user.profile.bio}</p>
         </main>
@@ -180,6 +183,17 @@ export default React.createClass({
               </figure>
               <figcaption className="profile-figcaption">{this.state.user.username}</figcaption>
             </section>
+            <ul className="ul-about-data">
+              <li>
+                <i className="about-user-icon fa fa-user" aria-hidden="true"></i> {this.state.user.firstName}, {this.state.user.age}
+              </li>
+              <li>
+                <i className="about-user-icon fa fa-paw" aria-hidden="true"></i> {this.state.user.dog.dogName}, {this.state.user.dog.dogAge}, {this.state.user.dog.dogBreed}
+              </li>
+              <li>
+                <i className="about-user-icon fa fa-globe" aria-hidden="true"></i> {this.state.user.city}, {this.state.user.regionName}
+              </li>
+            </ul>
           </div>
             <ProfileInteractive
               session={this.state.session}
@@ -193,17 +207,6 @@ export default React.createClass({
             />
         </section>
         <main className="profile-main">
-          <ul className="ul-about-data">
-            <li>
-              <i className="about-user-icon fa fa-user" aria-hidden="true"></i> {this.state.user.firstName}, {this.state.user.age}
-            </li>
-            <li>
-              <i className="about-user-icon fa fa-paw" aria-hidden="true"></i> {this.state.user.dog.dogName}, {this.state.user.dog.dogAge}, {this.state.user.dog.dogBreed}
-            </li>
-            <li>
-              <i className="about-user-icon fa fa-globe" aria-hidden="true"></i> {this.state.user.city}, {this.state.user.regionName}
-            </li>
-          </ul>
           {textareaBio}
         </main>
       </div>);

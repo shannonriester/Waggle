@@ -6,9 +6,10 @@
 }
 
 .ul-about-data {
-  margin: 10px 0;
-  padding: 0 0 0 10px;
-  border-bottom: solid 1px $border;
+  margin: 0;
+  padding: 0;
+  width: 50%;
+  // border-bottom: solid 1px $border;
   li {
     list-style-type: none;
     width: 100%;
@@ -254,10 +255,6 @@ h2 {
 }
 
 @media(min-width: 650px) {
-  .scroll-container {
-    // width: 75%;
-    // margin: 0 auto;
-  }
 }
 
 @media(min-width: 750px) {
@@ -292,9 +289,6 @@ h2 {
   }
 
   .recent-place-image {
-    // height: 15em;
-    // width: 20em;
-    // background-size: cover;
     width: 100%;
     margin: 0;
     padding: 0;
@@ -302,19 +296,16 @@ h2 {
   }
 
   .slider-container img {
-    object-fit: cover;
-    // height: 500px;
-    object-fit: cover;
-    height: 35em;
+    object-fit: contain;
+    height: 370px;
+  }
+
+  .scroll-container {
+    width: 70%;
   }
 }
 
 @media(min-width: 900px) {
-  // .recent-place-image {
-  //   height: 25em;
-  //   width: 25em;
-  // }
-
   .scroll-container {
     height: 25vh;
   }
