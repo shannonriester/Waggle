@@ -169,8 +169,8 @@ export default React.createClass({
             return true;
           }
         });
-        if (fixedPlaces.length > 4) {
-          fixedPlaces = fixedPlaces.slice(0,4);
+        if (fixedPlaces.length > 6) {
+          fixedPlaces = fixedPlaces.slice(0,6);
         }
         userRecentPlaces = fixedPlaces.map((place, i, arr) => {
             return (<UserRecentPlaces

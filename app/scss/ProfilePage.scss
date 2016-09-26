@@ -60,6 +60,20 @@
   font-weight: 500;
 }
 
+.edit-profile-click-me {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  font-size: 100%;
+  background: rgba(0,0,0, .2);
+  color: #FFF;
+  border-radius: 50%;
+  outline: none;
+}
+
 /* PROFILE FOOTER STARTS HERE */
 
 .profile-footer {
@@ -109,6 +123,7 @@ h2 {
   border-bottom: solid 1px $font-color;
   margin: 0 auto;
 }
+
 .preview-container {
   position: relative;
   width: 100%;
@@ -117,6 +132,7 @@ h2 {
   align-items: center;
   justify-content: space-around;
 }
+
 .scroll-btn {
   color: $accent;
   background: none;

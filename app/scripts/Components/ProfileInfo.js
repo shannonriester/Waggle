@@ -83,12 +83,12 @@ export default React.createClass({
     let profilePicFile;
     let styles;
     let hidden;
+    let editClickMe;
     let previewStyles;
     let bkgrndImgForm;
 
     if (!this.state.editProfile && this.state.user.username) {
       textareaBio = null;
-
       content = (
       <div>
         <section className="header-profile-section">
@@ -97,7 +97,8 @@ export default React.createClass({
           <div className="profile-pic-container">
             {profilePicFile}
             <section className="profile-pic-section">
-              <figure className="profile-pic" style={{backgroundImage:`url(${this.state.user.profile.profilePic})`}}></figure>
+              <figure className="profile-pic" style={{backgroundImage:`url(${this.state.user.profile.profilePic})`}}>
+              </figure>
               <figcaption className="profile-figcaption">{this.state.user.username}</figcaption>
             </section>
           </div>
@@ -131,6 +132,7 @@ export default React.createClass({
 
     } else if (this.state.editProfile && this.state.user.username) {
     styles = this.state.profilePicSrc;
+    editClickMe = (<h4 className="edit-profile-click-me">Click to change...</h4>);
     hidden = 'none';
 
     profilePicFile = (
@@ -173,7 +175,9 @@ export default React.createClass({
           <div className="profile-pic-container">
             {profilePicFile}
             <section className="profile-pic-section">
-              <figure className="profile-pic" style={{backgroundImage: `url(${styles})`}}></figure>
+              <figure className="profile-pic" style={{backgroundImage: `url(${styles})`}}>
+                {editClickMe}
+              </figure>
               <figcaption className="profile-figcaption">{this.state.user.username}</figcaption>
             </section>
           </div>
