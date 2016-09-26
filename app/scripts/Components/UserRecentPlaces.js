@@ -10,8 +10,12 @@ export default React.createClass({
     return (
       <li className="user-recent-places-component">
         <Link className="link" to={`/places/${this.props.place.yelpID}`}>
-          <h3>{this.props.place.name}</h3>
-          <div className="recent-place-image" style={styles}></div>
+          <div className="recent-place-image"
+               style={styles}
+               onMouseOver={this.showPlace}
+               >
+            <h3>{this.props.place.name}</h3>
+          </div>
           <p className="snippet-text">{this.props.place.snippetText}</p>
         </Link>
       </li>

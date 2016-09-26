@@ -152,6 +152,9 @@ h2 {
   // background-color: rgba(#ECEEEC,.1);
 }
   .recent-place-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 20em;
     width: 95%;
     margin: 0 auto;
@@ -246,25 +249,21 @@ h2 {
     padding-bottom: 10px;
   }
 
-  .matched-wagglrs {
-    .scroll-container {
-      // height: 20vh;
-    }
-  }
-
   .background-profile-image {
     height: 35em;
   }
 
   .user-recent-places-component {
     width: 40%;
+    margin: 0;
   }
 
   .snippet-text {
-    width: 80%;
-    padding-left: 4%;
-    margin-bottom: 0;
-    border-left: solid 1px rgba($font-color, 0.5);
+    display: none;
+    // width: 80%;
+    // padding-left: 4%;
+    // margin-bottom: 0;
+    // border-left: solid 1px rgba($font-color, 0.5);
   }
 
   .background-profile-image {
@@ -273,9 +272,13 @@ h2 {
   }
 
   .recent-place-image {
-    height: 15em;
-    width: 20em;
-    background-size: cover;
+    // height: 15em;
+    // width: 20em;
+    // background-size: cover;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 22rem;
   }
 
   .slider-container img {
