@@ -99,7 +99,7 @@ export default React.createClass({
             <section className="profile-pic-section">
               <figure className="profile-pic" style={{backgroundImage:`url(${this.state.user.profile.profilePic})`}}>
               </figure>
-              <figcaption className="profile-figcaption">{this.state.user.username}</figcaption>
+              <figcaption className="profile-figcaption">{this.state.user.username}, {this.state.user.age}</figcaption>
               <ProfileInteractive
                 session={this.state.session}
                 user={this.state.user}
@@ -111,20 +111,7 @@ export default React.createClass({
                 editProfile={this.editProfile}
               />
             </section>
-            <ul className="ul-about-data">
-              <li>
-                <i className="about-user-icon fa fa-user" aria-hidden="true"></i> {this.state.user.firstName}, {this.state.user.age}
-              </li>
-              <li>
-                <i className="about-user-icon fa fa-paw" aria-hidden="true"></i> {this.state.user.dog.dogName}, {this.state.user.dog.dogAge}
-              </li>
-              <li>
-                <i className="about-user-icon fa fa-paw" aria-hidden="true"></i> {this.state.user.dog.dogBreed}
-              </li>
-              <li>
-                <i className="about-user-icon fa fa-globe" aria-hidden="true"></i> {this.state.user.city}, {this.state.user.regionName}
-              </li>
-            </ul>
+
           </div>
         </section>
         <main className="profile-main">
@@ -170,6 +157,7 @@ export default React.createClass({
         </div>
       </form>);
 
+
     content = (
       <div>
         <section className="header-profile-section">
@@ -181,7 +169,7 @@ export default React.createClass({
               <figure className="profile-pic" style={{backgroundImage: `url(${styles})`}}>
                 {editClickMe}
               </figure>
-              <figcaption className="profile-figcaption">{this.state.user.username}</figcaption>
+              <figcaption className="profile-figcaption">{this.state.user.username}, {this.state.user.age}</figcaption>
               <ProfileInteractive
                 session={this.state.session}
                 user={this.state.user}
@@ -193,17 +181,7 @@ export default React.createClass({
                 editProfile={this.editProfile}
               />
             </section>
-            <ul className="ul-about-data">
-              <li>
-                <i className="about-user-icon fa fa-user" aria-hidden="true"></i> {this.state.user.firstName}, {this.state.user.age}
-              </li>
-              <li>
-                <i className="about-user-icon fa fa-paw" aria-hidden="true"></i> {this.state.user.dog.dogName}, {this.state.user.dog.dogAge}, {this.state.user.dog.dogBreed}
-              </li>
-              <li>
-                <i className="about-user-icon fa fa-globe" aria-hidden="true"></i> {this.state.user.city}, {this.state.user.regionName}
-              </li>
-            </ul>
+            
           </div>
         </section>
         <main className="profile-main">

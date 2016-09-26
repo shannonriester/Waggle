@@ -29,12 +29,17 @@ export default React.createClass({
             <button className="connect-btn new-message-btn" onClick={this.props.message}><i className="message-icon sent-match fa fa-comments-o" aria-hidden="true"></i></button>
             <label>message</label>
           </li>
+          <li>
+          <button className="connect-btn new-message-btn"><i className="about-user-icon fa fa-paw" aria-hidden="true"></i></button>
+            <label>{this.props.user.dog.dogName}, {this.props.user.dog.dogAge}, {this.props.user.dog.dogBreed}</label>
+          </li>
+          <li>
+            <button className="connect-btn new-message-btn"><i className="about-user-icon fa fa-globe" aria-hidden="true"></i></button>
+            <label>{this.props.user.city}, {this.props.user.regionName}</label>
+          </li>
         </ul>
       );
     } else {
-      // console.log('newProps.matched on profileInteractive', this.props.matched);
-      // console.log(this.props.sentMatch);
-      // console.log(this.props.findingMatchStatus);
 
       if (this.props.findingMatchStatus) {
         sentMatchBtn = (<i className="heart-icon fa fa-spinner fa-pulse fa-fw"></i>);
@@ -50,9 +55,6 @@ export default React.createClass({
           matchStatus = 'match with ';
       }
 
-
-
-
       interactiveNav = (
         <ul className="profile-sub-nav">
           <li>
@@ -66,6 +68,14 @@ export default React.createClass({
               {sentMatchBtn}
             </button>
             <label>{matchStatus}</label>
+          </li>
+          <li>
+          <button className="connect-btn new-message-btn"><i className="about-user-icon fa fa-paw" aria-hidden="true"></i></button>
+            <label>{this.props.user.dog.dogName}, {this.props.user.dog.dogAge}, {this.props.user.dog.dogBreed}</label>
+          </li>
+          <li>
+            <button className="connect-btn new-message-btn"><i className="about-user-icon fa fa-globe" aria-hidden="true"></i></button>
+            <label>{this.props.user.city}, {this.props.user.regionName}</label>
           </li>
         </ul>
       );
