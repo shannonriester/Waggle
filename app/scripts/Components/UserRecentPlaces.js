@@ -20,7 +20,7 @@ export default React.createClass({
     let styles = {backgroundImage: 'url(' + url + ')'};
     let placeName;
     if (this.state.showPlaceName) {
-      placeName = (<h3>{this.props.place.name}</h3>);
+      placeName = (<h3 className="h3-user-recent-places">{this.props.place.name}</h3>);
     }
     return (
       <li className="user-recent-places-component">
