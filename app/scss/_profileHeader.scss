@@ -159,7 +159,7 @@
       justify-content: space-around;
   // width: 95%;
   height: 100%;
-  margin: 0 auto;
+  margin: 1rem auto;
   padding: 0;
   // border-top: solid 1px;
   li {
@@ -186,7 +186,8 @@
   background: none;
   font-size: 30px;
   border-radius: 50%;
-  color: $font-color;
+  // color: $font-color;
+  color: $secondary;
     &:hover {
       transition: .5s;
       border: solid 1px #FFF;

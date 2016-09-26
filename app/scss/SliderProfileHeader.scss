@@ -3,19 +3,24 @@
   // margin: 0 auto;
   // width: 100%;
   img {
-    object-fit: cover;
-    height: 400px;
+    object-fit: contain;
+    height: 370px;
   }
 }
+
+.slick-list {
+  height: 40vh;
+}
+
 .slick-prev, .slick-next {
   position: absolute;
   z-index: 1;
-  bottom: 420px;
-  height: 3em;
-  width: 7em;
+  top: 230px;
+  height: 2em;
+  width: 6em;
   outline: none;
   border: solid 1px #FFF;
-  padding: 2px 17px;
+  // padding: 2px 17px;
   background: rgba(#FFF, 0.9);
   color: $accent;
   font-size: 12px;
@@ -32,6 +37,6 @@
   position: absolute;
   z-index: 1;
   right: 0;
-  padding: 2px 22px;
+  // padding: 2px 22px;
   // display: none !important;
 }

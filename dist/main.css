@@ -248,18 +248,20 @@
 .slider-container {
   overflow: hidden; }
   .slider-container img {
-    object-fit: cover;
-    height: 400px; }
+    object-fit: contain;
+    height: 370px; }
+
+.slick-list {
+  height: 40vh; }
 
 .slick-prev, .slick-next {
   position: absolute;
   z-index: 1;
-  bottom: 420px;
-  height: 3em;
-  width: 7em;
+  top: 230px;
+  height: 2em;
+  width: 6em;
   outline: none;
   border: solid 1px #FFF;
-  padding: 2px 17px;
   background: rgba(255, 255, 255, 0.9);
   color: #FF5A5F;
   font-size: 12px;
@@ -274,8 +276,7 @@
 .slick-next {
   position: absolute;
   z-index: 1;
-  right: 0;
-  padding: 2px 22px; }
+  right: 0; }
 
 .header-component {
   height: 4vh;
@@ -1085,7 +1086,7 @@ h4 {
   -ms-flex-pack: distribute;
   justify-content: space-around;
   height: 100%;
-  margin: 0 auto;
+  margin: 1rem auto;
   padding: 0; }
   .profile-sub-nav li {
     display: -webkit-box;
@@ -1109,7 +1110,7 @@ h4 {
   background: none;
   font-size: 30px;
   border-radius: 50%;
-  color: #555; }
+  color: #9265BF; }
   .connect-btn:hover {
     transition: .5s;
     border: solid 1px #FFF;
@@ -1432,7 +1433,7 @@ h2 {
     height: 22rem; }
 
   .slider-container img {
-    object-fit: contain;
+    object-fit: cover;
     height: 370px; }
 
   .scroll-container {
