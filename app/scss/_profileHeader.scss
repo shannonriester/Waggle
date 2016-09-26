@@ -93,9 +93,11 @@
 
 .profile-pic-container {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-around;
   background-size: cover;
+  width: 90%;
+  margin: 0 auto;
 }
 
 .profile-pic-section {
@@ -264,6 +266,12 @@
 
   .input-file {
     left: 39%;
+  }
+}
+
+@media(min-width: 630px) {
+  .profile-pic-section, .ul-about-data {
+    width: 30%;
   }
 }
 
