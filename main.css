@@ -1036,9 +1036,11 @@ h4 {
 /*PROFILE PICTURE SECTION*/
 .profile-pic-container {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-around;
-  background-size: cover; }
+  background-size: cover;
+  width: 90%;
+  margin: 0 auto; }
 
 .profile-pic-section {
   display: flex;
@@ -1164,6 +1166,9 @@ h4 {
 
   .input-file {
     left: 39%; } }
+@media (min-width: 630px) {
+  .profile-pic-section, .ul-about-data {
+    width: 30%; } }
 @media (min-width: 700px) {
   .input-file {
     left: 41%; } }
@@ -1196,9 +1201,8 @@ h4 {
   padding: 3%; }
 
 .ul-about-data {
-  margin: 0;
-  padding: 0;
-  width: 50%; }
+  margin: 8% 0 0 0;
+  padding: 0; }
   .ul-about-data li {
     list-style-type: none;
     width: 100%;
@@ -1399,8 +1403,8 @@ h2 {
 
 @media (min-width: 500px) {
   .recent-place-image {
-    height: 25rem;
-    width: 30rem; } }
+    height: 20rem;
+    width: 26rem; } }
 @media (min-width: 650px) {
   .ul-about-data {
     width: 25%; } }
@@ -1429,7 +1433,7 @@ h2 {
     width: 100%;
     margin: 0;
     padding: 0;
-    height: 22rem; }
+    height: 17rem; }
 
   .slider-container img {
     object-fit: cover;
