@@ -100,6 +100,16 @@ export default React.createClass({
               <figure className="profile-pic" style={{backgroundImage:`url(${this.state.user.profile.profilePic})`}}>
               </figure>
               <figcaption className="profile-figcaption">{this.state.user.username}</figcaption>
+              <ProfileInteractive
+                session={this.state.session}
+                user={this.state.user}
+                message={this.props.messageUser}
+                findingMatchStatus={this.state.findingMatchStatus}
+                toggleMatch={this.props.toggleMatch}
+                sentMatch={this.state.sentMatch}
+                matched={this.state.matched}
+                editProfile={this.editProfile}
+              />
             </section>
             <ul className="ul-about-data">
               <li>
@@ -116,16 +126,6 @@ export default React.createClass({
               </li>
             </ul>
           </div>
-            <ProfileInteractive
-              session={this.state.session}
-              user={this.state.user}
-              message={this.props.messageUser}
-              findingMatchStatus={this.state.findingMatchStatus}
-              toggleMatch={this.props.toggleMatch}
-              sentMatch={this.state.sentMatch}
-              matched={this.state.matched}
-              editProfile={this.editProfile}
-            />
         </section>
         <main className="profile-main">
           {textareaBio}
@@ -182,6 +182,16 @@ export default React.createClass({
                 {editClickMe}
               </figure>
               <figcaption className="profile-figcaption">{this.state.user.username}</figcaption>
+              <ProfileInteractive
+                session={this.state.session}
+                user={this.state.user}
+                message={this.props.messageUser}
+                findingMatchStatus={this.state.findingMatchStatus}
+                toggleMatch={this.props.toggleMatch}
+                sentMatch={this.state.sentMatch}
+                matched={this.state.matched}
+                editProfile={this.editProfile}
+              />
             </section>
             <ul className="ul-about-data">
               <li>
@@ -195,16 +205,6 @@ export default React.createClass({
               </li>
             </ul>
           </div>
-            <ProfileInteractive
-              session={this.state.session}
-              user={this.state.user}
-              message={this.props.messageUser}
-              findingMatchStatus={this.state.findingMatchStatus}
-              toggleMatch={this.props.toggleMatch}
-              sentMatch={this.state.sentMatch}
-              matched={this.state.matched}
-              editProfile={this.editProfile}
-            />
         </section>
         <main className="profile-main">
           {textareaBio}

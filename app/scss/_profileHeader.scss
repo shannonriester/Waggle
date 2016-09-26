@@ -161,6 +161,10 @@
   height: 100%;
   margin: 1rem auto;
   padding: 0;
+  width: 10rem;
+  // position: relative;
+  // bottom: 4rem;
+  // left: 17%;
   // border-top: solid 1px;
   li {
     display: -webkit-box;
@@ -190,8 +194,8 @@
   color: $secondary;
     &:hover {
       transition: .5s;
-      border: solid 1px #FFF;
-      border-radius: 50%;
+      // border: solid 1px #FFF;
+      // border-radius: 50%;
       color: $accent;
       cursor: pointer;
     }
@@ -296,7 +300,7 @@
 
 @media(min-width: 1000px) {
   .profile-sub-nav {
-    width: 65%;
+    // width: 65%;
   }
 }
 
