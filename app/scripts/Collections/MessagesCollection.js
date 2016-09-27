@@ -31,7 +31,7 @@ const MessagesCollection = Backbone.Collection.extend({
     return new Promise((resolve, reject) => {
       this.fetch({url:`https://baas.kinvey.com/appdata/kid_SkBnla5Y/MessagesCollection?query={"$or":${query}}`,
       success: (response) => {
-        resolve(response)
+        resolve(response);
       }, error: function (response) {
           console.error('FAILED TO FETCH MY MESSAGES ', response);
           reject();
@@ -39,7 +39,6 @@ const MessagesCollection = Backbone.Collection.extend({
     });
   },
   findMessageModel: function(id) {
-    // console.log(this);
     return this.findWhere({_id:id});
   },
   findConversation: function(recipient) {
@@ -52,7 +51,7 @@ const MessagesCollection = Backbone.Collection.extend({
   //   let userArr = this.where({username:username});
   //   return userArr;
   // },
-  // fetchMatches:
+  // fetchMatches
 });
 
 export default MessagesCollection;

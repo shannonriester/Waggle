@@ -143,7 +143,7 @@
     font-size: 1.5em;
     padding-top: 10%;
     background: transparent;
-    border-bottom: 1px solid #EBEBEB;
+    border-bottom: 1px solid #DCE0E0;
     border-radius: none; }
   .modal-component .modal-footer {
     display: flex;
@@ -182,7 +182,7 @@
     width: 100%;
     margin-bottom: 5%;
     padding: 30px 0 5px 0px;
-    border-bottom: solid 1px #EBEBEB; }
+    border-bottom: solid 1px #DCE0E0; }
   .modal-component .selection-container {
     display: flex;
     align-items: center;
@@ -247,12 +247,11 @@
     height: 9em; } }
 .slider-container {
   overflow: hidden;
-  height: 50vh;
   position: relative;
   top: 5rem; }
   .slider-container img {
     object-fit: cover;
-    height: 370px; }
+    height: 50vh; }
 
 .slick-prev, .slick-next {
   position: absolute;
@@ -280,7 +279,7 @@
 
 .header-component {
   height: 4vh;
-  border-bottom: solid 1px #EBEBEB;
+  border-bottom: solid 1px #DCE0E0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -325,7 +324,7 @@
   top: 0;
   width: 100%;
   background: #FFF;
-  border-bottom: solid 1px #EBEBEB;
+  border-bottom: solid 1px #DCE0E0;
   display: flex;
   align-items: center;
   justify-content: space-between; }
@@ -388,7 +387,7 @@
   justify-content: center;
   width: 95%;
   height: 50px;
-  border-bottom: solid 2px #EBEBEB;
+  border-bottom: solid 2px #DCE0E0;
   padding: 0;
   margin: 0 auto;
   margin-top: 2em; }
@@ -396,12 +395,12 @@
 .searchbar {
   height: 100%;
   width: 100%;
-  font-size: 1.2em;
+  font-size: .8rem;
   outline: none;
   border: none;
   border-top-left-radius: 2px;
   border-bottom-left-radius: 2px;
-  border: solid 1px #EBEBEB;
+  border: solid 1px #DCE0E0;
   background: #FFF;
   padding-left: 10px; }
 
@@ -546,7 +545,7 @@ h4 {
   padding: 0;
   outline: none;
   border: none;
-  background: #EBEBEB;
+  background: #DCE0E0;
   color: #555;
   border-radius: 2px;
   text-align: left;
@@ -616,7 +615,7 @@ h4 {
   border-radius: 50%; }
 
 .result-content-container {
-  border-bottom: solid 1px #EBEBEB;
+  border-bottom: solid 1px #DCE0E0;
   height: 100%;
   width: 70%;
   display: flex;
@@ -818,7 +817,7 @@ h4 {
   width: 70%;
   margin: 25px auto;
   padding-left: 30px;
-  border-left: solid 2px #EBEBEB; }
+  border-left: solid 2px #DCE0E0; }
 
 .h2-checkin, .h3-checkin {
   background: none;
@@ -830,7 +829,7 @@ h4 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: solid 1px #EBEBEB; }
+  border-bottom: solid 1px #DCE0E0; }
 
 .checkin-links-ul, .checkin-address-ul {
   display: flex;
@@ -961,6 +960,9 @@ h4 {
   .scroll-container {
     width: 40em; } }
 /*START OF PROFILE IMG EDITING SECTION*/
+.header-profile-section {
+  background: #FFF; }
+
 .profile-image-form {
   position: absolute;
   height: 39.5%;
@@ -968,13 +970,17 @@ h4 {
   top: 10.7%; }
 
 .profile-figcaption {
-  font-size: 1.6rem;
-  color: #484848;
+  font-size: 1.3rem;
+  font-weight: 100;
+  color: #555;
   text-align: center; }
 
 .profile-pic-container {
   position: relative;
-  top: 4rem; }
+  background: #FFF;
+  height: 35vh;
+  top: 4rem;
+  border-bottom: solid 1px #DCE0E0; }
   .profile-pic-container .profile-pic-preview {
     position: absolute;
     background-size: cover;
@@ -1042,7 +1048,7 @@ h4 {
   align-items: center;
   justify-content: center;
   background-size: cover;
-  width: 90%;
+  width: 100%;
   margin: 0 auto; }
 
 .profile-pic-section {
@@ -1078,7 +1084,7 @@ h4 {
 
 /*USER INTERACTIVE NAV SECTION*/
 .profile-interactive-component {
-  margin: 0 auto; }
+  width: 100vw; }
 
 .profile-sub-nav {
   display: -webkit-box;
@@ -1090,9 +1096,8 @@ h4 {
   -ms-flex-pack: distribute;
   justify-content: space-around;
   height: 100%;
-  margin: 1rem auto;
-  padding: 0;
-  width: 10rem; }
+  width: 100%;
+  padding: 0; }
   .profile-sub-nav li {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -1107,21 +1112,25 @@ h4 {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
-    list-style-type: none;
-    font-size: 11px; }
+    list-style-type: none; }
+    .profile-sub-nav li label {
+      color: #777777;
+      font-size: 15px;
+      font-weight: 100; }
 
 .connect-btn {
   border: transparent;
   background: none;
   font-size: 30px;
   border-radius: 50%;
-  color: #555; }
+  color: #777777;
+  height: 100%;
+  width: 100%;
+  padding: 0; }
   .connect-btn:hover {
     transition: .5s;
     color: #FF5A5F;
     cursor: pointer; }
-  .connect-btn label {
-    font-size: 15px; }
 
 .edit-btn-container {
   display: -webkit-box;
@@ -1200,10 +1209,10 @@ h4 {
     margin: 0 auto; } }
 /*PROFILE MAIN SECTION STARTS HERE*/
 .profile-main {
-  padding: 3%;
-  padding-top: 0;
   position: relative;
-  top: 4rem; }
+  top: 4rem;
+  padding-bottom: 15%;
+  border-bottom: solid 1px #DCE0E0; }
 
 .ul-about-data {
   margin: 8% 0 0 0;
@@ -1215,15 +1224,22 @@ h4 {
     color: rgba(85, 85, 85, 0.8); }
 
 .about-user-icon {
-  color: #FF5A5F;
-  margin-right: 2%; }
+  color: #777777;
+  height: 100%;
+  width: 100%; }
+  .about-user-icon:hover {
+    cursor: default; }
+
+.about-heading {
+  font-size: 2rem;
+  font-weight: 100;
+  color: #555;
+  margin: 2rem 0; }
 
 .about-bio {
-  line-height: 1.5;
   width: 90%;
-  border-bottom: solid 1px #EBEBEB;
-  padding: 15px 0;
-  margin: 0 auto; }
+  margin: 0 auto;
+  line-height: 1.5; }
 
 .form-about {
   display: flex;
@@ -1267,7 +1283,8 @@ h4 {
 
 /* PROFILE FOOTER STARTS HERE */
 .profile-footer {
-  width: 100vw; }
+  position: relative;
+  top: 4rem; }
 
 .current-match-preview {
   display: flex;
@@ -1320,7 +1337,7 @@ h2 {
   background: none;
   outline: none;
   border-radius: 50%;
-  border: solid 1px #EBEBEB;
+  border: solid 1px #DCE0E0;
   font-size: 25px; }
   .scroll-btn:hover {
     transition: .5s;
@@ -1330,7 +1347,6 @@ h2 {
 .h2-matches {
   width: 90%;
   margin: 0 auto;
-  border-top: solid 1px;
   padding-top: 5%; }
 
 .h2-recent-places {
@@ -1404,7 +1420,7 @@ h2 {
     transition: .5s;
     color: #FF5A5F;
     background: #FFF;
-    border: solid 1px #EBEBEB; }
+    border: solid 1px #DCE0E0; }
 
 @media (min-width: 500px) {
   .recent-place-image {
@@ -1416,9 +1432,6 @@ h2 {
 @media (min-width: 750px) {
   .about-bio {
     width: 85%; }
-
-  .profile-main {
-    padding-bottom: 10px; }
 
   .background-profile-image {
     height: 35em; }
@@ -1455,11 +1468,11 @@ h2 {
 @media (min-width: 1000px) {
   .profile-main {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 90%;
-    margin: 0 auto;
-    height: 35vh; }
+    margin: 0 auto; }
 
   .ul-about-data {
     width: 30%;

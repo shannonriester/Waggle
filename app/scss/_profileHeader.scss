@@ -1,4 +1,7 @@
 /*START OF PROFILE IMG EDITING SECTION*/
+.header-profile-section {
+  background: #FFF;
+}
 
 .profile-image-form {
     position: absolute;
@@ -11,16 +14,19 @@
   // top: 11.5%;
 }
 .profile-figcaption {
-    // position: relative;
-    // bottom: 50px;
-    font-size: 1.6rem;
-    color: $profileIcon;
+    font-size: 1.3rem;
+    font-weight: 100;
+    // color: $profileIcon;
+    color: $font-color;
     text-align: center;
 }
 
 .profile-pic-container {
   position: relative;
+  background: #FFF;
+  height: 35vh;
   top: 4rem;
+  border-bottom: solid 1px $border;
   .profile-pic-preview {
     position: absolute;
     background-size: cover;
@@ -98,7 +104,7 @@
   align-items: center;
   justify-content: center;
   background-size: cover;
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -144,10 +150,11 @@
 
 /*USER INTERACTIVE NAV SECTION*/
 .profile-interactive-component {
+  width: 100vw;
   // height: 15vh;
   // width: 90%;
   // border-top: solid 1px;
-  margin: 0 auto;
+  // margin: 0 auto;
   // position: relative;
   // bottom: 40px;
 }
@@ -161,15 +168,9 @@
           align-items: center;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  // width: 95%;
   height: 100%;
-  margin: 1rem auto;
+  width: 100%;
   padding: 0;
-  width: 10rem;
-  // position: relative;
-  // bottom: 4rem;
-  // left: 17%;
-  // border-top: solid 1px;
   li {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -185,7 +186,12 @@
         -ms-flex-pack: center;
             justify-content: center;
     list-style-type: none;
-    font-size: 11px;
+    // font-size: 11px;
+    label {
+      color: $lite-font;
+      font-size: 15px;
+      font-weight: 100;
+    }
   }
 }
 
@@ -194,19 +200,16 @@
   background: none;
   font-size: 30px;
   border-radius: 50%;
-  color: $font-color;
-  // color: $secondary;
+  // color: $font-color;
+  color: $lite-font;
+  height: 100%;
+  width: 100%;
+  padding: 0;
     &:hover {
       transition: .5s;
-      // border: solid 1px #FFF;
-      // border-radius: 50%;
       color: $accent;
       cursor: pointer;
     }
-
-  label {
-    font-size: 15px;
-  }
 }
 
 .edit-btn-container {

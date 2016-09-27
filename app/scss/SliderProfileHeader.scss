@@ -1,12 +1,12 @@
 .slider-container {
   overflow: hidden;
-  height: 50vh;
+  // height: 50vh;
   position: relative;
   top: 5rem;
   img {
     // object-fit: contain;
     object-fit: cover;
-    height: 370px;
+    height: 50vh;
   }
 }
 

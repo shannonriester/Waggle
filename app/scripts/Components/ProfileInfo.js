@@ -115,6 +115,7 @@ export default React.createClass({
           </div>
         </section>
         <main className="profile-main">
+          <h2 className="about-heading">About {this.state.user.username}</h2>
           {textareaBio}
           <p className="about-bio">{this.state.user.profile.bio}</p>
         </main>
@@ -181,7 +182,7 @@ export default React.createClass({
                 editProfile={this.editProfile}
               />
             </section>
-            
+
           </div>
         </section>
         <main className="profile-main">

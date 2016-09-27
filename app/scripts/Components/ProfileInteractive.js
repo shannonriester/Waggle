@@ -26,10 +26,6 @@ export default React.createClass({
             <label>settings</label>
           </li>
           <li>
-            <button className="connect-btn new-message-btn" onClick={this.props.message}><i className="message-icon sent-match fa fa-comments-o" aria-hidden="true"></i></button>
-            <label>message</label>
-          </li>
-          <li>
           <button className="connect-btn new-message-btn"><i className="about-user-icon fa fa-paw" aria-hidden="true"></i></button>
             <label>{this.props.user.dog.dogName}, {this.props.user.dog.dogAge}, {this.props.user.dog.dogBreed}</label>
           </li>

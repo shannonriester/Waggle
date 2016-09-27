@@ -2,17 +2,16 @@
 
 /*PROFILE MAIN SECTION STARTS HERE*/
 .profile-main {
-  padding: 3%;
-  padding-top: 0;
   position: relative;
   top: 4rem;
+  // margin-bottom: 20%;
+  padding-bottom: 15%;
+  border-bottom: solid 1px $border;
 }
 
 .ul-about-data {
   margin: 8% 0 0 0;
   padding: 0;
-  // width: 50%;
-  // border-bottom: solid 1px $border;
   li {
     list-style-type: none;
     width: 100%;
@@ -22,16 +21,27 @@
 }
 
 .about-user-icon {
-  color: $accent;
-  margin-right: 2%;
+  color: $lite-font;
+  height: 100%;
+  width: 100%;
+  &:hover {
+    cursor: default;
+  }
+}
+
+// .prof
+
+.about-heading {
+  font-size: 2rem;
+  font-weight: 100;
+  color: $font-color;
+  margin: 2rem 0;
 }
 
 .about-bio {
-  line-height: 1.5;
   width: 90%;
-  border-bottom: solid 1px $border;
-  padding: 15px 0;
   margin: 0 auto;
+  line-height: 1.5;
 }
 
 .form-about {
@@ -82,7 +92,8 @@
 
 .profile-footer {
   // display: flex;
-  width: 100vw;
+  position: relative;
+  top: 4rem;
 }
 
 .current-match-preview {
@@ -155,7 +166,7 @@ h2 {
   width: 90%;
   margin: 0 auto;
   // margin-top: 10%;
-  border-top: solid 1px;
+  // border-top: solid 1px;
   padding-top: 5%;
 }
 
@@ -269,7 +280,7 @@ h2 {
   }
 
   .profile-main {
-    padding-bottom: 10px;
+    // padding-bottom: 10px;
   }
 
   .background-profile-image {
@@ -324,11 +335,12 @@ h2 {
 @media(min-width: 1000px) {
   .profile-main {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 90%;
     margin: 0 auto;
-    height: 35vh;
+    // height: 35vh;
   }
 
   .ul-about-data {
