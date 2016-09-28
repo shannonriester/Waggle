@@ -136,9 +136,20 @@ export default React.createClass({
     let profileInfo;
     let newMessageModal;
     let myMatches;
-    let userRecentPlaces;
 
     if (this.state.currentUser.username) {
+      let allMyMatches;
+      let recentPlaces = [];
+
+      if (this.state.session.username === this.props.params.userId) {
+        allMyMatches = this.state.allMyMatches;
+      }
+      if (this.state.matched || (this.props.params.userId === this.state.session.username)) {
+          this.state.placesCollection.forEach((place, i, arr) => {
+            recentPlaces = this.state.placesCollection;
+            // userRecentPlaces = (<UserRecentPlaces key={i} recentPlaces={this.state.placesCollection} />);
+          });
+      }
         profileInfo = (<ProfileInfo
           user={this.state.currentUser}
           messageUser={this.messageUser}
@@ -146,6 +157,8 @@ export default React.createClass({
           findingMatchStatus={this.state.findingMatchStatus}
           sentMatch={this.state.sentMatch}
           matched={this.state.matched}
+          allMyMatches={allMyMatches}
+          recentPlaces = {recentPlaces}
           />);
     }
 
@@ -155,33 +168,22 @@ export default React.createClass({
         hideMessageModal={this.hideMessageModal}/>);
     }
 
-    if (this.state.matched || (this.props.params.userId === this.state.session.username)) {
-        this.state.placesCollection.forEach((place, i, arr) => {
-            // console.log(place);
-            userRecentPlaces = (<UserRecentPlaces
-                      key={i}
-                      recentPlaces={this.state.placesCollection}
-                      />);
-        });
-    }
-
-    if (this.state.session.username === this.props.params.userId) {
-      myMatches = (<MyMatches myMatches={this.state.allMyMatches}/>);
-    }
     return (
       <div className="profile-component">
         <Nav />
           {newMessageModal}
           {profileInfo}
-        <footer className="profile-footer">
-          <div className="matched-wagglrs">
-            {myMatches}
-          </div>
-          <h2 className="h2-recent-places">Recent Places</h2>
-          <div className="ul-recent-places">
-            {userRecentPlaces}
-          </div>
-        </footer>
+        {
+        //   <footer className="profile-footer">
+        //   <div className="matched-wagglrs">
+        //     {myMatches}
+        //   </div>
+        //   <h2 className="h2-recent-places">Recent Places</h2>
+        //   <div className="ul-recent-places">
+        //     {userRecentPlaces}
+        //   </div>
+        // </footer>
+        }
       </div>
     );
   }

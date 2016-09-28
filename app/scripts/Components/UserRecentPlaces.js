@@ -17,30 +17,9 @@ export default React.createClass({
     let placeName;
     let styles;
     let url;
-
-    // console.log(this.props.recentPlaces);
-
-    // let placeIDArr = this.props.recentPlaces.map((place, i, arr) => {
-    //     // console.log(place);
-    //     return place;
-    // });
-
-    // placeIDArr = _.sortBy(placeIDArr, (place) => {
-    //   return moment(place.time).unix();
-    // });
-
-    // placeIDArr = placeIDArr.reverse();
-    // console.log(placeIDArr);
-
-    let recentCheckinPlace = this.props.recentPlaces.map((place, i) => {
-      return (<RecentCheckinPlace
-                  place={place}
-                  showTitle={this.state.showPlaceName}
-                  showPlaceName={this.showPlaceName}
-                  hidePlaceName={this.hidePlaceName}
-                  key={i}/>)
-
-    });
+      let recentCheckinPlace = this.props.recentPlaces.map((place, i) => {
+        return (<RecentCheckinPlace place={place} key={i}/>);
+      });
 
     if (recentCheckinPlace.length > 6) {
       recentCheckinPlace = recentCheckinPlace.slice(0,6);

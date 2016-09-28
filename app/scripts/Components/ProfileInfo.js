@@ -4,6 +4,7 @@ import Dropzone from 'react-dropzone';
 import store from '../store';
 import ProfileInteractive from './ProfileInteractive';
 import BackgroundSlider from './BackgroundSlider';
+import UserRecentPlaces from './UserRecentPlaces';
 import MyMatches from '../Components/MyMatches';
 
 export default React.createClass({
@@ -88,6 +89,8 @@ export default React.createClass({
     let previewStyles;
     let bkgrndImgForm;
 
+    console.log(this.props.recentPlaces);
+
     if (!this.state.editProfile && this.state.user.username) {
       textareaBio = null;
       content = (
@@ -113,7 +116,6 @@ export default React.createClass({
                 editProfile={this.editProfile}
               />
             </section>
-
           </div>
         </section>
         <main className="profile-main">
@@ -121,6 +123,15 @@ export default React.createClass({
           {textareaBio}
           <p className="about-bio">{this.state.user.profile.bio}</p>
         </main>
+        <footer className="profile-footer">
+          <div className="matched-wagglrs">
+            <MyMatches myMatches={this.props.allMyMatches}/>
+          </div>
+          <h2 className="h2-recent-places">Recent Places</h2>
+          <ul className="ul-recent-places">
+            <UserRecentPlaces recentPlaces={this.props.recentPlaces} />
+          </ul>
+        </footer>
       </div>);
 
     } else if (this.state.editProfile && this.state.user.username) {
@@ -159,8 +170,6 @@ export default React.createClass({
           <button className="submit-edits" onClick={this.cancelEdit} tabIndex="4">cancel</button>
         </div>
       </form>);
-
-
     content = (
       <div>
         <section className="header-profile-section">
@@ -192,11 +201,11 @@ export default React.createClass({
           </main>
           <footer className="profile-footer">
             <div className="matched-wagglrs">
-              <MyMatches myMatches={this.props.myMatches}/>
+              <MyMatches myMatches={this.props.allMyMatches}/>
             </div>
             <h2 className="h2-recent-places">Recent Places</h2>
             <ul className="ul-recent-places">
-              {userRecentPlaces}
+              <UserRecentPlaces recentPlaces={this.props.recentPlaces} />
             </ul>
           </footer>
         </div>

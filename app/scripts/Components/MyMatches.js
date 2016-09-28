@@ -64,6 +64,7 @@ export default React.createClass({
   },
   render: function() {
     let matchPreview;
+
     if (this.state.users.length) {
       matchPreview = this.state.users.map((person, i) => {
           return (
