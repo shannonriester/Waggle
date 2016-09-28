@@ -963,6 +963,12 @@ h4 {
 .header-profile-section {
   background: #FFF; }
 
+.figure-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; }
+
 .profile-image-form {
   position: absolute;
   height: 39.5%;
@@ -1056,7 +1062,8 @@ h4 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 50%; }
+  width: 50%;
+  height: 100%; }
 
 .input-file {
   position: absolute;
@@ -1177,13 +1184,23 @@ h4 {
 
   .input-file {
     left: 39%; } }
-@media (min-width: 630px) {
-  .profile-pic-section, .ul-about-data {
-    width: 30%; } }
 @media (min-width: 700px) {
   .input-file {
     left: 41%; } }
 @media (min-width: 750px) {
+  .profile-pic-container {
+    height: 20vh; }
+
+  .profile-pic-section {
+    width: 60%;
+    flex-direction: row; }
+
+  .figure-container {
+    width: 30%; }
+
+  .profile-interactive-component {
+    width: 70%; }
+
   .background-profile-image {
     object-position: 50% 40%; }
 
@@ -1433,6 +1450,9 @@ h2 {
   .about-bio {
     width: 85%; }
 
+  .profile-main {
+    padding-bottom: 4rem; }
+
   .background-profile-image {
     height: 35em; }
 
@@ -1479,7 +1499,7 @@ h2 {
     height: 100%; }
 
   .about-bio {
-    width: 35rem;
+    width: 55rem;
     height: 100%; }
 
   .bio-textarea {
@@ -1491,7 +1511,10 @@ h2 {
     width: 30%;
     position: relative;
     right: 103%;
-    bottom: 45%; } }
+    bottom: 45%; }
+
+  .h2-matches {
+    padding-top: 2rem; } }
 .message-history-page-container .message-list {
   display: flex;
   flex-direction: column;
