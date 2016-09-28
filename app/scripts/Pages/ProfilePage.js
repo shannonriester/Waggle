@@ -135,7 +135,8 @@ export default React.createClass({
     let sessionNav;
     let profileInfo;
     let newMessageModal;
-    let myMatchesComponent;
+    let myMatches;
+    let userRecentPlaces;
 
     if (this.state.currentUser.username) {
         profileInfo = (<ProfileInfo
@@ -154,29 +155,13 @@ export default React.createClass({
         hideMessageModal={this.hideMessageModal}/>);
     }
 
-    let userRecentPlaces;
-    let myMatches = [];
     if (this.state.matched || (this.props.params.userId === this.state.session.username)) {
-        let placeIDArr = this.state.recentPlaces.map((place, i, arr) => {
-          return place.place;
-        });
-        placeIDArr = _.sortBy(placeIDArr, (place) => {
-          return moment(place.time).unix();
-        }).reverse();
-
-        let fixedPlaces = this.state.placesCollection.filter((place) => {
-          if (placeIDArr.indexOf(place.yelpID) > -1) {
-            return true;
-          }
-        });
-        if (fixedPlaces.length > 6) {
-          fixedPlaces = fixedPlaces.slice(0,6);
-        }
-        userRecentPlaces = fixedPlaces.map((place, i, arr) => {
-            return (<UserRecentPlaces
+        this.state.placesCollection.forEach((place, i, arr) => {
+            // console.log(place);
+            userRecentPlaces = (<UserRecentPlaces
                       key={i}
-                      place={place}
-                      updateState={this.updateSession} />);
+                      recentPlaces={this.state.placesCollection}
+                      />);
         });
     }
 
@@ -193,9 +178,9 @@ export default React.createClass({
             {myMatches}
           </div>
           <h2 className="h2-recent-places">Recent Places</h2>
-          <ul className="ul-recent-places">
+          <div className="ul-recent-places">
             {userRecentPlaces}
-          </ul>
+          </div>
         </footer>
       </div>
     );

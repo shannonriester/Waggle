@@ -4,7 +4,6 @@
 .profile-main {
   position: relative;
   top: 4rem;
-  // margin-bottom: 20%;
   padding-bottom: 15%;
   border-bottom: solid 1px $border;
 }
@@ -280,7 +279,7 @@ h2 {
   }
 
   .profile-main {
-    // padding-bottom: 10px;
+    padding-bottom: 4rem;
   }
 
   .background-profile-image {
@@ -340,7 +339,6 @@ h2 {
     justify-content: center;
     width: 90%;
     margin: 0 auto;
-    // height: 35vh;
   }
 
   .ul-about-data {
@@ -349,7 +347,7 @@ h2 {
   }
 
   .about-bio {
-    width: 35rem;
+    width: 55rem;
     height: 100%;
   }
 
@@ -364,5 +362,9 @@ h2 {
     position: relative;
     right: 103%;
     bottom: 45%;
+  }
+
+  .h2-matches {
+    padding-top: 2rem;
   }
 }

@@ -1,38 +1,55 @@
 import React from 'react';
 import { Link } from 'react-router';
+import _ from 'underscore';
+import moment from 'moment';
 
 import store from '../store';
+import RecentCheckinPlace from './RecentCheckinPlace'
 
 export default React.createClass({
   getInitialState: function() {
     return {
       showPlaceName: false,
+      newProps: {},
     }
-  },
-  showPlaceName: function() {
-    this.setState({showPlaceName: true});
-  },
-  hidePlaceName: function() {
-    this.setState({showPlaceName: false});
   },
   render: function() {
-    let url = `${this.props.place.imageUrl}`;
-    let styles = {backgroundImage: 'url(' + url + ')'};
     let placeName;
-    if (this.state.showPlaceName) {
-      placeName = (<h3 className="h3-user-recent-places">{this.props.place.name}</h3>);
+    let styles;
+    let url;
+
+    // console.log(this.props.recentPlaces);
+
+    // let placeIDArr = this.props.recentPlaces.map((place, i, arr) => {
+    //     // console.log(place);
+    //     return place;
+    // });
+
+    // placeIDArr = _.sortBy(placeIDArr, (place) => {
+    //   return moment(place.time).unix();
+    // });
+
+    // placeIDArr = placeIDArr.reverse();
+    // console.log(placeIDArr);
+
+    let recentCheckinPlace = this.props.recentPlaces.map((place, i) => {
+      return (<RecentCheckinPlace
+                  place={place}
+                  showTitle={this.state.showPlaceName}
+                  showPlaceName={this.showPlaceName}
+                  hidePlaceName={this.hidePlaceName}
+                  key={i}/>)
+
+    });
+
+    if (recentCheckinPlace.length > 6) {
+      recentCheckinPlace = recentCheckinPlace.slice(0,6);
     }
+
     return (
-      <li className="user-recent-places-component">
-        <Link className="link" to={`/places/${this.props.place.yelpID}`}>
-          <div className="recent-place-image"
-               style={styles}
-               onMouseOver={this.showPlaceName}
-               onMouseLeave={this.hidePlaceName}>
-               {placeName}
-          </div>
-        </Link>
-      </li>
+      <ul className="ul-recent-places">
+        {recentCheckinPlace}
+      </ul>
     )
   }
 });

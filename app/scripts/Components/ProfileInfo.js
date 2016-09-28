@@ -4,6 +4,7 @@ import Dropzone from 'react-dropzone';
 import store from '../store';
 import ProfileInteractive from './ProfileInteractive';
 import BackgroundSlider from './BackgroundSlider';
+import MyMatches from '../Components/MyMatches';
 
 export default React.createClass({
   getInitialState: function() {
@@ -97,9 +98,10 @@ export default React.createClass({
           <div className="profile-pic-container">
             {profilePicFile}
             <section className="profile-pic-section">
-              <figure className="profile-pic" style={{backgroundImage:`url(${this.state.user.profile.profilePic})`}}>
-              </figure>
-              <figcaption className="profile-figcaption">{this.state.user.username}, {this.state.user.age}</figcaption>
+              <div className="figure-container">
+                <figure className="profile-pic" style={{backgroundImage:`url(${this.state.user.profile.profilePic})`}}></figure>
+                <figcaption className="profile-figcaption">{this.state.user.username}, {this.state.user.age}</figcaption>
+              </div>
               <ProfileInteractive
                 session={this.state.session}
                 user={this.state.user}
@@ -182,12 +184,22 @@ export default React.createClass({
                 editProfile={this.editProfile}
               />
             </section>
-
           </div>
         </section>
-        <main className="profile-main">
-          {textareaBio}
-        </main>
+        <div className="main-footer-container">
+          <main className="profile-main">
+            {textareaBio}
+          </main>
+          <footer className="profile-footer">
+            <div className="matched-wagglrs">
+              <MyMatches myMatches={this.props.myMatches}/>
+            </div>
+            <h2 className="h2-recent-places">Recent Places</h2>
+            <ul className="ul-recent-places">
+              {userRecentPlaces}
+            </ul>
+          </footer>
+        </div>
       </div>);
   }
     return (
