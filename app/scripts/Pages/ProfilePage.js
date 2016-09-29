@@ -112,9 +112,9 @@ export default React.createClass({
     });
   },
   componentDidMount: function() {
-      store.userCollection.findMe(this.props.params.userId).then((response) => {
-        this.setState({currentUser: response.toJSON()});
-      });
+    store.userCollection.findMe(this.props.params.userId).then((response) => {
+      this.setState({currentUser: response.toJSON()});
+    });
 
     store.session.on('change', this.updateState);
     store.userCollection.on('change update', this.updateState);
@@ -132,7 +132,6 @@ export default React.createClass({
     store.matchCollection.off('update', this.updateState);
   },
   render: function() {
-    let sessionNav;
     let profileInfo;
     let newMessageModal;
     let myMatches;
@@ -147,7 +146,6 @@ export default React.createClass({
       if (this.state.matched || (this.props.params.userId === this.state.session.username)) {
           this.state.placesCollection.forEach((place, i, arr) => {
             recentPlaces = this.state.placesCollection;
-            // userRecentPlaces = (<UserRecentPlaces key={i} recentPlaces={this.state.placesCollection} />);
           });
       }
         profileInfo = (<ProfileInfo
@@ -173,17 +171,6 @@ export default React.createClass({
         <Nav />
           {newMessageModal}
           {profileInfo}
-        {
-        //   <footer className="profile-footer">
-        //   <div className="matched-wagglrs">
-        //     {myMatches}
-        //   </div>
-        //   <h2 className="h2-recent-places">Recent Places</h2>
-        //   <div className="ul-recent-places">
-        //     {userRecentPlaces}
-        //   </div>
-        // </footer>
-        }
       </div>
     );
   }

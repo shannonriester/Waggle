@@ -27,3 +27,5 @@ if (localStorage.authtoken) {
 
 
 ReactDOM.render(router, document.getElementById('container'));
+// var div = ;
+// document.getElementById('container').appendChild(document.createElement.('p'));

@@ -12,12 +12,12 @@
 
 .profile-image-form {
     position: absolute;
-    height: 39.5%;
+    height: 47.6%;
     width: 100%;
     top: 10.7%;
 }
 .profile-figcaption {
-    font-size: 1.3rem;
+    font-size: 1rem;
     font-weight: 100;
     // color: $profileIcon;
     color: $font-color;
@@ -285,6 +285,9 @@
 }
 
 @media(min-width: 750px) {
+  .dropzone {
+    height: 73.5%;
+  }
   .profile-pic-container {
     height: 20vh;
   }

@@ -48,16 +48,17 @@
   flex-direction: column;
   align-items: flex-end;
   width: 100%;
-  height: 275px;
+  height: 430px;
 }
 
 .bio-textarea {
-  width: 100%;
+  width: 89%;
   height: 100%;
-  outline: none;
-  font-size: 1em;
-  border: none;
+  margin: 0 auto;
   padding: 2%;
+  outline: none;
+  font-size: .8rem;
+  border: none;
   line-height: 1.5;
 }
 
@@ -80,11 +81,12 @@
   height: 100%;
   width: 100%;
   margin: 0;
-  font-size: 100%;
-  background: rgba(0,0,0, .2);
+  font-size: 120%;
+  background: rgba(#000, .3);
   color: #FFF;
   border-radius: 50%;
   outline: none;
+  text-align: center;
 }
 
 /* PROFILE FOOTER STARTS HERE */
@@ -322,6 +324,10 @@ h2 {
 }
 
 @media(min-width: 900px) {
+  .upper-profile-container {
+    display: flex;
+  }
+
   .scroll-container {
     height: 25vh;
   }

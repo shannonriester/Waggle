@@ -81,87 +81,46 @@ export default React.createClass({
   },
   render: function() {
     let content;
-    let textareaBio = (<p className="about-bio">{this.state.user.profile.bio}</p>);
+    let textareaBio;
     let profilePicFile;
     let styles;
     let hidden;
     let editClickMe;
-    let previewStyles;
     let bkgrndImgForm;
 
-    console.log(this.props.recentPlaces);
-
     if (!this.state.editProfile && this.state.user.username) {
-      textareaBio = null;
-      content = (
-      <div>
-        <section className="header-profile-section">
-          <BackgroundSlider profile={this.state.user.profile} />
-            {bkgrndImgForm}
-          <div className="profile-pic-container">
-            {profilePicFile}
-            <section className="profile-pic-section">
-              <div className="figure-container">
-                <figure className="profile-pic" style={{backgroundImage:`url(${this.state.user.profile.profilePic})`}}></figure>
-                <figcaption className="profile-figcaption">{this.state.user.username}, {this.state.user.age}</figcaption>
-              </div>
-              <ProfileInteractive
-                session={this.state.session}
-                user={this.state.user}
-                message={this.props.messageUser}
-                findingMatchStatus={this.state.findingMatchStatus}
-                toggleMatch={this.props.toggleMatch}
-                sentMatch={this.state.sentMatch}
-                matched={this.state.matched}
-                editProfile={this.editProfile}
-              />
-            </section>
-          </div>
-        </section>
-        <main className="profile-main">
-          <h2 className="about-heading">About {this.state.user.username}</h2>
-          {textareaBio}
-          <p className="about-bio">{this.state.user.profile.bio}</p>
-        </main>
-        <footer className="profile-footer">
-          <div className="matched-wagglrs">
-            <MyMatches myMatches={this.props.allMyMatches}/>
-          </div>
-          <h2 className="h2-recent-places">Recent Places</h2>
-          <ul className="ul-recent-places">
-            <UserRecentPlaces recentPlaces={this.props.recentPlaces} />
-          </ul>
-        </footer>
-      </div>);
+      textareaBio = (<p className="about-bio">{this.state.user.profile.bio}</p>);
+      styles = this.state.user.profile.profilePic;
+      profilePicFile = null;
 
     } else if (this.state.editProfile && this.state.user.username) {
-    styles = this.state.profilePicSrc;
-    editClickMe = (<h4 className="edit-profile-click-me">Click to change...</h4>);
-    hidden = 'none';
+      styles = this.state.profilePicSrc;
+      editClickMe = (<h4 className="edit-profile-click-me">Click to change...</h4>);
+      hidden = 'none';
 
-    profilePicFile = (
-        <input className="input-file"
-          type="file"
-          name="user[profilePic]"
-          ref="file"
-          accept="image/*"
-          onChange={this.handleImgChange} />);
+      profilePicFile = (
+          <input className="input-file"
+            type="file"
+            name="user[profilePic]"
+            ref="file"
+            accept="image/*"
+            onChange={this.handleImgChange} />);
 
-    bkgrndImgForm = (
-      <form  className="profile-image-form" onSubmit={this.onDrop}>
-        <div className="dropzone-container">
-          <Dropzone className="dropzone" ref="dropzone" onDrop={this.onDrop} onClick={this.onOpenClick}>
-            <i className="icon-camera fa fa-camera-retro" aria-hidden="true"></i>
-          </Dropzone>
-          {this.state.backgroundImgs.length > 0 ? <div className="upload-status-container">
-              <h2>To be uploaded {this.state.backgroundImgs.length}...</h2>
-              <div className="img-preview-container">{this.state.backgroundImgs.map((file, i) => <img className="background-img-preview" key={i} src={file.preview} />)}
-              </div>
-              </div> : null}
-        </div>
-      </form>);
+      bkgrndImgForm = (
+        <form  className="profile-image-form" onSubmit={this.onDrop}>
+          <div className="dropzone-container">
+            <Dropzone className="dropzone" ref="dropzone" onDrop={this.onDrop} onClick={this.onOpenClick}>
+              <i className="icon-camera fa fa-camera-retro" aria-hidden="true"></i>
+            </Dropzone>
+            {this.state.backgroundImgs.length > 0 ? <div className="upload-status-container">
+                <h2>To be uploaded {this.state.backgroundImgs.length}...</h2>
+                <div className="img-preview-container">{this.state.backgroundImgs.map((file, i) => <img className="background-img-preview" key={i} src={file.preview} />)}
+                </div>
+                </div> : null}
+          </div>
+        </form>);
 
-    textareaBio = (
+      textareaBio = (
       <form className="form-about" onSubmit={this.saveEdits}>
         <textarea  className="bio-textarea" defaultValue={this.state.user.profile.bio} tabIndex="1" role="textbox" ref="aboutInfo" />
         <input className="submit-btn" type="submit" value="submit" role="button" />
@@ -170,50 +129,53 @@ export default React.createClass({
           <button className="submit-edits" onClick={this.cancelEdit} tabIndex="4">cancel</button>
         </div>
       </form>);
-    content = (
-      <div>
-        <section className="header-profile-section">
-          <BackgroundSlider profile={this.state.user.profile}/>
-            {bkgrndImgForm}
-          <div className="profile-pic-container">
-            {profilePicFile}
-            <section className="profile-pic-section">
-              <figure className="profile-pic" style={{backgroundImage: `url(${styles})`}}>
-                {editClickMe}
-              </figure>
-              <figcaption className="profile-figcaption">{this.state.user.username}, {this.state.user.age}</figcaption>
-              <ProfileInteractive
-                session={this.state.session}
-                user={this.state.user}
-                message={this.props.messageUser}
-                findingMatchStatus={this.state.findingMatchStatus}
-                toggleMatch={this.props.toggleMatch}
-                sentMatch={this.state.sentMatch}
-                matched={this.state.matched}
-                editProfile={this.editProfile}
-              />
+  }
+    return (
+      <div className="profile-info-component">
+        <div>
+          <section className="header-profile-section">
+            <BackgroundSlider profile={this.state.user.profile}/>
+              {bkgrndImgForm}
+            <div className="profile-pic-container">
+              {profilePicFile}
+              <section className="profile-pic-section">
+                <div className="figure-container">
+                  <figure className="profile-pic" style={{backgroundImage: `url(${styles})`}}>
+                    {editClickMe}
+                  </figure>
+                  <figcaption className="profile-figcaption">{this.state.user.username}, {this.state.user.age}</figcaption>
+                </div>
+                <ProfileInteractive
+                  session={this.state.session}
+                  user={this.state.user}
+                  message={this.props.messageUser}
+                  findingMatchStatus={this.state.findingMatchStatus}
+                  toggleMatch={this.props.toggleMatch}
+                  sentMatch={this.state.sentMatch}
+                  matched={this.state.matched}
+                  editProfile={this.editProfile}
+                />
+              </section>
+            </div>
+          </section>
+          <div className="upper-profile-container">
+            <section className="profile-main">
+              <h2 className="about-heading">About {this.state.user.username}</h2>
+              {textareaBio}
+            </section>
+            <section className="profile-footer">
+              <div className="matched-wagglrs">
+                <MyMatches myMatches={this.props.allMyMatches}/>
+              </div>
             </section>
           </div>
-        </section>
-        <div className="main-footer-container">
-          <main className="profile-main">
-            {textareaBio}
-          </main>
-          <footer className="profile-footer">
-            <div className="matched-wagglrs">
-              <MyMatches myMatches={this.props.allMyMatches}/>
-            </div>
+          <section className="profile-recent-places-container">
             <h2 className="h2-recent-places">Recent Places</h2>
             <ul className="ul-recent-places">
               <UserRecentPlaces recentPlaces={this.props.recentPlaces} />
             </ul>
-          </footer>
+          </section>
         </div>
-      </div>);
-  }
-    return (
-      <div className="profile-info-component">
-        {content}
       </div>
     );
 
