@@ -1,11 +1,22 @@
 @import '_profileHeader.scss';
 
 /*PROFILE MAIN SECTION STARTS HERE*/
-.profile-main {
+
+.upper-profile-container {
   position: relative;
   top: 4rem;
-  padding-bottom: 15%;
+  padding-bottom: 4rem;
   border-bottom: solid 1px $border;
+}
+
+.profile-main {
+  border-bottom: solid 1px $border;
+  padding-bottom: 3rem;
+}
+
+.profile-recent-places-container {
+  position: relative;
+  top: 4rem;
 }
 
 .ul-about-data {
@@ -27,8 +38,6 @@
     cursor: default;
   }
 }
-
-// .prof
 
 .about-heading {
   font-size: 2rem;
@@ -136,7 +145,7 @@ h2 {
   justify-content: space-around;
   height: 25vh;
   width: 90%;
-  border-bottom: solid 1px $font-color;
+  // border-bottom: solid 1px $border;
   margin: 0 auto;
 }
 
@@ -280,9 +289,9 @@ h2 {
     width: 85%;
   }
 
-  .profile-main {
-    padding-bottom: 4rem;
-  }
+  // .profile-main {
+  //   padding-bottom: 4rem;
+  // }
 
   .background-profile-image {
     height: 35em;
@@ -291,14 +300,6 @@ h2 {
   .user-recent-places-component {
     width: 40%;
     margin: 0;
-  }
-
-  .snippet-text {
-    display: none;
-    // width: 80%;
-    // padding-left: 4%;
-    // margin-bottom: 0;
-    // border-left: solid 1px rgba($font-color, 0.5);
   }
 
   .background-profile-image {
@@ -326,41 +327,72 @@ h2 {
 @media(min-width: 900px) {
   .upper-profile-container {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+  }
+
+  .profile-main {
+    width: 50%;
+    height: 100%;
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .about-bio {
+    width: 100%;
+  }
+
+  .h2-matches {
+    width: 84%;
+    margin: 0 auto;
+    padding-top: 5%;
+    border-top: solid 1px $border;
   }
 
   .scroll-container {
-    height: 25vh;
+    // height: 30vh;
+    width: 84%;
+    border-bottom: solid 1px $border;
   }
 
   .snippet-text {
     width: 20rem;
   }
+
+  .profile-footer {
+    width: 40%;
+    height: 100%;
+  }
+
+  .matched-wagglrs {
+    height: 70%;
+    div {
+      height: 80%;
+    }
+  }
+
+  .scroll-container {
+    height: 65%;
+  }
 }
 
 @media(min-width: 1000px) {
-  .profile-main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 90%;
-    margin: 0 auto;
-  }
-
-  .ul-about-data {
-    width: 30%;
-    height: 100%;
-  }
-
-  .about-bio {
-    width: 55rem;
-    height: 100%;
-  }
-
-  .bio-textarea {
-    width: 85%;
-    margin: 0 auto;
-  }
+  // .ul-about-data {
+  //   width: 30%;
+  //   height: 100%;
+  // }
+  //
+  // .about-bio {
+  //   width: 55rem;
+  //   height: 100%;
+  // }
+  //
+  // .bio-textarea {
+  //   width: 85%;
+  //   margin: 0 auto;
+  // }
 
   .edit-btn-container {
     justify-content: flex-start;
@@ -371,6 +403,6 @@ h2 {
   }
 
   .h2-matches {
-    padding-top: 2rem;
+    // padding-top: 2rem;
   }
 }
