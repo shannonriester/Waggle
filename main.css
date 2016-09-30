@@ -1228,11 +1228,19 @@ h4 {
     font-size: 1em;
     margin: 0 auto; } }
 /*PROFILE MAIN SECTION STARTS HERE*/
-.profile-main {
+.upper-profile-container {
   position: relative;
   top: 4rem;
-  padding-bottom: 15%;
+  padding-bottom: 4rem;
   border-bottom: solid 1px #DCE0E0; }
+
+.profile-main {
+  border-bottom: solid 1px #DCE0E0;
+  padding-bottom: 3rem; }
+
+.profile-recent-places-container {
+  position: relative;
+  top: 4rem; }
 
 .ul-about-data {
   margin: 8% 0 0 0;
@@ -1343,7 +1351,6 @@ h2 {
   justify-content: space-around;
   height: 25vh;
   width: 90%;
-  border-bottom: solid 1px #555;
   margin: 0 auto; }
 
 .preview-container {
@@ -1455,18 +1462,12 @@ h2 {
   .about-bio {
     width: 85%; }
 
-  .profile-main {
-    padding-bottom: 4rem; }
-
   .background-profile-image {
     height: 35em; }
 
   .user-recent-places-component {
     width: 40%;
     margin: 0; }
-
-  .snippet-text {
-    display: none; }
 
   .background-profile-image {
     object-fit: cover;
@@ -1486,43 +1487,52 @@ h2 {
     width: 70%; } }
 @media (min-width: 900px) {
   .upper-profile-container {
-    display: flex; }
-
-  .scroll-container {
-    height: 25vh; }
-
-  .snippet-text {
-    width: 20rem; } }
-@media (min-width: 1000px) {
-  .profile-main {
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 90%;
-    margin: 0 auto; }
+    height: 50vh; }
 
-  .ul-about-data {
-    width: 30%;
-    height: 100%; }
+  .profile-main {
+    width: 50%;
+    height: 100%;
+    border: none;
+    padding: 0;
+    margin: 0; }
 
   .about-bio {
-    width: 55rem;
+    width: 100%; }
+
+  .h2-matches {
+    width: 84%;
+    margin: 0 auto;
+    padding-top: 5%;
+    border-top: solid 1px #DCE0E0; }
+
+  .scroll-container {
+    width: 84%;
+    border-bottom: solid 1px #DCE0E0; }
+
+  .snippet-text {
+    width: 20rem; }
+
+  .profile-footer {
+    width: 40%;
     height: 100%; }
 
-  .bio-textarea {
-    width: 85%;
-    margin: 0 auto; }
+  .matched-wagglrs {
+    height: 70%; }
+    .matched-wagglrs div {
+      height: 80%; }
 
+  .scroll-container {
+    height: 65%; } }
+@media (min-width: 1000px) {
   .edit-btn-container {
     justify-content: flex-start;
     width: 30%;
     position: relative;
     right: 103%;
-    bottom: 45%; }
-
-  .h2-matches {
-    padding-top: 2rem; } }
+    bottom: 45%; } }
 .message-history-page-container .message-list {
   display: flex;
   flex-direction: column;
