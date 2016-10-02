@@ -183,6 +183,7 @@ h2 {
 // RECENT PLACES STARTS HERE
 .h2-recent-places {
   margin: 3rem 0;
+  font-size: 2rem;
 }
 
 .user-recent-places-component {
@@ -214,18 +215,9 @@ h2 {
     height: 100%;
     margin: 0;
     color: #FFF;
-    background: rgba(0,0,0, .3);
+    background: rgba(0,0,0, .5);
     font-size: 20px;
   }
-
-  .snippet-text {
-    width: 80%;
-    text-align: left;
-    color: rgba($font-color, .7);
-    border-left: solid 1px rgba(85, 85, 85, 0.5);
-    padding-left: 4%;
-  }
-
 
 // MESSAGE MODAL STARTS HERE
 #new-message-container {
@@ -298,7 +290,7 @@ h2 {
   }
 
   .user-recent-places-component {
-    width: 40%;
+    width: 45%;
     margin: 0;
   }
 
@@ -357,10 +349,6 @@ h2 {
     border-bottom: solid 1px $border;
   }
 
-  .snippet-text {
-    width: 20rem;
-  }
-
   .profile-footer {
     width: 40%;
     height: 100%;
@@ -375,6 +363,18 @@ h2 {
 
   .scroll-container {
     height: 65%;
+  }
+
+  .user-recent-places-component {
+    width: 33%;
+    margin: 0;
+  }
+
+  .recent-place-image {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 20rem;
   }
 }
 
@@ -401,8 +401,7 @@ h2 {
     right: 103%;
     bottom: 45%;
   }
-
-  .h2-matches {
-    // padding-top: 2rem;
+  .recent-place-image {
+    // height: 25rem;
   }
 }
