@@ -967,7 +967,9 @@ h4 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; }
+  justify-content: center;
+  height: 100%;
+  width: 20rem; }
 
 .profile-image-form {
   position: absolute;
@@ -976,10 +978,37 @@ h4 {
   top: 10.7%; }
 
 .profile-figcaption {
+  align-self: flex-end;
+  width: 70%;
+  height: 30%;
   font-size: 1rem;
   font-weight: 100;
   color: #555;
   text-align: center; }
+
+.profile-about-ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%; }
+
+.profile-about-li {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  list-style-type: none;
+  color: #555; }
+  .profile-about-li p {
+    display: flex;
+    margin: 0; }
+  .profile-about-li i {
+    width: 1rem;
+    margin-right: 5px; }
 
 .profile-pic-container {
   position: relative;
@@ -1062,7 +1091,7 @@ h4 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 50%;
+  width: 100%;
   height: 100%; }
 
 .input-file {
@@ -1091,7 +1120,7 @@ h4 {
 
 /*USER INTERACTIVE NAV SECTION*/
 .profile-interactive-component {
-  width: 100vw; }
+  width: 70%; }
 
 .profile-sub-nav {
   display: -webkit-box;
@@ -1195,14 +1224,10 @@ h4 {
     height: 20vh; }
 
   .profile-pic-section {
-    width: 60%;
     flex-direction: row; }
 
   .figure-container {
-    width: 30%; }
-
-  .profile-interactive-component {
-    width: 70%; }
+    width: 50%; }
 
   .background-profile-image {
     object-position: 50% 40%; }
@@ -1349,7 +1374,7 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  height: 25vh;
+  height: 20vh;
   width: 90%;
   margin: 0 auto; }
 
@@ -1467,6 +1492,9 @@ h2 {
     object-fit: cover;
     height: 70vh; }
 
+  .profile-footer {
+    top: 1rem; }
+
   .recent-place-image {
     width: 100%;
     margin: 0;
@@ -1483,8 +1511,7 @@ h2 {
   .upper-profile-container {
     display: flex;
     align-items: center;
-    justify-content: center;
-    height: 50vh; }
+    justify-content: center; }
 
   .profile-main {
     width: 50%;
@@ -1496,27 +1523,9 @@ h2 {
   .about-bio {
     width: 100%; }
 
-  .h2-matches {
-    width: 84%;
-    margin: 0 auto;
-    padding-top: 5%;
-    border-top: solid 1px #DCE0E0; }
-
-  .scroll-container {
-    width: 84%;
-    border-bottom: solid 1px #DCE0E0; }
-
   .profile-footer {
     width: 40%;
     height: 100%; }
-
-  .matched-wagglrs {
-    height: 70%; }
-    .matched-wagglrs div {
-      height: 80%; }
-
-  .scroll-container {
-    height: 65%; }
 
   .user-recent-places-component {
     width: 33%;
@@ -1534,6 +1543,9 @@ h2 {
     position: relative;
     right: 103%;
     bottom: 45%; } }
+.profile-about-li {
+  color: #555; }
+
 .message-history-page-container .message-list {
   display: flex;
   flex-direction: column;
