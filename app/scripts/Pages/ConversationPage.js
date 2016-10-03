@@ -5,6 +5,7 @@ import moment from 'moment';
 
 import store from '../store';
 import Nav from '../Components/Nav';
+import SentMessage from '../Components/SentMessage';
 
 export default React.createClass({
   getInitialState: function() {
@@ -18,8 +19,10 @@ export default React.createClass({
        store.messagesCollection.fetch();
        store.messagesCollection.findConversation(this.props.params.recipient)
       }, 1000),
-
     }
+  },
+  deleteMessage: function(){
+    console.log();
   },
   sendMessage: function(e) {
     e.preventDefault();
@@ -44,15 +47,10 @@ export default React.createClass({
         }, 1000),
       });
     }
-    // let contentDiv = document.querySelector('messages-content');
-    // contentDiv.scrollTop = contentDiv.scrollHeight;
   },
   componentDidMount: function() {
     store.userCollection.fetch();
     store.messagesCollection.fetch();
-
-    // let contentDiv = document.querySelector('messages-content');
-    // contentDiv.scrollTop = contentDiv.scrollHeight;
 
     store.session.on('change', this.updateState);
     store.userCollection.on('change update', this.updateState);
@@ -78,25 +76,41 @@ export default React.createClass({
     convo = convo.map((curr, i, arr) => {
       curr = curr.toJSON();
       if (store.session.get('username') === curr.sender || store.session.get('username') === curr.recipient) {
-        let whoSent = 'not-me';
+        let whoSent;
         let meContainer;
-        name = this.props.params.recipient + ':';
+        let deleteIcon;
+        let name;
+
         if (this.state.session === curr.sender) {
           whoSent = 'me';
           meContainer = 'me-container';
           name = '';
-        }
-        let content = (
-          <li key={i} className={meContainer}>
-            <div className={whoSent}>
-            <p className="message-body"><span className="convo-name">{name}</span> {curr.body}</p>
-            <data>{curr.momentTime}</data>
-            </div>
-          </li>
-        );
-        return content;
-      }
+          deleteIcon = true;
+          // console.log('convo', convo);
+          // console.log('curr', curr);
+          return (<SentMessage key={i}
+                    whoSent={whoSent}
+                    meContainer={meContainer}
+                    session={this.state.session}
+                    curr={curr}
+                    name={name}
+                    deleteIcon={deleteIcon}
+                    convo={convo} />);
+        } else {
+          whoSent = 'not-me';
+          deleteIcon = false;
+          name = this.props.params.recipient + ':';
 
+          return (<SentMessage key={i}
+                    whoSent={whoSent}
+                    meContainer={meContainer}
+                    session={this.state.session}
+                    curr={curr}
+                    name={name}
+                    deleteIcon={deleteIcon}
+                    convo={convo} />);
+        }
+      }
     });
     return (
       <div className="conversation-page-component">
