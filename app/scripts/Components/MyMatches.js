@@ -12,10 +12,12 @@ export default React.createClass({
         scroll: '',
         fetch: true,
         viewing: 0,
+        scrollView: 0,
     }
   },
   scrollRight: function(e) {
     e.preventDefault();
+
     this.setState({scroll:'slide-out-left'});
     window.setTimeout(() => {
       this.setState({
@@ -47,7 +49,6 @@ export default React.createClass({
               fetch: false,
             });
           }
-
         })
 
       });
@@ -74,13 +75,14 @@ export default React.createClass({
             </div>
           );
       });
+
       matchPreview = matchPreview.slice(this.state.viewing, this.state.viewing + 3);
     }
 
     return (
       <div>
         <h2 className="h2-matches">Your Matches</h2>
-        <div className="scroll-container">
+        <div className="scroll-container place-item-scroll-container">
           <button className="scroll-btn" onClick={this.scrollLeft}><i className="arrow-icon fa fa-arrow-left" aria-hidden="true"></i></button>
           <div id={this.state.scroll} className="preview-container">{matchPreview}</div>
           <button className="scroll-btn" onClick={this.scrollRight}><i className="arrow-icon fa fa-arrow-right" aria-hidden="true"></i></button>

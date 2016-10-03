@@ -773,7 +773,8 @@ h4 {
   background-size: contain;
   background-repeat: no-repeat;
   width: 100vw;
-  text-align: center; }
+  text-align: center;
+  overflow: hidden; }
 
 .place-image {
   height: 400px;
@@ -786,7 +787,7 @@ h4 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 90vh;
+  height: 70vh;
   width: 100vw;
   color: #EFEFEF;
   background: #FFF;
@@ -807,21 +808,20 @@ h4 {
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  height: 65vh;
   color: #555;
   background: #FFF;
-  border-left: solid 2px;
-  margin: 20px auto; }
+  margin: 0; }
 
 .snippet-text-checkin {
   width: 70%;
-  margin: 25px auto;
-  padding-left: 30px;
-  border-left: solid 2px #DCE0E0; }
+  margin: 0px auto; }
+
+.place-item-scroll-container {
+  height: 25vh; }
 
 .h2-checkin, .h3-checkin {
   background: none;
-  margin: none;
+  margin: 0;
   text-align: center; }
 
 .checkin-address-links-container {
@@ -829,7 +829,8 @@ h4 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: solid 1px #DCE0E0; }
+  border-bottom: solid 1px #DCE0E0;
+  font-size: 14px; }
 
 .checkin-links-ul, .checkin-address-ul {
   display: flex;
@@ -881,7 +882,6 @@ h4 {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 75vh;
   background: rgba(255, 255, 255, 0.9); }
 
 .ulist-users-checkedin {
@@ -891,7 +891,7 @@ h4 {
   justify-content: space-around;
   padding: 0;
   margin: 0;
-  height: 100%; }
+  margin-top: 2rem; }
 
 .checkedin-user-preview-component {
   display: flex;
@@ -903,13 +903,15 @@ h4 {
   color: #FF5A5F; }
 
 .checkin-preview-container {
-  padding-bottom: 25px;
   display: flex;
-  width: 80vw; }
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  padding-bottom: 25px; }
 
 .userpreview-container {
   height: 70%;
-  width: 100%;
+  width: 30%;
   background-size: cover;
   margin: 0;
   display: flex;
@@ -925,7 +927,8 @@ h4 {
   background-position: left center; }
 
 .checkin-data {
-  text-align: center; }
+  text-align: center;
+  font-size: 12px; }
 
 #checked-in {
   color: #FFF;
@@ -936,6 +939,10 @@ h4 {
     height: 500px;
     width: 100%; } }
 @media (min-width: 775px) {
+  .main-place-item-page {
+    margin-bottom: 0;
+    height: 35vh; }
+
   .place-image {
     height: 500px;
     width: 42em; }
@@ -944,18 +951,17 @@ h4 {
     width: 50em; }
 
   .checkin-address-links-container {
-    width: 40em; } }
+    width: 40em; }
+
+  .snippet-text-checkin {
+    margin: 10px auto; } }
+@media (min-width: 800px) {
+  .footer-users-checkedin {
+    position: relative;
+    bottom: 3rem; } }
 @media (min-width: 1100px) {
-  .place-image {
-    height: 40em;
-    width: 90%;
-    margin: 0 auto; }
-
-  .place-heading-container {
-    width: 65em; }
-
   .checkin-address-links-container {
-    width: 55em; }
+    width: 45em; }
 
   .scroll-container {
     width: 40em; } }
@@ -1374,8 +1380,8 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  height: 20vh;
-  width: 90%;
+  height: 25vh;
+  width: 70%;
   margin: 0 auto; }
 
 .preview-container {
@@ -1392,7 +1398,8 @@ h2 {
   outline: none;
   border-radius: 50%;
   border: solid 1px #DCE0E0;
-  font-size: 25px; }
+  font-size: 25px;
+  width: 37px; }
   .scroll-btn:hover {
     transition: .5s;
     background: #FF5A5F;
