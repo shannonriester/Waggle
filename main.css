@@ -1589,7 +1589,7 @@ h2 {
 .convo-with-link {
   position: relative;
   top: 6em;
-  border-bottom: solid 2px #555;
+  border-bottom: solid 1px #DCE0E0;
   background: #EBEBEB;
   width: 95%;
   margin: 0 auto;
@@ -1627,11 +1627,6 @@ h2 {
     margin: 10px 0;
     font-size: 20px;
     line-height: 2; }
-    .messages-content li .message-content-container {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      width: 80%; }
     .messages-content li p {
       margin: 0 5px 0 0; }
     .messages-content li span {
@@ -1643,7 +1638,6 @@ h2 {
     align-items: flex-end; }
   .messages-content .me {
     display: flex;
-    flex-direction: column;
     align-items: flex-end;
     justify-content: center;
     width: 80%;
@@ -1651,6 +1645,12 @@ h2 {
     background: rgba(146, 101, 191, 0.7);
     border-radius: 10px;
     padding: 10px; }
+    .messages-content .me .message-content-container {
+      width: 95%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: center; }
   .messages-content .not-me {
     display: flex;
     flex-direction: column;
@@ -1658,9 +1658,18 @@ h2 {
     justify-content: center;
     width: 80%;
     border: solid 2px #FFF;
-    background: none;
+    background: #FFF;
     border-radius: 10px;
     padding: 10px; }
+    .messages-content .not-me .message-content-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start; }
+  .messages-content .delete-icon {
+    width: 5%; }
+    .messages-content .delete-icon:hover {
+      cursor: pointer; }
 
 .chat-form-container {
   position: fixed;
