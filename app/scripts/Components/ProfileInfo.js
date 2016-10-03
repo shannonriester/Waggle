@@ -87,6 +87,8 @@ export default React.createClass({
     let hidden;
     let editClickMe;
     let bkgrndImgForm;
+    let myMatches;
+    let hideMyMatches;
 
     if (!this.state.editProfile && this.state.user.username) {
       textareaBio = (<p className="about-bio">{this.state.user.profile.bio}</p>);
@@ -130,6 +132,16 @@ export default React.createClass({
         </div>
       </form>);
   }
+
+  // console.log();
+  // console.log(this.props.params);
+  if (this.state.session.username === this.props.params) {
+    myMatches = (<MyMatches myMatches={this.props.allMyMatches}/>);
+  } else {
+    hideMyMatches = 'none';
+  }
+
+    // console.log(this.state.user);
     return (
       <div className="profile-info-component">
         <div>
@@ -143,7 +155,12 @@ export default React.createClass({
                   <figure className="profile-pic" style={{backgroundImage: `url(${styles})`}}>
                     {editClickMe}
                   </figure>
-                  <figcaption className="profile-figcaption">{this.state.user.username}, {this.state.user.age}</figcaption>
+                  <figcaption className="profile-figcaption">
+                  <ul className="profile-about-ul">
+                    <li className="profile-about-li"><i className="about-user-icon fa fa-user" aria-hidden="true"></i> <p>{this.state.user.username}, {this.state.user.age}</p></li>
+                    <li className="profile-about-li"><i className="about-user-icon fa fa-paw" aria-hidden="true"></i> <p>{this.state.user.dog.dogName}, {this.state.user.dog.dogBreed}</p></li>
+                  </ul>
+                  </figcaption>
                 </div>
                 <ProfileInteractive
                   session={this.state.session}
@@ -163,9 +180,9 @@ export default React.createClass({
               <h2 className="about-heading">About {this.state.user.username}</h2>
               {textareaBio}
             </section>
-            <section className="profile-footer">
+            <section className="profile-footer" style={{display: hideMyMatches}}>
               <div className="matched-wagglrs">
-                <MyMatches myMatches={this.props.allMyMatches}/>
+                {myMatches}
               </div>
             </section>
           </div>

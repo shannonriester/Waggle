@@ -5,7 +5,7 @@ import moment from 'moment';
 
 import store from '../store';
 import Nav from '../Components/Nav';
-import MyMatches from '../Components/MyMatches';
+// import MyMatches from '../Components/MyMatches';
 import ProfileInfo from '../Components/ProfileInfo';
 import UserRecentPlaces from '../Components/UserRecentPlaces';
 import NewMessage from '../Components/NewMessage';
@@ -134,7 +134,6 @@ export default React.createClass({
   render: function() {
     let profileInfo;
     let newMessageModal;
-    let myMatches;
 
     if (this.state.currentUser.username) {
       let allMyMatches;
@@ -157,6 +156,7 @@ export default React.createClass({
           matched={this.state.matched}
           allMyMatches={allMyMatches}
           recentPlaces = {recentPlaces}
+          params={this.props.params.userId}
           />);
     }
 

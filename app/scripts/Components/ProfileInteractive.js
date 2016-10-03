@@ -13,7 +13,17 @@ export default React.createClass({
     let interactiveNav;
     let sentMatchBtn;
     let matchStatus;
+    //if li
+    // <li>
+    // <button className="connect-btn new-message-btn"><i className="about-user-icon fa fa-paw" aria-hidden="true"></i></button>
+    //   <label>{this.props.user.dog.dogName}, {this.props.user.dog.dogAge}, {this.props.user.dog.dogBreed}</label>
+    // </li>
 
+    //else li
+    // <li>
+    // <button className="connect-btn new-message-btn"><i className="about-user-icon fa fa-paw" aria-hidden="true"></i></button>
+    //   <label>{this.props.user.dog.dogName}, {this.props.user.dog.dogAge}, {this.props.user.dog.dogBreed}</label>
+    // </li>
     if (this.props.session.username === this.props.user.username) {
       interactiveNav = (
         <ul className="profile-sub-nav">
@@ -24,10 +34,6 @@ export default React.createClass({
           <li>
             <button className="connect-btn settings-btn" onClick={this.goToSettings}><i className="fa fa-cog" aria-hidden="true"></i></button>
             <label>settings</label>
-          </li>
-          <li>
-          <button className="connect-btn new-message-btn"><i className="about-user-icon fa fa-paw" aria-hidden="true"></i></button>
-            <label>{this.props.user.dog.dogName}, {this.props.user.dog.dogAge}, {this.props.user.dog.dogBreed}</label>
           </li>
           <li>
             <button className="connect-btn new-message-btn"><i className="about-user-icon fa fa-globe" aria-hidden="true"></i></button>
@@ -64,10 +70,6 @@ export default React.createClass({
               {sentMatchBtn}
             </button>
             <label>{matchStatus}</label>
-          </li>
-          <li>
-          <button className="connect-btn new-message-btn"><i className="about-user-icon fa fa-paw" aria-hidden="true"></i></button>
-            <label>{this.props.user.dog.dogName}, {this.props.user.dog.dogAge}, {this.props.user.dog.dogBreed}</label>
           </li>
           <li>
             <button className="connect-btn new-message-btn"><i className="about-user-icon fa fa-globe" aria-hidden="true"></i></button>
