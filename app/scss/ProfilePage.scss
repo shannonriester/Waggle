@@ -6,7 +6,6 @@
   position: relative;
   top: 4rem;
   padding-bottom: 4rem;
-  border-bottom: solid 1px $border;
 }
 
 .profile-main {
@@ -184,7 +183,9 @@ h2 {
 // RECENT PLACES STARTS HERE
 .h2-recent-places {
   margin: 3rem 0;
+  // padding-top: 2rem;
   font-size: 2rem;
+  // border-top: solid 1px $border;
 }
 
 .user-recent-places-component {

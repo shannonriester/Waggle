@@ -47,11 +47,12 @@ const MessagesCollection = Backbone.Collection.extend({
     convoArr.push(this.where({sender:recipient}));
     return _.flatten(convoArr);
   },
-  // findUser: function(username) {
-  //   let userArr = this.where({username:username});
-  //   return userArr;
-  // },
-  // fetchMatches
+  deleteMessage: function(id) {
+    // console.log(id);
+    let model = this.findMessageModel(id);
+    // console.log(model);
+    model.destroy();
+  },
 });
 
 export default MessagesCollection;

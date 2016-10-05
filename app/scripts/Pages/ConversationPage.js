@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import _ from 'underscore';
+import $ from 'jquery';
 import moment from 'moment';
 
 import store from '../store';
@@ -55,6 +56,12 @@ export default React.createClass({
     store.session.on('change', this.updateState);
     store.userCollection.on('change update', this.updateState);
     store.messagesCollection.on('change update', this.updateState);
+    // let messageContainerHeight = document.querySelector('.fixed-message-container');
+    // messageContainerHeight = messageContainerHeight * -1;
+    // messageContainerHeight.scrollBottom = messageContainerHeight.scrollHeight;
+    // $().scrollTop(200);
+    $(window).scrollTop($(".fixed-message-container").height() + 1400);
+
   },
   componentWillUnmount: function() {
     store.session.off('change', this.updateState);
@@ -112,6 +119,8 @@ export default React.createClass({
         }
       }
     });
+
+    // console.log(document.g);
     return (
       <div className="conversation-page-component">
         <Nav/>

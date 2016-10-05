@@ -172,11 +172,14 @@
 }
 
 .chat-textbox {
-  height: 90%;
+  height: 98%;
   width: 90%;
   outline: none;
   border: none;
   font-size: 1.4em;
+  border-radius: 10px;
+  color: $font-color;
+  padding-left: 1rem;
 }
 
 .message-btn {

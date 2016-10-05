@@ -974,7 +974,7 @@ h4 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  height: 60%;
   width: 20rem; }
 
 .profile-image-form {
@@ -1126,7 +1126,8 @@ h4 {
 
 /*USER INTERACTIVE NAV SECTION*/
 .profile-interactive-component {
-  width: 70%; }
+  width: 100%;
+  height: 40%; }
 
 .profile-sub-nav {
   display: -webkit-box;
@@ -1139,7 +1140,8 @@ h4 {
   justify-content: space-around;
   height: 100%;
   width: 100%;
-  padding: 0; }
+  padding: 0;
+  margin: 0; }
   .profile-sub-nav li {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -1154,7 +1156,8 @@ h4 {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
-    list-style-type: none; }
+    list-style-type: none;
+    width: 30%; }
     .profile-sub-nav li label {
       color: #777777;
       font-size: 15px;
@@ -1233,7 +1236,11 @@ h4 {
     flex-direction: row; }
 
   .figure-container {
-    width: 50%; }
+    width: 50%;
+    height: 100%; }
+
+  .profile-interactive-component {
+    width: 70%; }
 
   .background-profile-image {
     object-position: 50% 40%; }
@@ -1262,8 +1269,7 @@ h4 {
 .upper-profile-container {
   position: relative;
   top: 4rem;
-  padding-bottom: 4rem;
-  border-bottom: solid 1px #DCE0E0; }
+  padding-bottom: 4rem; }
 
 .profile-main {
   border-bottom: solid 1px #DCE0E0;
@@ -1684,11 +1690,14 @@ h2 {
   margin-top: 3%; }
 
 .chat-textbox {
-  height: 90%;
+  height: 98%;
   width: 90%;
   outline: none;
   border: none;
-  font-size: 1.4em; }
+  font-size: 1.4em;
+  border-radius: 10px;
+  color: #555;
+  padding-left: 1rem; }
 
 .message-btn {
   height: 100%;
