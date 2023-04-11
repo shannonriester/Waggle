@@ -8,7 +8,7 @@ As "man's best friend," it's safe to say that dogs make us feel more connected w
 
 Waggle creates the opportunity to bring people together, connecting on a deeper level. Its simplified search & checkin features make it easy for the user to explore dog-allowed places nearby. Checking-in is important in that if there are more than 3 people checked in to a location, a _hot spot_ is created: so the user can decide to get out and go make some new friends or meet up with some cool dogs. I hope that Wagglrs (Waggle-users) experience and appreciate this different approach to using technology to lose technology, if only for a short amount of time. 
 
-##Elevator Pitch
+## Elevator Pitch
 A location-based, social-media app that allows you to search for dog-friendly places, find cute dogs, and meet other local dog-lovers!
 
 ## MVP
