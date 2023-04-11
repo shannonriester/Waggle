@@ -1,7 +1,7 @@
-#WAGGLE  
+# WAGGLE  
 http://_waggle.surge.sh/
 
-##About
+## About
 Have you ever noticed a group of friends at a restaurant and everyone is lost on their smart phones, not engaging with each other at all? As much as I love technology and social-media, I feel that it's more important to be present and engaged in the moment. Waggle is designed to use technology to lose technology, so to speak.
 
 As "man's best friend," it's safe to say that dogs make us feel more connected with each other (dog and human alike). Dog-people really do love all things dog, so I wanted to simplify the process of finding dog-friendly places with dog-friendly people.
@@ -34,7 +34,7 @@ A location-based, social-media app that allows you to search for dog-friendly pl
   - Connecting session-user with other user IF MATCHED
   - Connecting checkins with individual places
 
-##Building Tools & Libraries
+## Building Tools & Libraries
 1. React
 5. Babel Preset React
 6. Backbone
@@ -43,7 +43,7 @@ A location-based, social-media app that allows you to search for dog-friendly pl
 9. Normalize-SCSS
 10. jQuery  
 
-##Basic Features
+## Basic Features
 1. Search (places/users(and dogs))
   - Search dog-friendly or dog-related places that you can visit/people have checked in to
   - Users can filter search to meet specific requirements
@@ -70,7 +70,7 @@ A location-based, social-media app that allows you to search for dog-friendly pl
     - User will specify (if they so choose) why they are on the app (meet new people, romantic interests, new in town and his/her dog needs new friends too!)
 
 
-##APIs and other Resources
+## APIs and other Resources
 1. [Yelp](https://www.yelp.com/developers/manage_api_keys)
 2. [FreeGeoIP](https://freegeoip.net/?q=70.112.11.58)
 3. [Google Maps API](https://developers.google.com/maps/documentation/javascript/)
@@ -80,7 +80,7 @@ A location-based, social-media app that allows you to search for dog-friendly pl
   - Check out some of my process and wireframes
 
 
-##Routes
+## Routes
 1. Landing Page: `/`
   - User must log in to access the site
 2. Search Results Page: `_waggle/search/?category=park`
@@ -96,7 +96,7 @@ A location-based, social-media app that allows you to search for dog-friendly pl
 6. Conversation page `_waggle.surge.sh/messages/<otherUser>`
 6. Search nearby Users/Dog-Places
 
-##Special Features
+## Special Features
 1. Swiping background images on profile
 2. Image uploading:
   - React Dropzone
@@ -109,7 +109,7 @@ A location-based, social-media app that allows you to search for dog-friendly pl
   - "Throw me a bone, why don't ya?" --message preview
 
 
-##StyleGuide
+## StyleGuide
   1. Code indentation (white-space)
     - Use the tab, spaced at two-spaces
     - Only use tab-spacing (at 2-space size)
